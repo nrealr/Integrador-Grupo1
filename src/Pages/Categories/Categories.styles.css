@@ -1,0 +1,22 @@
+.categories {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .categories h2 {
+    margin-bottom: 10px;
+  }
+  
+  .categories ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .categories li {
+    margin-bottom: 5px;
+  }
+  
+  .categories a {
+    color: #333;
+    text-decoration: none;
+  }
