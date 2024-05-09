@@ -9,7 +9,7 @@ export const Header = () => {
 
     <header>
       <div className="logo">
-        <img src="/images/logo.ico" alt="Application Logo" />
+        <img src="/images/logo.ico" alt="Company Logo" />
       </div>
       <nav>
         <ul>
