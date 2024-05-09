@@ -1,11 +1,13 @@
 /* Header.css */
+
+
 header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000; /* ensure the header is always on top of other elements */
-    background-color: #f0f0f0;
+    background-color: #f0e999;
     padding: 1em;
     display: flex;
     justify-content: space-between;
@@ -16,6 +18,7 @@ header {
   .logo {
     display: flex;
     align-items: center;
+    order: -1; /* ensure the logo is always displayed on the left side */
   }
   
   .logo a {
@@ -55,7 +58,7 @@ header {
   }
   
   .btn {
-    background-color: #4CAF50;
+    background-color: #b5df90;
     color: #fff;
     border: none;
     padding: 10px 20px;
