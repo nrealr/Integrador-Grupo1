@@ -1,8 +1,11 @@
 import React from 'react';
-import Search from './Search';
-import Categories from './Categories';
-import Recommendations from './Recommendations';
 import "./Body.styles.css"
+import { Categories } from './Categories';
+import { Recommendations } from './Recommendations';
+import { Search } from './Search';
+
+
+
 
 const Body = () => {
   return (
