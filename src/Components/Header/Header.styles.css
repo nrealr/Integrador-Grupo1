@@ -1,0 +1,92 @@
+/* Header.css */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* ensure the header is always on top of other elements */
+    background-color: #f0f0f0;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* add a subtle shadow to the header */
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  .logo a:hover {
+    color: #666;
+  }
+  
+  nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  nav li {
+    margin-right: 20px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  nav a:hover {
+    color: #666;
+  }
+  
+  .actions {
+    display: flex;
+    align-items: center;
+  }
+  
+  .btn {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .btn:hover {
+    background-color: #3e8e41;
+  }
+  
+  .btn-create-account {
+    margin-right: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    header {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .logo {
+      margin-bottom: 10px;
+    }
+  
+    nav {
+      margin-top: 10px;
+    }
+  
+    .actions {
+      margin-top: 10px;
+    }
+  }
