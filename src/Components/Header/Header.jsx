@@ -1,5 +1,6 @@
 import React from "react";
 import "./Header.styles.css"
+import { Link } from "react-router-dom";
 
 
 
@@ -9,13 +10,13 @@ export const Header = () => {
 
     <header>
       <div className="logo">
-        <img src="/images/logo.ico" alt="Application Logo" />
+      <Link to="/"><img src="/images/logo.ico" alt="Application Logo" /></Link>
       </div>
       <nav>
         <ul>
-          <li><a href="#">Home</a></li>
-          <li><a href="#">About</a></li>
-          <li><a href="#">Contact</a></li>
+        <Link to="/"><li>Home</li></Link>
+        <Link to="#"><li>About</li></Link>
+        <Link to="#"><li>Contact</li></Link>
         </ul>
       </nav>
       <div className="actions">

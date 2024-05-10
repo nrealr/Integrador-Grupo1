@@ -1,14 +1,26 @@
 
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
-import Header from './Components/Header/Header'
+import Layout from './Components/Layout'
+import AddProduct from './Routes/AddProduct'
+import Detail from './Routes/Detail'
+import Home from './Routes/Home'
 
 function App() {
 
 
   return (
-    <div>
-      <Header/>
-    </div>
+    <BrowserRouter>
+    <Routes>
+      <Route element={<Layout/>}>
+
+        <Route path="/" element={<Home/>} />
+        <Route path="/add" element={<AddProduct/>} />
+        <Route path="/doctor/:id" element={<Detail/>} />
+
+      </Route>
+    </Routes>
+    </BrowserRouter>      
   )
 }
 
