@@ -15,4 +15,5 @@ export const Categories = () => {
   );
 };
 
+console.log(ss);
 export default Categories;
