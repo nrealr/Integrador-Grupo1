@@ -76,6 +76,11 @@ button:focus-visible {
   cursor: pointer; 
 }
 
+.add-product-form{
+  display: flex;
+  flex-direction: column;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

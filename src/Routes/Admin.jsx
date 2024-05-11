@@ -21,15 +21,15 @@ const Admin = () => {
 
       <Link to={routes.add}>
         {" "}
-        <button className="admin-add-button">Add</button>{" "}
+        <button className="admin-add-button">Add product</button>{" "}
       </Link>
 
       <div className="grid-container">
         {doctors.map((item) => (
           <div key={item.id} className="grid-item">
             <p>ID: {item.id}</p>
-            <p>Name: {item.nombre}</p>
-            <p>Last Name: {item.apellido}</p>
+            <p>Name: {item.name}</p>
+            <p>Last Name: {item.lastname}</p>
             <p>Rut: {item.rut}</p>
             {/*             <p>Descripción: {item.descripcion}</p>
              */}{" "}

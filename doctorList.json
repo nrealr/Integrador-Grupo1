@@ -1,74 +1,84 @@
 {
-    "doctors": [
+  "doctors": [
     {
-        "id": "1",
-        "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
-        "nombre": "Juan",
-        "apellido": "Perez",
-        "rut": "12345678-9"
+      "id": "1",
+      "name": "Juan",
+      "lastname": "Perez",
+      "rut": "12345678-9",
+      "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
+      "description": ""
     },
     {
-        "id": "2",
-        "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
-        "nombre": "María",
-        "apellido": "González",
-        "rut": "98765432-1"
+      "id": "2",
+      "name": "María",
+      "lastname": "González",
+      "rut": "98765432-1",
+      "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
+      "description": ""
     },
     {
-        "id": "3",
-        "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
-        "nombre": "Pedro",
-        "apellido": "Martínez",
-        "rut": "45678901-2"
+      "id": "3",
+      "name": "Pedro",
+      "lastname": "Martínez",
+      "rut": "45678901-2",
+      "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
+      "description": ""
     },
     {
-        "id": "4",
-        "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
-        "nombre": "Ana",
-        "apellido": "Sánchez",
-        "rut": "65432109-8"
+      "id": "4",
+      "name": "Ana",
+      "lastname": "Sánchez",
+      "rut": "65432109-8",
+      "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
+      "description": ""
     },
     {
-        "id": "5",
-        "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
-        "nombre": "Luis",
-        "apellido": "López",
-        "rut": "89012345-6"
+      "id": "5",
+      "name": "Luis",
+      "lastname": "López",
+      "rut": "89012345-6",
+      "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
+      "description": ""
     },
     {
-        "id": "6",
-        "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
-        "nombre": "Laura",
-        "apellido": "Rodríguez",
-        "rut": "21098765-3"
+      "id": "6",
+      "name": "Laura",
+      "lastname": "Rodríguez",
+      "rut": "21098765-3",
+      "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
+      "description": ""
     },
     {
-        "id": "7",
-        "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
-        "nombre": "Carlos",
-        "apellido": "Hernández",
-        "rut": "54321098-7"
+      "id": "7",
+      "name": "Carlos",
+      "lastname": "Hernández",
+      "rut": "54321098-7",
+      "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
+      "description": ""
     },
     {
-        "id": "8",
-        "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
-        "nombre": "Elena",
-        "apellido": "Díaz",
-        "rut": "10987654-3"
+      "id": "8",
+      "name": "Elena",
+      "lastname": "Díaz",
+      "rut": "10987654-3",
+      "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
+      "description": ""
     },
     {
-        "id": "9",
-        "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
-        "nombre": "Miguel",
-        "apellido": "Torres",
-        "rut": "32109876-5"
+      "id": "9",
+      "name": "Miguel",
+      "lastname": "Torres",
+      "rut": "32109876-5",
+      "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
+      "description": ""
     },
     {
-        "id": "10",
-        "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
-        "nombre": "Patricia",
-        "apellido": "Ruiz",
-        "rut": "76543210-1"
+      "id": "10",
+      "name": "Patricia",
+      "lastname": "Ruiz",
+      "rut": "76543210-1",
+      "img": "https://merriam-webster.com/assets/mw/images/article/art-wap-article-main/alt-5ae892611bf1a-5168-68b2575aab38f2c97ce8846381d07044@1x.jpg",
+      "description": ""
     }
-]
+  ]
 }

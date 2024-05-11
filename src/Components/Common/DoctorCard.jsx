@@ -13,7 +13,7 @@ const DoctorCard = ({ doctor }) => {
         src={doctor.img}
       />
 
-      <h2>{doctor.nombre} {doctor.apellido}</h2>
+      <h2>{doctor.name} {doctor.lastname}</h2>
       <h3>{doctor.rut}</h3>
 
       <Link to={`/doctor/${doctor.id}`}>Ver detalle</Link>

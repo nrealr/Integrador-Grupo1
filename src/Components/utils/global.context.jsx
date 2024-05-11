@@ -1,15 +1,16 @@
 import axios from "axios";
 import { createContext, useReducer } from "react";
+import { urlApi } from "./routes";
 
-const URL = "http://localhost:3030/doctors/"
+
 
 export const getDoctor = async () => {
-    let res = await axios.get(URL);
+    let res = await axios.get(urlApi);
     return res.data;
 };
 
 export const getDoctorById = async (id) => {
-    let res = await axios.get(URL + id);
+    let res = await axios.get(urlApi + id);
     return res.data;
 };
 

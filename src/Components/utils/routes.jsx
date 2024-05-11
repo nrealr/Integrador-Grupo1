@@ -4,3 +4,5 @@ export const routes = {
     add: "/admin/add",
     detail: "/doctor/:id",
   };
+
+export const urlApi = 'http://localhost:3030/doctors/'
