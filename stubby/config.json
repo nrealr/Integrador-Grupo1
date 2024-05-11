@@ -1,0 +1,12 @@
+[
+  {
+    "request": {
+      "method": "GET",
+      "url": "/doctors"
+    },
+    "response": {
+      "status": 200,
+      "file": "docs.json"
+    }
+  }
+]
