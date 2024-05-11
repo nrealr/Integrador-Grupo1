@@ -13,6 +13,7 @@ header {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* add a subtle shadow to the header */
+    height: 3rem;
   }
   
   .logo {
@@ -79,6 +80,7 @@ header {
     header {
       flex-direction: column;
       align-items: center;
+      height: 12rem
     }
   
     .logo {

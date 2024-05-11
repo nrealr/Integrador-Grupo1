@@ -1,0 +1,17 @@
+
+.container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid black;
+    border-radius: 5px;
+    width: 30vw;
+    justify-content: center;
+    align-items: center;
+}
+
+.avatarDoc{
+    width: 20rem;
+}
+
