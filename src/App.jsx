@@ -1,16 +1,18 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import './App.css'
 import Layout from './Components/Layout'
 import AddProduct from './Routes/AddProduct'
 import Detail from './Routes/Detail'
 import Home from './Routes/Home'
+import { ContextProvider } from './Components/utils/global.context'
 
 function App() {
 
 
   return (
     <BrowserRouter>
+    <ContextProvider>
+
     <Routes>
       <Route element={<Layout/>}>
 
@@ -20,6 +22,8 @@ function App() {
 
       </Route>
     </Routes>
+
+    </ContextProvider>
     </BrowserRouter>      
   )
 }
