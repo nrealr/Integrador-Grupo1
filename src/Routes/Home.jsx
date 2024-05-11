@@ -1,32 +1,27 @@
 import React, { useEffect, useState } from 'react'
-import { getDoctor } from '../Components/utils/global.context';
+import { getDoctors } from '../Services';
 import DoctorCard from '../Components/Common/DoctorCard'
 
 const Home = () => {
 
-  const [doctors, setDoctors] = useState([])
+  const [doctors, setDoctors] = useState([]);
+
+  const loadDoctors = async ()=>{
+    let doctorData = await getDoctors();
+    setDoctors(doctorData)
+  }
 
 
   useEffect(() => {
-
-    const getData = async ()=>{
-      let doctorData =  await getDoctor()
-      setDoctors(doctorData)
-    }
-    getData()
-  
-
+    loadDoctors();
   }, []);
 
 
   return (
-
-
     <div>
       {doctors.map((doctor) => {
         return <DoctorCard doctor={doctor} key={doctor.id} />;
       })}
-
     </div>
   )
 }
