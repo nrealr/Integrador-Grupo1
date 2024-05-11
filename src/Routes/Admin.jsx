@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { getDoctor } from "../Components/utils/global.context";
-import { routes } from "../Components/utils/routes";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../Constants/';
+import { getDoctors } from '../Services';
 
 const Admin = () => {
   const [doctors, setDoctors] = useState([]);
 
+  const loadDoctors = async ()=>{
+    let doctorData = await getDoctors();
+    setDoctors(doctorData)
+  }
+
+
   useEffect(() => {
-    const getData = async () => {
-      let doctorData = await getDoctor();
-      setDoctors(doctorData);
-    };
-    getData();
+    loadDoctors();
   }, []);
 
-  console.log(doctors);
   return (
     <div>
       <h1>Welcome to admin panel</h1>
 
-      <Link to={routes.add}>
+      <Link to={ROUTES.ADD}>
         {" "}
         <button className="admin-add-button">Add</button>{" "}
       </Link>
