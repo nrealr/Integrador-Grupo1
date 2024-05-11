@@ -4,7 +4,7 @@ import Layout from './Components/Layout'
 import AddProduct from './Routes/AddProduct'
 import Detail from './Routes/Detail'
 import Home from './Routes/Home'
-import { ContextProvider } from './Components/utils/global.context'
+import { ContextProvider } from './Context';
 
 function App() {
 
