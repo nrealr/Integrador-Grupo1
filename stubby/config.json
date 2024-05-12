@@ -5,6 +5,16 @@
       "url": "/doctors"
     },
     "response": {
+      "status": 400,
+      "file": "doctors.json"
+    }
+  },
+  {
+    "request": {
+      "method": "POST",
+      "url": "/doctors/.*"
+    },
+    "response": {
       "status": 200,
       "file": "doctors.json"
     }

@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { urlApi } from '../utils/routes';
+import { SERVER_API } from '../../Constants';
 
 
 const AddProductFunction = () => {
@@ -22,11 +22,12 @@ const AddProductFunction = () => {
         e.preventDefault();
     
         try {
-          const response = await axios.get(`${urlApi}?rut=${product.rut}`);
+          const response = await axios.get(`${SERVER_API}/doctors?rut=${product.rut}`);
+          debugger;
           if (response.data.length > 0) {
             setError("Field Rut already exist");
           } else {
-            await axios.post(urlApi, product);
+            await axios.post(`${SERVER_API}/doctors`, product);
             setProduct({id: "",
             name: "",
             lastname: "",
