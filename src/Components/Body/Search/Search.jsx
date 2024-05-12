@@ -1,11 +1,11 @@
 import React from 'react';
-import "./Search.styles.css"
+import "./Search.styles.css";
 
 export const Search = () => {
   return (
     <div className="search">
-      <input type="text" placeholder="Buscar productos..." />
-      <button>Buscar</button>
+      <input type="text" placeholder="Find your taylor made doctor..." />
+      <button>Search</button>
     </div>
   );
 };

@@ -5,14 +5,17 @@ import { Recommendations } from './Recommendations';
 import { Search } from './Search';
 
 
-
+/**
+ * 
+ * @returns Body with three sections, search, categories and recommendations
+ */
 
 const Body = () => {
   return (
     <div className="body">
-      <Search />
-      <Categories />
-      <Recommendations />
+      <Search className="box1"/>
+      <Categories className="box2"/>
+      <Recommendations className="box3"/>
     </div>
   );
 };

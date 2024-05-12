@@ -1,4 +1,4 @@
-import "./Recommendations.styles.css"
+import "./Recommendations.styles.css";
 import React from 'react';
 
 export const Recommendations = () => {
@@ -7,12 +7,18 @@ export const Recommendations = () => {
   return (
 
     <div className="recommendations">
-      <h2>Recomendaciones</h2>
-      <ul>
-        <li><a href="#">{professional}</a></li>
-        <li><a href="#">{professional}</a></li>
-        <li><a href="#">{professional}</a></li>
-      </ul>
+      <h2>Recommendations</h2>
+        <ul>
+          <li>
+            <a href="#">{professional}</a>
+          </li>
+          <li>
+            <a href="#">{professional}</a>
+          </li>
+          <li>
+            <a href="#">{professional}</a>
+          </li>
+        </ul>
     </div>
   );
 };
