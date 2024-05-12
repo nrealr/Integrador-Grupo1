@@ -33,10 +33,15 @@ const Home = () => {
 
   return (
     <div>
+
+    <div className="recommended">
       {randomDoctors.map((doctor) => {
         return <DoctorCard doctor={doctor} key={doctor.id} />;
       })}
     </div>
+
+    </div>
+
   )
 }
 
