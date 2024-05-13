@@ -1,8 +1,7 @@
-import axios from "axios";
-import React, { useState } from "react";
+import React from "react";
 import AddProductFunction from "../Components/AddProductFunction/addProductFunction"
 
-const AddProduct = () => {
+export const AddProduct = () => {
   
 
   return (
@@ -13,5 +12,3 @@ const AddProduct = () => {
     </div>
   );
 };
-
-export default AddProduct;

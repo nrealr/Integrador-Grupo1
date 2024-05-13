@@ -1,15 +1,21 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Layout from './Components/Layout';
 import AddProduct from './Routes/AddProduct';
 import Detail from './Routes/Detail';
 import Home from './Routes/Home';
 import Admin from './Routes/Admin';
 import { ContextProvider } from './Context';
 import { ROUTES } from './Constants';
+import { Layout } from './Components';
 
+
+/**
+ * 
+ * @returns {React.Component} Principal router of the app.
+ */
 function App() {
 
+  <h1>hola</h1>
 
   return (
     <BrowserRouter>

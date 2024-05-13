@@ -4,10 +4,10 @@ const ContextGlobal = createContext();
 
 export const ContextProvider = ({ children }) => {
 
-    //Estados globales
+   /**Global states */
     const [state, dispatch] = [];
 
-    //Aca van las funciones globales
+   /**Globa functions */
     let data = { state, dispatch };
 
     return (

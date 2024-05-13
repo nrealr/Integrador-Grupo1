@@ -1,0 +1,11 @@
+.body {
+    background-color: #FFF; 
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  
+  .box1, .box2, .box3 {
+    flex: 1;
+  }
