@@ -1,9 +1,9 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AddProduct from './Routes/AddProduct';
-import Detail from './Routes/Detail';
-import Home from './Routes/Home';
-import Admin from './Routes/Admin';
+import {AddProduct} from './Routes/AddProduct';
+import {Detail} from './Routes/Detail';
+import {Home} from './Routes';
+import {Admin} from './Routes/Admin';
 import { ContextProvider } from './Context';
 import { ROUTES } from './Constants';
 import { Layout } from './Components';

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '../Constants/';
 import { getDoctors } from '../Services';
 
-const Admin = () => {
+export const Admin = () => {
   const [doctors, setDoctors] = useState([]);
 
   const loadDoctors = async ()=>{
@@ -40,5 +40,3 @@ const Admin = () => {
     </div>
   );
 };
-
-export default Admin;
