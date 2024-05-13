@@ -54,6 +54,33 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+.grid-container {
+  display: flex;
+  flex-wrap: wrap; 
+  padding: 0;
+}
+
+.grid-item {
+  border: 1px solid #ccc; 
+  padding: 10px;
+  margin-right: 10px; 
+  margin-bottom: 10px; 
+}
+
+.admin-add-button{
+  background-color: #007bff;
+  color: #fff;
+  border: none; 
+  padding: 10px 20px; 
+  border-radius: 5px; 
+  cursor: pointer; 
+}
+
+.add-product-form{
+  display: flex;
+  flex-direction: column;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

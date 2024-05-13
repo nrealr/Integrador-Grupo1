@@ -6,7 +6,7 @@ import DoctorCard from '../../Components/Common/DoctorCard';
  * 
  * @returns {React.Component} Home component, show all doctors
  */
-const Home = () => {
+export const Home = () => {
 
   const [doctors, setDoctors] = useState([]);
 
@@ -32,5 +32,3 @@ const Home = () => {
     </div>
   )
 };
-
-export default Home;

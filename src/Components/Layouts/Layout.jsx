@@ -3,6 +3,7 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import './layout.styles.css';
 import Body from '../Body/Body';
+import { Outlet } from 'react-router-dom';
 
 /**
  * 
@@ -19,7 +20,7 @@ export const Layout = () => {
     <div className={'layout'}>
         
       <Header/>
-      <Body/>
+      <Outlet/>
       <Footer/>
 
     </div>

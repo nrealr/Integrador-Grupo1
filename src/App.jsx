@@ -1,10 +1,11 @@
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import AddProduct from './Routes/AddProduct'
-import Detail from './Routes/Detail'
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import {AddProduct} from './Routes/AddProduct';
+import {Detail} from './Routes/Detail';
+import {Home} from './Routes';
+import {Admin} from './Routes/Admin';
 import { ContextProvider } from './Context';
-import { NotFound } from './Routes/notFound/NotFound'
-import Home from './Routes/Home/Home';
+import { ROUTES } from './Constants';
 import { Layout } from './Components';
 
 
@@ -23,10 +24,10 @@ function App() {
     <Routes>
       <Route element={<Layout/>}>
 
-        <Route path="/" element={<Home/>} />
-        <Route path="/add" element={<AddProduct/>} />
-        <Route path="/doctor/:id" element={<Detail/>} />
-        <Route path="*" element={<NotFound/>}/>
+        <Route path={ROUTES.HOME} element={<Home/>} />
+        <Route path={ROUTES.ADMIN} element={<Admin/>} />
+        <Route path={ROUTES.ADD} element={<AddProduct/>} />
+        <Route path={ROUTES.DETAIL} element={<Detail/>} />
 
       </Route>
     </Routes>
