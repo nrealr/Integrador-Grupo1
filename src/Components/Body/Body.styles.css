@@ -1,5 +1,5 @@
 .body {
-    background-color: #f0f0f0; 
+    background-color: #FFF; 
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -8,16 +8,4 @@
   
   .box1, .box2, .box3 {
     flex: 1;
-  }
-
-  .box1 {
-    background-color: red;
-  }
-
-  .box2{
-    background-color: aqua;
-  }
-
-  .box3{
-    background-color: green;
   }
