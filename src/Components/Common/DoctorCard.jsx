@@ -1,6 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import "./DoctorCard.styles.css"
+import React from 'react';
+import { Link } from 'react-router-dom';
+import "./DoctorCard.styles.css";
 
 
 const DoctorCard = ({ doctor }) => {
@@ -28,7 +28,7 @@ const DoctorCard = ({ doctor }) => {
 
 
     </div>
-  )
-}
+  );
+};
 
-export default DoctorCard
+export default DoctorCard;
