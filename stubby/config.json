@@ -5,7 +5,7 @@
       "url": "/doctors"
     },
     "response": {
-      "status": 400,
+      "status": 200,
       "file": "doctors.json"
     }
   },
