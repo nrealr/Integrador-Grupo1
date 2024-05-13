@@ -1,0 +1,42 @@
+
+.footer{
+    margin-top: auto;
+    background-color: #102C5B;
+    padding: 10px;
+    display: flex;
+  }
+
+  .logo-footer {
+    margin-right: auto;
+  }
+
+  .logo-footer img {
+    width: 100px;
+    height: auto;
+    
+  }
+
+  .footer-social{
+    display: flex;
+    margin-left: auto;
+    flex-direction: row;
+    align-items: center;
+  }
+
+.footer-social .icon{
+  margin: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+.footer .copyright {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #FFF;
+}
+
+.layout-dark .footer{
+  background-color: #666;
+}
