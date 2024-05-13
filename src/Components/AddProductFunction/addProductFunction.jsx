@@ -11,7 +11,7 @@ const AddProductFunction = () => {
         name: "",
         lastname: "",
         rut: "",
-        img: "dummyinfo.jpg"
+        img: ""
       });
     
       const [error, setError] = useState("");
@@ -75,9 +75,12 @@ const AddProductFunction = () => {
             setProduct({ ...product, description: e.target.value })
           }
         />
-        <label>Image</label>
-        <input type="file" 
-        accept='image/*'/>
+        <label>Image url</label>
+        <input type="text" 
+        value={product.img}
+        onChange={(e) =>
+          setProduct({ ...product, img: e.target.value })
+        }/>
 
 
         {error && <p>{error}</p>}
