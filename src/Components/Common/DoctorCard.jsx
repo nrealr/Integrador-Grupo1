@@ -16,7 +16,7 @@ const DoctorCard = ({ doctor }) => {
 
       <div>
       <img className='avatarDoc'
-        src={doctor.image}
+        src={doctor.img}
       />
       </div>
 
