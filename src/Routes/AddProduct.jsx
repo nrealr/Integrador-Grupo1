@@ -1,5 +1,6 @@
 import React from "react";
 import AddProductFunction from "../Components/AddProductFunction/addProductFunction"
+import "./AddProduct.styles.css"
 
 export const AddProduct = () => {
   
