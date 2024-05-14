@@ -1,30 +1,38 @@
 import React, { useState, useEffect } from "react";
 import "./Detail.style.css";
+import { getDoctorById } from "../../Services";
+import { useParams } from "react-router-dom";
 
-export const Detail = ({ doctor }) => {
+export const Detail = () => {
 
-  const [doctors, setDoctor] = useState({});
 
-  useEffect(() => {
-    fetch(`${doctor}`)
-      .then((response) => response.json())
-      .then((data) => setDoctor(data));
-  }, [doctor]);
+   const { id } = useParams();
+   const [doctorSelected, setDoctorSelected] = useState({});
 
-  if (!doctor) {
-    return <div>Cargando...</div>;
+   useEffect(() => {
+
+    const getData = async ()=>{
+      let doctorsData =  await getDoctorById(id)
+      console.log(doctorsData)
+      setDoctorSelected(doctorsData)
+    }
+    getData()
+  
+  }, [id]);
+
+  //rushed solution for not found case
+    if (!doctorSelected.rut) {
+    return <h1>Doctor Not found</h1>;
   }
 
-  return (
+    return (
     <section className="doctor-info">
-      <img src={doctor.image} alt="Foto del doctor" />
-      <h2>{doctor.name}</h2>
-      <p>{doctor.specialization}</p>
-      <ul>
-        {doctor.qualifications.map((qualification) => (
-          <li key={qualification}>{qualification}</li>
-        ))}
-      </ul>
+      <img src={doctorSelected.img} alt="Foto del doctor" />
+      <h2>{doctorSelected.name} {doctorSelected.lastname}</h2>
+      <h3>{doctorSelected.rut}</h3>
+      <p>{doctorSelected.description}</p>
     </section>
   );
+
+
 };
