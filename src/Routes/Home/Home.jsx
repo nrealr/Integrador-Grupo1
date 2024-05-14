@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from 'react'
-import { getDoctors } from '../Services';
-import DoctorCard from '../Components/Common/DoctorCard'
+import React, { useEffect, useState } from 'react';
+import { getDoctors } from '../../Services';
+import DoctorCard from '../../Components/Common/DoctorCard';
 
-const Home = () => {
+/**
+ * 
+ * @returns {React.Component} Home component, show all doctors
+ */
+export const Home = () => {
 
   const [doctors, setDoctors] = useState([]);
   const [randomDoctors, setRandomDoctors] = useState([]);
@@ -30,6 +34,9 @@ const Home = () => {
     tenRandomDoctors();
   }, []);
 
+  if(doctors==null){
+    return;
+  }
 
   return (
     <div>
@@ -43,6 +50,4 @@ const Home = () => {
     </div>
 
   )
-}
-
-export default Home
+};

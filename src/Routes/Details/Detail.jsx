@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Detail.style.css";
 
-const Detail = ({ doctor }) => {
+export const Detail = ({ doctor }) => {
+
   const [doctors, setDoctor] = useState({});
 
   useEffect(() => {
@@ -27,5 +28,3 @@ const Detail = ({ doctor }) => {
     </section>
   );
 };
-
-export default Detail;
