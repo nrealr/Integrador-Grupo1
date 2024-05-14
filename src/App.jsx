@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Layout from "./Components/Layout";
 import AddProduct from "./Routes/AddProduct";
-import Detail from "./Routes/Detail";
+import Detail from "./Routes/Details/Detail";
 import Home from "./Routes/Home";
 import { ContextProvider } from "./Context";
 
