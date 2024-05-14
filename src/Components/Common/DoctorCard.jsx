@@ -4,19 +4,22 @@ import "./DoctorCard.styles.css";
 
 const DoctorCard = ({ doctor }) => {
   return (
-    <div className="container">
-      <div className="containerInfo">
-        <div>
-          <h2>
-            Dr. {doctor.name} {doctor.lastname}
-          </h2>
-          <h3>{doctor.rut}</h3>
-        </div>
-
-        <div>
-          <img className="avatarDoc" src={doctor.image} />
-        </div>
+    <div className='container'>
+        
+    <div className='containerInfo'>
+      
+      <div>
+      <h2>Dr. {doctor.name} {doctor.lastname}</h2>
+      <h3>{doctor.rut}</h3>
       </div>
+
+      <div>
+      <img className='avatarDoc'
+        src={doctor.img}
+      />
+      </div>
+
+    </div>
 
       <div>
         <Link className="cardButton" to={`/doctor/${doctor.id}`}>

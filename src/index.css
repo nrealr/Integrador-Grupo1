@@ -92,13 +92,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
-
-.recommended{
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  width: 80%;
-  margin: auto;
-}
+} */
