@@ -10,6 +10,8 @@ export const Search = () => {
 
   return (
 
+
+
     <div className="search-container">
       <h2>WE HANDLE YOUR MEDICAL BOOKINGS</h2>
       <h1>EASY BOOKING, SAFE CARE!</h1>

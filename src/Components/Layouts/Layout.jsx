@@ -20,6 +20,7 @@ export const Layout = () => {
     <div className={'layout'}>
         
       <Header/>
+      <Body/>
       <Outlet/>
       <Footer/>
 

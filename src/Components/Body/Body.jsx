@@ -1,8 +1,9 @@
 import React from 'react';
 import "./Body.styles.css"
-import { Categories } from './Categories';
 import { Recommendations } from './Recommendations';
 import { Search } from './Search';
+import { Categories } from './Categories';
+
 
 
 /**
@@ -12,18 +13,16 @@ import { Search } from './Search';
 
 
 
-
-
 const Body = () => (
   <div className="body">
     <div className="body-section">
-      <Categories />
+      <Search />
+    </div>
+    <div className="body-section">
+      <Categories/>
     </div>
     <div className="body-section">
       <Recommendations />
-    </div>
-    <div className="body-section">
-      <Search />
     </div>
   </div>
 );
