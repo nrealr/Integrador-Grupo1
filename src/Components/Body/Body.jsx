@@ -1,9 +1,8 @@
 import React from 'react';
-import "./Body.styles.css"
-import { Recommendations } from './Recommendations';
+import "./Body.styles.css";
 import { Search } from './Search';
 import { Categories } from './Categories';
-
+import { Recommendations } from './Recommendations';
 
 
 /**
