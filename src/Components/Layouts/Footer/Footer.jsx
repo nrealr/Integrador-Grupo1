@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './Footer.styles.css';
 import { Link } from 'react-router-dom';
+import Copyright from '../../../Utils/Copyright';
 
 /**
  * 
@@ -11,7 +12,7 @@ export const Footer = () => {
   // const [isDarkMode, setIsDarkMode] = useState(false);
   // const darkModeClass = isDarkMode ? "layout-dark" : "layout";
     
-  const currentYear = new Date().getFullYear();
+  // const currentYear = new Date().getFullYear();
   const companyName = "MediConnect";
   
   return (
@@ -22,10 +23,11 @@ export const Footer = () => {
         <img src="/images/ico-logo-transparent.png" alt="Company Logo" />
       </div>
 
-      <div className="copyright">
+      {/* <div className="copyright">
         <p>© {currentYear} {companyName}. All rights reserved.</p>
-      </div>
+      </div> */}
 
+<Copyright/>
       <div className="footer-social">
           
         <Link
