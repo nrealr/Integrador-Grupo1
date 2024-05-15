@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Footer.styles.css';
 import { Link } from 'react-router-dom';
-import Copyright from '../../../Utils/Copyright';
+import {Copyright} from './Copyright';
 
 /**
  * 

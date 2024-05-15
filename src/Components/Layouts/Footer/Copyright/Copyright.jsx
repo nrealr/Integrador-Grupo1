@@ -1,4 +1,5 @@
 import React from 'react';
+import './Copyright.styles.css';
 
 /**
  * 
@@ -6,7 +7,7 @@ import React from 'react';
  * @returns {React.Component} Copyright function adding the current year
  */
 
-const Copyright = ({ companyName }) => {
+export const Copyright = ({ companyName }) => {
   const currentYear = new Date().getFullYear();
 
   return (
@@ -15,5 +16,3 @@ const Copyright = ({ companyName }) => {
     </div>
   );
 };
-
-export default Copyright;
