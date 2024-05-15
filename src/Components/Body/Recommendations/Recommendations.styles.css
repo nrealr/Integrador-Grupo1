@@ -20,3 +20,12 @@
     color: #333;
     text-decoration: none;
   }
+
+  .recommended{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin: auto;
+  }
