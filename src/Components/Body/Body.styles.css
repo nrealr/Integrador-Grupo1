@@ -1,6 +1,8 @@
 
   
   .body {
+.body {
+    background-color: #FFF; 
     display: flex;
     flex-direction: column;
     height: 100vh;

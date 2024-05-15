@@ -25,12 +25,15 @@ function App() {
       <Route element={<Layout/>}>
 
         <Route path={ROUTES.HOME} element={<Home/>} />
-        <Route path={ROUTES.ADMIN} element={<Admin/>} />
         <Route path={ROUTES.ADD} element={<AddProduct/>} />
         <Route path={ROUTES.DETAIL} element={<Detail/>} />
 
       </Route>
+
+        <Route path={ROUTES.ADMIN} element={<Admin/>} />
     </Routes>
+
+
 
     </ContextProvider>
     </BrowserRouter>      
