@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../Constants/';
 import { getDoctors } from '../Services';
+import "./Admin.styles.css"
 
 export const Admin = () => {
   const [doctors, setDoctors] = useState([]);

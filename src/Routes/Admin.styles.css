@@ -1,0 +1,30 @@
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 0;
+  padding-left: 1rem;
+  width: fit-content;
+}
+
+.grid-item {
+  display: flex;
+  border: 1px solid #ccc;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+}
+
+.grid-item > p {
+  display: flex;
+  padding-right: 0.3rem;
+}
+
+.admin-add-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+}

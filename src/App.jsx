@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {AddProduct} from './Routes/AddProduct';
-import {Detail} from './Routes/Detail';
+import {Detail} from './Routes';
 import {Home} from './Routes';
 import {Admin} from './Routes/Admin';
 import { ContextProvider } from './Context';
@@ -40,4 +40,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
