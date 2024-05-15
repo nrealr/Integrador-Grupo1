@@ -12,7 +12,7 @@ import { Recommendations } from './Recommendations';
 
 
 
-const Body = () => (
+export const Body = () => (
   <div className="body">
     <div className="body-section">
       <Search />
@@ -29,5 +29,3 @@ const Body = () => (
 const Component1 = () => <div>Component 1</div>;
 const Component2 = () => <div>Component 2</div>;
 const Component3 = () => <div>Component 3</div>;
-
-export default Body;
