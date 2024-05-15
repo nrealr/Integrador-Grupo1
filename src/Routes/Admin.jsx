@@ -18,7 +18,7 @@ export const Admin = () => {
   }, []);
 
   return (
-    <div>
+    <div className='admin-panel'>
       <h1>Welcome to admin panel</h1>
 
       <Link to={ROUTES.ADD}>
