@@ -1,10 +1,10 @@
 import axios from 'axios';
 import React, { useState } from 'react'
 import { SERVER_API } from '../../Constants';
-import { addDoctor } from '../../Services/addDoctor';
+import { addDoctor } from '../../Services';
 
 
-const AddProductFunction = () => {
+export const AddProductFunction = () => {
 
 
     const [product, setProduct] = useState({
@@ -85,7 +85,5 @@ const AddProductFunction = () => {
         <button type='submit'>Submit</button>
       </form>
     </div>
-  )
-}
-
-export default AddProductFunction
+  );
+};

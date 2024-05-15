@@ -6,35 +6,27 @@
     display: flex;
   }
 
-  .logo-footer {
+  .footer .logo-footer {
     margin-right: auto;
   }
 
-  .logo-footer img {
+  .footer .logo-footer img {
     width: 100px;
     height: auto;
     
   }
 
-  .footer-social{
+  .footer .footer-social{
     display: flex;
     margin-left: auto;
     flex-direction: row;
     align-items: center;
   }
 
-.footer-social .icon{
+  .footer .footer-social .icon{
   margin: 5px;
   width: 30px;
   height: 30px;
-}
-
-.footer .copyright {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  color: #FFF;
 }
 
 .layout-dark .footer{

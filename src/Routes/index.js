@@ -1,4 +1,4 @@
 export * from './Home'
 export * from './notFound'
 export * from './AddProduct'
-export * from './Detail'
+export * from './Details'
