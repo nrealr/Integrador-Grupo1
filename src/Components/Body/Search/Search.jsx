@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Search.styles.css";
+import { Dropdown } from '../../../Utils';
+
+
 
 /**
  * 
@@ -8,67 +11,72 @@ import "./Search.styles.css";
 
 export const Search = () => {
 
+  const [city, setCity] = useState('');
+  const cityOptions = [
+
+    { label: 'Antofagasta', value: 'antofagasta' },
+    { label: 'Arica', value: 'arica' },
+    { label: 'Calama', value: 'calama' },
+    { label: 'Chillán', value: 'chillan' },
+    { label: 'Concepción', value: 'concepcion' },
+    { label: 'Copiapó', value: 'copiapo' },
+    { label: 'Iquique', value: 'iquique' },
+    { label: 'La Serena', value: 'la-serena' },
+    { label: 'Puerto Montt', value: 'puerto-montt' },
+    { label: 'Santiago', value: 'santiago' },
+  ];
+
+  const handleCityChange = (event) => {
+    setCity(event.target.value);
+  };
+
+  const [specialty, setSpecialty] = useState('');
+  const specialtyOptions = [
+    { value: 'Internal Medicine', label: 'internal-medicine' },
+    { value: 'Dermatology', label: 'dermatology' },
+    { value: 'Obstetrics and Gynecology', label: 'obstetrics-and-gynecology' },
+    { value: 'Psychiatry', label: 'psychiatry' },
+    { value: 'Pediatrics', label: 'pediatrics' },
+    { value: 'Cardiology', label: 'cardiology' },
+    { value: 'Ophthalmology', label: 'ophthalmology' },
+    { value: 'Orthopedics', label: 'orthopedics' },
+  ];
+
+  const handleSpecialtyChange = (event) => {
+    setSpecialty(event.target.value)
+  };
+
   return (
-
-
-
+   
     <div className="search-container">
       <h2>WE HANDLE YOUR MEDICAL BOOKINGS</h2>
       <h1>EASY BOOKING, SAFE CARE!</h1>
 
-      <div className="dropdown">
+      <div>
+          <Dropdown
+            label="Select a city"
+            options={cityOptions}
+            value={city}
+            onChange={handleCityChange}
+            defaultOptionText="Select a city for your appointment"
+          />
+      </div>
 
-<select>
-
-  <optgroup label="Choose your needed speciality">
-
-    <option>Internal Medicine</option>
-
-    <option>Dermatology</option>
-
-    <option>Obstetrics and Gynecology</option>
-
-    <option>Psychiatry</option>
-
-    <option>Pediatrics</option>
-
-    <option>Cardiology</option>
-
-    <option>Ophthalmology</option>
-
-    <option>Orthopedics</option>
-
-  </optgroup>
-
-</select>
-
-<div class="arrow"></div>
-
-</div>
-
-
-<div className="dropdown">
-  <select>
-    <optgroup label="Select Your Consultation City">
-      <option>Antofagasta</option>
-      <option>Arica</option>
-      <option>Calama</option>
-      <option>Chillán</option>
-      <option>Concepción</option>
-      <option>Copiapó</option>
-      <option>Iquique</option>
-      <option>La Serena</option>
-      <option>Puerto Montt</option>
-      <option>Santiago</option>
-    </optgroup>
-  </select>
-  <div class="arrow"></div>
-</div>
-      
+      <div>
+          <Dropdown
+          label="Select a specialty"
+            options={specialtyOptions}
+            value={specialty}
+            onChange={handleSpecialtyChange}
+            defaultOptionText="Select a medical specialty"
+          />
+      </div>
+    
       <div className="search-button">
         <button>Search</button>
       </div>
     </div>
-  );
-};
+  )
+
+}
 
