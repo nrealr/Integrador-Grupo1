@@ -41,7 +41,7 @@ export const Recommendations = () => {
         {return <DoctorCard doctor={doctor} key={doctor.id}/>;
         }
       )
-      };
+      }
     </div>
   </div>
   );
