@@ -1,12 +1,6 @@
-import "./Categories.styles.css";
 import React from 'react';
-
-/**
- * 
- * @returns {React.Component} Section for service's categories
- */
-
-
+import {CategoriesList} from './CategoriesList';
+import './Categories.styles.css'
 
 export const Categories = () => (
   <div className="container">
@@ -17,17 +11,11 @@ export const Categories = () => (
         <button>Check them here</button>
       </div>
     </div>
+
     <div className="column2">
-      <div className="button">Internal Medicine</div>
-      <div className="button">Dermatology</div>
-      <div className="button">Obstetrics and Gynecology</div>
-      <div className="button">Psychiatry</div>
-      <div className="button">Pediatrics</div>
-      <div className="button">Cardiology</div>
-      <div className="button">Ophthalmology</div>
-      <div className="button">Orthopedics</div>
-    
+      <CategoriesList />
     </div>
   </div>
 );
+
 

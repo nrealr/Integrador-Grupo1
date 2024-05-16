@@ -1,31 +1,11 @@
-.recommendations {
-    flex: 1;
-    margin: 0 10px;
-  }
-  
-  .recommendations h2 {
-    margin-bottom: 10px;
-  }
-  
-  .recommendations ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .recommendations li {
-    margin-bottom: 5px;
-  }
-  
-  .recommendations a {
-    color: #333;
-    text-decoration: none;
-  }
+.recommended {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+  place-items: center center;
+}
 
-  .recommended{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    width: 90%;
-    margin: auto;
-  }
+.recommended::-webkit-scrollbar {
+  display: none;
+}
+

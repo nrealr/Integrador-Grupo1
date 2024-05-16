@@ -1,64 +1,72 @@
 .search-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   padding: 20px;
-  background: linear-gradient(90deg, #102C5B 37.65%, rgba(16, 44, 91, 0.00) 64.65%),
-  url('./images/bg-search.jpg');
+  background-image: url('./images/bg-search.jpg');
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: right center
-  }
+}
 
 
-.search-container h2 {
+.search-container .titles {
+    justify-content: right;
+    line-height: 60px;
+    color: #FFF;
+    flex-shrink: 0;
+    align-items: right;
+    
+}
+  
+.search-container .titles h3 {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
 }
 
-.search-container h1 {
+.search-container .titles h1 {
   font-size: 36px;
   font-weight: bold;
   margin-bottom: 30px;
 }
 
-.dropdown {
+.search-container .search-bar{
   display: flex;
-  justify-content: center;
-  width: 100%;
-  margin-bottom: 20px;
-  justify-content: center;
   align-items: center;
 }
 
-.dropdown select {
-  width: 100%;
+.search-container .search-bar .dropdown-bar{
+  display: flex;
+  margin: auto;
+}
+
+.search-container .search-bar .dropdown-bar .city{
   padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  margin-right: 20px;
+}
+
+.search-container .search-bar .dropdown-bar .specialty{
+  margin-right: 0px;
+  padding: 10px;
 }
 
 .search-button {
   display: flex;
-  justify-content: center;
-  align-items: center;
   width: 20%;
-  margin-left: 10%;
+  margin: auto;
 }
 
 .search-button button {
-  width: 100%;
   padding: 10px;
+  width: 100%;
   font-size: 16px;
-  font-weight: bold;
-  background-color: #4CAF50;
+  background-color: #61C0BB;
   color: white;
   border: none;
   border-radius: 5px;
+  padding: 5px 10px;
   cursor: pointer;
 }
+
 
