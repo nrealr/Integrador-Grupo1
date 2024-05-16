@@ -17,6 +17,7 @@ export const Categories = () => (
         <button>Check them here</button>
       </div>
     </div>
+    
     <div className="column2">
       <div className="button">Internal Medicine</div>
       <div className="button">Dermatology</div>
