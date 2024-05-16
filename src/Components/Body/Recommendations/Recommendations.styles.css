@@ -1,11 +1,14 @@
 .recommended {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.recommended .titles{
+  max-width: 50%;
+}
+
+.recommended .recommendation-cards{
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-gap: 10px;
-  place-items: center center;
+  grid-template-columns: 80ch 80ch;
 }
-
-.recommended::-webkit-scrollbar {
-  display: none;
-}
-

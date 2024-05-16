@@ -1,19 +1,17 @@
 
-  .container {
+  .categories-container {
     display: flex;
     height: 100%;
   }
   
   .column1 {
-    flex: 1 0 33.33%;
     display: flex;
+    width: 40%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background-image: url('./images/bg-categories.jpg');
-    background-size: cover;
-    margin-right: 0;
-    
+    background-size: cover;    
   }
   
 
@@ -58,20 +56,9 @@
   }
   
    .column2 {
-    flex: 2 0 66.66%;
+    width: 60%;
     display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-  }
-  
-  .column2 button {
-
-    flex: 0 1 calc(33.33% - 10px);
-    margin-bottom: 20px;
-    background-color: #f2f2f2;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-  
+    margin: 4rem;
+    justify-content: center;
   }
 
