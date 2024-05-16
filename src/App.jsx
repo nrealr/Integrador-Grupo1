@@ -29,7 +29,9 @@ function App() {
 
       </Route>
 
+      <Route element={<Layout/>}>
         <Route path={ROUTES.ADMIN} element={<Admin/>} />
+        </Route>
     </Routes>
 
 
