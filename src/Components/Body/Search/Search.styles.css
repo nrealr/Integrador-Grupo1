@@ -1,8 +1,6 @@
 .search-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
   height: 100%;
   padding: 20px;
   background-image: url('./images/bg-search.jpg');
@@ -12,7 +10,15 @@
   }
 
 
-.search-container h2 {
+  .search-container span {
+    justify-content: right;
+    line-height: 60px;
+    color: #FFF;
+    flex-shrink: 0;
+    align-items: right;
+    
+  }
+.search-container h3 {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;

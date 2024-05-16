@@ -49,9 +49,12 @@ export const Search = () => {
   return (
    
     <div className="search-container">
-      <h2>WE HANDLE YOUR MEDICAL BOOKINGS</h2>
-      <h1>EASY BOOKING, SAFE CARE!</h1>
+      <span>
+        <h3>WE HANDLE YOUR MEDICAL BOOKINGS</h3>
+        <h1>EASY BOOKING, SAFE CARE!</h1>
+      </span>
 
+    <span className='dropdown-bar'>
       <div>
           <Dropdown
             label="Select a city"
@@ -71,6 +74,8 @@ export const Search = () => {
             defaultOptionText="Select a medical specialty"
           />
       </div>
+
+    </span>
     
       <div className="search-button">
         <button>Search</button>
