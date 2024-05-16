@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Detail.style.css";
 import { getDoctorById } from "../../Services";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 export const Detail = () => {
 
@@ -27,10 +27,24 @@ export const Detail = () => {
 
     return (
     <section className="doctor-info">
-      <img src={doctorSelected.img} alt="Foto del doctor" />
-      <h2>{doctorSelected.name} {doctorSelected.lastname}</h2>
-      <h3>{doctorSelected.rut}</h3>
-      <p>{doctorSelected.description}</p>
+      <div className="detailHeader">
+          <Link to={`/`}><button>←</button></Link>
+      <h2>Dr. {doctorSelected.name} {doctorSelected.lastname}</h2>
+      </div>
+      <div className="detailBody">
+        <div>
+        <img src={doctorSelected.img} alt="Foto del doctor" />
+        </div>
+        <div className="detailBodyRight">
+        <div>
+        <h2>Specialization</h2>
+        <p>{doctorSelected.description}</p>
+        </div>
+        <Link className='cardButton'  to={`#`}><button>Book Appointment →</button></Link>
+        </div>
+      </div>
+
+
     </section>
   );
 
