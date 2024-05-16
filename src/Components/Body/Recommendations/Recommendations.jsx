@@ -31,7 +31,9 @@ export const Recommendations = () => {
 
     <div className="titles">
       <h3>Meet Our Top-Rated Doctors</h3>
-      <h1>Discover Why Our Patients Love Them! Read Reviews and Ratings from Happy Clients Who've Booked Appointments.</h1>
+      <h1>Discover Why Our Patients 
+        <br /> Love Them! <br /> 
+        Read Reviews and Ratings from Happy Clients <br /> Who've Booked Appointments.</h1>
     </div>
 
     <div className="recommendation-cards">

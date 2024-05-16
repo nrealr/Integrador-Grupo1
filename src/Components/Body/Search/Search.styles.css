@@ -16,6 +16,7 @@
     color: #FFF;
     flex-shrink: 0;
     align-items: right;
+    margin-left: 50px;
     
 }
   
@@ -34,11 +35,13 @@
 .search-container .search-bar{
   display: flex;
   align-items: center;
+  margin-right: 100px;
 }
 
 .search-container .search-bar .dropdown-bar{
   display: flex;
   margin: auto;
+  margin-right: 50px;
 }
 
 .search-container .search-bar .dropdown-bar .city{

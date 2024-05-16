@@ -110,6 +110,7 @@
     flex-direction: row;
     align-items: center;
     margin-left: auto;
+    cursor: pointer;
 }
 
 /* 
