@@ -104,10 +104,6 @@
   margin-right: 10px;
 }
 
-.trashcan:hover{
-  cursor: pointer;
-}
-
 .admin-display-data {
   display: flex;
   flex-direction: column;
@@ -142,4 +138,13 @@
 
 .admin-edit-button {
   margin-right: -2rem;
+}
+
+.admin-delete-button:hover{
+  cursor: pointer;
+}
+
+.errorMessages{
+  color: red;
+  font-weight: 100;
 }
