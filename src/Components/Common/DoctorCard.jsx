@@ -10,21 +10,20 @@ export const DoctorCard = ({ doctor }) => {
       
       <div>
       <h2>Dr. {doctor.name} {doctor.lastname}</h2>
-      <h3>{doctor.rut}</h3>
+      <p>{doctor.description}</p>
       </div>
-
-      <div>
-      <img className='avatarDoc'
-        src={doctor.img}
-      />
-      </div>
-
-    </div>
 
       <div>
         <Link className="cardButton" to={`/doctor/${doctor.id}`}>
           <span>Find out more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;→</span>
         </Link>
+      </div>
+
+    </div>
+    <div>
+      <img className='avatarDoc'
+        src={doctor.img}
+      />
       </div>
     </div>
   );
