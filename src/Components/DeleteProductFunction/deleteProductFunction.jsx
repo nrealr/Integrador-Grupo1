@@ -20,7 +20,7 @@ export const DeleteProductFunction = ({ doctor, onDelete }) => {
 
     return(
     <div>
-      <p className="trashcan" onClick={handleDeleteClick}>🗑</p>
+      <p className="admin-delete-button" onClick={handleDeleteClick}>🗑</p>
       {confirmation && (
         <div className="popup">
           <p>Are you sure you want to delete this doctor?</p>
