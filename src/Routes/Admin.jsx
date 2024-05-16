@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../Constants/';
-import { getDoctors } from '../Services';
+import { getDoctors, deleteDoctor } from '../Services';
+import {DeleteProductFunction} from "../Components"
 import "./Admin.styles.css"
 
 export const Admin = () => {
@@ -10,6 +11,11 @@ export const Admin = () => {
   const loadDoctors = async ()=>{
     let doctorData = await getDoctors();
     setDoctors(doctorData)
+  }
+
+  const handleDeleteDoctor = async (doctorId) =>{
+    await deleteDoctor(doctorId);
+    loadDoctors();
   }
 
 
@@ -27,12 +33,13 @@ export const Admin = () => {
       </Link>
 
       <div className="grid-container">
-        {doctors.map((item) => (
-          <div key={item.id} className="grid-item">
-            <p>ID: {item.id}</p>
-            <p>Name: {item.name}</p>
-            <p>Last Name: {item.lastname}</p>
-            <p>Rut: {item.rut}</p>
+        {doctors.map((doctor) => (
+          <div key={doctor.id} className="grid-item">
+            <p>ID: {doctor.id}</p>
+            <p>Name: {doctor.name}</p>
+            <p>Last Name: {doctor.lastname}</p>
+            <p>Rut: {doctor.rut}</p>
+            <DeleteProductFunction doctor = {doctor} onDelete={() => handleDeleteDoctor(doctor.id)}/>
             {/*             <p>Descripción: {item.descripcion}</p>
              */}{" "}
           </div>
