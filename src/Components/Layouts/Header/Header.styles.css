@@ -1,8 +1,14 @@
+*{
+  box-sizing: border-box;
+}
 
 .header {
     background-color: #FFF;
     padding: 10px;
     display: flex;
+    position: sticky;
+    top: 0;  
+    z-index: 100;
   }
   
   .logo-header {
@@ -66,7 +72,7 @@
 
 .header-buttons button {
   margin-right: 10px;
-  border-radius: px;
+  border-radius: 4px;
   background: linear-gradient(to bottom, #1bb275 0%, #169d6b 100%);
   color: #fff;
   font-family: Poppins;
