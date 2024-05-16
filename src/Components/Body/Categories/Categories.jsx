@@ -1,5 +1,6 @@
 import React from 'react';
 import {CategoriesList} from './CategoriesList';
+import './Categories.styles.css'
 
 export const Categories = () => (
   <div className="container">

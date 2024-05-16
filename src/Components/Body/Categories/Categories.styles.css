@@ -18,15 +18,23 @@
   
 
   .column1 h1 {
+    color: #102C5B;
+    text-align: center;
+    font-family: Poppins;
     font-size: 36px;
-    font-weight: bold;
-    margin-bottom: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 46px;
   }
   
   .column1 h2 {
-    font-size: 24px;
+    color: #1BB275;
+    font-family: Poppins;
+    font-size: 18px;
+    font-style: normal;
     font-weight: bold;
-    margin-bottom: 20px;
+    line-height: 27px;
+    margin-top: auto;
   }
   
   .column1 .search-button {
