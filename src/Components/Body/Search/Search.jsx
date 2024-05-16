@@ -17,19 +17,53 @@ export const Search = () => {
       <h1>EASY BOOKING, SAFE CARE!</h1>
 
       <div className="dropdown">
-        <select>
-          <option>Enter Speciality</option>
-          <option>Option 1</option>
-          <option>Option 2</option>
-        </select>
-      </div>
-      <div className="dropdown">
-        <select>
-          <option>Select City</option>
-          <option>Option 1</option>
-          <option>Option 2</option>
-        </select>
-      </div>
+
+<select>
+
+  <optgroup label="Choose your needed speciality">
+
+    <option>Internal Medicine</option>
+
+    <option>Dermatology</option>
+
+    <option>Obstetrics and Gynecology</option>
+
+    <option>Psychiatry</option>
+
+    <option>Pediatrics</option>
+
+    <option>Cardiology</option>
+
+    <option>Ophthalmology</option>
+
+    <option>Orthopedics</option>
+
+  </optgroup>
+
+</select>
+
+<div class="arrow"></div>
+
+</div>
+
+
+<div className="dropdown">
+  <select>
+    <optgroup label="Select Your Consultation City">
+      <option>Antofagasta</option>
+      <option>Arica</option>
+      <option>Calama</option>
+      <option>Chillán</option>
+      <option>Concepción</option>
+      <option>Copiapó</option>
+      <option>Iquique</option>
+      <option>La Serena</option>
+      <option>Puerto Montt</option>
+      <option>Santiago</option>
+    </optgroup>
+  </select>
+  <div class="arrow"></div>
+</div>
       
       <div className="search-button">
         <button>Search</button>
