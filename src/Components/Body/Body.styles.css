@@ -1,11 +1,11 @@
 
-  
-  .body {
 .body {
     background-color: #FFF; 
     display: flex;
     flex-direction: column;
     height: 100vh;
+    padding-top: initial;
+    scroll-padding-top: auto;
   }
   
   .body-section {
