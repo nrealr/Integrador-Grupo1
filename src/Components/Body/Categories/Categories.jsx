@@ -3,7 +3,7 @@ import {CategoriesList} from './CategoriesList';
 import './Categories.styles.css'
 
 export const Categories = () => (
-  <div className="container">
+  <div className="categories-container">
     <div className="column1">
       <h2>Explore diverse medical specialities</h2>
       <h1>Discover a Wide Range of Specialties Awaited Just Below!</h1>

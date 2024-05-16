@@ -1,17 +1,12 @@
 
 .body {
-    background-color: #FFF; 
-    display: flex;
-    flex-direction: column;
-    padding-top: initial;
-    scroll-padding-top: auto;
-  }
-  
-  .body-section {
-    flex-grow: 1;
-    display: flex;
-  }
-  
-  .body-section > * {
-    flex-grow: 1;
-  }
+  background-color: #FFF; 
+  display: flex;
+  flex-direction: column;
+  padding-top: initial;
+  scroll-padding-top: auto;
+}
+
+.body .body-sections {
+  margin: 4rem;
+}

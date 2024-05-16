@@ -27,12 +27,21 @@ export const Recommendations = () => {
 
   return (
 
-<div className="recommended">
-  {randomDoctors.map((doctor) => {
-    return <DoctorCard doctor={doctor} key={doctor.id} />;
-  })}
-</div>
+  <div className="recommended">
 
+    <div className="titles">
+      <h3>Meet Our Top-Rated Doctors</h3>
+      <h1>Discover Why Our Patients Love Them! Read Reviews and Ratings from Happy Clients Who've Booked Appointments.</h1>
+    </div>
+
+    <div className="recommendation-cards">
+      {randomDoctors.map((doctor) => 
+        {return <DoctorCard doctor={doctor} key={doctor.id}/>;
+        }
+      )
+      };
+    </div>
+  </div>
   );
 };
 

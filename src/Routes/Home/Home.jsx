@@ -6,13 +6,5 @@ import {Body} from '../../Components';
  * @returns {React.Component} Home component, show all doctors
  */
 export const Home = () => {
-
-  return (
-    <div>
-
-    <Body/>
-
-    </div>
-
-  )
+  return (<Body/>)
 };
