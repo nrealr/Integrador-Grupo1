@@ -12,18 +12,35 @@ export const Recommendations = () => {
   const loadDoctors = async ()=>{
     const doctorData = await getDoctors();
     //const randomDoctors = tenRandomDoctors(doctorData);
-
-    setRandomDoctors(doctorData);
+    const random = tenRandomDoctors(doctorData)
+    setRandomDoctors(random);
   }
 
-  const tenRandomDoctors = async (doctors) =>{
-    const randomDoctors = []
-      
-    while (randomDoctors.length < 10) {
-        const randomIndex = Math.floor(Math.random() * doctors.length);
-        randomDoctors.push(doctors.splice(randomIndex, 1)[0]);
-    }
+  function getRandomElements(arr, numElements) {
+    // Copy the original array to avoid mutating it
+    const arrayCopy = [...arr];
     
+    // Shuffle the array using Fisher-Yates algorithm
+    for (let i = arrayCopy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]];
+    }
+  
+    // Return the first numElements elements from the shuffled array
+    console.log(arrayCopy.slice(0, numElements));
+    return (arrayCopy.slice(0, numElements));
+  }
+
+  const tenRandomDoctors = doctors =>{
+    let randomDoctors = []
+
+    if(doctors.length < 10){
+      randomDoctors = getRandomElements(doctors, doctors.length)
+      return randomDoctors;
+      
+    }else{
+     randomDoctors = getRandomElements(doctors, 10)
+    }
     return randomDoctors;
   }
 

@@ -84,6 +84,30 @@
   cursor: pointer;
 }
 
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.popup p {
+  margin-bottom: 10px;
+}
+
+.popup button {
+  margin-right: 10px;
+}
+
+.trashcan:hover{
+  cursor: pointer;
+}
+
 .admin-display-data {
   display: flex;
   flex-direction: column;
