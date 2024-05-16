@@ -6,7 +6,7 @@ export const AddProduct = () => {
   
 
   return (
-    <div>
+    <div className="add-product-display">
       <h2>Add a new product</h2>
       
       <AddProductFunction/>
