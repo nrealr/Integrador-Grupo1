@@ -20,6 +20,7 @@ export const Header = () => {
       
     <div className="logo-header">
       <Link to="/"><img src="/images/ico-logo-fullcolor.png" alt="Application Logo" /></Link>
+      <span>Easy booking, safe care!</span>
     </div>
     
     <nav className="navbar">
