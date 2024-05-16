@@ -49,37 +49,40 @@ export const Search = () => {
   return (
    
     <div className="search-container">
-      <span>
+      <span className='titles'>
         <h3>WE HANDLE YOUR MEDICAL BOOKINGS</h3>
         <h1>EASY BOOKING, SAFE CARE!</h1>
       </span>
 
-    <span className='dropdown-bar'>
-      <div>
-          <Dropdown
-            label="Select a city"
-            options={cityOptions}
-            value={city}
-            onChange={handleCityChange}
-            defaultOptionText="Select a city for your appointment"
-          />
-      </div>
+      <span className='search-bar'>
 
-      <div>
-          <Dropdown
-          label="Select a specialty"
-            options={specialtyOptions}
-            value={specialty}
-            onChange={handleSpecialtyChange}
-            defaultOptionText="Select a medical specialty"
-          />
-      </div>
+        <span className='dropdown-bar'>
+          <div className='city'>
+              <Dropdown
+                label="Select a city"
+                options={cityOptions}
+                value={city}
+                onChange={handleCityChange}
+                defaultOptionText="Select a city for your appointment"
+              />
+          </div>
 
-    </span>
-    
-      <div className="search-button">
-        <button>Search</button>
-      </div>
+          <div className='specialty'>
+              <Dropdown
+              label="Select a specialty"
+                options={specialtyOptions}
+                value={specialty}
+                onChange={handleSpecialtyChange}
+                defaultOptionText="Select a medical specialty"
+              />
+          </div>
+        
+        </span>
+          <div className="search-button">
+            <button>Search</button>
+          </div>
+        </span>
+          
     </div>
   )
 

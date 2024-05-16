@@ -81,7 +81,7 @@
 .header-buttons button {
   margin-right: 10px;
   border-radius: 4px;
-  background: linear-gradient(to bottom, #1bb275 0%, #169d6b 100%);
+  background: linear-gradient(to bottom, #1bb275 0%, #1BB275 100%);
   color: #fff;
   font-family: Poppins;
   font-size: 1.125rem;
