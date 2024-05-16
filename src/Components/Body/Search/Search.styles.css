@@ -5,8 +5,13 @@
   justify-content: center;
   height: 100%;
   padding: 20px;
-  background-color: #f5f5f5;
-}
+  background: linear-gradient(90deg, #102C5B 37.65%, rgba(16, 44, 91, 0.00) 64.65%),
+  url('./images/bg-search.jpg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right center
+  }
+
 
 .search-container h2 {
   font-size: 24px;
@@ -56,3 +61,4 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
