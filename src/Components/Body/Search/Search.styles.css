@@ -32,7 +32,6 @@
 }
 
 .search-container .search-bar{
-  background-color: red;
   display: flex;
   align-items: center;
 }
@@ -54,18 +53,20 @@
 
 .search-button {
   display: flex;
-  width: 21%;
-  margin-left: auto;
-  background-color: aqua;
+  width: 20%;
+  margin: auto;
 }
 
 .search-button button {
   padding: 10px;
   width: 100%;
-  font-size: 18px;
-  background-color: #1BB275;
+  font-size: 16px;
+  background-color: #61C0BB;
   color: white;
   border: none;
   border-radius: 5px;
+  padding: 5px 10px;
   cursor: pointer;
 }
+
+

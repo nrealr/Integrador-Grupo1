@@ -1,4 +1,4 @@
-/* .dropdown {
+.dropdown {
     position: relative;
     display: inline-block;
     background-color: #1BB275;
@@ -12,11 +12,13 @@
     content: "";
     position: absolute;
     top: 50%;
-    right: 15px;
-    transform: translateY(-50%) rotate(90deg);
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid #fff;
+    right: 2px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url("./public/images/ico-arrowDropDown.png");
+    background-size: contain;
+    background-repeat: no-repeat;
   }
   
   .dropdown select {
@@ -30,6 +32,7 @@
     width: 100%;
     cursor: pointer;
     outline: none;
+    font-size: 16px;
   }
   
   .dropdown select option {
@@ -45,4 +48,4 @@
     .dropdown select {
       font-size: 14px;
     }
-  } */
+  }

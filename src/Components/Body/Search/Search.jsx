@@ -32,14 +32,14 @@ export const Search = () => {
 
   const [specialty, setSpecialty] = useState('');
   const specialtyOptions = [
-    { value: 'Internal Medicine', label: 'internal-medicine' },
-    { value: 'Dermatology', label: 'dermatology' },
-    { value: 'Obstetrics and Gynecology', label: 'obstetrics-and-gynecology' },
-    { value: 'Psychiatry', label: 'psychiatry' },
-    { value: 'Pediatrics', label: 'pediatrics' },
-    { value: 'Cardiology', label: 'cardiology' },
-    { value: 'Ophthalmology', label: 'ophthalmology' },
-    { value: 'Orthopedics', label: 'orthopedics' },
+    { label: 'Internal Medicine', value: 'internal-medicine' },
+    { label: 'Dermatology', value: 'dermatology' },
+    { label: 'Obstetrics and Gynecology', value: 'obstetrics-and-gynecology' },
+    { label: 'Psychiatry', value: 'psychiatry' },
+    { label: 'Pediatrics', value: 'pediatrics' },
+    { label: 'Cardiology', value: 'cardiology' },
+    { label: 'Ophthalmology', value: 'ophthalmology' },
+    { label: 'Orthopedics', value: 'orthopedics' },
   ];
 
   const handleSpecialtyChange = (event) => {
