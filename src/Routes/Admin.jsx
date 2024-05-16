@@ -94,7 +94,7 @@ export const Admin = () => {
         <section className="admin-display-table">
 
         <div className="admin-display-title">
-          <p>IMAGE</p>
+          <p>ID</p>
           <p>NAME</p>
           <p>LASTNAME</p>
           <p>RUT</p>
@@ -106,7 +106,7 @@ export const Admin = () => {
           {doctors.map((doctor) => (
             
             <div key={doctor} className="doctor-api-item">
-              <img src={doctor.img} alt="" />
+              <p>{doctor.id}</p>
               <p>{doctor.name}</p>
               <p>{doctor.lastname}</p>
               <p>{doctor.rut}</p>
