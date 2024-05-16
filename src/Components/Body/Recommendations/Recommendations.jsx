@@ -1,5 +1,5 @@
 import { getDoctors } from "../../../Services";
-import DoctorCard from "../../Common/DoctorCard";
+import {DoctorCard} from "../../Common";
 import "./Recommendations.styles.css";
 import React, { useEffect, useState } from 'react';
 
@@ -50,5 +50,3 @@ export const Recommendations = () => {
 
   )
 };
-
-export default Recommendations;

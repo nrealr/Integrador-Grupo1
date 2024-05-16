@@ -1,10 +1,18 @@
+
+  
+  .body {
 .body {
     background-color: #FFF; 
     display: flex;
     flex-direction: column;
+    height: 100vh;
   }
   
+  .body-section {
+    flex-grow: 1;
+    display: flex;
+  }
   
-  .box1, .box2, .box3 {
-    flex: 1;
+  .body-section > * {
+    flex-grow: 1;
   }

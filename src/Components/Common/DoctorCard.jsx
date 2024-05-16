@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./DoctorCard.styles.css";
 
-const DoctorCard = ({ doctor }) => {
+export const DoctorCard = ({ doctor }) => {
   return (
     <div className='container'>
         
@@ -30,4 +30,3 @@ const DoctorCard = ({ doctor }) => {
   );
 };
 
-export default DoctorCard;
