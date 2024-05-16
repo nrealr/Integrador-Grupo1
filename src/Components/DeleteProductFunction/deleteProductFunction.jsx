@@ -20,7 +20,7 @@ export const DeleteProductFunction = ({ doctor, onDelete }) => {
 
     return(
     <div>
-      <button onClick={handleDeleteClick}><img className="trashcan" src="https://static-00.iconduck.com/assets.00/trash-icon-462x512-njvey5nf.png" alt="Delete" /></button>
+      <p className="trashcan" onClick={handleDeleteClick}>🗑</p>
       {confirmation && (
         <div className="popup">
           <p>Are you sure you want to delete this doctor?</p>

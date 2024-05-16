@@ -103,16 +103,16 @@ export const Admin = () => {
         </div>
 
         <div className="admin-display-data">
-          {doctors.map((item) => (
+          {doctors.map((doctor) => (
             
-            <div key={item} className="doctor-api-item">
-              <img src={item.img} alt="" />
-              <p>{item.name}</p>
-              <p>{item.lastname}</p>
-              <p>{item.rut}</p>
+            <div key={doctor} className="doctor-api-item">
+              <img src={doctor.img} alt="" />
+              <p>{doctor.name}</p>
+              <p>{doctor.lastname}</p>
+              <p>{doctor.rut}</p>
               <p>Doctor</p>
               <p className="admin-edit-button">🖊</p>
-              <p className="admin-delete-button">🗑</p>
+              <DeleteProductFunction doctor = {doctor} onDelete={() => handleDeleteDoctor(doctor.id)}/>
             </div>
 
             

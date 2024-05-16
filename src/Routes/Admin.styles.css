@@ -104,9 +104,8 @@
   margin-right: 10px;
 }
 
-.trashcan{
-  width: 15px;
-  height: 15px;
+.trashcan:hover{
+  cursor: pointer;
 }
 
 .admin-display-data {
