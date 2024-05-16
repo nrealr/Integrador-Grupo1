@@ -18,8 +18,19 @@
   .logo-header img {
     width: 100px;
     height: auto;
+
+    margin-bottom: 10px;
   }
 
+  .logo-header span {
+
+    font-size: 0.8rem;
+  
+    font-weight: bold;
+  
+    text-align: left;
+  
+  }
   
   .navbar {
     display: flex;
@@ -104,6 +115,7 @@
     margin-left: auto;
 }
 
+/* 
 .layout-dark .navbar{
     background-color: #666;
 }
@@ -128,3 +140,7 @@
 .layout-dark .navbar ul li a:hover{
     color: #726b6b;
 }
+
+ */
+
+
