@@ -31,10 +31,17 @@
     align-items: center;
   }
   
-  .navbar li {
-    margin: 0 10px;
+  .navbar ul li {
+  padding: 10px;
+  margin: 0 10px;
+  border-radius: 50%;
+  transition: background-color 0.2s ease-in-out;
   }
-  
+
+  .navbar ul li:hover {
+  background-color: #95bbfb;
+  }
+
   .navbar a {
     color: #333;
     font-family: Poppins;
@@ -46,7 +53,7 @@
   }
   
   .navbar a:hover {
-    color: #1BB275; 
+    color: #158759; 
   }
 
 .icon-theme{
@@ -56,25 +63,40 @@
 
 }
 
+
+.header-buttons button {
+  margin-right: 10px;
+  border-radius: px;
+  background: linear-gradient(to bottom, #1bb275 0%, #169d6b 100%);
+  color: #fff;
+  font-family: Poppins;
+  font-size: 1.125rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 1.6875rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.header-buttons button:hover {
+  background: linear-gradient(to bottom, #169d6b 0%, #1bb275 100%);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.header-buttons button:active {
+  background: linear-gradient(to bottom, #169d6b 0%, #1bb275 100%);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(2px);
+}
+
 .header-buttons {
     display: flex;
     flex-direction: row;
     align-items: center;
     margin-left: auto;
 }
-  
-.header-buttons button {
-    margin-right: 10px;
-    border-radius: 0.3125rem;
-    background: #1BB275;
-    color: #FFF;
-    font-family: Poppins;
-    font-size: 1.125rem;
-    font-style: normal;
-    font-weight: 500;
-    line-height: 1.6875rem;
-}
-
 
 .layout-dark .navbar{
     background-color: #666;

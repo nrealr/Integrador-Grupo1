@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Header.styles.css"
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../../Constants";
 
 /**
  * 
@@ -43,7 +44,9 @@ export const Header = () => {
       <div className="header-buttons">
 
           <button className="btn-create-account">Create Account</button>
-          <button className="btn-login">Log in</button>
+          <Link to={ROUTES.ADMIN}>{" "}
+            <button className="btn-login">Log in</button>{" "}
+          </Link>
 
       </div>
 
