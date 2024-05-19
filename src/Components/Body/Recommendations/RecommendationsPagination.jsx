@@ -19,9 +19,22 @@ export const RecommendationsPagination = ({ doctorsPerPage, totalDoctors, pagina
     }
   };
 
+  const handleFirst = () => {
+    paginate(1);
+  };
+
+  const handleLast = () => {
+    paginate(pageNumbers.length);
+  };
+
   return (
     <nav>
       <ul className="pagination">
+        <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
+          <button onClick={handleFirst} className="page-link" disabled={currentPage === 1}>
+            &laquo;&laquo;
+          </button>
+        </li>
         <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
           <button onClick={handlePrevious} className="page-link" disabled={currentPage === 1}>
             &laquo;
@@ -37,6 +50,11 @@ export const RecommendationsPagination = ({ doctorsPerPage, totalDoctors, pagina
         <li className={`page-item ${currentPage === pageNumbers.length ? 'disabled' : ''}`}>
           <button onClick={handleNext} className="page-link" disabled={currentPage === pageNumbers.length}>
             &raquo;
+          </button>
+        </li>
+        <li className={`page-item ${currentPage === pageNumbers.length ? 'disabled' : ''}`}>
+          <button onClick={handleLast} className="page-link" disabled={currentPage === pageNumbers.length}>
+            &raquo;&raquo;
           </button>
         </li>
       </ul>
