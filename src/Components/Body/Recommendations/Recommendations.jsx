@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import { getDoctors } from "../../../Services";
 import { DoctorCard } from "../../Common/DoctorCard";
 import './Recommendations.styles.css'
+import { RecommendationsPagination } from "./RecommendationsPagination";
 
 
 export const Recommendations = () => {
   const [randomDoctors, setRandomDoctors] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const doctorsPerPage = 10;
 
   const loadDoctors = async () => {
     const doctorData = await getDoctors ();
@@ -14,12 +17,17 @@ export const Recommendations = () => {
 
   const tenRandomDoctors = (doctors) => {
     const shuffledDoctors = doctors.sort(() => 0.5 - Math.random());
-    return shuffledDoctors.slice(0, 10);
+    return shuffledDoctors;
   };
 
   useEffect(() => {
     loadDoctors();
   }, []);
+
+  const indexOfLastDoctor = currentPage * doctorsPerPage;
+  const indexOfFirstDoctor = indexOfLastDoctor - doctorsPerPage;
+  const currentDoctors = randomDoctors.slice(indexOfFirstDoctor, indexOfLastDoctor);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (randomDoctors.length === 0) {
     return <div>Loading...</div>;
@@ -37,12 +45,18 @@ export const Recommendations = () => {
     </div>
 
     <div className="recommendation-cards">
-      {randomDoctors.map((doctor) => 
+      {currentDoctors.map((doctor) => 
         {return <DoctorCard doctor={doctor} key={doctor.id}/>;
         }
       )
       }
     </div>
+    <RecommendationsPagination 
+        doctorsPerPage={doctorsPerPage} 
+        totalDoctors={randomDoctors.length} 
+        paginate={paginate} 
+        currentPage={currentPage} 
+      />
   </div>
   );
 };
