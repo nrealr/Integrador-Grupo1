@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Header.styles.css"
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../Constants";
-import { Button, Dialog, DialogActions, DialogContent, DialogTitle } from '@mui/material';
+import { AppBar, Button, Dialog, DialogActions, DialogContent, DialogTitle, Toolbar, useTheme } from '@mui/material';
 import {RegisterForm} from "../../../Forms/RegisterForm";
 
 /**
@@ -14,6 +14,8 @@ export const Header = () => {
 
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [open, setOpen] = useState(false);
+  const theme = useTheme();
+
   const darkModeClass = isDarkMode ? "layout-dark" : "layout";
 
   const handleClickOpen = () => {
@@ -25,9 +27,9 @@ export const Header = () => {
   };
   
   return(
-
-  <header className="header">
-    <div className="logo-header">
+    <AppBar position="fixed" color="background1" >
+      <Toolbar>
+      <div className="logo-header">
       <Link to="/"><img src="/images/ico-logo-fullcolor.png" alt="Application Logo" /></Link>
     </div>
     
@@ -51,9 +53,10 @@ export const Header = () => {
             <button variant="contained" color="secondary">Log in</button>{" "}
           </Link>
       </div>
+      </Toolbar>
+      
 
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle>Registro de Usuario</DialogTitle>
         <DialogContent>
           <RegisterForm />
         </DialogContent>
@@ -69,8 +72,7 @@ export const Header = () => {
               src="/images/ico-color-theme.png" 
               alt="Changue mode (dark/light)" 
       />  */}
-
-  </header>
+    </AppBar>
   );
 };
 

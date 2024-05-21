@@ -7,7 +7,7 @@ import {Admin} from './Routes/Admin';
 import { ContextProvider } from './Context';
 import { ROUTES } from './Constants';
 import { Layout } from './Components';
-import { ThemeProvider } from '@mui/material';
+import { Container, ThemeProvider } from '@mui/material';
 import { theme } from './Themes/theme';
 
 
@@ -20,6 +20,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme} >
+      <Container>
       <BrowserRouter>
       <ContextProvider>
 
@@ -41,6 +42,7 @@ function App() {
 
       </ContextProvider>
       </BrowserRouter> 
+      </Container>
     </ThemeProvider>
   )
 }
