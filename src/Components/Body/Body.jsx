@@ -1,23 +1,20 @@
 import React from 'react';
-import "./Body.styles.css"
+import "./Body.styles.css";
+import { Search } from './Search';
 import { Categories } from './Categories';
 import { Recommendations } from './Recommendations';
-import { Search } from './Search';
 
 
 /**
  * 
  * @returns Body with three sections, search, categories and recommendations
  */
-
-const Body = () => {
-  return (
-    <div className="body">
-      <Search className="box1"/>
-      <Categories className="box2"/>
-      <Recommendations className="box3"/>
-    </div>
-  );
-};
-
-export default Body;
+export const Body = () => (
+  <div className="body">
+    <Search />
+    <div className="body-sections">
+      <Categories/>
+      <Recommendations />
+     </div>
+  </div>
+);

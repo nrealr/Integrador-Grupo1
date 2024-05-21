@@ -1,0 +1,10 @@
+.add-product-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-product-form{
+  display: flex;
+  flex-direction: column;
+}

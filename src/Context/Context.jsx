@@ -1,13 +1,14 @@
 import { createContext } from "react";
 
+
 const ContextGlobal = createContext();
 
 export const ContextProvider = ({ children }) => {
 
-   /**Global states */
+    //Estados globales
     const [state, dispatch] = [];
 
-   /**Globa functions */
+    //Aca van las funciones globales
     let data = { state, dispatch };
 
     return (

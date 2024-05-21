@@ -1,31 +1,21 @@
-import "./Categories.styles.css";
 import React from 'react';
+import {CategoriesList} from './CategoriesList';
+import './Categories.styles.css'
 
-/**
- * 
- * @returns {React.Component} Section for service's categories
- */
-export const Categories = () => {
-
-    const categories = "categoria"
-
-  return (
-
-    <div className="categories">
-      <h2>Specialities</h2>
-        <ul>
-          <li>
-            <a href="#">{categories}</a>
-          </li>
-          <li>
-            <a href="#">{categories}</a>
-          </li>
-          <li>
-            <a href="#">{categories}</a>
-          </li>
-      </ul>
+export const Categories = () => (
+  <div className="categories-container">
+    <div className="column1">
+      <h2>Explore diverse medical specialities</h2>
+      <h1>Discover a Wide Range of Specialties Awaited Just Below!</h1>
+      <div className="search-button">
+        <button>Check them here</button>
+      </div>
     </div>
-  );
-};
 
-export default Categories;
+    <div className="column2">
+      <CategoriesList />
+    </div>
+  </div>
+);
+
+

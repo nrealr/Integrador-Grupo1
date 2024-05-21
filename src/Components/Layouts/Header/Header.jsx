@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Header.styles.css"
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../../Constants";
 
 /**
  * 
@@ -19,6 +20,7 @@ export const Header = () => {
       
     <div className="logo-header">
       <Link to="/"><img src="/images/ico-logo-fullcolor.png" alt="Application Logo" /></Link>
+      <span>Easy booking, safe care!</span>
     </div>
     
     <nav className="navbar">
@@ -43,7 +45,9 @@ export const Header = () => {
       <div className="header-buttons">
 
           <button className="btn-create-account">Create Account</button>
-          <button className="btn-login">Log in</button>
+          <Link to={ROUTES.ADMIN}>{" "}
+            <button className="btn-login">Log in</button>{" "}
+          </Link>
 
       </div>
 
@@ -57,5 +61,4 @@ export const Header = () => {
   );
 };
 
-export default Header;
 

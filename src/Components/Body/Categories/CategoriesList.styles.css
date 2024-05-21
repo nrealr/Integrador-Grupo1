@@ -1,0 +1,4 @@
+.categories-list {
+    display: grid;
+    grid-template-columns: 30ch 30ch;
+}

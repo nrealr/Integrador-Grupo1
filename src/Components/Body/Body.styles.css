@@ -1,11 +1,12 @@
+
 .body {
-    background-color: #FFF; 
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  
-  .box1, .box2, .box3 {
-    flex: 1;
-  }
+  background-color: #FFF; 
+  display: flex;
+  flex-direction: column;
+  padding-top: initial;
+  scroll-padding-top: auto;
+}
+
+.body .body-sections {
+  margin: 4rem;
+}

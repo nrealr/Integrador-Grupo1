@@ -2,12 +2,15 @@
   box-sizing: border-box;
 }
 
+body {
+  margin: 0;
+}
+
 .layout {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
     min-width: 100%;
-    background: linear-gradient(90deg, #102C5B 37.65%, rgba(16, 44, 91, 0.00) 64.65%);
 };
 
 

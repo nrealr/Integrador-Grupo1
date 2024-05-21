@@ -1,17 +1,55 @@
-
-.container {
+.doctorCard-container{
     display: flex;
-    flex-direction: column;
+    gap: 1rem;
+    background-color: white;
+    border: 1px solid rgb(235, 235, 235);
+    border-radius: 5px;    
     margin: 1rem;
     padding: 1rem;
-    border: 1px solid black;
-    border-radius: 5px;
-    width: 30vw;
-    justify-content: center;
-    align-items: center;
+}
+
+.containerInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-between;
+    align-items: start;
+}
+
+.containerInfo p{
+    text-align: justify;
+}
+
+.containerInfo h2{
+    color: rgb(43, 62, 100);
+    margin: 0;
+}
+
+.containerInfo h3{
+    color: rgb(47, 52, 61);
+    margin: 0;
+    font-size: 1rem;
+
+}
+
+
+.container:hover{
+    background-color: rgb(230, 230, 230);
 }
 
 .avatarDoc{
-    width: 20rem;
+    width: 200px;
+}
+
+.cardButton{
+    background-color: #1BB275;
+    padding: 0.7rem;
+    color: white;
+    border-radius: 5px;
+}
+
+.cardButton:hover{
+    background-color: rgb(65, 202, 133);
+    color: white;
 }
 
