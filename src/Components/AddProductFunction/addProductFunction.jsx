@@ -1,7 +1,8 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { SERVER_API } from '../../Constants';
 import { addDoctor } from '../../Services';
+import { getSpecialties } from '../../Services/getSpecialties';
 
 
 export const AddProductFunction = () => {
@@ -12,11 +13,19 @@ export const AddProductFunction = () => {
         lastname: "",
         rut: "",
         img: "",
-        description: ""
+        description: "",
+        specialtyID: "1" //giving it a default value here, have to find out how to get the value from the default option in the specialties select after it's done mapping
       });
     
       const [error, setError] = useState("");
       const [success, setSuccess] = useState("")
+
+      const [specialties, setSpecialties] = useState([])
+
+      const loadSpecialties = async () =>{
+        const specData = await getSpecialties();
+        setSpecialties(specData);
+      }
     
       const validateForm = (values) => {
         let errors = {};
@@ -44,6 +53,11 @@ export const AddProductFunction = () => {
         if (!values.description) {
           errors.description = 'Description is mandatory';
         }
+
+        if (!values.specialtyID) {
+          errors.description = 'Specialty is mandatory';
+        }
+
       
         return errors;
       };
@@ -64,7 +78,8 @@ export const AddProductFunction = () => {
               lastname: "",
               rut: "",
               img: "",
-              description: ""
+              description: "",
+              specialtyID: ""
             });
             setError("");
             setSuccess("Doctor added");
@@ -79,6 +94,10 @@ export const AddProductFunction = () => {
       
         console.log(product);
       };
+
+      useEffect(() =>{
+        loadSpecialties();
+      }, [])
 
   return (
     <div>
@@ -114,8 +133,19 @@ export const AddProductFunction = () => {
           value={product.description}
           onChange={(e) =>
             setProduct({ ...product, description: e.target.value })
-          }
-        />
+          }/>
+          <label>Specialty:</label>
+          <select
+            value={product.specialtyID}
+            onChange={(e) =>
+            setProduct({ ...product, specialtyID: e.target.value})} 
+            >
+              {specialties.map((specialty) =>{
+                return <option key={specialty.id} value={specialty.id}>{specialty.name}</option>
+              })}
+
+
+            </select>
 
 
         {error && 

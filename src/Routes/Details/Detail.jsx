@@ -16,6 +16,7 @@ export const Detail = () => {
       console.log(doctorsData)
       setDoctorSelected(doctorsData)
     }
+
     getData()
   
   }, [id]);
@@ -37,7 +38,7 @@ export const Detail = () => {
         </div>
         <div className="detailBodyRight">
         <div>
-        <h2>Specialization</h2>
+        <h2>Specialized in {doctorSelected.specialty.name}</h2>
         <p>{doctorSelected.description}</p>
         </div>
         <Link className='cardButton'  to={`#`}><button>Book Appointment →</button></Link>
