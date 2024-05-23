@@ -32,13 +32,14 @@ function App() {
           <Route path={ROUTES.ADD} element={<AddProduct/>} />
           <Route path={ROUTES.DETAIL} element={<Detail/>} />
           <Route path={ROUTES.REGISTER} element={<RegisterForm />} />
-          <Route path={ROUTES.USERPANEL} element={<UserPanel/>} />
+         
 
 
         </Route>
 
         <Route element={<Layout/>}>
           <Route path={ROUTES.ADMIN} element={<Admin/>} />
+          <Route path={ROUTES.USERPANEL} element={<UserPanel/>} />
           </Route>
       </Routes>
 
