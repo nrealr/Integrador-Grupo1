@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {AddProduct} from './Routes/AddProduct';
-import {Detail, RegisterForm} from './Routes';
+import {Detail, RegisterForm, UserPanel} from './Routes';
 import {Home} from './Routes';
 import {Admin} from './Routes/Admin';
 import { ContextProvider } from './Context';
@@ -9,6 +9,7 @@ import { ROUTES } from './Constants';
 import { Layout } from './Components';
 import { Container, ThemeProvider } from '@mui/material';
 import { theme } from './Themes/theme';
+
 
 
 /**
@@ -31,6 +32,7 @@ function App() {
           <Route path={ROUTES.ADD} element={<AddProduct/>} />
           <Route path={ROUTES.DETAIL} element={<Detail/>} />
           <Route path={ROUTES.ADDUSER} element={<RegisterForm />} />
+          <Route path={ROUTES.USERPANEL} element={<UserPanel/>} />
 
         </Route>
 
