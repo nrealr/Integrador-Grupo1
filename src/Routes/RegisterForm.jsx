@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Container, Avatar, Grid, Paper } from '@mui/material';
+import { TextField, Button, Box, Typography, Container, Avatar, Grid, Paper, Dialog, DialogContent, DialogActions, DialogTitle, Icon } from '@mui/material';
 import LockOutLinedIcon from '@mui/icons-material/LockOutlined';
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Link } from 'react-router-dom';
 import { addUser } from '../Services';
 
@@ -13,7 +14,8 @@ export const RegisterForm = () => {
     });
 
     const [error, setError] = useState({});
-    const [success, setSuccess] = useState("");
+    const [success, setSuccess] = useState(false);
+    /*const [dialogOpen, setDialogOpen] = useState(false);*/
 
     const validateForm = (values) => {
         let errors = {};
@@ -54,7 +56,8 @@ export const RegisterForm = () => {
         
         if (Object.keys(validationErrors).length === 0) {
             try {
-                setSuccess("User registered successfully"); /*OJO: Este setSuccess debe ir dentro del try abajo de setError, pero debe estar conectado al back*/ 
+                setSuccess(true) /*OJO: Este setSuccess debe ir dentro del try abajo de setError, pero debe estar conectado al back*/ 
+                /*setDialogOpen(true);*/
                 const response = await addUser(formData);
                 setFormData({
                     firstName: '',
@@ -63,7 +66,7 @@ export const RegisterForm = () => {
                     password: '',
                 });
                 setError({});
-
+                
             } catch (error) {
                 console.error("Error on sending data:", error);
                 setError(["Error registering user"]);
@@ -72,6 +75,10 @@ export const RegisterForm = () => {
             setError(validationErrors);
         }
     };
+
+    /*const handleCloseDialog = () => {
+        setDialogOpen(false);
+    };*/
 
     return (
         <>
@@ -169,13 +176,30 @@ export const RegisterForm = () => {
                             </Grid>
                         </Box>
                     </Paper>
-                    {success && (
-                        <Box sx={{ color: 'green', mt: 2 }}>
-                            <Typography variant="body2">{success}</Typography>
-                        </Box>
-                    )}
                 </Box>
         </Container>
+        {success && (
+            <Dialog sx={{ p:3, borderRadius:1}} open={success} onClose={!success}>
+            <DialogContent>
+                <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2}}>
+                    <Avatar sx={{m: 1, bgcolor: 'primary.main'}}>
+                        <CheckCircleOutlineIcon />
+                    </Avatar>
+                    <DialogTitle>User Registered Successfully</DialogTitle>
+                </Box>
+                <Box sx={{display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2}}>
+                    <Typography variant='body1' >You will be redirected to the Home Page</Typography>
+                </Box>
+            </DialogContent>
+            <DialogActions>
+                <Link to="/" >
+                    <Button variant='outlined' /*onClick={handleCloseDialog}*/ color="primary">
+                        OK
+                    </Button>
+                </Link>
+            </DialogActions>
+        </Dialog>
+        )}
         </>
     );
 };
