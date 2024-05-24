@@ -14,52 +14,47 @@ export const RegisterForm = () => {
 
     const [error, setError] = useState({});
     const [success, setSuccess] = useState("");
-    /*const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);*/
 
     const validateForm = (values) => {
         let errors = {};
-
         if (!values.firstName) {
             errors.firstName = 'First Name field is mandatory';
         } else if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(values.firstName)) {
             errors.firstName = 'This field accept letters and spaces only';
         }
-
         if (!values.lastName) {
             errors.lastName = 'Last Name field is mandatory';
         } else if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(values.lastName)) {
             errors.lastName = 'This field accept letters and spaces only';
         }
-
         if (!values.email) {
             errors.email = 'Email is mandatory';
         } else if (!/\S+@\S+\.\S+/.test(values.email)) {
             errors.email = 'Email format not valid';
         }
-
         if (!values.password) {
             errors.password = 'Password is mandatory';
         } else if (values.password.length < 6) {
             errors.password = 'Password must be at least 6 characters long';
         }
-
         return errors;
     };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
-        ...formData,
-        [name]: value,
+            ...formData,
+            [name]: value,
         });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
         const validationErrors = validateForm(formData);
+        
         if (Object.keys(validationErrors).length === 0) {
             try {
+                setSuccess("User registered successfully"); /*OJO: Este setSuccess debe ir dentro del try abajo de setError, pero debe estar conectado al back*/ 
                 const response = await addUser(formData);
                 setFormData({
                     firstName: '',
@@ -68,22 +63,20 @@ export const RegisterForm = () => {
                     password: '',
                 });
                 setError({});
-                setSuccess("User registered successfully");
+
             } catch (error) {
                 console.error("Error on sending data:", error);
                 setError(["Error registering user"]);
             }
         } else {
-            setError(validationErrors)
+            setError(validationErrors);
         }
-        /*setIsSubmitDisabled(Object.keys(validationErrors).length > 0);*/
     };
 
     return (
         <>
             <Box sx={{ width: '100%', height: '200px', backgroundColor: 'primary.main' }}></Box>
             <Container component="main" maxWidth="lg" sx={{ mt: -8 }} >
-            
                 <Box sx={{
                     display: 'flex',
                     justifyContent: 'center',
@@ -138,7 +131,6 @@ export const RegisterForm = () => {
                                         name="email"
                                         value={formData.email}
                                         onChange={handleChange}
-                                        /*onBlur={validateForm}*/
                                         autoComplete="email"
                                         error={!!error.email}
                                         helperText={error.email}
@@ -161,14 +153,12 @@ export const RegisterForm = () => {
                                     />
                                 </Grid>
                             </Grid>
-                        
                             <Button
                                 type="submit"
                                 fullWidth
                                 variant="contained"
                                 color='secondary'
-                                sx={{ mt: 2, color: 'white', /*backgroundColor: isSubmitDisabled ? 'grey' : 'secondary.main'*/ }}
-                                /*disabled={isSubmitDisabled}*/
+                                sx={{ mt: 2, color: 'white' }}
                             >
                                 Submit
                             </Button>
@@ -179,22 +169,12 @@ export const RegisterForm = () => {
                             </Grid>
                         </Box>
                     </Paper>
-                    
-                    {/*Object.keys(error).length > 0 && (
-                        <Box sx={{ color: 'red', mt: 2 }}>
-                            {Object.values(error).map((errMsg, index) => (
-                                <Typography key={index} variant="body2">{errMsg}</Typography>
-                            ))}
-                        </Box>
-                    )*/}
-                    
                     {success && (
                         <Box sx={{ color: 'green', mt: 2 }}>
                             <Typography variant="body2">{success}</Typography>
                         </Box>
                     )}
                 </Box>
-                
         </Container>
         </>
     );
