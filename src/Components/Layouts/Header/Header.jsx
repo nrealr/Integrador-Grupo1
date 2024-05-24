@@ -10,7 +10,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../Constants/routes';
 import { Button } from '@mui/material';
-
+import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 /**
  * 
  * @returns {ReactComponent} Navbar component, logo and buttons for register and log in
@@ -50,13 +50,17 @@ export const Header =()=> {
             </Link>
           
 
-            <Link to={ROUTES.PANELUSER} >
+            <Link to={ROUTES.USERPANEL} >
               <Button 
                 variant="contained" 
                 color="secondary" 
                 margin="10px">
                 Log in
               </Button>
+            </Link>
+
+            <Link to={ROUTES.ADMIN}>
+              <AdminPanelSettingsIcon/>
             </Link>
     
         </Toolbar>
