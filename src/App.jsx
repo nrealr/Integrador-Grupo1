@@ -31,9 +31,8 @@ function App() {
           <Route path={ROUTES.HOME} element={<Home/>} />
           <Route path={ROUTES.ADD} element={<AddProduct/>} />
           <Route path={ROUTES.DETAIL} element={<Detail/>} />
-          <Route path={ROUTES.REGISTER} element={<RegisterForm />} />
-         
-
+          <Route path={ROUTES.ADDUSER} element={<RegisterForm />} />
+          <Route path={ROUTES.USERPANEL} element={<UserPanel/>} />
 
         </Route>
 

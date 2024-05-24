@@ -52,7 +52,7 @@ export const Header = () => {
               <Link to="/specialities">Specialities</Link>
             </li>
             <li>
-              <Link to="/panel">Contact</Link>
+              <Link to={ROUTES.ADMIN}>Admin Panel</Link>
             </li>
           </ul>
         </nav>
@@ -64,7 +64,7 @@ export const Header = () => {
           </button>
           </Link>
          
-          <Link to={ROUTES.ADMIN}>
+          <Link to={ROUTES.USERPANEL}>
             {" "}
             <button variant="contained" color="secondary">
               Log in

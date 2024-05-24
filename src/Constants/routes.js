@@ -4,5 +4,9 @@ export const ROUTES = {
     ADD: "/admin/add",
     DETAIL: "/doctor/:id",
     ADDUSER: "/register",
+<<<<<<< HEAD
     USERPANEL: "/panel"
+=======
+    USERPANEL: "/userpanel"
+>>>>>>> feature/H014_userpanel
 };
