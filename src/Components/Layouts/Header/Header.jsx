@@ -50,14 +50,16 @@ export const Header =()=> {
             </Link>
           
 
-            <Link to={ROUTES.USERPANEL} >
+            <Link to={ROUTES.PROFILE} >
               <Button 
                 variant="contained" 
                 color="secondary" 
                 margin="10px">
                 Log in
+                
               </Button>
             </Link>
+            
 
             <Link to={ROUTES.ADMIN}>
               <AdminPanelSettingsIcon/>

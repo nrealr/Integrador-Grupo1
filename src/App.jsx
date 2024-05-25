@@ -1,7 +1,7 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {AddProduct} from './Routes/AddProduct';
-import {Detail, RegisterForm, UserPanel} from './Routes';
+import {Detail, RegisterForm, Profile} from './Routes';
 import {Home} from './Routes';
 import {Admin} from './Routes/Admin';
 import { ContextProvider } from './Context';
@@ -32,13 +32,13 @@ function App() {
           <Route path={ROUTES.ADD} element={<AddProduct/>} />
           <Route path={ROUTES.DETAIL} element={<Detail/>} />
           <Route path={ROUTES.ADDUSER} element={<RegisterForm />} />
-          <Route path={ROUTES.PROFILE} element={<UserPanel/>} />
+          <Route path={ROUTES.PROFILE} element={<Profile/>} />
 
         </Route>
 
         <Route element={<Layout/>}>
           <Route path={ROUTES.ADMIN} element={<Admin/>} />
-          <Route path={ROUTES.PROFILE} element={<UserPanel/>} />
+          <Route path={ROUTES.PROFILE} element={<Profile/>} />
           </Route>
       </Routes>
 

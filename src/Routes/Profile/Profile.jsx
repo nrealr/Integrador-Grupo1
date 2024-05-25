@@ -1,65 +1,118 @@
-import { Container, Grid } from "@mui/material";
-import React from "react";
+import * as React from 'react';
+import Button from '@mui/material/Button';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import Grow from '@mui/material/Grow';
+import Paper from '@mui/material/Paper';
+import Popper from '@mui/material/Popper';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import Stack from '@mui/material/Stack';
+import { Grid } from '@mui/material';
 
-export const Profile =()=>{
-    return(
-        <Container>
+export const Profile=()=> {
+  const [open, setOpen] = React.useState(false);
+  const anchorRef = React.useRef(null);
 
-            <Grid container
-                 
-             sx={{
-                border: '1px solid black',                 
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
+  };
+
+  const handleClose = (event) => {
+    if (anchorRef.current && anchorRef.current.contains(event.target)) {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  function handleListKeyDown(event) {
+    if (event.key === 'Tab') {
+      event.preventDefault();
+      setOpen(false);
+    } else if (event.key === 'Escape') {
+      setOpen(false);
+    }
+  }
+
+  // return focus to the button when we transitioned from !open -> open
+  const prevOpen = React.useRef(open);
+  React.useEffect(() => {
+    if (prevOpen.current === true && open === false) {
+      anchorRef.current.focus();
+    }
+
+    prevOpen.current = open;
+  }, [open]);
+
+  return (
+    <Stack direction="row" spacing={2}>
+      <Paper>
+        <MenuList>
+          <MenuItem>Profile</MenuItem>
+          <MenuItem>My account</MenuItem>
+          <MenuItem>Logout</MenuItem>
+        </MenuList>
+      </Paper>
+      <Paper>
+        <Grid>
+            <h1>aa</h1>
+        </Grid>
+        <Grid>
+            <h1>aa</h1>
+        </Grid>
+        <Grid>
+            <h1>aa</h1>
+        </Grid>
+         <Grid>
+            <h1>aa</h1>
+        </Grid>
+      </Paper>
+      {/* <div>
+        <Button
+          ref={anchorRef}
+          id="composition-button"
+          aria-controls={open ? 'composition-menu' : undefined}
+          aria-expanded={open ? 'true' : undefined}
+          aria-haspopup="true"
+          onClick={handleToggle}
+        >
+          Dashboard
+        </Button>
+        
+        <Popper
+          open={open}
+          anchorEl={anchorRef.current}
+          role={undefined}
+          placement="bottom-start"
+          transition
+          disablePortal
+        >
+          {({ TransitionProps, placement }) => (
+            <Grow
+              {...TransitionProps}
+              style={{
+                transformOrigin:
+                  placement === 'bottom-start' ? 'left top' : 'left bottom',
               }}
             >
-                <Grid item xs={3} sx={{ gridColumn: '1 / 4' }}>
-                    <aside>
-                        <h1>hola</h1>
-                        <nav>
-                            <a href="/profile/account">
-                                <span>Personal</span>
-                            </a>
-                            <a href="/profile/password">
-                                <svg>icono</svg>
-                                <span>Account</span>
-                            </a>
-                            <a href="/profile/appointments">
-                            <svg>icono</svg>
-                                <span>Appointments</span>
-                            </a>
-                        </nav>
-                    </aside>
-                </Grid>
-                
-                <Grid item xs={9} sx={{ gridColumn: '4 / 13' }}>
-                
-                    <Grid
-                        item
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        sx={{
-                            border: '1px solid black',                 
-                        }}
-                        >
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam optio, molestias dolores, velit dolor tempora sed, provident veritatis consequatur ipsam vel. Blanditiis inventore quas impedit ab distinctio itaque? Laboriosam, iusto?</p>                
-                    </Grid>
-                    
-                    <Grid
-                        item
-                        xs={12}
-                        sm={6}
-                        md={4}
-                        sx={{
-                            border: '1px solid black',                 
-                        }}
-                        >
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam optio, molestias dolores, velit dolor tempora sed, provident veritatis consequatur ipsam vel. Blanditiis inventore quas impedit ab distinctio itaque? Laboriosam, iusto?</p>                
-                    </Grid>
-                </Grid>
-
-            </Grid>
-        </Container>
-
-        
-    )
+              <Paper>
+                <ClickAwayListener onClickAway={handleClose}>
+                  <MenuList
+                    autoFocusItem={open}
+                    id="composition-menu"
+                    aria-labelledby="composition-button"
+                    onKeyDown={handleListKeyDown}
+                  >
+                    <MenuItem onClick={handleClose}>Profile</MenuItem>
+                    <MenuItem onClick={handleClose}>My account</MenuItem>
+                    <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  </MenuList>
+                </ClickAwayListener>
+              </Paper>
+            </Grow>
+          )}
+        </Popper>
+      </div> */}
+    </Stack>
+  );
 }

@@ -1,1 +1,1 @@
-export * from './UserPanel'
+export * from './Profile'

@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const ROUTES = {
   ADDUSER: '/adduser',
-  USERPANEL: '/userpanel'
+  PROFILE: '/profile'
 };
 
 export const NavUserBar = () => {
@@ -37,7 +37,7 @@ export const NavUserBar = () => {
         </Button>
       </Link>
 
-      <Link to={ROUTES.USERPANEL}>
+      <Link to={ROUTES.PROFILE}>
         <Button variant="contained" color="secondary" className={classes.button}>
           Log in
         </Button>
