@@ -21,7 +21,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme} >
-      <Container>
+      
       <BrowserRouter>
       <ContextProvider>
 
@@ -46,7 +46,7 @@ function App() {
 
       </ContextProvider>
       </BrowserRouter> 
-      </Container>
+      
     </ThemeProvider>
   )
 }
