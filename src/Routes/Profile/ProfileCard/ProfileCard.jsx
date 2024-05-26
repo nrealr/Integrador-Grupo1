@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardActions, Typography, TextField, Button, MenuItem } from '@mui/material';
-import { BackgroundLetterAvatars } from './BackgroundLetterAvatars';
+import { BackgroundLetterAvatars } from '../BackgroundLetterAvatars/BackgroundLetterAvatars';
 
 const ProfileCard = () => {
   const [name, setName] = useState('');
