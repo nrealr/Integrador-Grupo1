@@ -11,6 +11,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../Constants/routes';
 import { Button } from '@mui/material';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import { LoginButton } from './LoginButton';
 /**
  * 
  * @returns {ReactComponent} Navbar component, logo and buttons for register and log in
@@ -51,13 +52,14 @@ export const Header =()=> {
           
 
             <Link to={ROUTES.PROFILE} >
-              <Button 
+              {/* <Button 
                 variant="contained" 
                 color="secondary" 
                 margin="10px">
                 Log in
                 
-              </Button>
+              </Button> */}
+              <LoginButton/>
             </Link>
             
 
