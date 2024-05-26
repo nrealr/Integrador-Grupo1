@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardActions, Typography, TextField, Button, MenuItem } from '@mui/material';
+import { BackgroundLetterAvatars } from './BackgroundLetterAvatars';
 
 const ProfileCard = () => {
   const [name, setName] = useState('');
@@ -33,6 +34,7 @@ const ProfileCard = () => {
 
   return (
     <Card>
+        <BackgroundLetterAvatars/>
       <CardContent>
         <Typography variant="h5" component="h2">
           Complete your personal information

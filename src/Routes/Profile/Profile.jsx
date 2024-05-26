@@ -47,6 +47,7 @@ export const Profile=()=> {
         <MenuList>
           <MenuItem>Profile</MenuItem>
           <MenuItem>My account</MenuItem>
+          <MenuItem>My appointments</MenuItem>
           <MenuItem>Logout</MenuItem>
         </MenuList>
       </Paper>
