@@ -40,7 +40,6 @@ function App() {
 
         <Route element={<Layout/>}>
           <Route path={ROUTES.ADMIN} element={<Admin/>} />
-          <Route path={ROUTES.PROFILE} element={<Profile/>} />
           </Route>
       </Routes>
 

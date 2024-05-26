@@ -19,7 +19,7 @@ import { LoginButton } from './LoginButton';
 
 export const Header =()=> {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box>
       <AppBar position="static">
         <Toolbar>
           
@@ -50,17 +50,8 @@ export const Header =()=> {
               </Button>
             </Link>
           
-
-            <Link to={ROUTES.PROFILE} >
-              {/* <Button 
-                variant="contained" 
-                color="secondary" 
-                margin="10px">
-                Log in
-                
-              </Button> */}
               <LoginButton/>
-            </Link>
+         
             
 
             <Link to={ROUTES.ADMIN}>

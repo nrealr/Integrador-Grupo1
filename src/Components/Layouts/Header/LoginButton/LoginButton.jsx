@@ -7,6 +7,9 @@ import ClickAwayListener from '@mui/material/ClickAwayListener';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import TextField from '@mui/material/TextField';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../../../Constants';
+
 
 export const LoginButton = () => {
   const [open, setOpen] = useState(false);
@@ -82,9 +85,11 @@ export const LoginButton = () => {
                     onChange={handlePasswordChange}
                   />
                   <MenuItem onClick={handleClose}>
+                    <Link to={ROUTES.PROFILE}>
                     <Button variant="contained" color="primary" onClick={handleLogin}>
                       Get in
                     </Button>
+                    </Link>
                   </MenuItem>
                 </MenuList>
               </ClickAwayListener>
