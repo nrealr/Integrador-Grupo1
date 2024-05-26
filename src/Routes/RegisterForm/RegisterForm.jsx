@@ -3,7 +3,7 @@ import { TextField, Button, Box, Typography, Container, Avatar, Grid, Paper, Dia
 import LockOutLinedIcon from '@mui/icons-material/LockOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Link } from 'react-router-dom';
-import { addUser } from '../Services';
+import { addUser } from '../../Services';
 
 export const RegisterForm = () => {
     const [formData, setFormData] = useState({
@@ -113,6 +113,7 @@ export const RegisterForm = () => {
                                         helperText={error.firstName}
                                     />
                                 </Grid>
+
                                 <Grid item xs={12} sm={6}>
                                     <TextField
                                         margin="normal"
@@ -128,6 +129,7 @@ export const RegisterForm = () => {
                                         helperText={error.lastName}
                                     />
                                 </Grid>
+
                                 <Grid item xs={12}>
                                     <TextField
                                         margin="normal"
@@ -143,6 +145,7 @@ export const RegisterForm = () => {
                                         helperText={error.email}
                                     />
                                 </Grid>
+
                                 <Grid item xs={12}>
                                     <TextField
                                         margin="normal"
@@ -159,7 +162,9 @@ export const RegisterForm = () => {
                                         helperText={error.password}
                                     />
                                 </Grid>
+
                             </Grid>
+
                             <Button
                                 type="submit"
                                 fullWidth
@@ -169,6 +174,7 @@ export const RegisterForm = () => {
                             >
                                 Submit
                             </Button>
+
                             <Grid container justifyContent="flex-end" marginTop={2}>
                                 <Link href="#" variant="body2">
                                     Already have an account? Sign In
@@ -177,7 +183,9 @@ export const RegisterForm = () => {
                         </Box>
                     </Paper>
                 </Box>
+
         </Container>
+        
         {success && (
             <Dialog sx={{ p:3, borderRadius:1}} open={success} onClose={!success}>
             <DialogContent>
