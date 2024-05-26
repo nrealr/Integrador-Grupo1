@@ -1,67 +1,81 @@
 
-
-import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../Constants/routes';
-import { Button } from '@mui/material';
+import { useState } from "react";
+import "./Header.styles.css";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../../Constants";
+import {
+  AppBar,
+  Toolbar,
+  useTheme,
+} from "@mui/material";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { LoginButton } from './LoginButton';
+
 /**
- * 
- * @returns {ReactComponent} Navbar component, logo and buttons for register and log in
- */ 
+ *
+ * @returns {ReactComponent} Header component, logo and buttons for create account and log in
+ */
 
-export const Header =()=> {
+export const Header = () => {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [open, setOpen] = useState(false);
+  const theme = useTheme();
+
+  const darkModeClass = isDarkMode ? "layout-dark" : "layout";
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
-    <Box>
-      <AppBar position="static">
-        <Toolbar>
-          
-        {/* Logo image, / */}
-          <Typography>
-            <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
-              <img 
-                src="/images/ico-logo-fullcolor.png" 
-                alt="Application Logo"
-                style={{
-                  maxWidth: '100px',
-                  height: 'auto'
-                }} 
-                />
-            </Link>
-          </Typography>
+    <AppBar position="fixed" color="background1">
+      <Toolbar>
+        <div className="logo-header">
+          <Link to="/">
+            <img src="/images/ico-logo-fullcolor.png" alt="Application Logo" />
+          </Link>
+        </div>
 
 
-          {/* Button for create account, /register */}
-            <Link to={ROUTES.ADDUSER} >
-              <Button 
-                variant="contained" 
-                color="secondary" 
-                margin="10px"
-                >
-                Create Account
-              </Button>
-            </Link>
-          
-          {/* Button for log in, /profile */}
-            <LoginButton/>            
+        <div className="header-buttons">
+          <Link to={ROUTES.ADDUSER} >
+          <button variant="contained" color="primary" onClick={handleClickOpen}>
+            Create Account
+          </button>
+          </Link>
+         
+          <LoginButton/>  
 
-          {/* Icon for get into admin panel, /admin */}
-            <Link to={ROUTES.ADMIN}>
-              <AdminPanelSettingsIcon/>
-            </Link>
-    
-        </Toolbar>
-      </AppBar>
-    </Box>
-  );  
-}
+          <Link to={ROUTES.ADMIN}>
+          <AdminPanelSettingsIcon/>
+        </Link>
 
+        </div>
+      </Toolbar>
 
+      {/*<Dialog open={open} onClose={handleClose}>
+        <DialogContent>
+          <RegisterForm />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose} color="primary">
+            Close
+          </Button>
+        </DialogActions>
+  </Dialog>*/}
+
+      {/* <img className='icon-theme' 
+              onClick={()=> dispatch({type: "CHANGUE_MODE"})}
+              src="/images/ico-color-theme.png" 
+              alt="Changue mode (dark/light)" 
+      />  */}
+    </AppBar>
+  );
+};
 
 
 
