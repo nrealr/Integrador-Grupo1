@@ -5,8 +5,6 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../Constants/routes';
 import { Button } from '@mui/material';
@@ -23,23 +21,22 @@ export const Header =()=> {
       <AppBar position="static">
         <Toolbar>
           
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          <Link to="/" >
-          {/* <img src="/images/ico-logo-fullcolor.png" alt="Application Logo" /> */}
-            LOGO
-          </Link>
-        </Typography>
+        {/* Logo image, / */}
+          <Typography>
+            <Link to="/" style={{ display: 'flex', alignItems: 'center' }}>
+              <img 
+                src="/images/ico-logo-fullcolor.png" 
+                alt="Application Logo"
+                style={{
+                  maxWidth: '100px',
+                  height: 'auto'
+                }} 
+                />
+            </Link>
+          </Typography>
 
 
+          {/* Button for create account, /register */}
             <Link to={ROUTES.ADDUSER} >
               <Button 
                 variant="contained" 
@@ -50,10 +47,10 @@ export const Header =()=> {
               </Button>
             </Link>
           
-              <LoginButton/>
-         
-            
+          {/* Button for log in, /profile */}
+            <LoginButton/>            
 
+          {/* Icon for get into admin panel, /admin */}
             <Link to={ROUTES.ADMIN}>
               <AdminPanelSettingsIcon/>
             </Link>
@@ -63,3 +60,8 @@ export const Header =()=> {
     </Box>
   );  
 }
+
+
+
+
+
