@@ -1,14 +1,15 @@
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import {AddProduct} from './Routes/AddProduct';
-import {Detail, RegisterForm, Profile} from './Routes';
+import {Detail, RegisterForm, Profile, AppointmentList} from './Routes';
 import {Home} from './Routes';
-import {Admin} from './Routes/Admin';
+import {Admin} from './Routes/AdminPanel/Admin';
 import { ContextProvider } from './Context';
 import { ROUTES } from './Constants';
 import { Layout } from './Components';
 import { Container, ThemeProvider } from '@mui/material';
 import { theme } from './Themes/theme';
+
 
 
 
@@ -33,6 +34,7 @@ function App() {
           <Route path={ROUTES.DETAIL} element={<Detail/>} />
           <Route path={ROUTES.ADDUSER} element={<RegisterForm />} />
           <Route path={ROUTES.PROFILE} element={<Profile/>} />
+          <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList/>} />
 
         </Route>
 

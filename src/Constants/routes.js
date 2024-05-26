@@ -4,5 +4,6 @@ export const ROUTES = {
     ADD: "/admin/add",
     DETAIL: "/doctor/:id",
     ADDUSER: "/register",
-    PROFILE: "/profile"
+    PROFILE: "/profile",
+    APPOINTMENTS: "./profile/appointments"
 };

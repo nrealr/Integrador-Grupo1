@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../Constants/';
-import { getDoctors, deleteDoctor } from '../Services';
-import {DeleteProductFunction} from "../Components"
+import { ROUTES } from '../../Constants';
+import { getDoctors, deleteDoctor } from '../../Services';
+import {DeleteProductFunction} from "../../Components"
 import "./Admin.styles.css"
 
 export const Admin = () => {
