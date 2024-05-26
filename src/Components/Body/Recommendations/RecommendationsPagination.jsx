@@ -1,8 +1,15 @@
 import React from 'react';
-import './RecommendationsPagination.styles.css';
+/*import './RecommendationsPagination.styles.css';*/
+import { Box, Pagination } from '@mui/material';
 
 export const RecommendationsPagination = ({ doctorsPerPage, totalDoctors, paginate, currentPage }) => {
-  const pageNumbers = [];
+  const pageCount = Math.ceil(totalDoctors/doctorsPerPage);
+
+  const handlePageChange = (event, value) => {
+    paginate(value);
+  };
+  
+  /*const pageNumbers = [];
   for (let i = 1; i <= Math.ceil(totalDoctors / doctorsPerPage); i++) {
     pageNumbers.push(i);
   }
@@ -25,10 +32,20 @@ export const RecommendationsPagination = ({ doctorsPerPage, totalDoctors, pagina
 
   const handleLast = () => {
     paginate(pageNumbers.length);
-  };
+  };*/
 
   return (
-    <nav>
+    <Box display="flex" justifyContent="center" mt={4}>
+      <Pagination
+        count={pageCount}
+        page={currentPage}
+        onChange={handlePageChange}
+        color="secondary"
+        showFirstButton
+        showLastButton
+      />
+    </Box>
+    /*<nav>
       <ul className="pagination">
         <li className={`page-item ${currentPage === 1 ? 'disabled' : ''}`}>
           <button onClick={handleFirst} className="page-link" disabled={currentPage === 1}>
@@ -58,6 +75,6 @@ export const RecommendationsPagination = ({ doctorsPerPage, totalDoctors, pagina
           </button>
         </li>
       </ul>
-    </nav>
+      </nav>*/
   );
 };

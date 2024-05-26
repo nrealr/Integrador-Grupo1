@@ -1,4 +1,11 @@
-.categories-list {
+/*.categories-list {
     display: grid;
     grid-template-columns: 30ch 30ch;
+}*/
+
+/*ESTILOS PARA MUI*/
+.categories-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }

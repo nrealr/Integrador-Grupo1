@@ -1,4 +1,4 @@
-.recommended {
+/*.recommended {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -28,4 +28,22 @@ margin-bottom: 50px;
 .recommended .titles h1{
   text-align: center;
   margin-bottom: 50px;
+}*/
+
+/*ESTILOS PARA MUI*/
+
+.recommended {
+  margin-top: 2rem;
+}
+
+.titles {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.recommendation-cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
 }

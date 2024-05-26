@@ -64,7 +64,8 @@
   }
  */
 
- .categories-container {
+/*ESTILOS PRECEDENTES*/
+/*.categories-container {
   display: flex;
   height: 100%;
 }
@@ -130,7 +131,7 @@
 /* Querys para responsive design */
 
 /* Pantalla grande (desktop) */
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
   .categories-container {
     padding: 40px;
   }
@@ -154,7 +155,7 @@
 }
 
 /* Pantalla mediana (tablet) */
-@media (min-width: 768px) and (max-width: 1199px) {
+/*@media (min-width: 768px) and (max-width: 1199px) {
   .categories-container {
     padding: 20px;
   }
@@ -178,7 +179,7 @@
 }
 
 /* Pantalla pequeña (mobile) */
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
   .categories-container {
     flex-direction: column;
     padding: 10px;
@@ -212,4 +213,30 @@
     margin: 2rem;
   }
 
+}*/
+
+
+/*ESTILOS PARA MUI*/
+.categories-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.column1 {
+  text-align: center;
+}
+
+.search-button button {
+  background-color: #1976d2;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  cursor: pointer;
+}
+
+.column2 {
+  margin-top: 2rem;
+  width: 100%;
 }

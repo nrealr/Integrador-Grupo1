@@ -43,12 +43,15 @@ export const LoginButton = () => {
     <div>
       <Button
         variant="contained"
-        color="secondary"
+        color='secondary'
         id="button-id"
         aria-controls={open ? 'menu-list-grow' : undefined}
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleToggle}
+        sx={{
+          color: 'white'
+        }}
       >
         Log In
       </Button>
