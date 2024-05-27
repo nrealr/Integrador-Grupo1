@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { LoginButton } from './LoginButton';
+import { BackgroundLetterAvatars } from "../../../Routes/Profile/BackgroundLetterAvatars/BackgroundLetterAvatars";
 
 /**
  *
@@ -67,7 +68,8 @@ export const Header = () => {
           <LoginButton/>  
 
           <Link to={ROUTES.ADMIN}>
-            <AdminPanelSettingsIcon/>
+            {/* <AdminPanelSettingsIcon/> */}
+            <BackgroundLetterAvatars/>
           </Link>
         </div>
 

@@ -33,8 +33,8 @@ const ProfileCard = () => {
   };
 
   return (
+
     <Card>
-        <BackgroundLetterAvatars/>
       <CardContent>
         <Typography variant="h5" component="h2">
           Complete your personal information
@@ -87,6 +87,7 @@ const ProfileCard = () => {
         </Button>
       </CardActions>
     </Card>
+
   );
 };
 

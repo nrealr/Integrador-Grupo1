@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
+import './BackgroundLetterAvatars.styles.css'
 
 function stringToColor(string) {
   let hash = 0;
@@ -35,9 +36,8 @@ export const BackgroundLetterAvatars=()=> {
   return (
     <Stack direction="row" spacing={2}>
       {/* Axios endpoint, firstname and lastname */}
-      <Avatar {...stringAvatar('Walter Aldana')} />
-      <Avatar {...stringAvatar('Jed Watson')} />
-      <Avatar {...stringAvatar('Tim Neutkens')} />
+      <Avatar className='no-gutters'{...stringAvatar('Digital House')} />
+
     </Stack>
   );
 }
