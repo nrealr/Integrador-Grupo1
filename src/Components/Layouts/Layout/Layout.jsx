@@ -19,7 +19,9 @@ export const Layout = () => {
     <div className={'layout'}>
         
       <Header/>
-      <Outlet/>
+        <div className ='app-container'>
+          <Outlet/>
+        </div>
       <Footer/>
 
     </div>

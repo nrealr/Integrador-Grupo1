@@ -34,6 +34,7 @@ function stringAvatar(name) {
 export const BackgroundLetterAvatars=()=> {
   return (
     <Stack direction="row" spacing={2}>
+      {/* Axios endpoint, firstname and lastname */}
       <Avatar {...stringAvatar('Walter Aldana')} />
       <Avatar {...stringAvatar('Jed Watson')} />
       <Avatar {...stringAvatar('Tim Neutkens')} />
