@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { Header } from './Header';
-import { Footer } from './Footer';
 import './layout.styles.css';
 import { Outlet } from 'react-router-dom';
+import { Header } from '../Header';
+import { Footer } from '../Footer';
 
 /**
  * 
@@ -19,7 +19,9 @@ export const Layout = () => {
     <div className={'layout'}>
         
       <Header/>
-      <Outlet/>
+        <div className ='app-container'>
+          <Outlet/>
+        </div>
       <Footer/>
 
     </div>

@@ -6,5 +6,8 @@ export const ROUTES = {
     ADDUSER: "/register",
     DOCTORS: "/admin/doctors",
     SPECIALTIES: "/admin/specialties",
-    FEATURES: "/admin/features"
+    FEATURES: "/admin/features",
+    PROFILE: "/profile",
+    APPOINTMENTS: "/profile/appointments",
+    PASSWORD: "/profile/password"
 };
