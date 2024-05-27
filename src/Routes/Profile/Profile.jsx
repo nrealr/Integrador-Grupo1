@@ -4,7 +4,7 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import { Grid } from '@mui/material';
-import ProfileCard from './ProfileCard/ProfileCard';
+import {ProfileCard} from './ProfileCard';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../Constants';
 

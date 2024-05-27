@@ -5,6 +5,6 @@ export const ROUTES = {
     DETAIL: "/doctor/:id",
     ADDUSER: "/register",
     PROFILE: "/profile",
-    APPOINTMENTS: "./profile/appointments",
-    PASSWORD: "./profile/password"
+    APPOINTMENTS: "/profile/appointments",
+    PASSWORD: "/profile/password"
 };

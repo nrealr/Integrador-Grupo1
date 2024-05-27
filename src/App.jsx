@@ -9,7 +9,6 @@ import { ROUTES } from './Constants';
 import { Layout } from './Components';
 import { Container, ThemeProvider } from '@mui/material';
 import { theme } from './Themes/theme';
-import ProfileCard from './Routes/Profile/ProfileCard/ProfileCard';
 import { Password } from '@mui/icons-material';
 
 

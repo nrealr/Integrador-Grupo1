@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+
+
 import {
   Card,
   CardContent,
@@ -9,10 +12,9 @@ import {
   MenuItem,
   Input,
 } from '@mui/material';
-import { Profile } from '../Profile';
-import { Label } from '@mui/icons-material';
+import { SERVER_API } from '../../../Constants';
 
-const ProfileCard = () => {
+export const ProfileCard = () => {
   const [formData, setFormData] = useState({
     name: '',
     lastName: '',
@@ -26,9 +28,6 @@ const ProfileCard = () => {
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
-  const handleMedicalCenterChange = (event) => {
-    setFormData((prevData) => ({ ...prevData, medicalCenter: event.target.value }));
-  };
 
   const handlePhotoChange = (event) => {
     setFormData((prevData) => ({ ...prevData, profilePhoto: event.target.files[0] }));
@@ -36,8 +35,15 @@ const ProfileCard = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Call API or update state to save changes
-    console.log('Changes saved!', formData);
+
+    const formDataToSend = new FormData();
+    for (const key in formData) {
+      formDataToSend.append(key, formData[key]);
+    }
+
+    axios.post(SERVER_API, formDataToSend)
+      .then(res=> console.log(res))
+      .catch(err =>console.log(err))
   };
 
   return (
@@ -76,7 +82,7 @@ const ProfileCard = () => {
             label="Select your preferred medical center or telemedicine"
             name="medicalCenter"
             value={formData.medicalCenter}
-            onChange={handleMedicalCenterChange}
+            onChange={handleChange}
             margin="normal"
             fullWidth
             select
@@ -86,9 +92,6 @@ const ProfileCard = () => {
             <MenuItem value="option3">Northern area</MenuItem>
             <MenuItem value="option4">Telemedicine</MenuItem>
           </TextField>
-
-          <span>Upload your profile picture</span>
-          <Label htmlFor="profile-photo">Select photo: </Label>
           <Input
             type="file"
             name="profile-photo"
@@ -96,7 +99,7 @@ const ProfileCard = () => {
             id="profile-photo"
             onChange={handlePhotoChange}
           />
-
+          <label htmlFor="profile-photo">Select photo:</label>
         </form>
       </CardContent>
 
@@ -108,5 +111,3 @@ const ProfileCard = () => {
     </Card>
   );
 };
-
-export default ProfileCard;
