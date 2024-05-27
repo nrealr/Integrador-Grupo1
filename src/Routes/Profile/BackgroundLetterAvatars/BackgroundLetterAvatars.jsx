@@ -34,7 +34,7 @@ function stringAvatar(name) {
 export const BackgroundLetterAvatars=()=> {
   return (
     <Stack direction="row" spacing={2}>
-      <Avatar {...stringAvatar('Kent Dodds')} />
+      <Avatar {...stringAvatar('Walter Aldana')} />
       <Avatar {...stringAvatar('Jed Watson')} />
       <Avatar {...stringAvatar('Tim Neutkens')} />
     </Stack>

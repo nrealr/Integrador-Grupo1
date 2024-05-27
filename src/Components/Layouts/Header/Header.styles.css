@@ -1,8 +1,24 @@
-*{
+/**{
   box-sizing: border-box;
+}*/
+
+.logo-header {
+  display: flex;
+  align-items: center;
 }
 
-.header {
+.logo-image {
+  max-height: 50px; /* Adjust this value as needed */
+  width: auto;
+}
+
+.header-buttons {
+  display: flex;
+  align-items: center;
+  gap: 16px; /* Adjust the gap between buttons as needed */
+}
+
+/*.header {
     background-color: #FFF;
     padding: 10px;
     display: flex;
