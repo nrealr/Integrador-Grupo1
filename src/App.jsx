@@ -9,6 +9,8 @@ import { ROUTES } from './Constants';
 import { Layout } from './Components';
 import { Container, ThemeProvider } from '@mui/material';
 import { theme } from './Themes/theme';
+import ProfileCard from './Routes/Profile/ProfileCard/ProfileCard';
+import { Password } from '@mui/icons-material';
 
 
 
@@ -35,10 +37,11 @@ function App() {
           <Route path={ROUTES.ADDUSER} element={<RegisterForm />} />
           <Route path={ROUTES.PROFILE} element={<Profile/>} />
           <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList/>} />
+          <Route path={ROUTES.PASSWORD} element={<Password/>}/>
 
         </Route>
 
-        <Route element={<Layout/>}>
+        <Route>
           <Route path={ROUTES.ADMIN} element={<Admin/>} />
           </Route>
       </Routes>

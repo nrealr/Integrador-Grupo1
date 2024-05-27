@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardActions, Typography, TextField, Button, MenuItem } from '@mui/material';
 import { BackgroundLetterAvatars } from '../BackgroundLetterAvatars/BackgroundLetterAvatars';
+import { Profile } from '../Profile';
 
 const ProfileCard = () => {
   const [name, setName] = useState('');
@@ -34,12 +35,15 @@ const ProfileCard = () => {
 
   return (
 
+
     <Card>
       <CardContent>
         <Typography variant="h5" component="h2">
           Complete your personal information
         </Typography>
+
         <form onSubmit={handleSubmit}>
+
           <TextField
             label="Name"
             value={name}
@@ -78,6 +82,7 @@ const ProfileCard = () => {
                 <MenuItem value="option4">Telemedicine</MenuItem>
 
             </TextField>
+
 
         </form>
       </CardContent>

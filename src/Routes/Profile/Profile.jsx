@@ -5,6 +5,8 @@ import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import { Grid } from '@mui/material';
 import ProfileCard from './ProfileCard/ProfileCard';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../Constants';
 
 export const Profile=()=> {
   const [open, setOpen] = React.useState(false);
@@ -45,9 +47,15 @@ export const Profile=()=> {
     <Stack direction="row" spacing={2}>
       <Paper>
         <MenuList>
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>My account</MenuItem>
+          <Link to={ROUTES.PROFILE}>
+          <MenuItem>Account</MenuItem>
+          </Link>
+          <Link to={ROUTES.PASSWORD}></Link>
+          <MenuItem>Password</MenuItem>
+          <Link to={ROUTES.APPOINTMENTS}>
           <MenuItem>My appointments</MenuItem>
+          </Link>
+    
           <MenuItem>Logout</MenuItem>
         </MenuList>
       </Paper>
