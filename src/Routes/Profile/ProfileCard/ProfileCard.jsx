@@ -1,98 +1,111 @@
 import React, { useState } from 'react';
-import { Card, CardContent, CardActions, Typography, TextField, Button, MenuItem } from '@mui/material';
-import { BackgroundLetterAvatars } from '../BackgroundLetterAvatars/BackgroundLetterAvatars';
+import {
+  Card,
+  CardContent,
+  CardActions,
+  Typography,
+  TextField,
+  Button,
+  MenuItem,
+  Input,
+} from '@mui/material';
 import { Profile } from '../Profile';
+import { Label } from '@mui/icons-material';
 
 const ProfileCard = () => {
-  const [name, setName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [medicalCenter, setMedicalCenter] = useState('');
+  const [formData, setFormData] = useState({
+    name: '',
+    lastName: '',
+    email: '',
+    medicalCenter: '',
+    profilePhoto: null,
+  });
 
-  const handleNameChange = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleLastNameChange = (event) => {
-    setLastName(event.target.value);
-  };
-
-  const handleEmailChange = (event) => {
-    setEmail(event.target.value);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
   const handleMedicalCenterChange = (event) => {
+    setFormData((prevData) => ({ ...prevData, medicalCenter: event.target.value }));
+  };
 
-    setMedicalCenter(event.target.value);
-
+  const handlePhotoChange = (event) => {
+    setFormData((prevData) => ({ ...prevData, profilePhoto: event.target.files[0] }));
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Call API or update state to save changes
-    console.log('Changes saved!');
+    console.log('Changes saved!', formData);
   };
 
   return (
-
-
     <Card>
       <CardContent>
         <Typography variant="h5" component="h2">
           Complete your personal information
         </Typography>
 
-        <form onSubmit={handleSubmit}>
-
+        <form id="form" onSubmit={handleSubmit}>
           <TextField
             label="Name"
-            value={name}
-            onChange={handleNameChange}
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
             margin="normal"
             fullWidth
           />
           <TextField
             label="Last Name"
-            value={lastName}
-            onChange={handleLastNameChange}
+            name="lastName"
+            value={formData.lastName}
+            onChange={handleChange}
             margin="normal"
             fullWidth
           />
           <TextField
             label="Email"
-            value={email}
-            onChange={handleEmailChange}
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
             margin="normal"
             fullWidth
           />
-           <TextField
-
+          <TextField
             label="Select your preferred medical center or telemedicine"
-            value={medicalCenter}
+            name="medicalCenter"
+            value={formData.medicalCenter}
             onChange={handleMedicalCenterChange}
             margin="normal"
             fullWidth
             select
-            >
+          >
+            <MenuItem value="option1">Southern area</MenuItem>
+            <MenuItem value="option2">Metropolitan region</MenuItem>
+            <MenuItem value="option3">Northern area</MenuItem>
+            <MenuItem value="option4">Telemedicine</MenuItem>
+          </TextField>
 
-      {/* Axios Back endpoint medical center */}
-                <MenuItem value="option1">Southern area</MenuItem>
-                <MenuItem value="option2">Metropolitan region</MenuItem>
-                <MenuItem value="option3">Northern area</MenuItem>
-                <MenuItem value="option4">Telemedicine</MenuItem>
-
-            </TextField>
-
+          <span>Upload your profile picture</span>
+          <Label htmlFor="profile-photo">Select photo: </Label>
+          <Input
+            type="file"
+            name="profile-photo"
+            accept="image/*"
+            id="profile-photo"
+            onChange={handlePhotoChange}
+          />
 
         </form>
       </CardContent>
+
       <CardActions>
-        <Button type="submit" variant="contained" color="primary">
+        <Button type="submit" variant="contained" color="primary" form="form">
           Save Changes
         </Button>
       </CardActions>
     </Card>
-
   );
 };
 
