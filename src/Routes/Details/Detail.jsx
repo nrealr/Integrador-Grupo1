@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Detail.style.css";
 import { getDoctorById } from "../../Services";
 import { Link, useParams } from "react-router-dom";
+import { CategoriesCard } from "./CategoriesCard";
 
 export const Detail = () => {
 
@@ -21,9 +22,10 @@ export const Detail = () => {
   }, [id]);
 
   //rushed solution for not found case
-    if (!doctorSelected.rut) {
-    return <h1>Doctor Not found</h1>;
-  }
+  //   if (!doctorSelected.rut) {
+  //   return <h1>Doctor Not found</h1>;
+
+  // }
 
     return (
     <section className="doctor-info">
@@ -44,6 +46,7 @@ export const Detail = () => {
         </div>
       </div>
 
+<CategoriesCard/>
 
     </section>
   );
