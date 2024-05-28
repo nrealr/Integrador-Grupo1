@@ -14,6 +14,7 @@ import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import { LoginButton } from './LoginButton';
 import { BackgroundLetterAvatars } from "../../../Routes/Profile/BackgroundLetterAvatars/BackgroundLetterAvatars";
 
+
 /**
  *
  * @returns {ReactComponent} Header component, logo and buttons for create account and log in
@@ -65,7 +66,9 @@ export const Header = () => {
             </Button>
           </Link>
          
-          <LoginButton/>  
+          <LoginButton/> 
+          
+        
 
           <Link to={ROUTES.ADMIN}>
             {/* <AdminPanelSettingsIcon/> */}

@@ -50,8 +50,9 @@ export const Profile=()=> {
           <Link to={ROUTES.PROFILE}>
           <MenuItem>Account</MenuItem>
           </Link>
-          <Link to={ROUTES.PASSWORD}></Link>
+          <Link to={ROUTES.PASSWORD}>
           <MenuItem>Password</MenuItem>
+          </Link>
           <Link to={ROUTES.APPOINTMENTS}>
           <MenuItem>My appointments</MenuItem>
           </Link>

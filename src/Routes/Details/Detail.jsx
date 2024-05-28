@@ -46,7 +46,8 @@ export const Detail = () => {
         </div>
       </div>
 
-<CategoriesCard/>
+
+      <CategoriesCard/>
 
     </section>
   );

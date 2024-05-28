@@ -16,6 +16,11 @@ const categories = [
   { id: 10, title: 'Preventive Care', description: 'Descripción de Preventive Care', icon: 'icono10' },
 ];
 
+
+/**
+@returns{React.Component} this function is a call of categories card. Get an object with data and put in a grid different cards with a title, 
+description and a icon  */
+
 export const CategoriesCard = () => {
   const [cards, setCards] = React.useState(categories);
 

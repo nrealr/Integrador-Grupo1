@@ -9,12 +9,16 @@ import MenuList from '@mui/material/MenuList';
 import TextField from '@mui/material/TextField';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../../Constants';
+import axios from 'axios';
+import './LoginButton.styles.css'
 
 
 export const LoginButton = () => {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -29,14 +33,28 @@ export const LoginButton = () => {
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+    setEmailError(!/^\S+@\S+\.\S+$/.test(event.target.value));
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
+    setPasswordError(event.target.value.length < 8);
   };
 
-  const handleLogin = () => {
-    // Lógica de inicio de sesión
+  const handleLogin = async () => {
+    if (emailError || passwordError) {
+      return;
+    }
+    try {
+      const response = await axios.post('https://your-api-url.com/auth', { email, password }, { withCredentials: true });
+      if (response.data.success) {
+        // Redirigir al usuario a la página de perfil
+      } else {
+        // Mostrar mensaje de error
+      }
+    } catch (err) {
+      // Mostrar mensaje de error
+    }
   };
 
   return (
@@ -55,6 +73,7 @@ export const LoginButton = () => {
       >
         Log In
       </Button>
+      
       <Popper
         open={open}
         anchorEl={document.getElementById('button-id')}
@@ -74,25 +93,27 @@ export const LoginButton = () => {
               <ClickAwayListener onClickAway={handleClose}>
                 <MenuList id="menu-list-grow">
                   <TextField
-                    label="Correo electrónico"
+                    label="E-mail"
                     variant="outlined"
                     fullWidth
                     value={email}
                     onChange={handleEmailChange}
+                    error={emailError}
+                    helperText={emailError && 'Invalid e-mail'}
                   />
                   <TextField
-                    label="Contraseña"
+                    label="Password"
                     variant="outlined"
                     fullWidth
+                    type="password"
                     value={password}
                     onChange={handlePasswordChange}
+                    error={passwordError}
+                    helperText={passwordError && 'The password must have at least 8 characters'}
                   />
-                  <MenuItem onClick={handleClose}>
-                    <Link to={ROUTES.PROFILE}>
-                    <Button variant="contained" color="primary" onClick={handleLogin}>
-                      Get in
-                    </Button>
-                    </Link>
+                  <MenuItem onClick={handleLogin} component={Link} to={ROUTES.PROFILE}>Sign In</MenuItem>
+                  <MenuItem onClick={handleClose} component={Link} to={ROUTES.ADDUSER}>
+                    ¿Don't you have an account? Create one!
                   </MenuItem>
                 </MenuList>
               </ClickAwayListener>
