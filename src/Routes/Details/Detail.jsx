@@ -22,10 +22,10 @@ export const Detail = () => {
   }, [id]);
 
   //rushed solution for not found case
-  //   if (!doctorSelected.rut) {
-  //   return <h1>Doctor Not found</h1>;
+    if (!doctorSelected.rut) {
+    return <h1>Doctor Not found</h1>;
 
-  // }
+  }
 
     return (
     <section className="doctor-info">
