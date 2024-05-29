@@ -12,6 +12,7 @@ import { AdminDoctors } from './Routes/AdminDoctors';
 import { Container, ThemeProvider } from '@mui/material';
 import { theme } from './Themes/theme';
 import { Password } from '@mui/icons-material';
+import { AdminFeatures } from './Routes/AdminFeatures';
 
 
 
@@ -43,6 +44,7 @@ function App() {
             <Route path={ROUTES.ADMIN} element={<Admin/>} />
             <Route path={ROUTES.DOCTORSADD} element={<AddProduct/>} />
             <Route path={ROUTES.DOCTORS} element={<AdminDoctors/>} />
+            <Route path={ROUTES.FEATURES} element={<AdminFeatures/>} />
           </Route>
 
         </Route>

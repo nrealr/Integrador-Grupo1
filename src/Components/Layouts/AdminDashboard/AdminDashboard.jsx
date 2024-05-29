@@ -47,8 +47,10 @@ return (
     </div>
 
     <div> 
-      <p>⭐</p>
-      <p>Features</p>
+    <Link to={ROUTES.FEATURES}>
+        <p>⭐</p>
+        <p>Features</p>
+    </Link>
     </div>
 
     <div> 

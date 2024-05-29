@@ -1,5 +1,5 @@
 import axios from "axios";
-import { SERVER_API } from "../Constants";
+import { SERVER_API } from "../../Constants";
 
 
 export const getFeatureById = async (id) => {
