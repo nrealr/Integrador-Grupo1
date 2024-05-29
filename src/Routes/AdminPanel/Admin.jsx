@@ -5,7 +5,6 @@ import { getDoctors, deleteDoctor } from "../../Services";
 import { DeleteProductFunction } from "../../Components";
 import "./Admin.styles.css";
 import { HolidayVillage } from "@mui/icons-material";
-import useLogout from "../AdminPanel/useLogout";
 
 export const Admin = () => {
   const [doctors, setDoctors] = useState([]);
