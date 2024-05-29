@@ -9,5 +9,8 @@ export const ROUTES = {
     FEATURES: "/admin/features",
     PROFILE: "/profile",
     APPOINTMENTS: "/profile/appointments",
-    PASSWORD: "/profile/password"
+    PASSWORD: "/profile/password",
+    SPECIALTIES: "/admin/specialties",
+    FEATURESADD: "/admin/features/add",
+    SPECIALTIESADD: "/admin/specialties/add"
 };

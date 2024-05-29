@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 
 
-export const DeleteProductFunction = ({ doctor, onDelete }) => {
+export const DeleteProductFunction = ({ item, onDelete }) => {
 
     const [confirmation, setConfirmation] = useState(false);
 
@@ -10,7 +10,7 @@ export const DeleteProductFunction = ({ doctor, onDelete }) => {
     }
 
     const handleAcceptConfirmation = () =>{
-        onDelete(doctor);
+        onDelete(item);
         setConfirmation(false)
     }
 
@@ -23,7 +23,7 @@ export const DeleteProductFunction = ({ doctor, onDelete }) => {
       <p className="admin-delete-button" onClick={handleDeleteClick}>🗑</p>
       {confirmation && (
         <div className="popup">
-          <p>Are you sure you want to delete this doctor?</p>
+          <p>Are you sure you want to delete this item?</p>
           <button onClick={handleAcceptConfirmation}>Accept</button>
           <button onClick={handleCancelConfirmation}>Cancel</button>
         </div>
