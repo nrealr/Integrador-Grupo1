@@ -37,7 +37,12 @@ export const Recommendations = () => {
   }
 
   return (
-    <Container>
+    <Container 
+      maxWidth="lg"
+      sx={{ 
+        padding: { xs: '0 1rem', sm: '0 2rem', md: '0' }, 
+        maxWidth: { xs: '100%', md: 'lg' } 
+    }} >
       <Box sx={{ textAlign: 'center', padding: '2rem 0' }}>
         <Typography 
           variant="h3" 

@@ -4,7 +4,12 @@ import './Categories.styles.css'
 import { Container, Grid, Box, Typography, Button } from '@mui/material';
 
 export const Categories = () => (
-    <Container>
+    <Container 
+      maxWidth="lg"
+      sx={{ 
+        padding: { xs: '0 1rem', sm: '0 2rem', md: '0' }, 
+        maxWidth: { xs: '100%', md: 'lg' } 
+    }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={8}>
           <Box sx={{ 

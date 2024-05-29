@@ -25,7 +25,7 @@ export const DoctorCard = ({ doctor }) => {
             {doctor.description}
           </Typography>
         </CardContent>
-        <CardActions>
+        <CardActions sx={{ justifyContent: 'flex-end' }} >
           <Button 
             component={Link}
             to={`/doctor/${doctor.id}`}
