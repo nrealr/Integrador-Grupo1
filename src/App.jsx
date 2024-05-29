@@ -7,9 +7,12 @@ import {Admin} from './Routes/AdminPanel/Admin';
 import { ContextProvider } from './Context';
 import { ROUTES } from './Constants';
 import { Layout } from './Components';
+import { AdminLayout } from './Components';
+import { AdminDoctors } from './Routes/AdminDoctors';
 import { Container, ThemeProvider } from '@mui/material';
 import { theme } from './Themes/theme';
 
+import { AdminFeatures } from './Routes/AdminFeatures';
 
 
 
@@ -31,18 +34,22 @@ function App() {
         <Route element={<Layout/>}>
 
           <Route path={ROUTES.HOME} element={<Home/>} />
-          <Route path={ROUTES.ADD} element={<AddProduct/>} />
           <Route path={ROUTES.DETAIL} element={<Detail/>} />
           <Route path={ROUTES.ADDUSER} element={<RegisterForm />} />
           <Route path={ROUTES.PROFILE} element={<Profile/>} />
           <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList/>} />
           <Route path={ROUTES.PASSWORD} element={<ChanguePassword/>}/>
 
+          <Route element={<AdminLayout/>}>
+            <Route path={ROUTES.ADMIN} element={<Admin/>} />
+            <Route path={ROUTES.DOCTORSADD} element={<AddProduct/>} />
+            <Route path={ROUTES.DOCTORS} element={<AdminDoctors/>} />
+            <Route path={ROUTES.FEATURES} element={<AdminFeatures/>} />
+          </Route>
+
         </Route>
 
-        <Route>
-          <Route path={ROUTES.ADMIN} element={<Admin/>} />
-          </Route>
+
       </Routes>
 
 

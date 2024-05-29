@@ -7,7 +7,7 @@ export const AddProduct = () => {
 
   return (
     <div className="add-product-display">
-      <h2>Add a new product</h2>
+      <h2>Add a new doctor</h2>
       
       <AddProductFunction/>
     </div>
