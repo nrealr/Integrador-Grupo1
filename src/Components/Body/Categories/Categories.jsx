@@ -4,52 +4,65 @@ import './Categories.styles.css'
 import { Container, Grid, Box, Typography, Button } from '@mui/material';
 
 export const Categories = () => (
-    <Container>
+    <Container 
+      maxWidth="lg"
+      sx={{ 
+        padding: { xs: '0 1rem', sm: '0 2rem', md: '0' }, 
+        maxWidth: { xs: '100%', md: 'lg' } 
+    }}>
       <Grid container spacing={2}>
         <Grid item xs={12} md={8}>
           <Box sx={{ 
-            padding: { xs: '2rem 1rem', md: '4rem' },
-            backgroundImage: 'url(./images/bg-categories.jpg)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            height: { xs: 'auto', md: '600px' },
-            width: { xs: 'auto', md: '600px' },
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            color: '#fff',
-            }}>
-            <Typography 
-              variant="h2" 
-              sx={{
-                color: 'secondary.main',
-                marginBottom: { xs: '1rem', md: '2rem' },
-                fontSize: { xs: '1.5rem', md: '2.125rem' },
-              }}
-              >
-                Explore diverse medical specialties
-            </Typography>
-            <Typography 
-              variant="h1" 
-              sx={{ 
-                marginBottom: { xs: '1rem', md: '2rem' }, 
-                color: 'primary.main',
-                fontSize: { xs: '2rem', md: '3rem' },
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          width: '100%'
+          }}>
+            <Box sx={{ 
+              padding: { xs: '2rem 1rem', md: '4rem' },
+              backgroundImage: 'url(./images/bg-categories.jpg)',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              height: { xs: 'auto', md: '600px' },
+              width: { xs: 'auto', sm: '300px', md: '600px' },
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+              color: '#fff',
+              }}>
+              <Typography 
+                variant="h2" 
+                sx={{
+                  color: 'secondary.main',
+                  marginBottom: { xs: '1rem', md: '2rem' },
+                  fontSize: { xs: '1.5rem', md: '2.125rem' },
                 }}
                 >
-              Discover a Wide Range of Specialties Awaited Just Below!
-            </Typography>
-            <Button 
-              variant="contained" 
-              color="secondary"
-              sx={{
-                  color: 'white',
-                  fontSize: { xs: '0.875rem', md: '1rem' },
-                  
-              }}>
-              Check them here
-            </Button>
+                  Explore diverse medical specialties
+              </Typography>
+              <Typography 
+                variant="h1" 
+                sx={{ 
+                  marginBottom: { xs: '1rem', md: '2rem' }, 
+                  color: 'primary.main',
+                  fontSize: { xs: '2rem', md: '3rem' },
+                  }}
+                  >
+                Discover a Wide Range of Specialties Awaited Just Below!
+              </Typography>
+              <Button 
+                variant="contained" 
+                color="secondary"
+                sx={{
+                    color: 'white',
+                    fontSize: { xs: '0.875rem', md: '1rem' },
+                    
+                }}>
+                Check them here
+              </Button>
+            </Box>
           </Box>
+          
         </Grid>
         <Grid item xs={12} md={4}>
           <Box

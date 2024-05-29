@@ -17,3 +17,7 @@
   align-items: center;
   gap: 16px; /* Adjust the gap between buttons as needed */
 }
+
+.header-buttons a {
+  text-decoration: none;
+}

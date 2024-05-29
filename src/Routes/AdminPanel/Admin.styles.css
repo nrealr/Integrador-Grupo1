@@ -32,15 +32,19 @@
   padding-right: 1rem;
 }
 
-.admin-display {
-  margin-left: 1rem;
-}
-
 .admin-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding-inline: 2rem;
+  gap: 65vw;
+}
+
+.admin-welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
 }
 
 .admin-activity > h4 {
