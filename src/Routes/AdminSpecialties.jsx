@@ -1,27 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../Constants/';
-import { getDoctors, deleteDoctor } from '../Services';
 import {DeleteProductFunction} from "../Components"
-import { deleteFeature, getFeatures } from '../Services/Features';
+import { deleteSpecialty, getSpecialties } from '../Services/Specialties';
 
 
-export const AdminFeatures = () => {
-  const [features, setFeatures] = useState([]);
+export const AdminSpecialties = () => {
+  const [specialties, setSpecialties] = useState([]);
 
-  const loadFeatures = async () => {
-    let featureData = await getFeatures();
-    setFeatures(featureData)
+  const loadSpecialties = async () => {
+    let specialtyData = await getSpecialties();
+    setSpecialties(specialtyData)
   }
 
-  const handleDeleteFeature = async (featureId) =>{
-    await deleteFeature(featureId);
-    loadFeatures();
+  const handleDeleteSpecialty = async (specialtyId) =>{
+    await deleteSpecialty(specialtyId);
+    loadSpecialties();
   }
 
 
   useEffect(() => {
-    loadFeatures();
+    loadSpecialties();
   }, []);
 
   return (
@@ -31,7 +30,7 @@ export const AdminFeatures = () => {
     <div className="admin-display">
     <div className="admin-header">
       <section className="admin-activity">
-        <h2>Features list</h2>
+        <h2>Specialties list</h2>
         <h4>Last update May 28, 2024 at 2.39 PM</h4>
       </section>
 
@@ -47,9 +46,9 @@ export const AdminFeatures = () => {
         <p>search placement</p>
       </section>
 
-      <Link to={ROUTES.FEATURESADD}>
+      <Link to={ROUTES.SPECIALTIESADD}>
         {" "}
-        <button className="admin-add-button">Add Feature</button>{" "}
+        <button className="admin-add-button">Add Specialty</button>{" "}
       </Link>
     </div>
 
@@ -58,18 +57,18 @@ export const AdminFeatures = () => {
     <div className="admin-display-title">
       <p>ID</p>
       <p>NAME</p>
-      <p>ICON</p>
+      <p>DESCRIPTION</p>
     </div>
 
     <div className="admin-display-data">
-      {features.map((feature) => (
+      {specialties.map((specialty) => (
         
-        <div key={feature.id} className="doctor-api-item">
-          <p>{feature.id}</p>
-          <p>{feature.name}</p>
-          <p>{feature.icon}</p>
+        <div key={specialty.id} className="doctor-api-item">
+          <p>{specialty.id}</p>
+          <p>{specialty.name}</p>
+          <p>{specialty.description}</p>
           <p className="admin-edit-button">🖊</p>
-          <DeleteProductFunction feature = {feature} onDelete={() => handleDeleteFeature(feature.id)}/>
+          <DeleteProductFunction specialty = {specialty} onDelete={() => handleDeleteSpecialty(specialty.id)}/>
         </div>
 
       

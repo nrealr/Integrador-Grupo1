@@ -13,6 +13,9 @@ import { Container, ThemeProvider } from '@mui/material';
 import { theme } from './Themes/theme';
 
 import { AdminFeatures } from './Routes/AdminFeatures';
+import { AdminSpecialties } from './Routes/AdminSpecialties';
+import { AddFeature } from './Routes/AddFeature';
+import { AddSpecialty } from './Routes/AddSpecialty';
 
 
 
@@ -45,6 +48,9 @@ function App() {
             <Route path={ROUTES.DOCTORSADD} element={<AddProduct/>} />
             <Route path={ROUTES.DOCTORS} element={<AdminDoctors/>} />
             <Route path={ROUTES.FEATURES} element={<AdminFeatures/>} />
+            <Route path={ROUTES.FEATURESADD} element={<AddFeature/>} />
+            <Route path={ROUTES.SPECIALTIES} element={<AdminSpecialties/>} />
+            <Route path={ROUTES.SPECIALTIESADD} element={<AddSpecialty/>} />
           </Route>
 
         </Route>

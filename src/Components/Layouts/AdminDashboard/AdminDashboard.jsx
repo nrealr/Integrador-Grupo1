@@ -46,16 +46,19 @@ return (
       <p>Reminders</p>
     </div>
 
-    <div> 
+    <div className="admin-options">  
     <Link to={ROUTES.FEATURES}>
         <p>⭐</p>
         <p>Features</p>
     </Link>
     </div>
 
-    <div> 
+    <div className="admin-options"> 
+    <Link to = {ROUTES.SPECIALTIES}>
       <p>🩺</p>
       <p>Specialties</p>
+    </Link>
+
     </div>
 
     <div> 
