@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { Card, CardMedia, CardContent, CardActions, Typography, Button, Box } from "@mui/material";
-import { ImageComponent } from "./ImageComponent";
 import { base64ToBlob } from "../../Utils";
 /*import "./DoctorCard.styles.css";*/
 
