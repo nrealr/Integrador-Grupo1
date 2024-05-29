@@ -1,6 +1,16 @@
 [
   {
     "request": {
+      "method": "POST",
+      "url": "/users/login"
+    },
+    "response": {
+      "status": 200,
+      "file": "users-login.json"
+    }
+  },
+  {
+    "request": {
       "method": "GET",
       "url": "/doctors/list"
     },

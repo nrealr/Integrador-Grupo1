@@ -38,23 +38,22 @@ export const LoginButton = () => {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-    setPasswordError(event.target.value.length < 8);
+    setPasswordError(event.target.value.length < 4);
   };
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     if (emailError || passwordError) {
       return;
     }
-    try {
-      const response = await axios.post('https://your-api-url.com/auth', { email, password }, { withCredentials: true });
-      if (response.data.success) {
-        // Redirigir al usuario a la página de perfil
-      } else {
-        // Mostrar mensaje de error
-      }
-    } catch (err) {
-      // Mostrar mensaje de error
-    }
+    axios.post('http://localhost:8081/users/login', { email, password })
+    .then((response) => {
+      console.log(response);
+      debugger;
+    })
+    .catch((e) => {
+      console.log("error", e)
+      debugger;
+    });
   };
 
   return (
