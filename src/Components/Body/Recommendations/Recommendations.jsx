@@ -3,6 +3,7 @@ import { getDoctors } from "../../../Services";
 import { DoctorCard } from "../../Common/DoctorCard";
 import './Recommendations.styles.css'
 import { RecommendationsPagination } from "./RecommendationsPagination";
+import { Container, Grid, Typography, Box, CircularProgress } from "@mui/material";
 
 
 export const Recommendations = () => {
@@ -30,34 +31,84 @@ export const Recommendations = () => {
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   if (randomDoctors.length === 0) {
-    return <div>Loading...</div>;
+    return <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
+            <CircularProgress />
+          </Box>;
   }
 
   return (
+    <Container 
+      maxWidth="lg"
+      sx={{ 
+        padding: { xs: '0 1rem', sm: '0 2rem', md: '0' }, 
+        maxWidth: { xs: '100%', md: 'lg' } 
+    }} >
+      <Box sx={{ textAlign: 'center', padding: '2rem 0' }}>
+        <Typography 
+          variant="h3" 
+          component="div"
+          sx={{
+            fontSize: { xs: '1rem', md: '2rem' },
+            marginBottom: '1rem',
+            color: 'secondary.main'
+          }}>
+          Meet Our Top-Rated Doctors
+        </Typography>
+        <Typography 
+          variant="h1" 
+          component="div" 
+          sx={{ 
+            fontSize: { xs: '1.3rem', sm: '1.8rem', md: '3rem' },
+            marginTop: '1rem',
+            lineHeight: 1.2,
+            color: 'primary.main'
+          }}>
+          Discover Why Our Patients <br />
+          Love Them! <br />
+          Read Reviews and Ratings from Happy Clients <br />
+          Who've Booked Appointments.
+        </Typography>
+      </Box>
 
-  <div className="recommended">
+      <Grid container spacing={2}>
+        {currentDoctors.map((doctor) => (
+          <Grid item xs={12} sm={6} md={6} key={doctor.id}>
+            <DoctorCard doctor={doctor} />
+          </Grid>
+        ))}
+      </Grid>
 
-    <div className="titles">
-      <h3>Meet Our Top-Rated Doctors</h3>
-      <h1>Discover Why Our Patients 
-        <br /> Love Them! <br /> 
-        Read Reviews and Ratings from Happy Clients <br /> Who've Booked Appointments.</h1>
-    </div>
+      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+        <RecommendationsPagination
+          doctorsPerPage={doctorsPerPage}
+          totalDoctors={randomDoctors.length}
+          paginate={paginate}
+          currentPage={currentPage}
+        />
+      </Box>
+      {/*<div className="recommended">
+        <div className="titles">
+          <h3>Meet Our Top-Rated Doctors</h3>
+          <h1>Discover Why Our Patients 
+            <br /> Love Them! <br /> 
+            Read Reviews and Ratings from Happy Clients <br /> Who've Booked Appointments.</h1>
+        </div>
 
-    <div className="recommendation-cards">
-      {currentDoctors.map((doctor) => 
-        {return <DoctorCard doctor={doctor} key={doctor.id}/>;
-        }
-      )
-      }
-    </div>
-    <RecommendationsPagination 
-        doctorsPerPage={doctorsPerPage} 
-        totalDoctors={randomDoctors.length} 
-        paginate={paginate} 
-        currentPage={currentPage} 
-      />
-  </div>
+        <div className="recommendation-cards">
+          {currentDoctors.map((doctor) => 
+            {return <DoctorCard doctor={doctor} key={doctor.id}/>;
+            }
+          )
+          }
+        </div>
+        <RecommendationsPagination 
+            doctorsPerPage={doctorsPerPage} 
+            totalDoctors={randomDoctors.length} 
+            paginate={paginate} 
+            currentPage={currentPage} 
+          />
+        </div>*/}
+    </Container>
   );
 };
 

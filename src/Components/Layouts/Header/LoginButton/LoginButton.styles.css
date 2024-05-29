@@ -1,0 +1,134 @@
+/* Estilos generales */
+
+.LoginButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .LoginButton button {
+    width: 100%;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  .LoginButton button:hover {
+    background-color: #444;
+  }
+  
+  /* Estilos para la popper */
+  
+  .Popper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    background-color: black;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .Popper .MenuList {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    background-color: red;
+  }
+  
+  .Popper .MenuList li {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .Popper .MenuList li:last-child {
+    border-bottom: none;
+  }
+  
+  .Popper .MenuList a {
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .Popper .MenuList a:hover {
+    color: #444;
+  }
+  
+  /* Estilos para los campos de texto */
+  
+  .TextField {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+  }
+  
+  .TextField:focus {
+    border-color: #aaa;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Estilos para los errores */
+  
+  .Error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+  }
+  
+  /* Estilos para la versión móvil */
+  
+  @media (max-width: 768px) {
+    .LoginButton {
+      padding: 10px;
+    }
+    .Popper {
+      width: 90%;
+      padding: 10px;
+    }
+    .TextField {
+      font-size: 14px;
+    }
+  }
+  
+  /* Estilos para la versión tablet */
+  
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .LoginButton {
+      padding: 15px;
+    }
+    .Popper {
+      width: 80%;
+      padding: 15px;
+    }
+    .TextField {
+      font-size: 16px;
+    }
+  }
+  
+  /* Estilos para la versión desktop */
+  
+  @media (min-width: 1025px) {
+    .LoginButton {
+      padding: 20px;
+    }
+    .Popper {
+      width: 70%;
+      padding: 20px;
+    }
+    .TextField {
+      font-size: 18px;
+    }
+  }

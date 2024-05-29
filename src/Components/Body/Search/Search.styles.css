@@ -1,4 +1,4 @@
-.search-container {
+/* .search-container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -71,5 +71,129 @@
   padding: 5px 10px;
   cursor: pointer;
 }
+ */
 
+ .search-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 20px;
+  background-image: url('./images/bg-search.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: right center;
+}
 
+.search-container .titles {
+  justify-content: right;
+  line-height: 60px;
+  color: #FFF;
+  flex-shrink: 0;
+  align-items: right;
+  margin-left: 50px;
+}
+
+.search-container .titles h3 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.search-container .titles h1 {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.search-container .search-bar{
+  display: flex;
+  align-items: center;
+  margin-right: 100px;
+}
+
+.search-container .search-bar .dropdown-bar{
+  display: flex;
+  margin: auto;
+  margin-right: 50px;
+}
+
+.search-container .search-bar .dropdown-bar .city{
+  padding: 10px;
+  margin-right: 20px;
+}
+
+.search-container .search-bar .dropdown-bar .specialty{
+  margin-right: 0px;
+  padding: 10px;
+}
+
+.search-button {
+  display: flex;
+  width: 20%;
+  margin: auto;
+}
+
+.search-button button {
+  padding: 10px;
+  width: 100%;
+  font-size: 16px;
+  background-color: #61C0BB;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Querys para responsive design */
+
+/* Pantalla grande (desktop) */
+@media (min-width: 1200px) {
+  .search-container {
+    padding: 40px;
+  }
+  .search-container .titles {
+    margin-left: 100px;
+  }
+  .search-container .search-bar {
+    margin-right: 200px;
+  }
+  .search-button {
+    width: 30%;
+  }
+}
+
+/* Pantalla mediana (tablet) */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .search-container {
+    padding: 20px;
+  }
+  .search-container .titles {
+    margin-left: 50px;
+  }
+  .search-container .search-bar {
+    margin-right: 100px;
+  }
+  .search-button {
+    width: 40%;
+  }
+}
+
+/* Pantalla pequeña (mobile) */
+@media (max-width: 767px) {
+  .search-container {
+    padding: 10px;
+  }
+  .search-container .titles {
+    margin-left: 20px;
+  }
+  .search-container .search-bar {
+    margin-right: 50px;
+  }
+  .search-button {
+    width: 60%;
+  }
+  .search-button button {
+    font-size: 14px;
+  }
+}

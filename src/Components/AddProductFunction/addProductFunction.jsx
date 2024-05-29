@@ -66,8 +66,8 @@ export const AddProductFunction = () => {
         return /^(ftp|http|https):\/\/[^ "]+$/.test(url);
       };
 
-      const handleSubmit = async (e) => {
-        e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
         const validationErrors = validateForm(product);
         if (Object.keys(validationErrors).length === 0){
@@ -101,7 +101,6 @@ export const AddProductFunction = () => {
 
   return (
     <div>
-      
       <form className="add-product-form" onSubmit={handleSubmit}>
         <label>Name:</label>
         <input
@@ -122,11 +121,11 @@ export const AddProductFunction = () => {
           onChange={(e) => setProduct({ ...product, rut: e.target.value })}
         />
         <label>Image url</label>
-        <input type="text" 
-        value={product.img}
-        onChange={(e) =>
-          setProduct({ ...product, img: e.target.value })
-        }/>
+        <input
+          type="text"
+          value={product.img}
+          onChange={(e) => setProduct({ ...product, img: e.target.value })}
+        />
         <label>Description:</label>
         <input
           type="text"
@@ -156,7 +155,7 @@ export const AddProductFunction = () => {
         </div>}
         {!error && success}
 
-        <button type='submit'>Submit</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
