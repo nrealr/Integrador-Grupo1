@@ -102,12 +102,12 @@ export const ProfileCard = () => {
           />
 
           {/* Code for upload photo is hide, fix it later */}
-          <input className='inputPhoto'
+          {/* <input className='inputPhoto'
             type="file" 
             id="profile-photo" 
             accept=".jpg, .jpeg, .png" 
             data-browse="Select file" 
-            data-placeholder="There isn't selected files"></input>
+            data-placeholder="There isn't selected files"></input> */}
         </form>
       </CardContent>
 

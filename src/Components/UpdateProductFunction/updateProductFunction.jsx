@@ -109,7 +109,15 @@ export const UpdateProductFunction = () => {
     const updatedFeatures = product.features.includes(featureId)
       ? product.features.filter((id) => id !== featureId)
       : [...product.features, featureId];
-    setProduct({ ...product, features: updatedFeatures });
+
+    console.log("Updated Features:", updatedFeatures); // Add this line
+
+  
+    // Update product state using a callback function
+    setProduct((prevProduct) => ({
+      ...prevProduct,
+      features: updatedFeatures,
+    }));
   };
 
   const handleSubmit = async (e) => {
