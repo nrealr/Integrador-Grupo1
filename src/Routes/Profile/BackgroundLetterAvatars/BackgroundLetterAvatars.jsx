@@ -1,7 +1,7 @@
-import * as React from 'react';
-import Avatar from '@mui/material/Avatar';
-import Stack from '@mui/material/Stack';
-import './BackgroundLetterAvatars.styles.css'
+import * as React from "react";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import "./BackgroundLetterAvatars.styles.css";
 
 function stringToColor(string) {
   let hash = 0;
@@ -12,7 +12,7 @@ function stringToColor(string) {
     hash = string.charCodeAt(i) + ((hash << 5) - hash);
   }
 
-  let color = '#';
+  let color = "#";
 
   for (i = 0; i < 3; i += 1) {
     const value = (hash >> (i * 8)) & 0xff;
@@ -23,21 +23,22 @@ function stringToColor(string) {
   return color;
 }
 
-function stringAvatar(name) {
+function stringAvatar(name, lastname) {
   return {
     sx: {
-      bgcolor: stringToColor(name),
+      bgcolor: stringToColor(name + lastname),
     },
-    children: `${name.split(' ')[0][0]}${name.split(' ')[1][0]}`,
+    children: `${name[0]}${lastname[0]}`,
   };
 }
 
-export const BackgroundLetterAvatars=()=> {
+export const BackgroundLetterAvatars = () => {
+  const name = localStorage.getItem("name") || "User";
+  const lastname = localStorage.getItem("lastname") || "Name";
+
   return (
     <Stack direction="row" spacing={2}>
-      {/* Axios endpoint, firstname and lastname */}
-      <Avatar className='no-gutters'{...stringAvatar('Digital House')} />
-
+      <Avatar className="no-gutters" {...stringAvatar(name, lastname)} />
     </Stack>
   );
-}
+};
