@@ -31,11 +31,11 @@ doctor.urlImg = 'data:image/jpg;base64,' + doctor.img;
             {doctor.description}
           </Typography>
         </CardContent>
-        <CardActions sx={{ justifyContent: 'flex-end' }} >
-          <Button 
+        <CardActions sx={{ justifyContent: "flex-end" }}>
+          <Button
             component={Link}
             to={`/doctor/${doctor.id}`}
-            variant="contained" 
+            variant="contained"
             color="primary"
           >
             Find out more →
@@ -66,4 +66,3 @@ doctor.urlImg = 'data:image/jpg;base64,' + doctor.img;
     </div>*/
   );
 };
-

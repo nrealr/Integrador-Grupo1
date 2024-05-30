@@ -58,6 +58,7 @@ export const AdminSpecialties = () => {
       <p>ID</p>
       <p>NAME</p>
       <p>DESCRIPTION</p>
+      <p>ACTIONS</p>
     </div>
 
     <div className="admin-display-data">
