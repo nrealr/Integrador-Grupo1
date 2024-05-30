@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Detail.style.css";
 import { getDoctorById, getSpecialtyById } from "../../Services";
 import { Link, useParams } from "react-router-dom";
-import { CategoriesCard } from "./CategoriesCard";
+import { DoctorFeaturesCard } from "./CategoriesCard";
 
 export const Detail = () => {
   const { id } = useParams();
@@ -49,7 +49,7 @@ export const Detail = () => {
           <Link className='cardButton' to={`#`}><button>Book Appointment →</button></Link>
         </div>
       </div>
-      <CategoriesCard />
+      <DoctorFeaturesCard doctorId={doctorSelected.id} />
     </section>
   );
 };
