@@ -6,7 +6,7 @@ import {DeleteProductFunction} from "../Components"
 import { deleteFeature, getFeatures } from '../Services/Features';
 
 
-export const AdminFeatures = () => {
+export const AdminFeatures = ({ feature }) => {
   const [features, setFeatures] = useState([]);
 
   const loadFeatures = async () => {
@@ -25,7 +25,7 @@ export const AdminFeatures = () => {
     loadFeatures();
   }, []);
 
-  
+  feature.urlImg = 'data:image/jpg;base64,' + feature.img;
 
   return (
 
