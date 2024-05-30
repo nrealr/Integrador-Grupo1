@@ -22,10 +22,6 @@ import { AdminSpecialties } from "./Routes/AdminSpecialties";
 import { AddFeature } from "./Routes/AddFeature";
 import { AddSpecialty } from "./Routes/AddSpecialty";
 import { Logout } from "@mui/icons-material";
-import { AdminFeatures } from './Routes/AdminFeatures';
-import { AdminSpecialties } from './Routes/AdminSpecialties';
-import { AddFeature } from './Routes/AddFeature';
-import { AddSpecialty } from './Routes/AddSpecialty';
 import { UpdateProduct}  from './Routes/UpdateProduct';
 
 
