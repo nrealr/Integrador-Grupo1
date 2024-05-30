@@ -1,19 +1,40 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { SERVER_API } from "../../Constants";
-import { addDoctor } from "../../Services";
+import { addDoctor, getSpecialties } from "../../Services";
 
 export const AddProductFunction = () => {
   const [product, setProduct] = useState({
     name: "",
     lastname: "",
     rut: "",
-    img: "",
+    img: null,
     description: "",
+    specialtyId: "",
   });
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
+  const [specialties, setSpecialties] = useState([]);
+
+  useEffect(() => {
+    const fetchSpecialties = async () => {
+      try {
+        const response = await axios.get(`${SERVER_API}/specialties/list`);
+        if (Array.isArray(response.data)) {
+          setSpecialties(response.data);
+        } else {
+          console.error("Specialties response is not an array:", response.data);
+          setSpecialties([]);
+        }
+      } catch (error) {
+        console.error("Error fetching specialties:", error);
+        setSpecialties([]);
+      }
+    };
+
+    fetchSpecialties();
+  }, []);
 
   const validateForm = (values) => {
     let errors = {};
@@ -33,20 +54,20 @@ export const AddProductFunction = () => {
     }
 
     if (!values.img) {
-      errors.img = "Image URL is mandatory";
-    } else if (!isValidURL(values.img)) {
-      errors.img = "Image URL not valid";
+      errors.img = "Image file is mandatory";
+    } else if (!values.img.name.toLowerCase().endsWith(".jpg")) {
+      errors.img = "Image file must be a .jpg";
     }
 
     if (!values.description) {
       errors.description = "Description is mandatory";
     }
 
-    return errors;
-  };
+    if (!values.specialtyId) {
+      errors.specialtyId = "Specialty is mandatory";
+    }
 
-  const isValidURL = (url) => {
-    return /^(ftp|http|https):\/\/[^ "]+$/.test(url);
+    return errors;
   };
 
   const handleSubmit = async (e) => {
@@ -54,14 +75,28 @@ export const AddProductFunction = () => {
 
     const validationErrors = validateForm(product);
     if (Object.keys(validationErrors).length === 0) {
+      const formData = new FormData();
+      formData.append('name', product.name);
+      formData.append('lastname', product.lastname);
+      formData.append('rut', product.rut);
+      formData.append('img', product.img);
+      formData.append('description', product.description);
+      formData.append('specialtyId', product.specialtyId);
+
       try {
-        const response = await addDoctor(product);
+        const response = await axios.post(`${SERVER_API}/doctors/register`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
         setProduct({
           name: "",
           lastname: "",
           rut: "",
-          img: "",
+          img: null,
           description: "",
+          specialtyId: "",
         });
         setError("");
         setSuccess("Doctor added");
@@ -72,13 +107,11 @@ export const AddProductFunction = () => {
     } else {
       setError(validationErrors);
     }
-
-    console.log(product);
   };
 
   return (
     <div>
-      <form className="add-product-form" onSubmit={handleSubmit}>
+      <form className="add-product-form" encType="multipart/form-data" onSubmit={handleSubmit}>
         <label>Name:</label>
         <input
           type="text"
@@ -97,20 +130,30 @@ export const AddProductFunction = () => {
           value={product.rut}
           onChange={(e) => setProduct({ ...product, rut: e.target.value })}
         />
-        <label>Image url</label>
+        <label>Image</label>
         <input
-          type="text"
-          value={product.img}
-          onChange={(e) => setProduct({ ...product, img: e.target.value })}
+          type="file"
+          accept="image/jpg"
+          onChange={(e) => setProduct({ ...product, img: e.target.files[0] })}
         />
         <label>Description:</label>
         <input
           type="text"
           value={product.description}
-          onChange={(e) =>
-            setProduct({ ...product, description: e.target.value })
-          }
+          onChange={(e) => setProduct({ ...product, description: e.target.value })}
         />
+         <label>Specialty:</label>
+        <select
+          value={product.specialtyId}
+          onChange={(e) => setProduct({ ...product, specialtyId: e.target.value })}
+        >
+          <option value="">Select a specialty</option>
+          {specialties.map((specialty) => (
+            <option key={specialty.id} value={specialty.id}>
+              {specialty.name}
+            </option>
+          ))}
+        </select>
 
         {error && (
           <div className="errorMessages">

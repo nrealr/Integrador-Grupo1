@@ -1,89 +1,111 @@
-
-
-import React, { useState } from 'react';
-import { Button, ClickAwayListener, Grow, Paper, Popper, TextField } from '@mui/material';
-import axios from 'axios';
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import Popper from "@mui/material/Popper";
+import Grow from "@mui/material/Grow";
+import Paper from "@mui/material/Paper";
+import ClickAwayListener from "@mui/material/ClickAwayListener";
+import MenuItem from "@mui/material/MenuItem";
+import MenuList from "@mui/material/MenuList";
+import TextField from "@mui/material/TextField";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../../../Constants";
+import axios from "axios";
+import "./LoginButton.styles.css";
 
 export const LoginButton = () => {
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [open, setOpen] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleToggle = () => {
+    setOpen((prevOpen) => !prevOpen);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
+  const handleClose = (event) => {
+    if (event.target.id === "button-id") {
+      return;
+    }
+    setOpen(false);
   };
 
-    const handleEmailChange = (event) => {
+  const handleEmailChange = (event) => {
     setEmail(event.target.value);
     setEmailError(!/^\S+@\S+\.\S+$/.test(event.target.value));
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-    setPasswordError(event.target.value.length < 4);
+    setPasswordError(event.target.value.length < 8);
   };
 
-  const handleLogin = async (event) => {
-
-    const token = localStorage.getItem("token");
-    let params = null;
-    if (token) {
-        params = {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }
-    }
-
-    event.preventDefault();
+  const handleLogin = async () => {
     if (emailError || passwordError) {
       return;
     }
-      try {
-      const response = await axios.post('http://localhost:8081/users/login', { email, password });
-      debugger
-      const token = response.data.token;
-      debugger
-      localStorage.setItem('token', token);
-
-      window.location.href = '/profile';
-    }   catch (error) {
-      setError(error.response.data.error);
+    try {
+      const response = await axios.post(
+        "https://your-api-url.com/auth",
+        { email, password },
+        { withCredentials: true }
+      );
+      if (response.data.success) {
+        // Redirigir al usuario a la página de perfil
+      } else {
+        // Mostrar mensaje de error
+      }
+    } catch (err) {
+      // Mostrar mensaje de error
     }
   };
-
-  const handleCreateAccount = () => {
-    window.location.href = '/register';
+  let buttomLoginIn = () => {
+    return (
+      <Button
+        variant="contained"
+        color="secondary"
+        id="button-id"
+        aria-controls={open ? "menu-list-grow" : undefined}
+        aria-haspopup="true"
+        aria-expanded={open ? "true" : undefined}
+        onClick={handleToggle}
+        sx={{
+          color: "white",
+        }}
+      >
+        Log In
+      </Button>
+    );
   };
-
   return (
     <div>
-      <Button variant="contained" color="primary" onClick={handleClick}>
-        Login
-      </Button>
-      <Popper 
-        open={Boolean(anchorEl)} 
-        anchorEl={anchorEl} 
-        transition>
-        {({ TransitionProps }) => (
-          <Grow {...TransitionProps}>
+      {buttomLoginIn()}
+      <Popper
+        open={open}
+        anchorEl={document.getElementById("button-id")}
+        role={undefined}
+        transition
+        disablePortal
+      >
+        {({ TransitionProps, placement }) => (
+          <Grow
+            {...TransitionProps}
+            style={{
+              transformOrigin:
+                placement === "bottom" ? "center top" : "center bottom",
+            }}
+          >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <form onSubmit={handleLogin}>
+                <MenuList id="menu-list-grow">
                   <TextField
-                    label="Email"
+                    label="E-mail"
                     variant="outlined"
                     fullWidth
                     value={email}
                     onChange={handleEmailChange}
                     error={emailError}
-                    helperText={emailError && 'Invalid email'}
+                    helperText={emailError && "Invalid e-mail"}
                   />
                   <TextField
                     label="Password"
@@ -93,15 +115,26 @@ export const LoginButton = () => {
                     value={password}
                     onChange={handlePasswordChange}
                     error={passwordError}
-                    helperText={passwordError && 'Invalid password'}
+                    helperText={
+                      passwordError &&
+                      "The password must have at least 8 characters"
+                    }
                   />
-                  <Button type="submit" variant="contained" color="primary">
+                  <MenuItem
+                    onClick={handleLogin}
+                    component={Link}
+                    to={ROUTES.PROFILE}
+                  >
                     Sign In
-                  </Button>
-                  <Button variant="text" color="secondary" onClick={handleCreateAccount}>
-                    Don't you have an account yet? Do it here!
-                  </Button>
-                </form>
+                  </MenuItem>
+                  <MenuItem
+                    onClick={handleClose}
+                    component={Link}
+                    to={ROUTES.ADDUSER}
+                  >
+                    ¿Don't you have an account? Create one!
+                  </MenuItem>
+                </MenuList>
               </ClickAwayListener>
             </Paper>
           </Grow>
