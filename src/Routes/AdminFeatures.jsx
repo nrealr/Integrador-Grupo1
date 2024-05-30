@@ -6,13 +6,14 @@ import {DeleteProductFunction} from "../Components"
 import { deleteFeature, getFeatures } from '../Services/Features';
 
 
-export const AdminFeatures = () => {
+export const AdminFeatures = ({ feature }) => {
   const [features, setFeatures] = useState([]);
 
   const loadFeatures = async () => {
     let featureData = await getFeatures();
     setFeatures(featureData)
   }
+  
 
   const handleDeleteFeature = async (featureId) =>{
     await deleteFeature(featureId);
@@ -23,6 +24,8 @@ export const AdminFeatures = () => {
   useEffect(() => {
     loadFeatures();
   }, []);
+
+  feature.urlImg = 'data:image/jpg;base64,' + feature.img;
 
   return (
 
