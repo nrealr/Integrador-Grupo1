@@ -82,7 +82,7 @@ export const RegisterForm = () => {
 
     return (
         <>
-            <Box sx={{ width: '100%', height: '200px', backgroundColor: 'primary.main' }}></Box>
+            <Box sx={{ width: '100%', height: {xs: '120px',sm: '200px'}, backgroundColor: 'primary.main' }}></Box>
             <Container component="main" maxWidth="lg" sx={{ mt: -8 }} >
                 <Box sx={{
                     display: 'flex',
@@ -175,10 +175,13 @@ export const RegisterForm = () => {
                                 Submit
                             </Button>
 
-                            <Grid container justifyContent="flex-end" marginTop={2}>
+                            <Grid container display='flex' flexDirection='column' justifyContent="flex-end" marginTop={2}>
                                 <Link href="#" variant="body2">
                                     Already have an account? Sign In
                                 </Link>
+                                <Typography variant='caption text' marginTop={2} color='primary.main' >
+                                    * Fields are required
+                                </Typography>
                             </Grid>
                         </Box>
                     </Paper>
