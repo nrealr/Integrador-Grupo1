@@ -111,11 +111,10 @@ export const AddProductFunction = () => {
       formData.append('featureIds', JSON.stringify(product.features));
 
       try {
-<<<<<<< HEAD
         await addDoctor(formData);
-=======
+
         const response = await addDoctor(formData);
->>>>>>> develop
+
 
         setProduct({
           name: "",
