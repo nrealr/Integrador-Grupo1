@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { SERVER_API } from "../../Constants";
-import { addDoctor, getSpecialties } from "../../Services";
+import { addDoctor, getSpecialties, getFeatures } from "../../Services";
 
 export const AddProductFunction = () => {
   const [product, setProduct] = useState({
@@ -11,20 +11,22 @@ export const AddProductFunction = () => {
     img: null,
     description: "",
     specialtyId: "",
+    features: []
   });
 
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [specialties, setSpecialties] = useState([]);
+  const [features, setFeatures] = useState([]);
 
   useEffect(() => {
     const fetchSpecialties = async () => {
       try {
-        const response = await axios.get(`${SERVER_API}/specialties/list`);
-        if (Array.isArray(response.data)) {
-          setSpecialties(response.data);
+        const responseSpecialties = await axios.get(`${SERVER_API}/specialties/list`);
+        if (Array.isArray(responseSpecialties.data)) {
+          setSpecialties(responseSpecialties.data);
         } else {
-          console.error("Specialties response is not an array:", response.data);
+          console.error("Specialties response is not an array:", responseSpecialties.data);
           setSpecialties([]);
         }
       } catch (error) {
@@ -33,7 +35,18 @@ export const AddProductFunction = () => {
       }
     };
 
+    const fetchFeatures = async () => {
+      try {
+        const responseFeatures = await getFeatures();
+        setFeatures(responseFeatures);
+      } catch (error) {
+        console.error("Error fetching features:", error);
+        setFeatures([]);
+      }
+    };
+
     fetchSpecialties();
+    fetchFeatures();
   }, []);
 
   const validateForm = (values) => {
@@ -70,6 +83,17 @@ export const AddProductFunction = () => {
     return errors;
   };
 
+  const handleFeatureChange = (featureId) => {
+    const index = product.features.indexOf(featureId);
+    if (index === -1) {
+      setProduct({ ...product, features: [...product.features, featureId] });
+    } else {
+      const updatedFeatures = [...product.features];
+      updatedFeatures.splice(index, 1);
+      setProduct({ ...product, features: updatedFeatures });
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -83,12 +107,11 @@ export const AddProductFunction = () => {
       formData.append('description', product.description);
       formData.append('specialtyId', product.specialtyId);
 
+      // Add features to formData as a JSON string
+      formData.append('featureIds', JSON.stringify(product.features));
+
       try {
-        const response = await axios.post(`${SERVER_API}/doctors/register`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        });
+        await addDoctor(formData);
 
         setProduct({
           name: "",
@@ -97,6 +120,7 @@ export const AddProductFunction = () => {
           img: null,
           description: "",
           specialtyId: "",
+          features: [] // Reset features after submission
         });
         setError("");
         setSuccess("Doctor added");
@@ -142,7 +166,7 @@ export const AddProductFunction = () => {
           value={product.description}
           onChange={(e) => setProduct({ ...product, description: e.target.value })}
         />
-         <label>Specialty:</label>
+        <label>Specialty:</label>
         <select
           value={product.specialtyId}
           onChange={(e) => setProduct({ ...product, specialtyId: e.target.value })}
@@ -154,6 +178,23 @@ export const AddProductFunction = () => {
             </option>
           ))}
         </select>
+
+        <label>Features:</label>
+        {features.map((feature) => (
+          <div key={feature.id}>
+            <input
+              type="checkbox"
+              id={feature.id}
+              value={feature.id}
+              checked={product.features.includes(feature.id)}
+              onChange={() => handleFeatureChange(feature.id)}
+            />
+            <label htmlFor={feature.id}>
+              {feature.name} 
+              <img src={feature.icon} alt={feature.name} /> {/* Render icon */}
+            </label>
+          </div>
+        ))}
 
         {error && (
           <div className="errorMessages">
