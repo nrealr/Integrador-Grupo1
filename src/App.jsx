@@ -6,6 +6,7 @@ import {
   Profile,
   AppointmentList,
   ChanguePassword,
+  NotFound,
 } from "./Routes";
 import { Home } from "./Routes";
 import { Admin } from "./Routes/AdminPanel/Admin";
@@ -14,14 +15,12 @@ import { ROUTES } from "./Constants";
 import { Layout } from "./Components";
 import { AdminLayout } from "./Components";
 import { AdminDoctors } from "./Routes/AdminDoctors";
-import { Container, ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import { theme } from "./Themes/theme";
-
 import { AdminFeatures } from "./Routes/AdminFeatures";
 import { AdminSpecialties } from "./Routes/AdminSpecialties";
 import { AddFeature } from "./Routes/AddFeature";
 import { AddSpecialty } from "./Routes/AddSpecialty";
-import { Logout } from "@mui/icons-material";
 import { UpdateProduct}  from './Routes/UpdateProduct';
 
 
@@ -44,6 +43,7 @@ function App() {
               <Route path={ROUTES.PROFILE} element={<Profile />} />
               <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList />} />
               <Route path={ROUTES.PASSWORD} element={<ChanguePassword />} />
+              <Route path="*" element={<NotFound/>}/>
 
               <Route element={<AdminLayout />}>
                 <Route path={ROUTES.ADMIN} element={<Admin />} />
