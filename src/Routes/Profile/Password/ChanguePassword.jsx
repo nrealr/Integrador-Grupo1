@@ -1,10 +1,11 @@
 
 import React from "react";
+import { NotPage } from "../../../Utils";
 
 export const ChanguePassword=()=>{
 
     return(
-      <p>password</p>
+      <NotPage/>
      
     )
 }

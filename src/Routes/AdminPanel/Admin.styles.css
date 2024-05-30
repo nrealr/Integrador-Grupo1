@@ -157,3 +157,12 @@
   height: 50px;
   width: 50px;
 }
+
+.admin-welcome{
+  background-color: antiquewhite;
+}
+
+.admin-welcome img{
+  width: 50%;
+  margin: 0 auto
+}
