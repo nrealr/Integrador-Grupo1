@@ -12,12 +12,18 @@ import { ROUTES } from "../../../../Constants";
 import "./LoginButton.styles.css";
 import { login } from "../../../../Services/login";
 
-export const LoginButton = ({ setIsLoggedIn }) => {
+export const LoginButton = () => {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -46,93 +52,104 @@ export const LoginButton = ({ setIsLoggedIn }) => {
     }
     try {
       const response = await login({ email, password });
-      localStorage.setItem('token', response.token);
-      localStorage.setItem('role', response.role);
+      localStorage.setItem("token", response.token);
+      localStorage.setItem("role", response.role);
+      localStorage.setItem("name", response.name);
+      localStorage.setItem("lastname", response.lastname);
       setIsLoggedIn(true);
-      window.location.href ="/profile";
+      window.location.href = "/profile";
     } catch (err) {
       // Mostrar mensaje de error
+      console.error(err);
     }
   };
 
-  const buttonLogin = () => {
-    return (
-      <Button
-        variant="contained"
-        color="secondary"
-        id="button-id"
-        aria-controls={open ? "menu-list-grow" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        onClick={handleToggle}
-        sx={{
-          color: "white",
-        }}
-      >
-        Log In
-      </Button>
-    );
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    localStorage.removeItem("name");
+    localStorage.removeItem("lastname");
+    setIsLoggedIn(false);
+    window.location.href = "/";
   };
 
   return (
     <div>
-      {buttonLogin()}
-      <Popper
-        open={open}
-        anchorEl={document.getElementById("button-id")}
-        role={undefined}
-        transition
-        disablePortal
-      >
-        {({ TransitionProps, placement }) => (
-          <Grow
-            {...TransitionProps}
-            style={{
-              transformOrigin:
-                placement === "bottom" ? "center top" : "center bottom",
-            }}
+      {isLoggedIn ? (
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={handleLogout}
+          sx={{ color: "white" }}
+        >
+          Log Out
+        </Button>
+      ) : (
+        <div>
+          <Button
+            variant="contained"
+            color="secondary"
+            id="button-id"
+            aria-controls={open ? "menu-list-grow" : undefined}
+            aria-haspopup="true"
+            aria-expanded={open ? "true" : undefined}
+            onClick={handleToggle}
+            sx={{ color: "white" }}
           >
-            <Paper>
-              <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id="menu-list-grow">
-                  <TextField
-                    label="E-mail"
-                    variant="outlined"
-                    fullWidth
-                    value={email}
-                    onChange={handleEmailChange}
-                    error={emailError}
-                    helperText={emailError && "Invalid e-mail"}
-                  />
-                  <TextField
-                    label="Password"
-                    variant="outlined"
-                    fullWidth
-                    type="password"
-                    value={password}
-                    onChange={handlePasswordChange}
-                    error={passwordError}
-                    helperText={
-                      passwordError &&
-                      "The password must have at least 8 characters"
-                    }
-                  />
-                  <MenuItem onClick={handleLogin}>
-                    Sign In
-                  </MenuItem>
-                  <MenuItem
-                    onClick={handleClose}
-                    component={Link}
-                    to={ROUTES.ADDUSER}
-                  >
-                    ¿Don't you have an account? Create one!
-                  </MenuItem>
-                </MenuList>
-              </ClickAwayListener>
-            </Paper>
-          </Grow>
-        )}
-      </Popper>
+            Log In
+          </Button>
+          <Popper
+            open={open}
+            anchorEl={document.getElementById("button-id")}
+            role={undefined}
+            transition
+            disablePortal
+          >
+            {({ TransitionProps, placement }) => (
+              <Grow
+                {...TransitionProps}
+                style={{
+                  transformOrigin:
+                    placement === "bottom" ? "center top" : "center bottom",
+                }}
+              >
+                <Paper>
+                  <ClickAwayListener onClickAway={handleClose}>
+                    <MenuList id="menu-list-grow">
+                      <TextField
+                        label="E-mail"
+                        variant="outlined"
+                        fullWidth
+                        value={email}
+                        onChange={handleEmailChange}
+                        error={emailError}
+                        helperText={emailError && "Invalid e-mail"}
+                      />
+                      <TextField
+                        label="Password"
+                        variant="outlined"
+                        fullWidth
+                        type="password"
+                        value={password}
+                        onChange={handlePasswordChange}
+                        error={passwordError}
+                        helperText={
+                          passwordError &&
+                          "The password must have at least 8 characters"
+                        }
+                      />
+                      <MenuItem onClick={handleLogin}>Sign In</MenuItem>
+                      <MenuItem component={Link} to={ROUTES.ADDUSER}>
+                        Don't have an account? Create one!
+                      </MenuItem>
+                    </MenuList>
+                  </ClickAwayListener>
+                </Paper>
+              </Grow>
+            )}
+          </Popper>
+        </div>
+      )}
     </div>
   );
 };

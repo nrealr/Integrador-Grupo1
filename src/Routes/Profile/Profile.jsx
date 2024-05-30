@@ -78,6 +78,9 @@ export const Profile = () => {
     prevOpen.current = open;
   }, [open]);
 
+  const name = localStorage.getItem('name'); // Obtener el nombre del localStorage
+  const lastname = localStorage.getItem('lastname'); // Obtener el apellido del localStorage
+
   return (
     <Stack direction="row" spacing={2}>
       <Paper elevation={15} sx={{ backgroundColor: 'antiquewhite' }}>
@@ -85,6 +88,7 @@ export const Profile = () => {
       </Paper>
       <Paper>
         <Grid>
+          <h2>Welcome, {name} {lastname}!</h2> {/* Renderizar nombre y apellido */}
           <ProfileCard />
         </Grid>
       </Paper>
