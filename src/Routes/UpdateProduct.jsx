@@ -3,9 +3,9 @@ import { UpdateProductFunction } from '../Components'
 
 export const UpdateProduct = () => {
   return (
-    <div>
+    <div className="add-product-display">
 
-    <div>Update Doctor</div>
+    <div >Update Doctor</div>
     <UpdateProductFunction />
 
     </div>

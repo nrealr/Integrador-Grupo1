@@ -2,13 +2,8 @@ import axios from "axios";
 import { SERVER_API } from "../../Constants";
 import { getHeaders } from "../../Utils";
 
-export const updateDoctor = async (id, doctor) => {
-    const headers = {
-        headers: {
-            ...getHeaders({ "Content-Type": "multipart/form-data" }),
-            'Content-Type': 'multipart/form-data'
-        }
-    };
-    let res = await axios.put(`${SERVER_API}/doctors/update/${id}`, doctor, headers);
+export const updateDoctor = async (doctor) => {
+    const headers = getHeaders({ "Content-Type": "multipart/form-data" });
+    let res = await axios.put(`${SERVER_API}/doctors/update/${id}`, doctor, headers)
     return res.data;
 }

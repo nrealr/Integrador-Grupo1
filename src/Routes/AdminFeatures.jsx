@@ -61,7 +61,9 @@ export const AdminFeatures = () => {
                   'No Icon Available'
                 )}
               </div>
-              <p className="admin-edit-button">🖊</p>
+              <Link id = {feature.id} to={`/admin/features/update/${feature.id}`}>
+            <p className="admin-edit-button">🖊</p>
+            </Link>
               <DeleteProductFunction feature={feature} onDelete={() => handleDeleteFeature(feature.id)} />
             </div>
           ))}

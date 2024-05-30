@@ -10,8 +10,8 @@ export const ROUTES = {
     PROFILE: "/profile",
     APPOINTMENTS: "/profile/appointments",
     PASSWORD: "/profile/password",
-    SPECIALTIES: "/admin/specialties",
     FEATURESADD: "/admin/features/add",
     SPECIALTIESADD: "/admin/specialties/add",
-    DOCTORSUPDATE: "/admin/doctors/update/:id"
+    DOCTORSUPDATE: "/admin/doctors/update/:id",
+    FEATURESUPDATE: "/admin/features/update/:id"
 };
