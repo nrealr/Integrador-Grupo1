@@ -4,21 +4,13 @@ import { ROUTES } from "../../../Constants";
 import "./AdminDashboard.styles.css";
 
 export const AdminDashboard = () => {
-  const logOut = () => {
-    const token = localStorage.getItem("token"); // o sessionStorage, dependiendo de dónde almacenes el token
-    if (token) {
-      logout(token);
-    } else {
-      console.error("No token found");
-      // Opcional: Redirigir a la página de inicio de sesión si no hay token
-      history.push("localhost:5173/"); // o navigate('/login') si usas react-router-dom v6
-    }
-  };
 
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Eliminar el token del almacenamiento local
-    window.location.href = "localhost:5173"; // Redireccionar al usuario a la página principal
+    localStorage.removeItem("token");
+    window.location.href = '/';
   };
+
+
   return (
     <div className="admin-panel">
       <div className="admin-select">
@@ -69,9 +61,9 @@ export const AdminDashboard = () => {
           </div>
 
           <div className="admin-options">
-            <Link to={ROUTES.HOME}>
+            <Link>
               <p>💨</p>
-              <p onClick={logOut}>Log Out</p>
+              <p onClick={handleLogout}>Log Out</p>
             </Link>
           </div>
         </section>
