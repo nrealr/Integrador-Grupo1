@@ -12,7 +12,7 @@ import { ROUTES } from "../../../../Constants";
 import "./LoginButton.styles.css";
 import { login } from "../../../../Services/login";
 
-export const LoginButton = () => {
+export const LoginButton = ({ setIsLoggedIn }) => {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -45,14 +45,17 @@ export const LoginButton = () => {
       return;
     }
     try {
-      const response = await login({ email, password});
+      const response = await login({ email, password });
       localStorage.setItem('token', response.token);
+      localStorage.setItem('role', response.role);
+      setIsLoggedIn(true);
       window.location.href ="/profile";
     } catch (err) {
       // Mostrar mensaje de error
     }
   };
-  let buttomLoginIn = () => {
+
+  const buttonLogin = () => {
     return (
       <Button
         variant="contained"
@@ -70,9 +73,10 @@ export const LoginButton = () => {
       </Button>
     );
   };
+
   return (
     <div>
-      {buttomLoginIn()}
+      {buttonLogin()}
       <Popper
         open={open}
         anchorEl={document.getElementById("button-id")}
@@ -113,10 +117,7 @@ export const LoginButton = () => {
                       "The password must have at least 8 characters"
                     }
                   />
-                  <MenuItem
-                    onClick={handleLogin}
-                    component={Link}
-                  >
+                  <MenuItem onClick={handleLogin}>
                     Sign In
                   </MenuItem>
                   <MenuItem

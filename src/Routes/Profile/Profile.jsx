@@ -6,34 +6,43 @@ import { Grid } from '@mui/material';
 import { ProfileCard } from './ProfileCard';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../Constants';
-import './Profile.styles.css'
+import './Profile.styles.css';
 import { handleLogout } from '../../Utils';
 
-
 const menuItemStyles = {
-
   backgroundColor: 'antiquewhite',
   color: 'black',
-  underline: 'none',
   fontWeight: 'bold',
   '&:hover': {
     backgroundColor: 'secondary',
     color: 'black',
-    }
-}
+  },
+};
 
 const MyMenu = () => {
+  const role = localStorage.getItem('role'); // Obtener el rol del usuario desde el localStorage
 
-   return (
-
-     <Link className="link" to={ROUTES.PROFILE}>
-       <MenuItem component={Link} to={ROUTES.PROFILE} sx={menuItemStyles} >Account</MenuItem>
-       <MenuItem component={Link} to={ROUTES.PASSWORD} sx={menuItemStyles} >Password</MenuItem>
-       <MenuItem component={Link} to={ROUTES.APPOINTMENTS} sx={menuItemStyles} >My Appointments</MenuItem>
-       <MenuItem onClick={handleLogout} sx={menuItemStyles} >Log Out</MenuItem>
-     </Link>
-
-    )
+  return (
+    <div>
+      <MenuItem component={Link} to={ROUTES.PROFILE} sx={menuItemStyles}>
+        Account
+      </MenuItem>
+      <MenuItem component={Link} to={ROUTES.PASSWORD} sx={menuItemStyles}>
+        Password
+      </MenuItem>
+      <MenuItem component={Link} to={ROUTES.APPOINTMENTS} sx={menuItemStyles}>
+        My Appointments
+      </MenuItem>
+      {role === 'ADMINISTRATOR' && ( // Mostrar solo si el rol es ADMINISTRATOR
+        <MenuItem component={Link} to={ROUTES.ADMIN} sx={menuItemStyles}>
+          Admin Dashboard
+        </MenuItem>
+      )}
+      <MenuItem onClick={handleLogout} sx={menuItemStyles}>
+        Log Out
+      </MenuItem>
+    </div>
+  );
 };
 
 export const Profile = () => {
@@ -48,7 +57,6 @@ export const Profile = () => {
     if (anchorRef.current && anchorRef.current.contains(event.target)) {
       return;
     }
-
     setOpen(false);
   };
 
@@ -67,14 +75,12 @@ export const Profile = () => {
     if (prevOpen.current === true && open === false) {
       anchorRef.current.focus();
     }
-
     prevOpen.current = open;
   }, [open]);
 
   return (
     <Stack direction="row" spacing={2}>
-      <Paper
-        elevation={15} sx={{ backgroundColor: 'antiquewhite' }}>
+      <Paper elevation={15} sx={{ backgroundColor: 'antiquewhite' }}>
         <MyMenu />
       </Paper>
       <Paper>
@@ -84,5 +90,4 @@ export const Profile = () => {
       </Paper>
     </Stack>
   );
-}
-
+};
