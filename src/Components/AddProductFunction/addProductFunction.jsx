@@ -84,11 +84,7 @@ export const AddProductFunction = () => {
       formData.append('specialtyId', product.specialtyId);
 
       try {
-        const response = await axios.post(`${SERVER_API}/doctors/register`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        });
+        const response = await addDoctor(formData);
 
         setProduct({
           name: "",

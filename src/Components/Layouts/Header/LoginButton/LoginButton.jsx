@@ -9,8 +9,8 @@ import MenuList from "@mui/material/MenuList";
 import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../../Constants";
-import axios from "axios";
 import "./LoginButton.styles.css";
+import { login } from "../../../../Services/login";
 
 export const LoginButton = () => {
   const [open, setOpen] = useState(false);
@@ -37,7 +37,7 @@ export const LoginButton = () => {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-    setPasswordError(event.target.value.length < 8);
+    setPasswordError(event.target.value.length < 4);
   };
 
   const handleLogin = async () => {
@@ -45,16 +45,9 @@ export const LoginButton = () => {
       return;
     }
     try {
-      const response = await axios.post(
-        "https://your-api-url.com/auth",
-        { email, password },
-        { withCredentials: true }
-      );
-      if (response.data.success) {
-        // Redirigir al usuario a la página de perfil
-      } else {
-        // Mostrar mensaje de error
-      }
+      const response = await login({ email, password});
+      localStorage.setItem('token', response.token);
+      window.location.href ="/profile";
     } catch (err) {
       // Mostrar mensaje de error
     }
