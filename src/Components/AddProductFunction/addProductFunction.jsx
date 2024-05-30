@@ -191,7 +191,6 @@ export const AddProductFunction = () => {
             />
             <label htmlFor={feature.id}>
               {feature.name} 
-              <img src={feature.icon} alt={feature.name} /> {/* Render icon */}
             </label>
           </div>
         ))}
