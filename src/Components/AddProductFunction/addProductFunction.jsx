@@ -108,13 +108,10 @@ export const AddProductFunction = () => {
       formData.append('specialtyId', product.specialtyId);
 
       // Add features to formData as a JSON string
-      formData.append('featureIds', JSON.stringify(product.features));
+      formData.append('featureIds', product.features.join(","));
 
       try {
         await addDoctor(formData);
-
-        const response = await addDoctor(formData);
-
 
         setProduct({
           name: "",
@@ -169,7 +166,7 @@ export const AddProductFunction = () => {
           value={product.description}
           onChange={(e) => setProduct({ ...product, description: e.target.value })}
         />
-        <label>Specialty:</label>
+         <label>Specialty:</label>
         <select
           value={product.specialtyId}
           onChange={(e) => setProduct({ ...product, specialtyId: e.target.value })}
@@ -194,6 +191,7 @@ export const AddProductFunction = () => {
             />
             <label htmlFor={feature.id}>
               {feature.name} 
+              <img src={feature.icon} alt={feature.name} /> {/* Render icon */}
             </label>
           </div>
         ))}
