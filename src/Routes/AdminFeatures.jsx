@@ -13,6 +13,7 @@ export const AdminFeatures = () => {
     let featureData = await getFeatures();
     setFeatures(featureData)
   }
+  
 
   const handleDeleteFeature = async (featureId) =>{
     await deleteFeature(featureId);
@@ -23,6 +24,8 @@ export const AdminFeatures = () => {
   useEffect(() => {
     loadFeatures();
   }, []);
+
+  
 
   return (
 
