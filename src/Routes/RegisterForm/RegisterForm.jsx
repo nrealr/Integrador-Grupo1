@@ -7,8 +7,8 @@ import { addUser } from '../../Services';
 
 export const RegisterForm = () => {
     const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
+        name: '',
+        lastname: '',
         email: '',
         password: '',
     });
@@ -19,15 +19,15 @@ export const RegisterForm = () => {
 
     const validateForm = (values) => {
         let errors = {};
-        if (!values.firstName) {
-            errors.firstName = 'First Name field is mandatory';
-        } else if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(values.firstName)) {
-            errors.firstName = 'This field accept letters and spaces only';
+        if (!values.name) {
+            errors.name = 'First Name field is mandatory';
+        } else if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(values.name)) {
+            errors.name = 'This field accept letters and spaces only';
         }
-        if (!values.lastName) {
-            errors.lastName = 'Last Name field is mandatory';
-        } else if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(values.lastName)) {
-            errors.lastName = 'This field accept letters and spaces only';
+        if (!values.lastname) {
+            errors.lastname = 'Last Name field is mandatory';
+        } else if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(values.lastname)) {
+            errors.lastname = 'This field accept letters and spaces only';
         }
         if (!values.email) {
             errors.email = 'Email is mandatory';
@@ -60,8 +60,8 @@ export const RegisterForm = () => {
                 /*setDialogOpen(true);*/
                 const response = await addUser(formData);
                 setFormData({
-                    firstName: '',
-                    lastName: '',
+                    name: '',
+                    lastname: '',
                     email: '',
                     password: '',
                 });
@@ -103,14 +103,14 @@ export const RegisterForm = () => {
                                         margin="normal"
                                         required
                                         fullWidth
-                                        id="firstName"
+                                        id="name"
                                         label="First Name"
-                                        name="firstName"
-                                        value={formData.firstName}
+                                        name="name"
+                                        value={formData.name}
                                         onChange={handleChange}
                                         autoComplete="given-name"
-                                        error={!!error.firstName}
-                                        helperText={error.firstName}
+                                        error={!!error.name}
+                                        helperText={error.name}
                                     />
                                 </Grid>
 
@@ -119,14 +119,14 @@ export const RegisterForm = () => {
                                         margin="normal"
                                         required
                                         fullWidth
-                                        id="lastName"
+                                        id="lastname"
                                         label="Last Name"
-                                        name="lastName"
-                                        value={formData.lastName}
+                                        name="lastname"
+                                        value={formData.lastname}
                                         onChange={handleChange}
                                         autoComplete="family-name"
-                                        error={!!error.lastName}
-                                        helperText={error.lastName}
+                                        error={!!error.lastname}
+                                        helperText={error.lastname}
                                     />
                                 </Grid>
 
