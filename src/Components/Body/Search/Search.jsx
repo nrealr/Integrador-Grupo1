@@ -73,8 +73,10 @@ export const Search = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          marginLeft: {md: '-1px'},
           justifyContent: 'center',
           minHeight: '100vh',
+          maxWidth: {md: '95vh'},
         }}
       >
         <Typography
@@ -83,7 +85,7 @@ export const Search = () => {
             color: 'secondary.main',
             marginBottom: '1rem',
             textAlign: 'center',
-            fontSize: { xs: '1.5rem', md: '2rem' },
+            fontSize: { xs: '1.5rem', md: '1.6rem' },
           }}
         >
           WE HANDLE YOUR MEDICAL BOOKINGS
@@ -94,7 +96,7 @@ export const Search = () => {
             color: 'white',
             marginBottom: '2rem',
             textAlign: 'center',
-            fontSize: { xs: '2rem', md: '3rem' },
+            fontSize: { xs: '2rem', md: '2.2rem' },
           }}
         >
           EASY BOOKING, SAFE CARE!
@@ -102,9 +104,9 @@ export const Search = () => {
         <Box
           sx={{
             display: 'flex',
-            flexDirection: { xs: 'column', md: 'row' },
-            gap: '1rem',
-            width: '100%',
+            flexDirection: { xs: 'column', md: 'column' },
+            gap: {md: '2rem', lg: '1rem'},
+            width: {xs: '100%', sm: '100%', md: '80%', lg: '100%'},
             justifyContent: 'center',
             alignItems: 'center',
           }}

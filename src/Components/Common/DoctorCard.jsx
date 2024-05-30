@@ -6,27 +6,9 @@ import { base64ToBlob } from "../../Utils";
 /*import "./DoctorCard.styles.css";*/
 
 export const DoctorCard = ({ doctor }) => {
-  const [imageSrc, setImageSrc] = useState(null);
 
-  useEffect(() => {
-    if (doctor.img) {
-      console.log('Type of doctor.img:', typeof doctor.img);
-      console.log('Is Uint8Array:', doctor.img instanceof Uint8Array);
-      console.log('First 100 characters:', typeof doctor.img === 'string' ? doctor.img.slice(0, 100) : '');
+doctor.urlImg = 'data:image/jpg;base64,' + doctor.img;
 
-      if (doctor.img instanceof Uint8Array) {
-        const blob = new Blob([doctor.img], { type: 'image/jpeg' }); // Ajusta el tipo MIME según tu imagen
-        const objectURL = URL.createObjectURL(blob);
-        setImageSrc(objectURL);
-      } else if (typeof doctor.img === 'string' && doctor.img.startsWith('data:image/')) {
-        const blob = base64ToBlob(doctor.img, 'image/jpeg'); // Ajusta el tipo MIME según tu imagen
-        const objectURL = URL.createObjectURL(blob);
-        setImageSrc(objectURL);
-      } else {
-        setImageSrc(doctor.img);
-      }
-    }
-  }, [doctor]);
 
   return (
     <Card sx={{ 
@@ -37,7 +19,7 @@ export const DoctorCard = ({ doctor }) => {
     <CardMedia
       component="img"
       sx={{ width: { xs: '100%', sm: 250, md: 200 }, height: { xs: 'auto', md: '100%' } }}
-      image={imageSrc || '/images/default-doctor.jpg'}
+      image={doctor.urlImg}
       alt={`Photo of Dr. ${doctor.name} ${doctor.lastname}`}
     />
       <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flexGrow: 1 }}>
