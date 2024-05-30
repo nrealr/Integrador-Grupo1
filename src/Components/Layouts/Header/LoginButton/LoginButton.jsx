@@ -30,6 +30,17 @@ export const LoginButton = () => {
   };
 
   const handleLogin = async (event) => {
+
+    const token = localStorage.getItem("token");
+    let params = null;
+    if (token) {
+        params = {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    }
+
     event.preventDefault();
     if (emailError || passwordError) {
       return;
