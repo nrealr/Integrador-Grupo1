@@ -1,184 +1,199 @@
-import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom';
-import { getDoctorById, getSpecialties } from '../../Services';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { SERVER_API } from "../../Constants";
+import { getDoctorById, getSpecialties } from "../../Services";
 
 export const UpdateProductFunction = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState({
+    name: "",
+    lastname: "",
+    rut: "",
+    img: null,
+    description: "",
+    specialtyId: "",
+  });
 
-    const { id } = useParams();
-    const [doctorToUpdate, setDoctorToUpdate] = useState({});
-    const [specialties, setSpecialties] = useState([])
-    const [selectedSpecialty, setSelectedSpecialty] = useState('')
+  const [base64Image, setBase64Image] = useState("");
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [specialties, setSpecialties] = useState([]);
 
-    const [error, setError] = useState("");
-    const [success, setSuccess] = useState("")
-
-
-  const loadSpecialties = async () =>{
-    const specData = await getSpecialties();
-    setSpecialties(specData);
-  }
-
-  const getData = async ()=>{
-    let doctorsData =  await getDoctorById(id)
-    console.log(doctorsData)
-    setDoctorToUpdate(doctorsData)
-  }
-
-  const showDoctorSpecialty = async (doctor, spec) =>{
-    await setSelectedSpecialty(spec[doctor.specialtyID].name)
-  }
-
-  const mapSpecialties = async (specialties, specId) =>{
-
-    specialties.map((specialty) =>{
-        if(specialty.id == specId){
-            return <option key={specialty.id} value={specialty.id} selected>{specialty.name}</option>
-        }else{
-            return <option key={specialty.id} value={specialty.id}>{specialty.name}</option>
+  useEffect(() => {
+    const fetchSpecialties = async () => {
+      try {
+        const response = await axios.get(`${SERVER_API}/specialties/list`);
+        if (Array.isArray(response.data)) {
+          setSpecialties(response.data);
+        } else {
+          console.error("Specialties response is not an array:", response.data);
+          setSpecialties([]);
         }
-      })
-  }
+      } catch (error) {
+        console.error("Error fetching specialties:", error);
+        setSpecialties([]);
+      }
+    };
+
+    const fetchDoctor = async () => {
+      try {
+        const doctorData = await getDoctorById(id);
+        setProduct({
+          name: doctorData.name,
+          lastname: doctorData.lastname,
+          rut: doctorData.rut,
+          img: null, // Assuming you might need to upload a new image
+          description: doctorData.description,
+          specialtyId: doctorData.specialtyID, // Set the current specialty ID
+        });
+        setBase64Image(doctorData.img); // Assuming the image is in base64 format
+      } catch (error) {
+        console.error("Error fetching doctor data:", error);
+      }
+    };
+
+    fetchSpecialties();
+    fetchDoctor();
+  }, [id]);
 
   const validateForm = (values) => {
     let errors = {};
-  
+
     if (!values.name) {
-      errors.name = 'Name field is mandatory';
+      errors.name = "Name field is mandatory";
     }
-  
+
     if (!values.lastname) {
-      errors.lastname = 'Lastname field is mandatory';
+      errors.lastname = "Lastname field is mandatory";
     }
-  
+
     if (!values.rut) {
-      errors.rut = 'RUT is mandatory';
+      errors.rut = "RUT is mandatory";
     } else if (!/^\d{7,8}-[0-9Kk]$/.test(values.rut)) {
-      errors.rut = 'RUT format not valid';
+      errors.rut = "RUT format not valid";
     }
 
-    if (!values.img) {
-      errors.img = 'Image URL is mandatory';
-    } else if (!isValidURL(values.img)) {
-      errors.img = 'Image URL not valid';
+    if (!values.img && !base64Image) {
+      errors.img = "Image file is mandatory";
+    } else if (values.img && !values.img.name.toLowerCase().endsWith(".jpg")) {
+      errors.img = "Image file must be a .jpg";
     }
-  
+
     if (!values.description) {
-      errors.description = 'Description is mandatory';
+      errors.description = "Description is mandatory";
     }
 
-    if (!values.specialtyID) {
-      errors.description = 'Specialty is mandatory';
+    if (!values.specialtyId) {
+      errors.specialtyId = "Specialty is mandatory";
     }
 
-  
     return errors;
   };
-  
-  const isValidURL = (url) => {
-    return /^(ftp|http|https):\/\/[^ "]+$/.test(url);
-  };
 
-const handleSubmit = async (e) => {
-e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     const validationErrors = validateForm(product);
-    if (Object.keys(validationErrors).length === 0){
+    if (Object.keys(validationErrors).length === 0) {
+      const formData = new FormData();
+      formData.append('name', product.name);
+      formData.append('lastname', product.lastname);
+      formData.append('rut', product.rut);
+      if (product.img) {
+        formData.append('img', product.img);
+      }
+      formData.append('description', product.description);
+      formData.append('specialtyId', product.specialtyId);
+
       try {
-        const response = await addDoctor(product);
+        const response = await axios.put(`${SERVER_API}/doctors/update/${id}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
+
         setProduct({
           name: "",
           lastname: "",
           rut: "",
           img: null,
           description: "",
-          specialtyID: ""
+          specialtyId: "",
         });
         setError("");
-        setSuccess("Doctor added");
+        setSuccess("Doctor updated");
       } catch (error) {
         console.error("Error on sending data:", error);
-        setError("Error adding doctor");
+        setError("Error updating doctor");
       }
     } else {
       setError(validationErrors);
     }
-
-  
-    console.log(product);
   };
 
-  useEffect(() =>{
-    getData()
-    loadSpecialties();    
-    // showDoctorSpecialty(doctorToUpdate, specialties)
-    console.log(doctorToUpdate);
-      
-      }, [id]);
-
-return (
-<div>
-  <form className='add-product-form' onSubmit={handleSubmit}>
-    <label>Name:</label>
-    <input
-      type="text"
-      placeholder={doctorToUpdate.name}
-      value={doctorToUpdate.name}
-      onChange={(e) => setDoctorToUpdate({ ...doctorToUpdate, name: e.target.value })}
-    />
-    <label>Last name:</label>
-    <input
-      type="text"
-      value={doctorToUpdate.lastname}
-      onChange={(e) => setDoctorToUpdate({ ...doctorToUpdate, lastname: e.target.value })}
-    />
-    <label>Rut:</label>
-    <input
-      type="text"
-      value={doctorToUpdate.rut}
-      onChange={(e) => setDoctorToUpdate({ ...doctorToUpdate, rut: e.target.value })}
-    />
-    <label>Image url</label>
-    <input
-      type="text"
-      value={doctorToUpdate.img}
-      onChange={(e) => setDoctorToUpdate({ ...doctorToUpdate, img: e.target.value })}
-    />
-    <label>Description:</label>
-    <input
-      type="text"
-      value={doctorToUpdate.description}
-      onChange={(e) =>
-        setDoctorToUpdate({ ...doctorToUpdate, description: e.target.value })
-      }/>
-      <label>Specialty:</label>
-      <select
-        value={doctorToUpdate.specialtyID}
-        onChange={(e) =>
-            setDoctorToUpdate({ ...doctorToUpdate, specialtyID: e.target.value})} 
+  return (
+    <div>
+      <form className="add-product-form" encType="multipart/form-data" onSubmit={handleSubmit}>
+        <label>Name:</label>
+        <input
+          type="text"
+          value={product.name}
+          onChange={(e) => setProduct({ ...product, name: e.target.value })}
+        />
+        <label>Last name:</label>
+        <input
+          type="text"
+          value={product.lastname}
+          onChange={(e) => setProduct({ ...product, lastname: e.target.value })}
+        />
+        <label>Rut:</label>
+        <input
+          type="text"
+          value={product.rut}
+          onChange={(e) => setProduct({ ...product, rut: e.target.value })}
+        />
+        <label>Image</label>
+        {base64Image && (
+          <div>
+            <img width={100} src={`data:image/jpg;base64,${base64Image}`} alt="Doctor" />
+          </div>
+        )}
+        <input
+          type="file"
+          accept="image/jpg"
+          onChange={(e) => setProduct({ ...product, img: e.target.files[0] })}
+        />
+        <label>Description:</label>
+        <input
+          type="text"
+          value={product.description}
+          onChange={(e) => setProduct({ ...product, description: e.target.value })}
+        />
+        <label>Specialty:</label>
+        <select
+          value={product.specialtyId}
+          onChange={(e) => setProduct({ ...product, specialtyId: e.target.value })}
         >
-          {          
-          specialties.map((specialty) =>{
-            return <option key={specialty.id} value={specialty.id}>{specialty.name} {
-                
-            }</option>
-          })
-          
-          }
-
-
+          <option value="">Select a specialty</option>
+          {specialties.map((specialty) => (
+            <option key={specialty.id} value={specialty.id} >
+              {specialty.name}  
+            </option>   
+          ))}
         </select>
 
+        {error && (
+          <div className="errorMessages">
+            {Object.keys(error).map((key) => (
+              <p key={key}>{error[key]}</p>
+            ))}
+          </div>
+        )}
+        {!error && success}
 
-    {error && 
-      <div className='errorMessages'>
-      {Object.keys(error).map((key) => (
-        <p key={key}>{error[key]}</p>
-      ))}
-    </div>}
-    {!error && success}
-
-    <button type="submit">Submit</button>
-  </form>
-</div>
-)
-}
+        <button type="submit">Update</button>
+      </form>
+    </div>
+  );
+};
