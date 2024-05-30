@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import "./ProfileCard.styles.css"
 
 
 import {
@@ -47,14 +48,14 @@ export const ProfileCard = () => {
   };
 
   return (
-    <Card>
-      <CardContent color="primary">
+    <Card elevation={15}className='s'>
+      <CardContent className='container-account'>
         <Typography variant="h5" component="h2">
-          Complete your personal information
+          Upgrade your personal information
         </Typography>
 
         <form id="form" onSubmit={handleSubmit}>
-          <TextField
+          <TextField 
             label="Name"
             name="name"
             value={formData.name}
@@ -99,12 +100,23 @@ export const ProfileCard = () => {
             id="profile-photo"
             onChange={handlePhotoChange}
           />
-          <label htmlFor="profile-photo">Select photo:</label>
+
+          {/* Code for upload photo is hide, fix it later */}
+          <input className='inputPhoto'
+            type="file" 
+            id="profile-photo" 
+            accept=".jpg, .jpeg, .png" 
+            data-browse="Select file" 
+            data-placeholder="There isn't selected files"></input>
         </form>
       </CardContent>
 
-      <CardActions>
-        <Button type="submit" variant="contained" color="primary" form="form">
+      <CardActions className='btnBox'>
+        <Button 
+          type="submit" 
+          variant="contained" 
+          color="primary" 
+          form="form">
           Save Changes
         </Button>
       </CardActions>

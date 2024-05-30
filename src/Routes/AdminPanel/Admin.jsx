@@ -5,7 +5,9 @@ export const Admin = () => {
   return (
     <div className="admin-welcome">
       <p>Welcome to the Admin Dashboard!</p>
-      <img src="/images/wc-dashboard.jpg" alt="welcome to your dashboard" />
+      <img 
+      src="/images/wc-dashboard.jpg" 
+      alt="welcome to your dashboard" />
     </div>
   );
 };
