@@ -5,15 +5,15 @@ import { Icon } from '@mui/material';
 
 const categories = [
   { id: 1, title: 'Online Consultation', description: 'Descripción de Online Consultation', icon: "/images/Telemedicine.jpg" },
-  { id: 2, title: 'Home Visits', description: 'Descripción de Home Visits', icon: "/images/Fonasa.jpg" },
+  // { id: 2, title: 'Home Visits', description: 'Descripción de Home Visits', icon: "/images/Fonasa.jpg" },
   { id: 3, title: 'Emergency Services', description: 'Descripción de Emergency Services', icon: '/images/Emergency.jpg' },
   { id: 4, title: 'Pediatric Care', description: 'Descripción de Pediatric Care', icon: '/images/Pediatric.jpg' },
   { id: 5, title: 'Geriatric Care', description: 'Descripción de Geriatric Care', icon: '/images/Geriatric.jpg' },
   { id: 6, title: 'Chronic Disease management', description: 'Descripción de Chronic Disease management', icon: '/images/Chronic.jpg' },
   { id: 7, title: 'Mental Health Services', description: 'Descripción de Mental Health Services', icon: '/images/Mental.jpg' },
-  { id: 8, title: 'Rehabilitation Services', description: 'Descripción de Rehabilitation Services', icon: '/images/Rehabilitation.jpg' },
-  { id: 9, title: 'Diagnostic Services', description: 'Descripción de Diagnostic Services', icon: '/images/Diagnostic.jpg' },
-  { id: 10, title: 'Preventive Care', description: 'Descripción de Preventive Care', icon: '/images/Preventive.jpg' },
+  // { id: 8, title: 'Rehabilitation Services', description: 'Descripción de Rehabilitation Services', icon: '/images/Rehabilitation.jpg' },
+  // { id: 9, title: 'Diagnostic Services', description: 'Descripción de Diagnostic Services', icon: '/images/Diagnostic.jpg' },
+  // { id: 10, title: 'Preventive Care', description: 'Descripción de Preventive Care', icon: '/images/Preventive.jpg' },
 ];
 
 
