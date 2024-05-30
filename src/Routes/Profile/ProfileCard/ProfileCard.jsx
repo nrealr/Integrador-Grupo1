@@ -48,7 +48,7 @@ export const ProfileCard = () => {
 
   return (
     <Card>
-      <CardContent>
+      <CardContent color="primary">
         <Typography variant="h5" component="h2">
           Complete your personal information
         </Typography>

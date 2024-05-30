@@ -1,9 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { SERVER_API } from "../../Constants";
-import { addDoctor, getSpecialties, getFeatures } from "../../Services";
+import { getDoctorById, getSpecialties } from "../../Services";
 
-export const AddProductFunction = () => {
+export const UpdateProductFunction = () => {
+  const { id } = useParams();
   const [product, setProduct] = useState({
     name: "",
     lastname: "",
@@ -11,22 +13,21 @@ export const AddProductFunction = () => {
     img: null,
     description: "",
     specialtyId: "",
-    features: []
   });
 
+  const [base64Image, setBase64Image] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const [specialties, setSpecialties] = useState([]);
-  const [features, setFeatures] = useState([]);
 
   useEffect(() => {
     const fetchSpecialties = async () => {
       try {
-        const responseSpecialties = await axios.get(`${SERVER_API}/specialties/list`);
-        if (Array.isArray(responseSpecialties.data)) {
-          setSpecialties(responseSpecialties.data);
+        const response = await axios.get(`${SERVER_API}/specialties/list`);
+        if (Array.isArray(response.data)) {
+          setSpecialties(response.data);
         } else {
-          console.error("Specialties response is not an array:", responseSpecialties.data);
+          console.error("Specialties response is not an array:", response.data);
           setSpecialties([]);
         }
       } catch (error) {
@@ -35,19 +36,26 @@ export const AddProductFunction = () => {
       }
     };
 
-    const fetchFeatures = async () => {
+    const fetchDoctor = async () => {
       try {
-        const responseFeatures = await getFeatures();
-        setFeatures(responseFeatures);
+        const doctorData = await getDoctorById(id);
+        setProduct({
+          name: doctorData.name,
+          lastname: doctorData.lastname,
+          rut: doctorData.rut,
+          img: null, // Assuming you might need to upload a new image
+          description: doctorData.description,
+          specialtyId: doctorData.specialtyID, // Set the current specialty ID
+        });
+        setBase64Image(doctorData.img); // Assuming the image is in base64 format
       } catch (error) {
-        console.error("Error fetching features:", error);
-        setFeatures([]);
+        console.error("Error fetching doctor data:", error);
       }
     };
 
     fetchSpecialties();
-    fetchFeatures();
-  }, []);
+    fetchDoctor();
+  }, [id]);
 
   const validateForm = (values) => {
     let errors = {};
@@ -66,9 +74,9 @@ export const AddProductFunction = () => {
       errors.rut = "RUT format not valid";
     }
 
-    if (!values.img) {
+    if (!values.img && !base64Image) {
       errors.img = "Image file is mandatory";
-    } else if (!values.img.name.toLowerCase().endsWith(".jpg")) {
+    } else if (values.img && !values.img.name.toLowerCase().endsWith(".jpg")) {
       errors.img = "Image file must be a .jpg";
     }
 
@@ -83,17 +91,6 @@ export const AddProductFunction = () => {
     return errors;
   };
 
-  const handleFeatureChange = (featureId) => {
-    const index = product.features.indexOf(featureId);
-    if (index === -1) {
-      setProduct({ ...product, features: [...product.features, featureId] });
-    } else {
-      const updatedFeatures = [...product.features];
-      updatedFeatures.splice(index, 1);
-      setProduct({ ...product, features: updatedFeatures });
-    }
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -103,19 +100,18 @@ export const AddProductFunction = () => {
       formData.append('name', product.name);
       formData.append('lastname', product.lastname);
       formData.append('rut', product.rut);
-      formData.append('img', product.img);
+      if (product.img) {
+        formData.append('img', product.img);
+      }
       formData.append('description', product.description);
       formData.append('specialtyId', product.specialtyId);
 
-      // Add features to formData as a JSON string
-      formData.append('featureIds', JSON.stringify(product.features));
-
       try {
-<<<<<<< HEAD
-        await addDoctor(formData);
-=======
-        const response = await addDoctor(formData);
->>>>>>> develop
+        const response = await axios.put(`${SERVER_API}/doctors/update/${id}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        });
 
         setProduct({
           name: "",
@@ -124,13 +120,12 @@ export const AddProductFunction = () => {
           img: null,
           description: "",
           specialtyId: "",
-          features: [] // Reset features after submission
         });
         setError("");
-        setSuccess("Doctor added");
+        setSuccess("Doctor updated");
       } catch (error) {
         console.error("Error on sending data:", error);
-        setError("Error adding doctor");
+        setError("Error updating doctor");
       }
     } else {
       setError(validationErrors);
@@ -159,6 +154,11 @@ export const AddProductFunction = () => {
           onChange={(e) => setProduct({ ...product, rut: e.target.value })}
         />
         <label>Image</label>
+        {base64Image && (
+          <div>
+            <img width={100} src={`data:image/jpg;base64,${base64Image}`} alt="Doctor" />
+          </div>
+        )}
         <input
           type="file"
           accept="image/jpg"
@@ -177,27 +177,11 @@ export const AddProductFunction = () => {
         >
           <option value="">Select a specialty</option>
           {specialties.map((specialty) => (
-            <option key={specialty.id} value={specialty.id}>
-              {specialty.name}
-            </option>
+            <option key={specialty.id} value={specialty.id} >
+              {specialty.name}  
+            </option>   
           ))}
         </select>
-
-        <label>Features:</label>
-        {features.map((feature) => (
-          <div key={feature.id}>
-            <input
-              type="checkbox"
-              id={feature.id}
-              value={feature.id}
-              checked={product.features.includes(feature.id)}
-              onChange={() => handleFeatureChange(feature.id)}
-            />
-            <label htmlFor={feature.id}>
-              {feature.name} 
-            </label>
-          </div>
-        ))}
 
         {error && (
           <div className="errorMessages">
@@ -208,7 +192,7 @@ export const AddProductFunction = () => {
         )}
         {!error && success}
 
-        <button type="submit">Submit</button>
+        <button type="submit">Update</button>
       </form>
     </div>
   );
