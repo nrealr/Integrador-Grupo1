@@ -12,5 +12,6 @@ export const ROUTES = {
     PASSWORD: "/profile/password",
     SPECIALTIES: "/admin/specialties",
     FEATURESADD: "/admin/features/add",
-    SPECIALTIESADD: "/admin/specialties/add"
+    SPECIALTIESADD: "/admin/specialties/add",
+    DOCTORSUPDATE: "/admin/doctors/update/:id"
 };

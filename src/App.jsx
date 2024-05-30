@@ -22,6 +22,10 @@ import { AdminSpecialties } from "./Routes/AdminSpecialties";
 import { AddFeature } from "./Routes/AddFeature";
 import { AddSpecialty } from "./Routes/AddSpecialty";
 import { Logout } from "@mui/icons-material";
+import { UpdateProduct}  from './Routes/UpdateProduct';
+
+
+
 
 /**
  *
@@ -56,7 +60,9 @@ function App() {
                   element={<AddSpecialty />}
                 />
                 <Route path={ROUTES.LOGOUT} element={<handleLogout />} />
-              </Route>
+                <Route path={ROUTES.DOCTORSUPDATE} element={<UpdateProduct/>} />
+
+          </Route>
             </Route>
           </Routes>
         </ContextProvider>
