@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./Header.styles.css";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../Constants";
@@ -16,6 +16,11 @@ export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [open, setOpen] = useState(false);
   const theme = useTheme();
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
+
+  useEffect(() => {
+    setIsLoggedIn(!!localStorage.getItem("token"));
+  }, []);
 
   const darkModeClass = isDarkMode ? "layout-dark" : "layout";
 
@@ -25,6 +30,13 @@ export const Header = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("role");
+    setIsLoggedIn(false);
+    window.location.href = "/";
   };
 
   return (
@@ -45,34 +57,41 @@ export const Header = () => {
         </Box>
 
         <div className="header-buttons">
-          <Link to={ROUTES.ADDUSER}>
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={handleClickOpen}
-              sx={{
-                color: "white",
-              }}
-            >
-              Create Account
-            </Button>
-          </Link>
-
-          <LoginButton />
-
-          <Link to={ROUTES.ADMIN}>
-            {/* <AdminPanelSettingsIcon/> */}
-            <BackgroundLetterAvatars />
-          </Link>
+          {!isLoggedIn ? (
+            <>
+              <Link to={ROUTES.ADDUSER}>
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleClickOpen}
+                  sx={{
+                    color: "white",
+                  }}
+                >
+                  Create Account
+                </Button>
+              </Link>
+              <LoginButton setIsLoggedIn={setIsLoggedIn} />
+            </>
+          ) : (
+            <>
+              <Button
+                variant="contained"
+                color="secondary"
+                onClick={handleLogout}
+                sx={{
+                  color: "white",
+                }}
+              >
+                Log Out
+              </Button>
+              <Link to={ROUTES.PROFILE}>
+                <BackgroundLetterAvatars />
+              </Link>
+            </>
+          )}
         </div>
       </Toolbar>
-
-      {/* <img className='icon-theme' 
-              onClick={()=> dispatch({type: "CHANGUE_MODE"})}
-              src="/images/ico-color-theme.png" 
-              alt="Changue mode (dark/light)" 
-      />  */}
-      {/*<img src="/images/ico-logo-fullcolor.png" alt="Application Logo" className="logo-image"/>*/}
     </AppBar>
   );
 };
