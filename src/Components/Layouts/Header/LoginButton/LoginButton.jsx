@@ -116,7 +116,6 @@ export const LoginButton = () => {
                   <MenuItem
                     onClick={handleLogin}
                     component={Link}
-                    to={ROUTES.PROFILE}
                   >
                     Sign In
                   </MenuItem>
