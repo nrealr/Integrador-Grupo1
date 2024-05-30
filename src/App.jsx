@@ -16,6 +16,7 @@ import { AdminFeatures } from './Routes/AdminFeatures';
 import { AdminSpecialties } from './Routes/AdminSpecialties';
 import { AddFeature } from './Routes/AddFeature';
 import { AddSpecialty } from './Routes/AddSpecialty';
+import { UpdateProduct}  from './Routes/UpdateProduct';
 
 
 
@@ -51,6 +52,8 @@ function App() {
             <Route path={ROUTES.FEATURESADD} element={<AddFeature/>} />
             <Route path={ROUTES.SPECIALTIES} element={<AdminSpecialties/>} />
             <Route path={ROUTES.SPECIALTIESADD} element={<AddSpecialty/>} />
+            <Route path={ROUTES.DOCTORSUPDATE} element={<UpdateProduct/>} />
+
           </Route>
 
         </Route>

@@ -72,7 +72,9 @@ export const AdminDoctors = () => {
           <p>{doctor.lastname}</p>
           <p>{doctor.rut}</p>
           <p>Doctor</p>
-          <p className="admin-edit-button">🖊</p>
+          <Link id = {doctor.id} to={`/admin/doctors/update/${doctor.id}`}>
+            <p className="admin-edit-button">🖊</p>
+            </Link>
           <DeleteProductFunction doctor = {doctor} onDelete={() => handleDeleteDoctor(doctor.id)}/>
         </div>
 
