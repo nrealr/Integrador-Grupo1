@@ -1,74 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  CardActions,
-  Typography,
-  Button,
-  Box,
-} from "@mui/material";
-import { base64ToBlob } from "../../Utils";
+import { Card, CardMedia, CardContent, CardActions, Typography, Button, Box } from "@mui/material";
+
 /*import "./DoctorCard.styles.css";*/
 
 export const DoctorCard = ({ doctor }) => {
-  const [imageSrc, setImageSrc] = useState(null);
 
-  debugger;
-  useEffect(() => {
-    if (doctor.img) {
-      console.log("Type of doctor.img:", typeof doctor.img);
-      console.log("Is Uint8Array:", doctor.img instanceof Uint8Array);
-      console.log(
-        "First 100 characters:",
-        typeof doctor.img === "string" ? doctor.img.slice(0, 100) : ""
-      );
+doctor.urlImg = 'data:image/jpg;base64,' + doctor.img;
 
-      if (doctor.img instanceof Uint8Array) {
-        const blob = new Blob([doctor.img], { type: "image/jpeg" }); // Ajusta el tipo MIME según tu imagen
-        const objectURL = URL.createObjectURL(blob);
-        setImageSrc(objectURL);
-      } else if (
-        typeof doctor.img === "string" &&
-        doctor.img.startsWith("data:image/")
-      ) {
-        const blob = base64ToBlob(doctor.img, "image/jpeg"); // Ajusta el tipo MIME según tu imagen
-        const objectURL = URL.createObjectURL(blob);
-        setImageSrc(objectURL);
-      } else {
-        setImageSrc(doctor.img);
-      }
-    }
-  }, [doctor]);
 
   return (
-    <Card
-      sx={{
-        display: "flex",
-        flexDirection: { xs: "column", md: "row" },
-        margin: "1rem",
-        boxShadow: 3,
-      }}
-    >
-      <CardMedia
-        component="img"
-        sx={{
-          width: { xs: "100%", sm: 250, md: 200 },
-          height: { xs: "auto", md: "100%" },
-        }}
-        image={imageSrc || "/images/default-doctor.jpg"}
-        alt={`Photo of Dr. ${doctor.name} ${doctor.lastname}`}
-      />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
-          flexGrow: 1,
-        }}
-      >
+    <Card sx={{ 
+      display: 'flex', 
+      flexDirection: { xs: 'column', md: 'row' }, 
+      margin: '1rem', 
+      boxShadow: 3 }}>
+    <CardMedia
+      component="img"
+      sx={{ width: { xs: '100%', sm: 250, md: 200 }, height: { xs: 'auto', md: '100%' } }}
+      image={doctor.urlImg}
+      alt={`Photo of Dr. ${doctor.name} ${doctor.lastname}`}
+    />
+      <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', flexGrow: 1 }}>
         <CardContent>
           <Typography variant="h6" component="div">
             Dr. {doctor.name} {doctor.lastname}
