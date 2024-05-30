@@ -1,6 +1,6 @@
 import { useState } from "react";
 import "./Header.styles.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Importa useNavigate
 import { ROUTES } from "../../../Constants";
 import { AppBar, Toolbar, useTheme, Box, Button } from "@mui/material";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
@@ -16,6 +16,7 @@ export const Header = () => {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [open, setOpen] = useState(false);
   const theme = useTheme();
+  const navigate = useNavigate(); // Hook para la redirección
 
   const darkModeClass = isDarkMode ? "layout-dark" : "layout";
 
@@ -25,6 +26,14 @@ export const Header = () => {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  // Función de cerrar sesión
+  const handleLogout = () => {
+    // Aquí puedes agregar la lógica de cerrar sesión, como limpiar el estado del usuario, tokens, etc.
+    console.log("Cerrando sesión...");
+    // Redirigir al usuario a la página de inicio de sesión
+    navigate(ROUTES.LOGIN);
   };
 
   return (
@@ -61,18 +70,23 @@ export const Header = () => {
           <LoginButton />
 
           <Link to={ROUTES.ADMIN}>
-            {/* <AdminPanelSettingsIcon/> */}
             <BackgroundLetterAvatars />
           </Link>
+
+          {/* Botón de cerrar sesión */}
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleLogout}
+            sx={{
+              color: "white",
+              marginLeft: 2,
+            }}
+          >
+            Cerrar Sesión
+          </Button>
         </div>
       </Toolbar>
-
-      {/* <img className='icon-theme' 
-              onClick={()=> dispatch({type: "CHANGUE_MODE"})}
-              src="/images/ico-color-theme.png" 
-              alt="Changue mode (dark/light)" 
-      />  */}
-      {/*<img src="/images/ico-logo-fullcolor.png" alt="Application Logo" className="logo-image"/>*/}
     </AppBar>
   );
 };
