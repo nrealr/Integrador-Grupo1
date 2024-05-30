@@ -14,6 +14,11 @@ export const Detail = () => {
 
     const getData = async ()=>{
       let doctorsData =  await getDoctorById(id)
+
+      if (doctorsData.img) {
+        doctorsData.urlImg = 'data:image/jpg;base64,' + doctorsData.img;
+      }
+
       console.log(doctorsData)
       setDoctorSelected(doctorsData)
     }
@@ -35,7 +40,7 @@ export const Detail = () => {
       </div>
       <div className="detailBody">
         <div>
-        <img src={doctorSelected.img} alt="Foto del doctor" />
+        <img src={doctorSelected.urlImg} alt="Foto del doctor" />
         </div>
         <div className="detailBodyRight">
         <div>
