@@ -6,7 +6,7 @@ import { Container} from '@mui/material';
 export const Categories = () => (
     <Container>
 
-            <CategoriesList />
+           <CategoriesList/>
 
     </Container>
 

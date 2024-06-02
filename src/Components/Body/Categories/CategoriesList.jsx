@@ -1,24 +1,23 @@
 import React from 'react';
-import {CategoryButton} from './CategoryButton';
 import { categories } from '../../../Constants';
 import { Box, Grid, Button } from '@mui/material';
 import './CategoriesList.styles.css';
+import { SpecialityCard } from './SpecialityCard';
+
+
 
 export const CategoriesList = () => (
-  <Box>
+
+  <Box >
+
     <Grid container spacing={2}>
       {categories.map((category, index) => (
-        <Grid item xs={12} sm={6} md={12} key={index}>
-          <Button variant="outlined" fullWidth onClick={() => console.log(`Clicked on ${category}`)}>
-            {category}
-          </Button>
+        <Grid item key={index}>
+          <SpecialityCard category={category} />
         </Grid>
       ))}
     </Grid>
+
   </Box>
-  /*<div className="categories-list">
-    {categories.map((category, index) => (
-      <CategoryButton key={index} name={category} />
-    ))}
-  </div>*/
+
 );

@@ -1,6 +1,4 @@
-
-
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
@@ -18,28 +16,27 @@ const labels = {
   5: 'Excellent+',
 };
 
+export const RatingBox = () => {
+  const [value, setValue] = React.useState(3.5);
 
-export const RatingBox =()=>{
-
-    const value = 3.5;
-
-    return (
-      <Box
-        sx={{
-          width: 200,
-          display: 'flex',
-          alignItems: 'center',
+  return (
+    <Box
+      sx={{
+        width: 200,
+        display: 'flex',
+        alignItems: 'center',
+      }}
+    >
+      <Rating
+        name="text-feedback"
+        value={value}
+        precision={0.5}
+        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+        onChange={(event, newValue) => {
+          setValue(newValue);
         }}
-      >
-        <Rating
-          name="text-feedback"
-          value={value}
-          readOnly
-          precision={0.5}
-          emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
-        />
-        <Box sx={{ ml: 2 }}>{labels[value]}</Box>
-      </Box>
-    );
-    
-}
+      />
+      {/* <Box sx={{ ml: 2 }}>{labels[value]}</Box> */}
+    </Box>
+  );
+};
