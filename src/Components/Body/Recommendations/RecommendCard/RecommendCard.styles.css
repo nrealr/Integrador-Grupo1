@@ -1,0 +1,15 @@
+.recommend-card{
+    /* border: 1px solid black; */
+    text-align: center;
+    
+}
+
+.recommend-card img{   
+   width: 100%;
+   object-fit: contain;
+   background-color: whitesmoke;
+}
+
+.recommend-card .cardAction-box{
+    background-color: rgb(94 131 149)
+}

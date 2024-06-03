@@ -28,5 +28,15 @@
       "status": 200,
       "file": "doctors.json"
     }
+  },
+  {
+    "request": {
+      "method": "GET",
+      "url": "/specialties/list"
+    },
+    "response": {
+      "status": 200,
+      "file": "specialities.json"
+    }
   }
 ]

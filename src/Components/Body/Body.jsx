@@ -8,7 +8,7 @@ import { SpecialityList } from './Specialities';
 
 /**
  * 
- * @returns Body with three sections, search, categories and recommendations
+ * @returns Body with three sections, search, specialities and recommendations
  */
 export const Body = () => (
   <div className="body">
