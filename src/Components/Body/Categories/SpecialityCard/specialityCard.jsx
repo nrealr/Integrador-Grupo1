@@ -26,14 +26,7 @@ export const SpecialityCard = ({ category }) => {
             </CardContent>
 
             <CardActions className='cardAction-box'>
-                <Button className='shareInfo'
-                    size="small"
-                    startIcon=
-                    {<ShareIcon fontSize="small" color='primary' />}
-                    alt="shareInformation">
-                    Share
-                </Button>
-                {/* <ShareButton/> */}
+                <ShareButton />
                 <RatingBox />
             </CardActions>
 

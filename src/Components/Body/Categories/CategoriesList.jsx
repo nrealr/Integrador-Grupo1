@@ -7,7 +7,7 @@ import { SpecialityCard } from './SpecialityCard';
 
 
 export const CategoriesList = () => (
-
+<Container>
   <Box>
 
     <Grid container spacing={2}>
@@ -19,5 +19,6 @@ export const CategoriesList = () => (
     </Grid>
 
   </Box>
+  </Container>
 
 );

@@ -4,12 +4,16 @@ import './ShareButton.styles.css'
 
 export const ShareButton = () => {
 
-    <Button className='shareInfo'
-        size="small"
-        startIcon=
-        {<ShareIcon fontSize="small" color='primary' />}
-        alt="shareInformation">
-        Sharemeeee
-    </Button>
+    return (
+
+        <Button className='shareInfo'
+            size="small"
+            startIcon=
+            {<ShareIcon fontSize="small" color='primary' />}
+            alt="shareInformation">
+            Share
+        </Button>
+
+    )
 
 }
