@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import StarIcon from '@mui/icons-material/Star';
+import './RatingBox.styles.css';
 
 const labels = {
   0.5: 'Useless',
@@ -20,13 +21,7 @@ export const RatingBox = () => {
   const [value, setValue] = React.useState(3.5);
 
   return (
-    <Box
-      sx={{
-        width: 200,
-        display: 'flex',
-        alignItems: 'center',
-      }}
-    >
+    <Box className="RatingBox">
       <Rating
         name="text-feedback"
         value={value}

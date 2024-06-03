@@ -2,3 +2,9 @@
     background-color: red;
     border: 1px solid black;
 }
+
+.speciality-card img{
+   width: 100%;
+   object-fit: contain;
+   background-color: whitesmoke;
+}
