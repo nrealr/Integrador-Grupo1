@@ -1,4 +1,4 @@
-// export const categories = [
+// export const specialties = [
 //     'Internal Medicine',
 //     'Dermatology',
 //     'Obstetrics and Gynecology',
@@ -9,7 +9,7 @@
 //     'Orthopedics'
 //   ];
 
-  export const categories = [
+  export const specialties = [
 
     (1, 'Internal Medicine', 'Description of Internal Medicine'),
   

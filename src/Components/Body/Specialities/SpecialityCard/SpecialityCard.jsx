@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
 import './SpecialityCard.styles.css'
 import { RatingBox, ShareButton } from '../../../../Utils';
-import ShareIcon from '@mui/icons-material/Share';
 
 
 export const SpecialityCard = ({ category }) => {

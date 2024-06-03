@@ -3,7 +3,7 @@ import { Grid, Card, CardContent, Typography, CardMedia } from '@mui/material';
 import axios from 'axios';
 import { Icon } from '@mui/material';
 
-const categories = [
+const specialties = [
   { id: 1, title: 'Online Consultation', description: 'Descripción de Online Consultation', icon: "/images/Telemedicine.jpg" },
   // { id: 2, title: 'Home Visits', description: 'Descripción de Home Visits', icon: "/images/Fonasa.jpg" },
   { id: 3, title: 'Emergency Services', description: 'Descripción de Emergency Services', icon: '/images/Emergency.jpg' },
@@ -18,14 +18,14 @@ const categories = [
 
 
 /**
-@returns{React.Component} this function is a call of categories card. Get an object with data and put in a grid different cards with a title, 
+@returns{React.Component} this function is a call of specialties card. Get an object with data and put in a grid different cards with a title, 
 description and a icon  */
 
 export const CategoriesCard = () => {
-  const [cards, setCards] = React.useState(categories);
+  const [cards, setCards] = React.useState(specialties);
 
   React.useEffect(() => {
-    axios.get('https://api.example.com/categories')
+    axios.get('https://api.example.com/specialties')
       .then(response => {
         setCards(response.data);
       })
