@@ -8,10 +8,10 @@ import { SpecialityCard } from './SpecialityCard';
 
 export const CategoriesList = () => (
 
-  <Box >
+  <Box>
 
     <Grid container spacing={2}>
-      {categories.map((category, index) => (
+      {categories.map((index, category, description) => (
         <Grid item key={index}>
           <SpecialityCard category={category} />
         </Grid>

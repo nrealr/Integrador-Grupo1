@@ -63,10 +63,9 @@ export const Recommendations = () => {
             lineHeight: 1.2,
             color: 'primary.main'
           }}>
-          Discover Why Our Patients <br />
-          Love Them! <br />
-          Read Reviews and Ratings from Happy Clients <br />
-          Who've Booked Appointments.
+
+          Read Reviews and Ratings from Happy Clients
+
         </Typography>
       </Box>
 

@@ -26,7 +26,7 @@ export const RatingBox = () => {
         name="text-feedback"
         value={value}
         precision={0.5}
-        emptyIcon={<StarIcon style={{ opacity: 0.55 }} fontSize="inherit" />}
+        emptyIcon={<StarIcon style={{ opacity: 10 }} fontSize="inherit" />}
         onChange={(event, newValue) => {
           setValue(newValue);
         }}

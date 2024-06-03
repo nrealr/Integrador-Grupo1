@@ -1,10 +1,15 @@
 .speciality-card{
-    background-color: red;
-    border: 1px solid black;
+    /* border: 1px solid black; */
+    text-align: center;
+    
 }
 
-.speciality-card img{
+.speciality-card img{   
    width: 100%;
    object-fit: contain;
    background-color: whitesmoke;
+}
+
+.speciality-card .cardAction-box{
+    background-color: rgb(94 131 149)
 }

@@ -7,24 +7,25 @@ import ShareIcon from '@mui/icons-material/Share';
 
 export const SpecialityCard = ({ category }) => {
     return (
-        <Card className='speciality-card' sx={{ maxWidth: 345 }}>
+        <Card className='speciality-card' sx={{ maxWidth: 345 }} elevation={10}>
             <CardMedia
                 component="img"
                 alt={category.name}
                 height="140"
                 image="\public\images\specialitysCard.png"
             />
+
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
                     Speciality name - {category.name}
                 </Typography>
+
                 <Typography variant="body2" color="text.secondary">
                     Speciality description - {category.description}
                 </Typography>
             </CardContent>
-            <CardActions>
 
-
+            <CardActions className='cardAction-box'>
                 <Button className='shareInfo'
                     size="small"
                     startIcon=
@@ -33,9 +34,9 @@ export const SpecialityCard = ({ category }) => {
                     Share
                 </Button>
                 {/* <ShareButton/> */}
-
                 <RatingBox />
             </CardActions>
+
         </Card>
     );
 };
