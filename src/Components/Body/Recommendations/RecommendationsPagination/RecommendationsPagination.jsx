@@ -1,5 +1,4 @@
 import React from 'react';
-/*import './RecommendationsPagination.styles.css';*/
 import { Box, Pagination } from '@mui/material';
 
 export const RecommendationsPagination = ({ doctorsPerPage, totalDoctors, paginate, currentPage }) => {

@@ -6,14 +6,17 @@ import { ROUTES } from '../../../../Constants';
 
 
 export const RecommendCard = ({ doctor }) => {
+
+    doctor.urlImg = 'data:image/jpg;base64,' + doctor.img;
+
     return (
         <Card className='recommend-card' sx={{ maxWidth: 345 }} elevation={10}>
             <CardMedia
                 component="img"
                 alt={`Photo of Dr. ${doctor.name} ${doctor.lastname}`}
                 height="140"
-                image="\images\AvatarRandomDoctor.png"
                 // image={doctor.urlImg}
+                image="\images\AvatarRandomDoctor.png"
             />
 
             <CardContent>

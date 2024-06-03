@@ -1,5 +1,4 @@
 export * from './Body'
-export * from './Common'
 export * from './AddProductFunction'
 export * from './DeleteProductFunction'
 export * from './UpdateProductFunction'

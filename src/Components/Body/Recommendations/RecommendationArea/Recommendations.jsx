@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useMemo } from "react";
-import { getDoctors } from "../../../Services";
+import { getDoctors } from "../../../../Services";
 import './Recommendations.styles.css'
 import { Container, Grid, Typography, Box, CircularProgress } from "@mui/material";
-import { RecommendationsPagination } from "./RecommendationsPagination";
-import { RecommendCard } from "./RecommendCard";
+import { RecommendCard } from "../RecommendCard";
+import { RecommendationsPagination } from "../RecommendationsPagination";
 
 
 
@@ -72,7 +72,7 @@ export const Recommendations = () => {
   }
 
   return (
-    <Container 
+    <Container className="recommendations-container" 
       maxWidth="lg"
       sx={{ 
         padding: { xs: '0 1rem', sm: '0 2rem', md: '0' }, 
