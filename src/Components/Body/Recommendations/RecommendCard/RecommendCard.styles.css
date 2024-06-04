@@ -8,6 +8,7 @@
    width: 100%;
    object-fit: contain;
    background-color: whitesmoke;
+   padding: 15px;
 }
 
 .recommend-card .cardAction-box{
