@@ -1,12 +1,11 @@
-.shareInfo {
+
+.shareInfo > * {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px 20px;
-    background-color: green;
+    flex: 1;
+    color: whitesmoke;
   }
   
-  .shareInfo > * {
-    flex: 1;
-    color: white;
-  }
+ 

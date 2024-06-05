@@ -22,27 +22,33 @@ export const ShareButton = () => {
 
       sx={{
         display: 'flex',
-        alignItems: 'center',
+        alignItems: 'right',
         justifyContent: 'space-between',
-        padding: '8px 16px',
-        borderRadius: '8px',
-        backgroundColor: '#f7f7f7', // Fondo gris claro
+        padding: '0px 5px',
+        borderRadius: '5px',
+        backgroundColor: '#B9E2E1',
         cursor: 'pointer',
+        height: '30px',
+        width: '140px',
+        marginRight: 'auto',
       }}>
       <Button className='shareInfo'
         size="small"
         startIcon={<ShareIcon fontSize="small" color='primary' />}
-        alt="shareInformation">
-          </Button>
-        <WhatsappShareButton url={url} title={title}>
-          <WhatsAppIcon />
-        </WhatsappShareButton>
-        <FacebookShareButton url={url} title={title}>
-          <FacebookIcon />
-        </FacebookShareButton>
-        <LinkedinShareButton url={url} title={title}>
-          <LinkedInIcon />
-        </LinkedinShareButton>
-      </Box>
+        alt="shareInformation"
+        sx={{ minWidth: 20 }}
+        disabled
+      >
+      </Button>
+      <WhatsappShareButton url={url} title={title}>
+        <WhatsAppIcon />
+      </WhatsappShareButton>
+      <FacebookShareButton url={url} title={title}>
+        <FacebookIcon />
+      </FacebookShareButton>
+      <LinkedinShareButton url={url} title={title}>
+        <LinkedInIcon />
+      </LinkedinShareButton>
+    </Box>
   )
 };

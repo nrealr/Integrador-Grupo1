@@ -1,7 +1,7 @@
-import { Admin } from '../../Routes';
+import { Admin } from '../../../Routes';
 import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import { AdminDashboard } from './AdminDashboard/AdminDashboard';
+import { AdminDashboard } from '../AdminDashboard/AdminDashboard';
 import './AdminLayout.styles.css';
 
 export const AdminLayout = () => {

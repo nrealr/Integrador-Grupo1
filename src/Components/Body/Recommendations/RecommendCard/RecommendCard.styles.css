@@ -17,5 +17,11 @@
 }
 
 .recommend-card .cardAction-box {
-    background-color: rgb(12 46 89)
+    background-color: rgb(12 46 89);
+    border-radius: 5px;
+
+}
+
+.icn-view-more{
+    margin-left: 0;
 }
