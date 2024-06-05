@@ -68,7 +68,9 @@ export const AdminSpecialties = () => {
           <p>{specialty.id}</p>
           <p>{specialty.name}</p>
           <p>{specialty.description}</p>
-          <p className="admin-edit-button">🖊</p>
+          <Link id = {specialty.id} to={`/admin/specialty/update/${specialty.id}`}>
+            <p className="admin-edit-button">🖊</p>
+            </Link>
           <DeleteProductFunction specialty = {specialty} onDelete={() => handleDeleteSpecialty(specialty.id)}/>
         </div>
 

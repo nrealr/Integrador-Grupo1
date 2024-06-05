@@ -23,6 +23,7 @@ import { AddFeature } from "./Routes/AddFeature";
 import { AddSpecialty } from "./Routes/AddSpecialty";
 import { UpdateProduct}  from './Routes/UpdateProduct';
 import { UpdateFeature } from "./Routes/UpdateFeature";
+import { UpdateSpecialty } from "./Routes/UpdateSpecialty";
 
 
 
@@ -60,6 +61,10 @@ function App() {
                 <Route
                   path={ROUTES.SPECIALTIESADD}
                   element={<AddSpecialty />}
+                />
+                <Route
+                  path={ROUTES.SPECIALTIESUPDATE}
+                  element={<UpdateSpecialty/>}
                 />
                 <Route path={ROUTES.LOGOUT} element={<handleLogout />} />
                 <Route path={ROUTES.DOCTORSUPDATE} element={<UpdateProduct/>} />

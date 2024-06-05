@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Detail.style.css";
 import { getDoctorById, getSpecialtyById } from "../../Services";
 import { Link, useParams } from "react-router-dom";
-import { DoctorFeaturesCard } from "./CategoriesCard";
+import { CategoriesCard } from "./CategoriesCard";
 
 export const Detail = () => {
   const { id } = useParams();
@@ -52,7 +52,7 @@ export const Detail = () => {
       <div style={{textAlign: "center"}}>
         <h1 style={{fontSize: "2rem"}}>Features</h1>
       </div>
-      <CategoriesCard />
+      <CategoriesCard doctorId={doctorSelected.id}/>
     </section>
   );
 };
