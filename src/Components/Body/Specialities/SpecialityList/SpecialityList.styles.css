@@ -7,3 +7,7 @@
     gap: 1rem;
 }
 
+.title{
+    background-color: brown;
+    justify-content: center;
+}

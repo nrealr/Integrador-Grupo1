@@ -7,10 +7,11 @@
 .recommend-card img{   
    width: 100%;
    object-fit: contain;
-   background-color: whitesmoke;
+   background-color: rgb(189, 32, 32);
    padding: 15px;
+   background-image: url(/public/images/bg-recommendationCard.jpg);
 }
 
 .recommend-card .cardAction-box{
-    background-color: rgb(94 131 149)
+    background-color: rgb(12 46 89)
 }
