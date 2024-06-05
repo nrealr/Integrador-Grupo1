@@ -110,27 +110,42 @@ export const Recommendations = () => {
 
   if (loading) {
     return <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
-            <CircularProgress />
-          </Box>;
+      <CircularProgress />
+    </Box>;
   }
 
   return (
-    <Container className="recommendations-container" 
-      maxWidth="lg"
-      sx={{ 
-        padding: { xs: '0 1rem', sm: '0 2rem', md: '0' }, 
-        maxWidth: { xs: '100%', md: 'lg' } 
-    }} >
-      {/*... */}
-      <Grid container spacing={4} className="grid-container">
-        {currentDoctors.map((doctor) => (
-          <Grid item xs={12} sm={6} md={4} lg={3} key={doctor.id}>
-            <RecommendCard doctor={doctor} />
-          </Grid>
-        ))}
-      </Grid>
 
-      <Box sx={{ display: 'flex', justifyContent: 'center', marginTop: '2rem' }}>
+    <Container className="recommendations-container"
+      maxWidth="lg"
+      sx={{
+        padding: { xs: '0 1rem', sm: '0 2rem', md: '0' },
+        maxWidth: { xs: '100%', md: 'lg' }
+      }} >
+
+
+      <Box className="flex-container" sx={{ 
+        display: 'flex', 
+        flexWrap: 'wrap', 
+        justifyContent: 'center',
+        gap: '2rem' }}>
+        {currentDoctors.map((doctor) => (
+          <Box className="flex-item" key={doctor.id} sx={{ 
+            flexBasis: '40%', 
+            margin: '1rem',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center' }}>
+            <RecommendCard doctor={doctor} />
+          </Box>
+        ))}
+      </Box>
+
+
+      <Box sx={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        marginTop: '2rem' }}>
         <RecommendationsPagination
           doctorsPerPage={doctorsPerPage}
           totalDoctors={doctors.length}
@@ -139,6 +154,8 @@ export const Recommendations = () => {
         />
       </Box>
 
+
     </Container>
   );
 };
+

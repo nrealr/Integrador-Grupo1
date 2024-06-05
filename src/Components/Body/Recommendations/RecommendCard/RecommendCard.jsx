@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
 import './RecommendCard.styles.css'
-import { RatingBox, ShareButton } from '../../../../Utils';
+import { RatingBox, ShareButton, capitalizeFirstLetter } from '../../../../Utils';
 import { ROUTES } from '../../../../Constants';
 
 
@@ -21,7 +21,7 @@ export const RecommendCard = ({ doctor }) => {
 
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div">
-                    Dr. {doctor.name} {doctor.lastname}
+                Dr. {capitalizeFirstLetter(doctor.name)} {capitalizeFirstLetter(doctor.lastname)}
                 </Typography>
 
                 <Typography variant="body2" color="text.secondary">
@@ -43,3 +43,5 @@ export const RecommendCard = ({ doctor }) => {
         </Card>
     );
 };
+
+

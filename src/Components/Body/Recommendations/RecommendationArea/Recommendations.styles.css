@@ -1,28 +1,2 @@
-.recommendations-container {
-    box-sizing: content-box;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-}
 
 
-/* Media query for small screens */
-
-@media (max-width: 768px) {
-    .grid-container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-}
-
-
-/* Media query for extra small screens */
-
-@media (max-width: 480px) {
-    .grid-container {
-        grid-template-columns: 1fr;
-    }
-
-}
