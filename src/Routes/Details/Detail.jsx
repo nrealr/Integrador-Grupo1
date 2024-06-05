@@ -49,7 +49,10 @@ export const Detail = () => {
           <Link className='cardButton' to={`#`}><button>Book Appointment →</button></Link>
         </div>
       </div>
-      <DoctorFeaturesCard doctorId={doctorSelected.id} />
+      <div style={{textAlign: "center"}}>
+        <h1 style={{fontSize: "2rem"}}>Features</h1>
+      </div>
+      <CategoriesCard />
     </section>
   );
 };
