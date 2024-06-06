@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 export const RecommendCard = ({ doctor }) => {
 
-    doctor.urlImg = 'data:image/jpg;base64,' + doctor.img;
+    doctor.urlImg = 'data:image/jpsg;bae64,' + doctor.img;
 
     return (
         <Card className='recommend-card' sx={{ maxWidth: 800 }} elevation={10}>

@@ -1,2 +1,2 @@
 export * from './DoctorFeaturesCard'
-export * from './CategoriesCard'
+export * from './FeaturesCard'
