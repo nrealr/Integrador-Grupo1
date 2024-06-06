@@ -2,6 +2,7 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import "./BackgroundLetterAvatars.styles.css";
+import { capitalizeFirstLetter } from "../../../Utils";
 
 function stringToColor(string) {
   let hash = 0;
@@ -38,7 +39,7 @@ export const BackgroundLetterAvatars = () => {
 
   return (
     <Stack direction="row" spacing={2}>
-      <Avatar className="no-gutters" {...stringAvatar(name, lastname)} />
+    <Avatar className="no-gutters" {...stringAvatar(capitalizeFirstLetter(`${name} ${lastname}`))} />
     </Stack>
   );
 };
