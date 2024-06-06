@@ -20,8 +20,8 @@ export const RecommendCard = ({ doctor }) => {
                     component="img"
                     alt={`Photo of Dr. ${doctor.name} ${doctor.lastname}`}
                     height="150"
-                    // image={doctor.urlImg}
-                    image="\images\AvatarRandomDoctor.png"
+                    image={doctor.urlImg}
+                    // image="\images\AvatarRandomDoctor.png"
                 />
 
                 <div
@@ -52,7 +52,7 @@ export const RecommendCard = ({ doctor }) => {
 
                 <IconButton
                     className='icn-view-more'
-                    component={Link} to={ROUTES.DETAIL}
+                    component={Link} to={`/doctor/${doctor.id}`}
                     color='secondary'
                 >
                     <ReadMoreIcon />

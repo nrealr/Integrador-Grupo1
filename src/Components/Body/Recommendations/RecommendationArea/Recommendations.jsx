@@ -76,11 +76,6 @@ export const Recommendations = () => {
   return (
 
     <div className="recommendations-container">
-      {/* // maxWidth="lg"
-      // sx={{ */}
-      {/* //   padding: { xs: '0 1rem', sm: '0 2rem', md: '0' },
-      //   maxWidth: { xs: '100%', md: 'lg' }
-      // }} > */}
 
 
       <Box className="flex-container" sx={{ 
