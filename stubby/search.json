@@ -1,0 +1,22 @@
+[
+    {
+      "id": 1,
+      "name": "Dr. Juan Pérez",
+      "type": "doctor"
+    },
+    {
+      "id": 2,
+      "name": "Medicina General",
+      "type": "specialty"
+    },
+    {
+      "id": 3,
+      "name": "Dr. María Rodríguez",
+      "type": "doctor"
+    },
+    {
+      "id": 4,
+      "name": "Pediatría",
+      "type": "specialty"
+    }
+  ]

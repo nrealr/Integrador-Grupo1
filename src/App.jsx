@@ -6,23 +6,23 @@ import {
   Profile,
   AppointmentList,
   ChanguePassword,
-  NotFound,
+  NotFound, Home
 } from "./Routes";
-import { Home } from "./Routes";
 import { Admin } from "./Routes/AdminPanel/Admin";
-import { ContextProvider } from "./Context";
-import { ROUTES } from "./Constants";
-import { Layout } from "./Components";
-import { AdminLayout } from "./Components";
-import { AdminDoctors } from "./Routes/AdminDoctors";
-import { ThemeProvider } from "@mui/material";
-import { theme } from "./Themes/theme";
 import { AdminFeatures } from "./Routes/AdminFeatures";
 import { AdminSpecialties } from "./Routes/AdminSpecialties";
 import { AddFeature } from "./Routes/AddFeature";
 import { AddSpecialty } from "./Routes/AddSpecialty";
 import { UpdateProduct}  from './Routes/UpdateProduct';
 import { UpdateFeature } from "./Routes/UpdateFeature";
+import { AdminDoctors } from "./Routes/AdminDoctors";
+import { ContextProvider } from "./Context";
+import { ROUTES } from "./Constants";
+import { Layout, SearchBar, AdminLayout } from "./Components";
+import { ThemeProvider } from "@mui/material";
+import { theme } from "./Themes/theme";
+
+
 
 
 
@@ -44,7 +44,9 @@ function App() {
               <Route path={ROUTES.PROFILE} element={<Profile />} />
               <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList />} />
               <Route path={ROUTES.PASSWORD} element={<ChanguePassword />} />
+              <Route path={ROUTES.SEARCH} element={<SearchBar/>}/>
               <Route path="*" element={<NotFound/>}/>
+  
 
               <Route element={<AdminLayout />}>
                 <Route path={ROUTES.ADMIN} element={<Admin />} />

@@ -12,21 +12,16 @@ export const RecommendCard = ({ doctor }) => {
     doctor.urlImg = 'data:image/jpg;base64,' + doctor.img;
 
     return (
-        <Card className='recommend-card' sx={{ maxWidth: 345 }} elevation={10}>
+        <Card className='recommend-card' sx={{ maxWidth: 800 }} elevation={10}>
             <div style={{ position: 'relative' }}>
 
                 <CardMedia
 
                     component="img"
-
                     alt={`Photo of Dr. ${doctor.name} ${doctor.lastname}`}
-
-                    height="140"
-
+                    height="150"
                     // image={doctor.urlImg}
-
                     image="\images\AvatarRandomDoctor.png"
-
                 />
 
                 <div
