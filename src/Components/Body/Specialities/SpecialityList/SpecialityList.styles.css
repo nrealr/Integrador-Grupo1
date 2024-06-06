@@ -1,0 +1,13 @@
+
+
+/*ESTILOS PARA MUI*/
+.specialties-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.title{
+    background-color: brown;
+    justify-content: center;
+}

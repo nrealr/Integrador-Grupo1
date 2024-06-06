@@ -1,6 +1,6 @@
 export * from './Body'
-export * from './Common'
 export * from './AddProductFunction'
 export * from './DeleteProductFunction'
 export * from './UpdateProductFunction'
 export * from './Layouts'
+export * from './Searchbar'

@@ -19,7 +19,7 @@ import { SERVER_API } from '../../../Constants';
 
 
 /**
-@returns{React.Component} this function is a call of categories card. Get an object with data and put in a grid different cards with a title, 
+@returns{React.Component} this function is a call of specialties card. Get an object with data and put in a grid different cards with a title, 
 description and a icon  */
 
 export const CategoriesCard = ({ doctorId }) => {

@@ -9,4 +9,5 @@
 
 .body .body-sections {
   margin: 4rem 1rem;
+  max-width: vh;
 }

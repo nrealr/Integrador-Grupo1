@@ -1,0 +1,41 @@
+  [{
+    "id": 1,
+    "name": "Internal Medicine",
+    "description": "Description of Internal Medicine"
+  },
+  {
+    "id": 2,
+    "name": "Dermatology",
+    "description": "Description of Dermatology"
+  },
+  {
+    "id": 3,
+    "name": "Obstetrics and Gynecology",
+    "description": "Description of Obstetrics and Gynecology"
+  },
+  {
+    "id": 4,
+    "name": "Psychiatry",
+    "description": "Description of Psychiatry"
+  },
+  {
+    "id": 5,
+    "name": "Pediatrics",
+    "description": "Description of Pediatrics"
+  },
+  {
+    "id": 6,
+    "name": "Cardiology",
+    "description": "Description of Cardiology"
+  },
+  {
+    "id": 7,
+    "name": "Ophthalmology",
+    "description": "Description of Ophthalmology"
+  },
+  {
+    "id": 8,
+    "name": "Orthopedics",
+    "description": "Description of Orthopedics"
+  }
+]

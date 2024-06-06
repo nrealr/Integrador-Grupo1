@@ -1,2 +1,3 @@
-export * from "./Recommendations"
-export * from "./RecommendationsPagination"
+export * from './RecommendCard'
+export * from './RecommendationArea'
+export * from './RecommendationsPagination'

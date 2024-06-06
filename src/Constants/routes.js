@@ -14,5 +14,6 @@ export const ROUTES = {
     SPECIALTIESADD: "/admin/specialties/add",
     DOCTORSUPDATE: "/admin/doctors/update/:id",
     FEATURESUPDATE: "/admin/features/update/:id",
-    SPECIALTIESUPDATE: "/admin/specialty/update/:id"
+    SPECIALTIESUPDATE: "/admin/specialty/update/:id",
+    SEARCH: "/search"
 };
