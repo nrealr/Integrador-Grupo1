@@ -2,14 +2,13 @@ import React from 'react';
 import { Card, CardMedia, CardContent, Typography, CardActions, IconButton } from '@mui/material';
 import './RecommendCard.styles.css'
 import { FavoriteIcon, RatingBox, ShareButton, capitalizeFirstLetter } from '../../../../Utils';
-import { ROUTES } from '../../../../Constants';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { Link } from 'react-router-dom';
 
 
 export const RecommendCard = ({ doctor }) => {
 
-    doctor.urlImg = 'data:image/jpsg;bae64,' + doctor.img;
+    doctor.urlImg = 'data:image/jpeg;base64,' + doctor.img;
 
     return (
         <Card className='recommend-card' sx={{ maxWidth: 800 }} elevation={10}>
