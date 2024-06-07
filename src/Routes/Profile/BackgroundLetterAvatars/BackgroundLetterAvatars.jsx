@@ -39,7 +39,7 @@ export const BackgroundLetterAvatars = () => {
 
   return (
     <Stack direction="row" spacing={2}>
-    <Avatar className="no-gutters" {...stringAvatar(capitalizeFirstLetter(`${name} ${lastname}`))} />
+    <Avatar className="no-gutters" {...stringAvatar(name, lastname)} />
     </Stack>
   );
 };

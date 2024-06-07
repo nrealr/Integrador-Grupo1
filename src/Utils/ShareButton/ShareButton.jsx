@@ -37,7 +37,7 @@ export const ShareButton = () => {
         startIcon={<ShareIcon fontSize="small" color='primary' />}
         alt="shareInformation"
         sx={{ minWidth: 20 }}
-        disabled
+        // disabled
       >
       </Button>
       <WhatsappShareButton url={url} title={title}>
