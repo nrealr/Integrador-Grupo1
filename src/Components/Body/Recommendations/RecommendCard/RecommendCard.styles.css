@@ -13,7 +13,7 @@
     width: 100%;
     object-fit: contain;
     padding: 15px;
-    background-image: url(/public/images/bg-recommendationCard.jpg);
+    background-image: url(/images/bg-recommendationCard.jpg);
 }
 
 .recommend-card .cardAction-box {
