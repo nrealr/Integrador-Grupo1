@@ -1,6 +1,6 @@
 
 
- .search-container {
+/*.search-container {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -71,12 +71,12 @@
   border-radius: 5px;
   padding: 5px 10px;
   cursor: pointer;
-}
+}*/
 
 /* Querys para responsive design */
 
 /* Pantalla grande (desktop) */
-@media (min-width: 1200px) {
+/*@media (min-width: 1200px) {
   .search-container {
     padding: 40px;
   }
@@ -92,7 +92,7 @@
 }
 
 /* Pantalla mediana (tablet) */
-@media (min-width: 768px) and (max-width: 1199px) {
+/*@media (min-width: 768px) and (max-width: 1199px) {
   .search-container {
     padding: 20px;
   }
@@ -108,7 +108,7 @@
 }
 
 /* Pantalla pequeña (mobile) */
-@media (max-width: 767px) {
+/*@media (max-width: 767px) {
   .search-container {
     padding: 10px;
   }
