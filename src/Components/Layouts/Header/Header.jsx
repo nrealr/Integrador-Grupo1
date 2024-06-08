@@ -49,7 +49,7 @@ export const Header = () => {
               src="/images/ico-logo-fullcolor.png"
               alt="Application Logo"
               sx={{
-                maxHeight: { xs: 40, sm: 50 },
+                maxHeight: { xs: 50, sm: 60, md: 65},
                 width: "auto",
               }}
             />
