@@ -21,7 +21,9 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
 
       if (active) {
         try {
-          const doctors = await searchDoctor();
+          // Obtener los primeros 3 caracteres del inputValue
+          const query = inputValue.slice(0, 3);
+          const doctors = await searchDoctor(query);
           setOptions(doctors);
         } catch (error) {
           console.error('Error fetching doctors:', error);
@@ -32,7 +34,7 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
     return () => {
       active = false;
     };
-  }, [loading]);
+  }, [loading, inputValue]); // Agrega inputValue como dependencia
 
   React.useEffect(() => {
     if (!open) {
@@ -57,12 +59,12 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
           searchResult(newValue); // Call the callback with the selected option
         }
       }}
-      isOptionEqualToValue={(option, value) => option.rut === value.rut}
+      isOptionEqualToValue={(option, value) => option.id === value.id}
       getOptionLabel={(option) => (typeof option === 'string' ? option : `${option.name} ${option.lastname}`)}
       options={options}
       filterOptions={(options, { inputValue }) =>
         options.filter((option) =>
-          (`${option.name} ${option.lastname} ${option.rut}`).toLowerCase().includes(inputValue.toLowerCase())
+          (`${option.name} ${option.lastname} ${option.specialtyId} ${option.description} ${option.featureIds}`).toLowerCase().includes(inputValue.toLowerCase())
         )
       }
       loading={loading}

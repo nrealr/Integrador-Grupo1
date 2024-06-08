@@ -6,9 +6,9 @@ import { getHeaders } from "../../Utils";
  *
  * @returns {Array}
  */
-export const searchDoctor = async () => {
+export const searchDoctor = async (query) => {
   let res = await axios.get(
-    `${SERVER_API}/doctors/search?query=`,
+    `${SERVER_API}/doctors/search?query=${query}`,
     getHeaders()
   );
   return res.data;
