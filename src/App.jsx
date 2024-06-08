@@ -22,6 +22,7 @@ import { ROUTES } from "./Constants";
 import { Layout, SearchBar, AdminLayout } from "./Components";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./Themes/theme";
+import SearchResults from "./Routes/SearchResults";
 
 
 
@@ -46,6 +47,7 @@ function App() {
               <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList />} />
               <Route path={ROUTES.PASSWORD} element={<ChanguePassword />} />
               <Route path={ROUTES.SEARCH} element={<SearchBar/>}/>
+              <Route path={ROUTES.SEARCHRESULTS} element={<SearchResults/>}/>
               <Route path="*" element={<NotFound/>}/>
   
 
