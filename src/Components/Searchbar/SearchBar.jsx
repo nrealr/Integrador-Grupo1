@@ -2,13 +2,11 @@ import * as React from 'react';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
-import { getDoctors } from '../../Services';
+import { searchDoctor } from '../../Services/Doctors/searchDoctor';
 
-
-export const SearchBar = ({searchResult}) => {
+export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setValue }) => {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
-  const [inputValue, setInputValue] = React.useState('');
   const loading = open && options.length === 0;
 
   React.useEffect(() => {
@@ -19,11 +17,11 @@ export const SearchBar = ({searchResult}) => {
     }
 
     (async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); 
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
 
       if (active) {
         try {
-          const doctors = await getDoctors();
+          const doctors = await searchDoctor();
           setOptions(doctors);
         } catch (error) {
           console.error('Error fetching doctors:', error);
@@ -45,20 +43,22 @@ export const SearchBar = ({searchResult}) => {
   return (
     <Autocomplete
       id="asynchronous-demo"
-      sx={{ width: 300, backgroundColor: 'white', color: 'black' }}
+      freeSolo
+      sx={{ width: 600, backgroundColor: 'white', color: 'black' }}
       open={open}
-      onOpen={() => {
-        setOpen(true);
-      }}
-      onClose={() => {
-        setOpen(false);
-      }}
+      onOpen={() => setOpen(true)}
+      onClose={() => setOpen(false)}
       inputValue={inputValue}
-      onInputChange={(event, newInputValue) => {
-        setInputValue(newInputValue);
+      onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+        if (newValue) {
+          searchResult(newValue); // Call the callback with the selected option
+        }
       }}
       isOptionEqualToValue={(option, value) => option.rut === value.rut}
-      getOptionLabel={(option) => `${option.name} ${option.lastname}`}
+      getOptionLabel={(option) => (typeof option === 'string' ? option : `${option.name} ${option.lastname}`)}
       options={options}
       filterOptions={(options, { inputValue }) =>
         options.filter((option) =>
@@ -66,11 +66,6 @@ export const SearchBar = ({searchResult}) => {
         )
       }
       loading={loading}
-      onChange={(event, value) => {
-        if (value) {
-          searchResult(value); // Call the callback with the selected option
-        }
-      }}
       renderInput={(params) => (
         <TextField
           {...params}
@@ -83,9 +78,10 @@ export const SearchBar = ({searchResult}) => {
                 {params.InputProps.endAdornment}
               </React.Fragment>
             ),
+            type: 'search',
           }}
         />
       )}
     />
   );
-}
+};
