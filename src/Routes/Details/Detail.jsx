@@ -4,6 +4,8 @@ import { getDoctorById, getSpecialtyById } from "../../Services";
 import { Link, useParams } from "react-router-dom";
 import { FeaturesCard } from "./FeaturesCard";
 import { BookingCalendar } from "../../Components/BookingCalendar/BookingCalendar";
+import { IcnReturnHome } from "../../Utils";
+
 
 
 
@@ -30,6 +32,10 @@ export const Detail = () => {
     getData();
   }, [id]);
 
+  /**
+   * @returns {React.Component} Condition: if the doctor isn´t registered with his DNI, the doctor will not be available
+   */
+  
   if (!doctorSelected.rut) {
     return <h1>Doctor Not found</h1>;
   }
@@ -38,7 +44,7 @@ export const Detail = () => {
     <section className="doctor-info">
 
       <div className="detailHeader">
-        <Link to={`/`}><button>←</button></Link>
+        <IcnReturnHome/>
         <h2>Dr. {doctorSelected.name} {doctorSelected.lastname}</h2>
       </div>
 

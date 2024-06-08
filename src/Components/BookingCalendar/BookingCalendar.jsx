@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Calendar } from "@demark-pro/react-booking-calendar";
+import './BookingCalendar.styles.css'
 
 import "@demark-pro/react-booking-calendar/dist/react-booking-calendar.css";
 
@@ -19,14 +20,24 @@ const reserved = Array.from({ length: 3 }, (_, i) => {
   };
 });
 
+
+/**
+ * 
+ * @returns type: CalendarSelected[]
+An array of selected check-in and check-out dates. Accepts an array with the value date, number, string, null or undefined.
+Documentation: https://github.com/demark-pro/react-booking-calendar/blob/main/docs/documentation.md
+ */
 export const BookingCalendar = () => {
   const [selectedDates, setSelectedDates] = useState([]);
 
   return (
-    <Calendar
-      selected={selectedDates}
-      reserved={reserved}
-      onChange={setSelectedDates}
-    />
+    
+      <Calendar
+        selected={selectedDates}
+        reserved={reserved}
+        onChange={setSelectedDates}
+      />
+
+    
   );
 };
