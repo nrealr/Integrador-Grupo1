@@ -3,6 +3,9 @@ import "./Detail.style.css";
 import { getDoctorById, getSpecialtyById } from "../../Services";
 import { Link, useParams } from "react-router-dom";
 import { FeaturesCard } from "./FeaturesCard";
+import { BookingCalendar } from "../../Components/BookingCalendar/BookingCalendar";
+
+
 
 export const Detail = () => {
   const { id } = useParams();
@@ -33,10 +36,12 @@ export const Detail = () => {
 
   return (
     <section className="doctor-info">
+
       <div className="detailHeader">
         <Link to={`/`}><button>←</button></Link>
         <h2>Dr. {doctorSelected.name} {doctorSelected.lastname}</h2>
       </div>
+
       <div className="detailBody">
         <div>
           <img src={doctorSelected.urlImg} alt="Foto del doctor" />
@@ -49,10 +54,13 @@ export const Detail = () => {
           <Link className='cardButton' to={`#`}><button>Book Appointment →</button></Link>
         </div>
       </div>
+
       <div style={{textAlign: "center"}}>
         <h1 style={{fontSize: "2rem"}}>Features</h1>
       </div>
+
       <FeaturesCard doctorId={doctorSelected.id}/>
+      <BookingCalendar/>
     </section>
   );
 };
