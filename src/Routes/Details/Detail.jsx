@@ -60,19 +60,25 @@ export const Detail = () => {
             <h3> Hello! I'm an specialist in {specialty}</h3>
             <p>{doctorSelected.description}</p>
           </div>
-          
+
         </div>
+
+        <BookingCalendar className="calendarDate"/>
       </div>
 
-      <div style={{ textAlign: "center" }}>
-        <h1 style={{ fontSize: "2rem" }}>Features</h1>
+
+
+      <div className="detailFeatures" >
+        <h4>Features</h4>
+        <FeaturesCard doctorId={doctorSelected.id} />
+        {/* <Link to={ROUTES.APPOINTMENTS}>book</Link> */}
       </div>
 
-      <FeaturesCard doctorId={doctorSelected.id} />
-      
-      <BookingCalendar />
-      <Link className='cardButton' to={ROUTES.APPOINTMENTS}><button>Book Appointment →</button></Link>
+
+
+
+
     </section>
-    
+
   );
 };

@@ -3,13 +3,13 @@
 .doctor-detail{
   margin-top: 100px;
   display: flex;
+  flex-direction: column;
 }
 
 .detailHeader{
   display: flex;
   align-items: center;
-  position: fixed;
-  width: 100vw;
+  width: 100%;
   padding: 5px;
   background-color: #63c0bb;
 }
@@ -25,19 +25,20 @@
 
 .detailBody{
   display: flex;
-  width: 50vw;
+  width: 100%;
   margin-top: inherit;
   padding: 1rem;
   background-image: url(/images/bg-recommendationCard.jpg);
   border-radius: 5px;
   border-left: 10px;
-  margin-left: 1rem;
+  flex-grow: 2;
+  background-size: cover;
 }
 
 .detailBody img{
   border-style: outset;
   border-color: #102C5B;
-  border-radius: 5px;
+  border-radius: 15px; 
 }
 
 .doctor-data {
@@ -53,3 +54,21 @@
   margin: 15px;
   color: #102C5B;
 }
+
+.doctor-data p{
+  font-size: medium;
+  margin: 15px;
+  text-align: justify;
+}
+
+.calendarDate{
+  background-color: red;
+  margin-left: 40%;
+  width: 20%;
+}
+.detailFeatures{
+  display: table-row-group;
+  flex-grow: 1;
+  width: 100%;
+}
+

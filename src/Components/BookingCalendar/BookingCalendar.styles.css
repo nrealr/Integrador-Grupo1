@@ -1,5 +1,7 @@
 .calendar__calendar-container{
-    background-color: red;
-    border: 1px black solid;
-
+    border: 1px;
+    display: flex;
+    margin-left: 40%;
+    width: 20%;
+    border-radius: 15px;
 }
