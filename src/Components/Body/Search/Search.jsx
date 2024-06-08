@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Box, Container, Typography, FormControl, InputLabel, Select, MenuItem, Button } from '@mui/material';
+import { SearchBar } from '../../Searchbar/SearchBar';
 /*import "./Search.styles.css";
 import { Dropdown } from '../../../Utils';*/
 
@@ -11,6 +12,7 @@ import { Dropdown } from '../../../Utils';*/
  */
 
 export const Search = () => {
+
 
   const [city, setCity] = useState('');
   const cityOptions = [
@@ -45,6 +47,21 @@ export const Search = () => {
 
   const handleSpecialtyChange = (event) => {
     setSpecialty(event.target.value)
+  };
+
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleOptionSelect = (doctor) => {
+    setSelectedOption(doctor);
+  };
+
+  const handleButtonClick = () => {
+    if (selectedOption) {
+      console.log('Selected Doctor:', selectedOption);
+    } else {
+      console.log('No doctor selected');
+    }
   };
 
   return (
@@ -111,6 +128,11 @@ export const Search = () => {
             alignItems: 'center',
           }}
         >
+          <SearchBar
+          fullWidth sx={{ mb: { xs: '1rem', md: '0' } }}
+          searchResult={handleOptionSelect}
+
+          />
           <FormControl fullWidth sx={{ mb: { xs: '1rem', md: '0' } }}>
             <InputLabel sx={{ color: 'black' }}>Select a city</InputLabel>
             <Select
@@ -148,6 +170,7 @@ export const Search = () => {
               width: { xs: '100%', md: 'auto' },
               padding: { xs: '1rem', md: '0.75rem 1.5rem' },
             }}
+            onClick={handleButtonClick}
           >
             Search
           </Button>
