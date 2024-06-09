@@ -9,7 +9,6 @@ export const Search = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputValue, setInputValue] = useState('');
 
-
   const handleOptionSelect = (doctor) => {
     setSelectedOption(doctor);
   };
@@ -18,7 +17,7 @@ export const Search = () => {
     if (selectedOption && selectedOption.id) {
       navigate(`doctors/${selectedOption.id}`);
     } else {
-      navigate(ROUTES.SEARCHRESULTS, { state: { query: inputValue } } );
+      navigate(ROUTES.SEARCHRESULTS, { state: { query: inputValue } });
     }
   };
 
@@ -27,11 +26,11 @@ export const Search = () => {
       sx={{
         position: 'relative',
         width: '100%',
-        maxHeight: {xs: '65vh'},
-        minHeight: {lg: '75vh'},
+        maxHeight: { xs: '65vh' },
+        minHeight: { lg: '75vh' },
         backgroundImage: 'url(./images/bg-search.jpg)',
         backgroundSize: 'cover',
-        backgroundPosition: {xs: '25% 25%', sm: 'right'},
+        backgroundPosition: { xs: '25% 25%', sm: 'right' },
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -48,10 +47,10 @@ export const Search = () => {
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          marginLeft: {md: '-1px'},
+          marginLeft: { md: '-1px' },
           justifyContent: 'center',
           minHeight: '100vh',
-          maxWidth: {md: '95vh'},
+          maxWidth: { md: '95vh' },
         }}
       >
         <Typography
@@ -80,8 +79,8 @@ export const Search = () => {
           sx={{
             display: 'flex',
             flexDirection: { xs: 'column', md: 'column' },
-            gap: {md: '2rem', lg: '1rem'},
-            width: {xs: '100%', sm: '100%', md: '80%', lg: '100%'},
+            gap: { md: '2rem', lg: '1rem' },
+            width: { xs: '100%', sm: '100%', md: '80%', lg: '100%' },
             justifyContent: 'center',
             alignItems: 'center',
           }}
@@ -92,6 +91,7 @@ export const Search = () => {
             value={selectedOption}
             setValue={setSelectedOption}
             searchResult={handleOptionSelect}
+            onEnterPress={handleButtonClick}  // Pasa la función handleButtonClick como onEnterPress
           />
 
           <Button
