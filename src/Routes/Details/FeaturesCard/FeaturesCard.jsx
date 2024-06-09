@@ -44,10 +44,9 @@ export const FeaturesCard = ({ doctorId }) => {
             <Typography variant="body2" color="text.secondary">
               <img src={card.icon} alt="Icono" className="features-card-icon" />
             </Typography>
-            {/* <Typography variant="h5" component="h5" className="features-card-title">
+            <Typography variant="h5" component="h5" className="features-card-title">
               {card.name}
-            </Typography> */}
-            <h5 className='features-card-title'>{card.name}</h5>
+            </Typography>
             <Typography variant="body2" color="text.secondary" className="features-card-description">
               {card.description}
             </Typography>
