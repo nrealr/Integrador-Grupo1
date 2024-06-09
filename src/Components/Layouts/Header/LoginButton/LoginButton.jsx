@@ -11,6 +11,8 @@ import { Link } from "react-router-dom";
 import { ROUTES } from "../../../../Constants";
 import "./LoginButton.styles.css";
 import { login } from "../../../../Services/login";
+import { useLocalStorage } from "../../../../Services/UseLocalStorage";
+
 
 export const LoginButton = () => {
   const [open, setOpen] = useState(false);
@@ -20,9 +22,19 @@ export const LoginButton = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  // Use the useLocalStorage hook to retrieve the stored email and password
+  const [storedEmail, setStoredEmail] = useLocalStorage("email", "");
+  const [storedPassword, setStoredPassword] = useLocalStorage("password", "");
+
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
+
+    // If there is a stored email and password, set the email and password state with the stored values
+    if (storedEmail && storedPassword) {
+      setEmail(storedEmail);
+      setPassword(storedPassword);
+    }
   }, []);
 
   const handleToggle = () => {
@@ -39,11 +51,17 @@ export const LoginButton = () => {
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
     setEmailError(!/^\S+@\S+\.\S+$/.test(event.target.value));
+
+    // If the email has changed, update the stored email
+    setStoredEmail(event.target.value);
   };
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
     setPasswordError(event.target.value.length < 4);
+
+    // If the password has changed, update the stored password
+    setStoredPassword(event.target.value);
   };
 
   const handleLogin = async () => {
@@ -90,9 +108,9 @@ export const LoginButton = () => {
             variant="contained"
             color="secondary"
             id="button-id"
-            aria-controls={open ? "menu-list-grow" : undefined}
+            aria-controls={open? "menu-list-grow" : undefined}
             aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
+            aria-expanded={open? "true" : undefined}
             onClick={handleToggle}
             sx={{ color: "white" }}
           >
@@ -110,7 +128,7 @@ export const LoginButton = () => {
                 {...TransitionProps}
                 style={{
                   transformOrigin:
-                    placement === "bottom" ? "center top" : "center bottom",
+                    placement === "bottom"? "center top" : "center bottom",
                 }}
               >
                 <Paper>

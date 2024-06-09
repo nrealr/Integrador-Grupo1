@@ -32,9 +32,9 @@ export const FeaturesCard = ({ doctorId }) => {
   }, [doctorId]);
 
   return (
-    <Grid container spacing={2}>
+    <Grid>
       {cards.map(card => (
-        <Grid item key={card.id} xs={12} sm={6} md={4} lg={1}>
+        <Grid>
           <Card sx={{ minHeight: '100%' }}>
             <CardMedia
               component="div"
