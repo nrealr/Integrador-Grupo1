@@ -51,7 +51,7 @@ export const Detail = () => {
       <div className="detailBody">
 
         <div>
-          <img src={doctorSelected.urlImg} alt="Dr. Photografy" />
+          <img className="doctorImage" src={doctorSelected.urlImg} alt="Dr. Photografy" />
         </div>
 
         <div className="doctor-data">
