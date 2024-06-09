@@ -6,6 +6,11 @@
   flex-direction: column;
 }
 
+.doctor-detail img{
+  height: 50vh;
+  width: 25vw;
+}
+
 .detailHeader{
   display: flex;
   align-items: center;
@@ -67,7 +72,8 @@
   width: 20%;
 }
 .detailFeatures{
-  display: table-row-group;
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   width: 100%;
 }
