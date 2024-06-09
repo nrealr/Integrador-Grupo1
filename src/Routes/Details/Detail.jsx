@@ -68,7 +68,7 @@ export const Detail = () => {
 
 
       <div className="detailFeatures" >
-        <h4>Features</h4>
+  
         <FeaturesCard doctorId={doctorSelected.id} />
         {/* <Link to={ROUTES.APPOINTMENTS}>book</Link> */}
       </div>
