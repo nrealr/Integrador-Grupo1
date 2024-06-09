@@ -1,54 +1,88 @@
-import React, { useState } from 'react';
-import { Autocomplete } from '@mui/material';
-import './SearchBar.styles.css'
-import { SERVER_API } from '../../Constants';
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import CircularProgress from '@mui/material/CircularProgress';
+import { searchDoctor } from '../../Services/Doctors/searchDoctor';
 
-export const SearchBar = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [suggestions, setSuggestions] = useState([]);
-  const [selectedDoctor, setSelectedDoctor] = useState(null);
-  const [selectedSpecialty, setSelectedSpecialty] = useState(null);
+export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setValue }) => {
+  const [open, setOpen] = React.useState(false);
+  const [options, setOptions] = React.useState([]);
+  const loading = open && options.length === 0;
 
-  const handleSearch = async (searchTerm) => {
-    const response = await axios.get(`${SERVER_API}/search`, {
-      params: {
-        query: searchTerm
-      }
-    });
-  
-    const data = response.data;
- 
-    setSuggestions(data);
-  };
+  React.useEffect(() => {
+    let active = true;
 
-  const handleSelect = (event, value) => {
-    if (value.type === 'doctor') {
-      setSelectedDoctor(value);
-    } else if (value.type === 'pecialty') {
-      setSelectedSpecialty(value);
+    if (!loading) {
+      return undefined;
     }
-  };
+
+    (async () => {
+      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
+
+      if (active) {
+        try {
+          // Obtener los primeros 3 caracteres del inputValue
+          const query = inputValue.slice(0, 3);
+          const doctors = await searchDoctor(query);
+          setOptions(doctors);
+        } catch (error) {
+          console.error('Error fetching doctors:', error);
+        }
+      }
+    })();
+
+    return () => {
+      active = false;
+    };
+  }, [loading, inputValue]); // Agrega inputValue como dependencia
+
+  React.useEffect(() => {
+    if (!open) {
+      setOptions([]);
+    }
+  }, [open]);
 
   return (
     <Autocomplete
+      id="asynchronous-demo"
       freeSolo
-      id="search-bar"
-      onChange={(event, value) => handleSelect(event, value)}
-      onInputChange={(event, newInputValue) => {
-        setSearchTerm(newInputValue);
-        handleSearch(newInputValue);
+      sx={{ width: 600, backgroundColor: 'white', color: 'black' }}
+      open={open}
+      onOpen={() => setOpen(true)}
+      onClose={() => setOpen(false)}
+      inputValue={inputValue}
+      onInputChange={(event, newInputValue) => setInputValue(newInputValue)}
+      value={value}
+      onChange={(event, newValue) => {
+        setValue(newValue);
+        if (newValue) {
+          searchResult(newValue); // Call the callback with the selected option
+        }
       }}
-      options={suggestions}
-      getOptionLabel={(option) => option.name}
+      isOptionEqualToValue={(option, value) => option.id === value.id}
+      getOptionLabel={(option) => (typeof option === 'string' ? option : `${option.name} ${option.lastname}`)}
+      options={options}
+      filterOptions={(options, { inputValue }) =>
+        options.filter((option) =>
+          (`${option.name} ${option.lastname} ${option.specialtyId} ${option.description} ${option.featureIds}`).toLowerCase().includes(inputValue.toLowerCase())
+        )
+      }
+      loading={loading}
       renderInput={(params) => (
-        <div ref={params.InputProps.ref}>
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(event) => setSearchTerm(event.target.value)}
-            placeholder="Buscar doctor o especialidad"
-          />
-        </div>
+        <TextField
+          {...params}
+          label="Search Here"
+          InputProps={{
+            ...params.InputProps,
+            endAdornment: (
+              <React.Fragment>
+                {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                {params.InputProps.endAdornment}
+              </React.Fragment>
+            ),
+            type: 'search',
+          }}
+        />
       )}
     />
   );

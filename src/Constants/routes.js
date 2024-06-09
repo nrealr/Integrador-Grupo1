@@ -2,7 +2,7 @@ export const ROUTES = {
     HOME: "/",
     ADMIN: "/admin",
     DOCTORSADD: "/admin/doctors/add",
-    DETAIL: "/doctor/:id",
+    DETAIL: "/doctors/:id",
     ADDUSER: "/register",
     DOCTORS: "/admin/doctors",
     SPECIALTIES: "/admin/specialties",
@@ -15,5 +15,6 @@ export const ROUTES = {
     DOCTORSUPDATE: "/admin/doctors/update/:id",
     FEATURESUPDATE: "/admin/features/update/:id",
     SPECIALTIESUPDATE: "/admin/specialty/update/:id",
-    SEARCH: "/search"
+    SEARCH: "/search",
+    SEARCHRESULTS: "/results"
 };

@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { Box, Container, Typography, FormControl, InputLabel, Select, MenuItem, Button, TextField, Grid } from '@mui/material';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-/**
- * 
- * @returns {React.Component} section box with dropdown and search button
- */
+import { useNavigate } from 'react-router-dom';  // Importa useNavigate para redireccionar
+import { Box, Container, Typography, FormControl, Button } from '@mui/material';
+import { SearchBar } from '../../Searchbar/SearchBar';
+import { ROUTES } from '../../../Constants/routes'; 
 
 export const Search = () => {
   const [city, setCity] = useState('');
@@ -15,9 +13,25 @@ export const Search = () => {
     { label: 'Puerto Montt', value: 'puerto-montt' },
     { label: 'Santiago', value: 'santiago' },
   ];
-
   const handleCityChange = (event) => {
     setCity(event.target.value);
+  };
+
+  const navigate = useNavigate();  // Hook para redireccionar
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [inputValue, setInputValue] = useState('');
+
+
+  const handleOptionSelect = (doctor) => {
+    setSelectedOption(doctor);
+  };
+
+  const handleButtonClick = () => {
+    if (selectedOption && selectedOption.id) {
+      navigate(`doctors/${selectedOption.id}`);
+    } else {
+      navigate(ROUTES.SEARCHRESULTS, { state: { query: inputValue } } );
+    }
   };
 
   return (
@@ -137,7 +151,13 @@ export const Search = () => {
                       }}
                   />
                 </FormControl>
-
+                <SearchBar
+            inputValue={inputValue}
+            setInputValue={setInputValue}
+            value={selectedOption}
+            setValue={setSelectedOption}
+            searchResult={handleOptionSelect}
+          />
                 <FormControl fullWidth sx={{ mb: { xs: '1rem', md: '0' }, flex: 1.1, fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' } }}>
                   <InputLabel
                     sx={{
@@ -174,6 +194,7 @@ export const Search = () => {
                     padding: { xs: '0.4rem', md: '0.75rem 1.2rem' },
                     flex: 1,
                   }}
+                  onClick={handleButtonClick}
                 >
                   Search
                 </Button>
@@ -183,6 +204,5 @@ export const Search = () => {
         </Grid>
       </Box>
     </Box>
-  )
-}
-
+  );
+};
