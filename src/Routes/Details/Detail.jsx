@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-import "./Detail.style.css";
+import "./Detail.styles.css";
 import { getDoctorById, getSpecialtyById } from "../../Services";
 import { Link, useParams } from "react-router-dom";
 import { FeaturesCard } from "./FeaturesCard";
 import { BookingCalendar } from "../../Components/BookingCalendar/BookingCalendar";
 import { IcnReturnHome } from "../../Utils";
-import { ROUTES } from "../../Constants";
 
 
 
@@ -62,8 +61,8 @@ export const Detail = () => {
           </div>
 
         </div>
-
-        <BookingCalendar className="calendarDate"/>
+{/* 
+        <BookingCalendar className="calendarDate"/> */}
       </div>
 
 

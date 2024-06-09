@@ -1,0 +1,65 @@
+/* featuresCard.css */
+
+.features-card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+
+.features-card-grid>div.features-card {
+    border-radius: 60px;
+    flex: 1;
+    margin: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 5px 5px rgb(100 192 187);
+    border-radius: 60px;
+    font-size: 1rem;
+    color: black;
+}
+
+
+.features-card-media {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    background-color: red;
+    color: black;
+}
+
+.features-card-icon {
+    width: 100px;
+    height: auto;
+    margin: 20px;
+}
+
+.features-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 20px;
+    border-radius: 50%;
+}
+
+.features-card-title {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.features-card-description {
+    font-size: 14px;
+    color: #666;
+}
+
+.css-bhp9pd-MuiPaper-root-MuiCard-root {
+    border-radius: 60px;
+    font-size: 1rem;
+    background-color: rgb(224 236 239);
+    color: black;
+}

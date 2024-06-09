@@ -72,3 +72,12 @@
   width: 100%;
 }
 
+.detailFeatures h4{
+  text-align: center;
+  width: 100%;
+  background-color:#63c0bb;
+  padding: 1rem;
+  font-weight: bolder;
+  font-size: large;
+}
+
