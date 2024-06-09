@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { SERVER_API } from "../../Constants";
-import { addDoctor, getSpecialties, getFeatures } from "../../Services";
+import { addDoctor, getFeatures } from "../../Services";
 
 export const AddProductFunction = () => {
   const [product, setProduct] = useState({
@@ -11,6 +11,7 @@ export const AddProductFunction = () => {
     img: null,
     description: "",
     specialtyId: "",
+    locationId: "",
     features: []
   });
 
@@ -18,6 +19,7 @@ export const AddProductFunction = () => {
   const [success, setSuccess] = useState("");
   const [specialties, setSpecialties] = useState([]);
   const [features, setFeatures] = useState([]);
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
     const fetchSpecialties = async () => {
@@ -45,8 +47,24 @@ export const AddProductFunction = () => {
       }
     };
 
+    const fetchLocations = async () => {
+      try {
+        const responseLocations = await axios.get(`${SERVER_API}/locations/list`);
+        if (Array.isArray(responseLocations.data)) {
+          setLocations(responseLocations.data);
+        } else {
+          console.error("Locations response is not an array:", responseLocations.data);
+          setLocations([]);
+        }
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+        setLocations([]);
+      }
+    };
+
     fetchSpecialties();
     fetchFeatures();
+    fetchLocations();
   }, []);
 
   const validateForm = (values) => {
@@ -80,6 +98,10 @@ export const AddProductFunction = () => {
       errors.specialtyId = "Specialty is mandatory";
     }
 
+    if (!values.locationId) {
+      errors.locationId = "Location is mandatory";
+    }
+
     return errors;
   };
 
@@ -106,8 +128,8 @@ export const AddProductFunction = () => {
       formData.append('img', product.img);
       formData.append('description', product.description);
       formData.append('specialtyId', product.specialtyId);
+      formData.append('locationId', product.locationId);
 
-      // Add features to formData as a JSON string
       formData.append('featureIds', product.features.join(","));
 
       try {
@@ -120,7 +142,8 @@ export const AddProductFunction = () => {
           img: null,
           description: "",
           specialtyId: "",
-          features: [] // Reset features after submission
+          locationId: "",
+          features: []
         });
         setError("");
         setSuccess("Doctor added");
@@ -166,7 +189,7 @@ export const AddProductFunction = () => {
           value={product.description}
           onChange={(e) => setProduct({ ...product, description: e.target.value })}
         />
-         <label>Specialty:</label>
+        <label>Specialty:</label>
         <select
           value={product.specialtyId}
           onChange={(e) => setProduct({ ...product, specialtyId: e.target.value })}
@@ -175,6 +198,19 @@ export const AddProductFunction = () => {
           {specialties.map((specialty) => (
             <option key={specialty.id} value={specialty.id}>
               {specialty.name}
+            </option>
+          ))}
+        </select>
+
+        <label>Location:</label>
+        <select
+          value={product.locationId}
+          onChange={(e) => setProduct({ ...product, locationId: e.target.value })}
+        >
+          <option value="">Select a location</option>
+          {locations.map((location) => (
+            <option key={location.id} value={location.id}>
+              {location.name}
             </option>
           ))}
         </select>

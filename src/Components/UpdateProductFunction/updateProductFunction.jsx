@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { SERVER_API } from "../../Constants";
-import { getDoctorById, getSpecialties, getFeatures } from "../../Services";
+import { getDoctorById, getFeatures } from "../../Services";
 
 export const UpdateProductFunction = () => {
   const { id } = useParams();
@@ -13,6 +13,7 @@ export const UpdateProductFunction = () => {
     img: null,
     description: "",
     specialtyId: "",
+    locationId: "",
     features: []
   });
 
@@ -21,6 +22,7 @@ export const UpdateProductFunction = () => {
   const [success, setSuccess] = useState("");
   const [specialties, setSpecialties] = useState([]);
   const [features, setFeatures] = useState([]);
+  const [locations, setLocations] = useState([]);
 
   useEffect(() => {
     const fetchSpecialties = async () => {
@@ -48,9 +50,25 @@ export const UpdateProductFunction = () => {
       }
     };
 
+    const fetchLocations = async () => {
+      try {
+        const responseLocations = await axios.get(`${SERVER_API}/locations/list`);
+        if (Array.isArray(responseLocations.data)) {
+          setLocations(responseLocations.data);
+        } else {
+          console.error("Locations response is not an array:", responseLocations.data);
+          setLocations([]);
+        }
+      } catch (error) {
+        console.error("Error fetching locations:", error);
+        setLocations([]);
+      }
+    };
+
     const fetchDoctor = async () => {
       try {
         const doctorData = await getDoctorById(id);
+        console.log(doctorData); // Verifica la estructura de doctorData
         setProduct({
           name: doctorData.name,
           lastname: doctorData.lastname,
@@ -58,7 +76,8 @@ export const UpdateProductFunction = () => {
           img: null,
           description: doctorData.description,
           specialtyId: doctorData.specialtyID,
-          features: doctorData.features ? doctorData.features.split(',').map(Number) : []
+          locationId: doctorData.locationID,
+          features: Array.isArray(doctorData.features) ? doctorData.features.map(f => f.id) : []
         });
         setBase64Image(doctorData.img);
       } catch (error) {
@@ -69,6 +88,7 @@ export const UpdateProductFunction = () => {
     fetchSpecialties();
     fetchDoctor();
     fetchFeatures();
+    fetchLocations();
   }, [id]);
 
   const validateForm = (values) => {
@@ -102,6 +122,10 @@ export const UpdateProductFunction = () => {
       errors.specialtyId = "Specialty is mandatory";
     }
 
+    if (!values.locationId) {
+      errors.locationId = "Location is mandatory";
+    }
+
     return errors;
   };
 
@@ -110,10 +134,6 @@ export const UpdateProductFunction = () => {
       ? product.features.filter((id) => id !== featureId)
       : [...product.features, featureId];
 
-    console.log("Updated Features:", updatedFeatures); // Add this line
-
-  
-    // Update product state using a callback function
     setProduct((prevProduct) => ({
       ...prevProduct,
       features: updatedFeatures,
@@ -134,7 +154,8 @@ export const UpdateProductFunction = () => {
       }
       formData.append('description', product.description);
       formData.append('specialtyId', product.specialtyId);
-      formData.append('featureIds', product.features.join(",")); // Send features as a comma-separated string
+      formData.append('locationId', product.locationId);
+      formData.append('featureIds', product.features.join(","));
 
       try {
         await axios.put(`${SERVER_API}/doctors/update/${id}`, formData, {
@@ -150,12 +171,13 @@ export const UpdateProductFunction = () => {
           img: null,
           description: "",
           specialtyId: "",
+          locationId: "",
           features: []
         });
         setError("");
         setSuccess("Doctor updated");
       } catch (error) {
-        console.error("Error on sending data:", error);
+        console.error("Error on sending data:", error.response ? error.response.data : error.message);
         setError("Error updating doctor");
       }
     } else {
@@ -214,6 +236,19 @@ export const UpdateProductFunction = () => {
           ))}
         </select>
 
+        <label>Location:</label>
+        <select
+          value={product.locationId}
+          onChange={(e) => setProduct({ ...product, locationId: e.target.value })}
+        >
+          <option value="">Select a location</option>
+          {locations.map((location) => (
+            <option key={location.id} value={location.id}>
+              {location.name}
+            </option>
+          ))}
+        </select>
+
         <label>Features:</label>
         {features.map((feature) => (
           <div key={feature.id}>
@@ -225,7 +260,7 @@ export const UpdateProductFunction = () => {
               onChange={() => handleFeatureChange(feature.id)}
             />
             <label htmlFor={feature.id}>
-              {feature.name} 
+              {feature.name}
             </label>
           </div>
         ))}
@@ -237,10 +272,15 @@ export const UpdateProductFunction = () => {
             ))}
           </div>
         )}
-        {!error && success}
+        {!error && success && (
+          <div className="successMessage">
+            <p>{success}</p>
+          </div>
+        )}
 
         <button type="submit">Update</button>
       </form>
     </div>
   );
 };
+
