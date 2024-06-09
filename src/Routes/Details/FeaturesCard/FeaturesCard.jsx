@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { Grid, Card, CardContent, Typography, CardMedia } from '@mui/material';
+import { Grid, Card, CardContent, Typography} from '@mui/material';
 import axios from 'axios';
-import { Icon } from '@mui/material';
 import { SERVER_API } from '../../../Constants';
 import './FeaturesCard.styles.css'
 
@@ -45,9 +44,10 @@ export const FeaturesCard = ({ doctorId }) => {
             <Typography variant="body2" color="text.secondary">
               <img src={card.icon} alt="Icono" className="features-card-icon" />
             </Typography>
-            <Typography variant="h5" component="h2" className="features-card-title">
+            {/* <Typography variant="h5" component="h5" className="features-card-title">
               {card.name}
-            </Typography>
+            </Typography> */}
+            <h5 className='features-card-title'>{card.name}</h5>
             <Typography variant="body2" color="text.secondary" className="features-card-description">
               {card.description}
             </Typography>
