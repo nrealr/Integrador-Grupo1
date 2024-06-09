@@ -5,7 +5,7 @@ export const UpdateSpecialty= () => {
   return (
     <div className="add-product-display">
 
-    <div >Update Specialties</div>
+    <h2 >Update Specialties</h2>
     <UpdateSpecialtyFunction />
 
     </div>

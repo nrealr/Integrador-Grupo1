@@ -108,6 +108,10 @@
   margin-right: 10px;
 }
 
+.admin-display{
+  margin-top: 50px;
+}
+
 .admin-display-data {
   display: flex;
   flex-direction: column;
@@ -160,6 +164,7 @@
 
 .admin-welcome{
   background-color: antiquewhite;
+  margin-top: 50px;
 }
 
 .admin-welcome img{
