@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Importa useNavigate para redireccionar
-import { Box, Container, Typography, FormControl, Button } from '@mui/material';
+import { Box, Container, Typography, FormControl, Button, Grid, TextField, InputLabel, Select, MenuItem } from '@mui/material';
+import AccessTimeIcon from '@mui/icons-material/AccessTime'; 
 import { SearchBar } from '../../Searchbar/SearchBar';
 import { ROUTES } from '../../../Constants/routes'; 
 
@@ -20,7 +21,6 @@ export const Search = () => {
   const navigate = useNavigate();  // Hook para redireccionar
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputValue, setInputValue] = useState('');
-
 
   const handleOptionSelect = (doctor) => {
     setSelectedOption(doctor);
@@ -136,28 +136,15 @@ export const Search = () => {
                 }}
               >
                 <FormControl fullWidth sx={{ mb: { xs: '1rem', md: '0' }, flex: 1.6, fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' } }}>
-                  <TextField
-                    label="Enter Speciality, Doctor Name or Services"
-                    value={city}
-                    onChange={handleCityChange}
-                    variant="outlined"
-                    sx={{ backgroundColor: 'white', color: 'black',
-                    '& .MuiInputBase-input': {
-                      fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' }
-                    },
-                    '& .MuiInputLabel-root': {
-                      fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' }
-                    }
-                      }}
+                  <SearchBar
+                    inputValue={inputValue}
+                    setInputValue={setInputValue}
+                    value={selectedOption}
+                    setValue={setSelectedOption}
+                    searchResult={handleOptionSelect}
                   />
                 </FormControl>
-                <SearchBar
-            inputValue={inputValue}
-            setInputValue={setInputValue}
-            value={selectedOption}
-            setValue={setSelectedOption}
-            searchResult={handleOptionSelect}
-          />
+                
                 <FormControl fullWidth sx={{ mb: { xs: '1rem', md: '0' }, flex: 1.1, fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' } }}>
                   <InputLabel
                     sx={{

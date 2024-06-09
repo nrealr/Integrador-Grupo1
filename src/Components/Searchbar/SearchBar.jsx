@@ -46,7 +46,7 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
     <Autocomplete
       id="asynchronous-demo"
       freeSolo
-      sx={{ width: 600, backgroundColor: 'white', color: 'black' }}
+      sx={{ width: { xs: '100%', sm: '100%', md: '100%' }, backgroundColor: 'white', color: 'black' }}
       open={open}
       onOpen={() => setOpen(true)}
       onClose={() => setOpen(false)}
@@ -71,7 +71,16 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
       renderInput={(params) => (
         <TextField
           {...params}
-          label="Search Here"
+          label="Enter Speciality, Doctor Name or Services"
+          variant="outlined"
+          sx={{ backgroundColor: 'white', color: 'black',
+          '& .MuiInputBase-input': {
+            fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' }
+          },
+          '& .MuiInputLabel-root': {
+            fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' }
+          }
+            }}
           InputProps={{
             ...params.InputProps,
             endAdornment: (
