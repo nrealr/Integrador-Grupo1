@@ -4,12 +4,17 @@ import Grow from "@mui/material/Grow";
 import Paper from "@mui/material/Paper";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 import MenuItem from "@mui/material/MenuItem";
-import MenuList from "@mui/material/MenuList";
-import TextField from "@mui/material/TextField";
 import { Link } from "react-router-dom";
 import { Button } from "@mui/material";
 import { ROUTES } from "../../../../Constants";
 import { login } from "../../../../Services/login";
+import { MenuList, TextField } from "./LoginMenu.styled";
+
+
+/**
+ * 
+ * @returns {React.Component} Menu list for LOG IN button, complete with email and password
+ */
 
 export const LoginMenu = () => {
   const [open, setOpen] = useState(false);
@@ -86,7 +91,7 @@ export const LoginMenu = () => {
           >
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
-                <MenuList id="menu-list-grow">
+                <MenuList>
                   <TextField
                     label="E-mail"
                     variant="outlined"
