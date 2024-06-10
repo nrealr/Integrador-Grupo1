@@ -22,19 +22,11 @@ export const LoginButton = () => {
   const [passwordError, setPasswordError] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Use the useLocalStorage hook to retrieve the stored email and password
-  // const [storedEmail, setStoredEmail] = useLocalStorage("email", "");
-  // const [storedPassword, setStoredPassword] = useLocalStorage("password", "");
 
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     setIsLoggedIn(!!token);
 
-    // If there is a stored email and password, set the email and password state with the stored values
-    // if (storedEmail && storedPassword) {
-    //   setEmail(storedEmail);
-    //   setPassword(storedPassword);
-    // }
   }, []);
 
   const handleToggle = () => {

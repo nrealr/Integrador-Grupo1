@@ -5,6 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import { FeaturesCard } from "./FeaturesCard";
 import { BookingCalendar } from "../../Components/BookingCalendar/BookingCalendar";
 import { IcnReturnHome } from "../../Utils";
+import { BtnAppointment } from "./BtnAppointment";
 
 
 
@@ -51,26 +52,52 @@ export const Detail = () => {
       <div className="detailBody">
 
         <div>
-          <img className="doctorImage" src={doctorSelected.urlImg} alt="Dr. Photografy" />
+          <img
+            className="doctorImage"
+            src={doctorSelected.urlImg}
+            alt="Dr. Photografy" />
         </div>
 
         <div className="doctor-data">
           <div>
             <h3> Hello! I'm an specialist in {specialty}</h3>
             <p>{doctorSelected.description}</p>
+
+            <BtnAppointment/>
+
+            {/* <Button
+              variant="contained"
+              component={Link}
+              to={ROUTES.APPOINTMENTS}
+              className="btn-appointment"
+              endIcon={<CalendarMonthTwoToneIcon />}
+              sx={{
+                textTransform: 'none',
+                padding: '6px auto', 
+                borderRadius: '25px', 
+                opacity: 0.8, 
+                width: 'auto', 
+                margin: '10%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+              }}
+            >
+              Book an Appointment
+            </Button> */}
           </div>
 
         </div>
-{/* 
-        <BookingCalendar className="calendarDate"/> */}
+
+        <BookingCalendar className="calendarDate" />
       </div>
 
 
 
       <div className="detailFeatures" >
-  
+
         <FeaturesCard doctorId={doctorSelected.id} />
-        {/* <Link to={ROUTES.APPOINTMENTS}>book</Link> */}
+
       </div>
 
 

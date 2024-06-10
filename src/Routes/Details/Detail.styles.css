@@ -1,18 +1,16 @@
-
-
-.doctor-detail{
+.doctor-detail {
   margin-top: 100px;
   display: flex;
   flex-direction: column;
 }
 
-.doctorImage{
+.doctorImage {
   height: 400px;
   width: 400px;
   object-fit: contain;
 }
 
-.detailHeader{
+.detailHeader {
   display: flex;
   align-items: center;
   width: 100%;
@@ -20,7 +18,7 @@
   background-color: #63c0bb;
 }
 
-.detailHeader > * {
+.detailHeader>* {
   margin-right: 10px;
 }
 
@@ -29,7 +27,7 @@
   text-align: center;
 }
 
-.detailBody{
+.detailBody {
   display: flex;
   width: 100%;
   padding: 1rem;
@@ -46,7 +44,7 @@
   padding: 2rem;
 }
 
-.doctor-data h3{
+.doctor-data h3 {
   font-size: larger;
   font-weight: bolder;
   text-align: center;
@@ -58,7 +56,7 @@
   border-radius: 25px;
 }
 
-.doctor-data p{
+.doctor-data p {
   font-size: medium;
   text-align: justify;
   font-weight: bolder;
@@ -70,22 +68,24 @@
   border-radius: 25px;
 }
 
-.calendarDate{
+
+.calendarDate {
   background-color: red;
   margin-left: 40%;
   width: 20%;
 }
-.detailFeatures{
+
+.detailFeatures {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   width: 100%;
 }
 
-.detailFeatures h4{
+.detailFeatures h4 {
   text-align: center;
   width: 100%;
-  background-color:#63c0bb;
+  background-color: #63c0bb;
   padding: 1rem;
   font-weight: bolder;
   font-size: large;
