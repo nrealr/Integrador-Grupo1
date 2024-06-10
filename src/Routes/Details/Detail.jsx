@@ -9,6 +9,10 @@ import { BtnAppointment } from "./BtnAppointment";
 
 
 
+/**
+ * 
+ * @returns {React.Component} Detailf of the doctor, bring up doctor data, map of specialities, button for make an appointment and his calendar
+ */
 
 export const Detail = () => {
   const { id } = useParams();
@@ -33,9 +37,8 @@ export const Detail = () => {
     getData();
   }, [id]);
 
-  /**
-   * @returns {React.Component} Condition: if the doctor isn´t registered with his DNI, the doctor will not be available
-   */
+
+  // Condition: if the doctor isn´t registered with his DNI, the doctor will not be available
 
   if (!doctorSelected.rut) {
     return <h1>Doctor Not found</h1>;
@@ -60,49 +63,22 @@ export const Detail = () => {
 
         <div className="doctor-data">
           <div>
+
             <h3> Hello! I'm an specialist in {specialty}</h3>
             <p>{doctorSelected.description}</p>
+            <BtnAppointment />
 
-            <BtnAppointment/>
-
-            {/* <Button
-              variant="contained"
-              component={Link}
-              to={ROUTES.APPOINTMENTS}
-              className="btn-appointment"
-              endIcon={<CalendarMonthTwoToneIcon />}
-              sx={{
-                textTransform: 'none',
-                padding: '6px auto', 
-                borderRadius: '25px', 
-                opacity: 0.8, 
-                width: 'auto', 
-                margin: '10%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-              }}
-            >
-              Book an Appointment
-            </Button> */}
           </div>
 
         </div>
 
         <BookingCalendar className="calendarDate" />
+
       </div>
-
-
 
       <div className="detailFeatures" >
-
         <FeaturesCard doctorId={doctorSelected.id} />
-
       </div>
-
-
-
-
 
     </section>
 
