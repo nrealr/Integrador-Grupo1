@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import React, { useEffect, useState } from 'react';
 import { Box } from '@mui/material';
 import { RecommendCard } from '../Components/Body/Recommendations';
 import { SERVER_API } from '../Constants';
 import axios from 'axios';
+import { Detail } from './Details/Detail';
+import { useSearchParams } from 'react-router-dom';
 
 const SearchResults = () => {
   const [searchParams] = useSearchParams();
@@ -42,13 +43,9 @@ const SearchResults = () => {
 
   return (
     <div>
-      <Box className="flex-container" sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '2rem' }}>
         {results.map((doctor) => (
-          <Box className="flex-item" key={doctor.id} sx={{ flexBasis: '40%', margin: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-            <RecommendCard doctor={doctor} />
-          </Box>
+            <Detail id={doctor.id} />
         ))}
-      </Box>
     </div>
   );
 }
