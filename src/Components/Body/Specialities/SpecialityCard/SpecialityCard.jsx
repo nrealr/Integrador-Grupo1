@@ -1,34 +1,22 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography, CardActions, Button } from '@mui/material';
-import './SpecialityCard.styles.css'
-import { RatingBox, ShareButton } from '../../../../Utils';
-
+import { Card, CardMedia, CardContent, Typography } from '@mui/material';
+/*import './SpecialityCard.styles.css'*/
 
 export const SpecialityCard = ({ category }) => {
     return (
-        <Card className='speciality-card' sx={{ maxWidth: 345 }} elevation={10}>
+        <Card sx={{ width: '100%', margin: '0 auto', borderRadius: 2 }} elevation={10}>
             <CardMedia
                 component="img"
                 alt={category.name}
-                height="140"
-                image="\images\specialitysCard.png"
+                image={category.icon}
+                height="100"
+                sx={{ objectFit: 'contain', padding: '1rem' }}
             />
-
-            <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                    Speciality name - {category.name}
-                </Typography>
-
-                <Typography variant="body2" color="text.secondary">
-                    Speciality description - {category.description}
+            <CardContent sx={{ padding: '10px', textAlign: 'center' }} >
+                <Typography gutterBottom variant="h5" component="div" align='center' sx={{color: 'primary.main', fontSize: { xs: '1rem', sm: '1.2rem', md: '1.4rem' }}} >
+                {category.name}
                 </Typography>
             </CardContent>
-
-            <CardActions className='cardAction-box'>
-                <ShareButton />
-                <RatingBox />
-            </CardActions>
-
         </Card>
     );
 };
