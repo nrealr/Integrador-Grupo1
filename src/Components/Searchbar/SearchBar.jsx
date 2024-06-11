@@ -17,7 +17,7 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
     }
 
     (async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
+      await new Promise((resolve) => setTimeout(resolve, 1)); // Simulate network delay
 
       if (active) {
         try {
