@@ -1,0 +1,93 @@
+.doctor-detail {
+  margin-top: 100px;
+  display: flex;
+  flex-direction: column;
+}
+
+.doctorImage {
+  height: 400px;
+  width: 400px;
+  object-fit: contain;
+}
+
+.detailHeader {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 5px;
+  background-color: #63c0bb;
+}
+
+.detailHeader>* {
+  margin-right: 10px;
+}
+
+.detailHeader h2 {
+  flex: 1;
+  text-align: center;
+}
+
+.detailBody {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  background-image: url(/images/bg-recommendationCard.jpg);
+  border-radius: 5px;
+  border-left: 10px;
+  flex-grow: 2;
+  background-size: cover;
+}
+
+.doctor-data {
+  display: flex;
+  align-items: stretch;
+  padding: 2rem;
+}
+
+.doctor-data h3 {
+  font-size: larger;
+  font-weight: bolder;
+  text-align: center;
+  margin: 10%;
+  background-color: #102C5B;
+  color: whitesmoke;
+  padding: 1rem;
+  opacity: 0.8;
+  border-radius: 25px;
+}
+
+.doctor-data p {
+  font-size: medium;
+  text-align: justify;
+  font-weight: bolder;
+  margin: 10%;
+  background-color: #63c0bb;
+  color: black;
+  padding: 1rem;
+  opacity: 0.8;
+  border-radius: 25px;
+}
+
+
+.calendarDate {
+  background-color: red;
+  margin-left: 40%;
+  width: 20%;
+}
+
+.detailFeatures {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.detailFeatures h4 {
+  text-align: center;
+  width: 100%;
+  background-color: #63c0bb;
+  padding: 1rem;
+  font-weight: bolder;
+  font-size: large;
+}
+

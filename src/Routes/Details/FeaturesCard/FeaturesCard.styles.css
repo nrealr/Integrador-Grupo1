@@ -1,0 +1,93 @@
+/* featuresCard.css */
+
+.features-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+    align-items: stretch;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.features-card:hover {
+    transform: scale(1.05);
+    background-color: #f7f7f7;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.features-card-grid>div.features-card {
+    border-radius: 60px;
+    flex: 1;
+    margin: 20px;
+    border: 1px solid #ddd;
+    box-shadow: 5px 5px rgb(100 192 187);
+    border-radius: 60px;
+    font-size: 1rem;
+    color: black;
+}
+
+
+.features-card {
+    transition: transform 0.3s, background-color 0.3s;
+    grid-column: span 1;
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+}
+
+
+.features-card-icon {
+    width: 35%;
+    height: auto;
+    margin: 20px;
+}
+
+.features-card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 20px;
+    border-radius: 50%;
+}
+
+.features-card-content>h5.features-card-title {
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #102C5B;
+    text-align: center;
+    line-height: normal;
+    font-weight: 600;
+    font-size: 1rem;
+
+}
+
+.features-card-description {
+    font-size: 0.5rem;
+    color: #666;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+
+@media (max-width: 768px) {
+
+    .features-card-grid {
+
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .features-card-grid {
+
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+    }
+
+}
