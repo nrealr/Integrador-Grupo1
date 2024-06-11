@@ -70,7 +70,7 @@ export const Detail = ({ id: propId }) => {
           </div>
         </div>
 
-        <BookingCalendar className="calendarDate" />
+        {/* <BookingCalendar className="calendarDate" /> */}
       </div>
 
       {/* Oculta el div si hay algún parámetro de consulta presente */}
