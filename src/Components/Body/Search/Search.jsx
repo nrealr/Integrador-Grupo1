@@ -143,6 +143,7 @@ export const Search = () => {
                     value={selectedOption}
                     setValue={setSelectedOption}
                     searchResult={handleOptionSelect}
+                    onEnterPress={handleButtonClick} 
                   />
                 </FormControl>
                 
