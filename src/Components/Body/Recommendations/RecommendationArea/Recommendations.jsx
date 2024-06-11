@@ -42,6 +42,7 @@ export const Recommendations = () => {
   }
 
   return (
+    
     <div className="recommendations-container">
       <Box className="flex-container" sx={{
         display: 'flex',

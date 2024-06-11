@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardMedia, CardContent, Typography, CardActions, IconButton } from '@mui/material';
+import { Card, CardMedia, CardContent, Typography, CardActions, IconButton, Button } from '@mui/material';
 import './RecommendCard.styles.css'
 import { FavoriteIcon, RatingBox, ShareButton, capitalizeFirstLetter } from '../../../../Utils';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
@@ -49,13 +49,14 @@ export const RecommendCard = ({ doctor }) => {
                     My speciality: {doctor.specialty}
                 </Typography>
 
-                <IconButton
+                <Button
                     className='icn-view-more'
                     component={Link} to={`/doctors/${doctor.id}`}
                     color='secondary'
+                    sx={{textTransform: 'none' }}
                 >
-                    <ReadMoreIcon />
-                </IconButton>
+                    <ReadMoreIcon /> View More
+                </Button>
 
             </CardContent>
 
