@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Grid, Card, CardContent, Typography, CardMedia } from '@mui/material';
+import { Grid, Card, CardContent, Typography} from '@mui/material';
 import axios from 'axios';
-import { Icon } from '@mui/material';
 import { SERVER_API } from '../../../Constants';
+import './FeaturesCard.styles.css'
 
 
 
@@ -31,44 +31,28 @@ export const FeaturesCard = ({ doctorId }) => {
       });
   }, [doctorId]);
 
+
+
   return (
-    <Grid>
+    <div className="features-card-grid">
       {cards.map(card => (
-        <Grid>
-          <Card sx={{ minHeight: '100%' }}>
-            <CardMedia
-              component="div"
-              sx={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                height: '100%',
-                width: '100%',
-                backgroundColor: 'primary.main',
-                color: 'black',
-              }}
-            >
-              <Icon></Icon>
-            </CardMedia>
-            <CardContent 
-              component="div"
-              sx={{
-                display: 'flex',
-                flexDirection: "column",
-                alignItems: 'center',
-                justifyContent: 'space-evenly',
-                textAlign: 'center'
-              }}>
-              <Typography variant="body2" color="text.secondary">
-                <img src={card.icon} alt="Icono" style={{ width: '100px', height: 'auto' }} />
-              </Typography>
-              <Typography variant="h5" component="h2">
-                {card.name}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
+        <Card className="features-card">
+          <CardContent
+            component="div"
+            className="features-card-content"
+          >
+            <Typography variant="body2" color="text.secondary">
+              <img src={card.icon} alt="Icono" className="features-card-icon" />
+            </Typography>
+            <Typography variant="h5" component="h5" className="features-card-title">
+              {card.name}
+            </Typography>
+            <Typography variant="body2" color="text.secondary" className="features-card-description">
+              {card.description}
+            </Typography>
+          </CardContent>
+        </Card>
       ))}
-    </Grid>
+    </div>
   );
 };

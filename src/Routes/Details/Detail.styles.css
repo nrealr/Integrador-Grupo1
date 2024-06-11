@@ -1,12 +1,16 @@
-
-
-.doctor-detail{
+.doctor-detail {
   margin-top: 100px;
   display: flex;
   flex-direction: column;
 }
 
-.detailHeader{
+.doctorImage {
+  height: 400px;
+  width: 400px;
+  object-fit: contain;
+}
+
+.detailHeader {
   display: flex;
   align-items: center;
   width: 100%;
@@ -14,7 +18,7 @@
   background-color: #63c0bb;
 }
 
-.detailHeader > * {
+.detailHeader>* {
   margin-right: 10px;
 }
 
@@ -23,10 +27,9 @@
   text-align: center;
 }
 
-.detailBody{
+.detailBody {
   display: flex;
   width: 100%;
-  margin-top: inherit;
   padding: 1rem;
   background-image: url(/images/bg-recommendationCard.jpg);
   border-radius: 5px;
@@ -35,40 +38,56 @@
   background-size: cover;
 }
 
-.detailBody img{
-  border-style: outset;
-  border-color: #102C5B;
-  border-radius: 15px; 
-}
-
 .doctor-data {
   display: flex;
   align-items: stretch;
   padding: 2rem;
 }
 
-.doctor-data h3{
+.doctor-data h3 {
   font-size: larger;
   font-weight: bolder;
   text-align: center;
-  margin: 15px;
-  color: #102C5B;
+  margin: 10%;
+  background-color: #102C5B;
+  color: whitesmoke;
+  padding: 1rem;
+  opacity: 0.8;
+  border-radius: 25px;
 }
 
-.doctor-data p{
+.doctor-data p {
   font-size: medium;
-  margin: 15px;
   text-align: justify;
+  font-weight: bolder;
+  margin: 10%;
+  background-color: #63c0bb;
+  color: black;
+  padding: 1rem;
+  opacity: 0.8;
+  border-radius: 25px;
 }
 
-.calendarDate{
+
+.calendarDate {
   background-color: red;
   margin-left: 40%;
   width: 20%;
 }
-.detailFeatures{
-  display: table-row-group;
+
+.detailFeatures {
+  display: flex;
+  flex-direction: column;
   flex-grow: 1;
   width: 100%;
+}
+
+.detailFeatures h4 {
+  text-align: center;
+  width: 100%;
+  background-color: #63c0bb;
+  padding: 1rem;
+  font-weight: bolder;
+  font-size: large;
 }
 

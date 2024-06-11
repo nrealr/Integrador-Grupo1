@@ -1,21 +1,54 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
+import { RecommendCard } from '../Components/Body/Recommendations';
+import { SERVER_API } from '../Constants';
+import axios from 'axios';
+import { Detail } from './Details/Detail';
+import { useSearchParams } from 'react-router-dom';
 
 const SearchResults = () => {
-  const location = useLocation();
-  const { query } = location.state || {};
+  const [searchParams] = useSearchParams();
+  const [results, setResults] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  const query = searchParams.get('query') || '';
+
+  useEffect(() => {
+    const fetchResults = async () => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await axios.get(`${SERVER_API}/doctors/search?query=${query}`);
+        setResults(response.data);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (query) {
+      fetchResults();
+    }
+  }, [query]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
 
   return (
     <div>
-      <h1>Search Results</h1>
-      {query ? (
-        <p>Showing results for: {query}</p>
-      ) : (
-        <p>No search query provided.</p>
-      )}
-      {/* Render your search results here */}
+        {results.map((doctor) => (
+            <Detail id={doctor.id} />
+        ))}
     </div>
   );
-};
+}
 
 export default SearchResults;
+

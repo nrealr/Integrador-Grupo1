@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  // Importa useNavigate para redireccionar
+import { useNavigate } from 'react-router-dom';
 import { Box, Container, Typography, FormControl, Button, Grid, TextField, InputLabel, Select, MenuItem } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime'; 
 import { SearchBar } from '../../Searchbar/SearchBar';
@@ -18,7 +18,7 @@ export const Search = () => {
     setCity(event.target.value);
   };
 
-  const navigate = useNavigate();  // Hook para redireccionar
+  const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState(null);
   const [inputValue, setInputValue] = useState('');
 
@@ -30,7 +30,8 @@ export const Search = () => {
     if (selectedOption && selectedOption.id) {
       navigate(`doctors/${selectedOption.id}`);
     } else {
-      navigate(ROUTES.SEARCHRESULTS, { state: { query: inputValue } } );
+      const queryParams = new URLSearchParams({ query: inputValue }).toString();
+      navigate(`${ROUTES.SEARCHRESULTS}?${queryParams}`);
     }
   };
 
@@ -142,6 +143,7 @@ export const Search = () => {
                     value={selectedOption}
                     setValue={setSelectedOption}
                     searchResult={handleOptionSelect}
+                    onEnterPress={handleButtonClick} 
                   />
                 </FormControl>
                 

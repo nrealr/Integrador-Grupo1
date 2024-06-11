@@ -4,7 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import { searchDoctor } from '../../Services/Doctors/searchDoctor';
 
-export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setValue }) => {
+export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setValue, onEnterPress }) => {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
   const loading = open && options.length === 0;
@@ -17,7 +17,7 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
     }
 
     (async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
+      await new Promise((resolve) => setTimeout(resolve, 1)); // Simulate network delay
 
       if (active) {
         try {
@@ -90,6 +90,11 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
               </React.Fragment>
             ),
             type: 'search',
+          }}
+          onKeyPress={(event) => {
+            if (event.key === 'Enter') {
+              onEnterPress();
+            }
           }}
         />
       )}

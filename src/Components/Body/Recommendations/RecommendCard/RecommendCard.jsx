@@ -51,7 +51,7 @@ export const RecommendCard = ({ doctor }) => {
 
                 <IconButton
                     className='icn-view-more'
-                    component={Link} to={`/doctor/${doctor.id}`}
+                    component={Link} to={`/doctors/${doctor.id}`}
                     color='secondary'
                 >
                     <ReadMoreIcon />
