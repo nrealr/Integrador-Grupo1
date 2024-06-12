@@ -116,3 +116,14 @@
     margin: 10px;
   }
 }
+
+
+@media (max-width: 768px) {
+
+  .doctorImage {
+
+    display: none;
+
+  }
+
+}
