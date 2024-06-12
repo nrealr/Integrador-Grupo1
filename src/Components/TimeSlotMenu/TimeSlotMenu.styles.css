@@ -1,0 +1,17 @@
+.time-slot-component{
+    display: inline;
+}
+
+.select{
+    background-color: #aed8d7;
+    border-radius: 15px;
+}
+
+.text{
+    color: blue;
+    font-weight: bolder;
+}
+
+.slot-list{
+    border-radius: 10px;
+}

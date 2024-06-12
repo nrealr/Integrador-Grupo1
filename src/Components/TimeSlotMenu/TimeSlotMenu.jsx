@@ -1,5 +1,6 @@
 import * as React from 'react';
-import { MenuItem, Select, TextField } from '@mui/material';
+import { MenuItem, Select} from '@mui/material';
+import './TimeSlotMenu.styles.css'
 
 const timeSlots = Array.from({ length: 12 }, (_, i) => {
   const startHour = 8 + i;
@@ -26,23 +27,23 @@ export const TimeSlotMenu = () => {
   };
 
   return (
-    <div>
-      <Select
+    <div className='time-slot-component'>
+      <Select className='select'
         value={selectedTimeSlot}
         onChange={handleTimeSlotChange}
         displayEmpty
         inputProps={{ 'aria-label': 'Select time slot' }}
       >
-        <MenuItem value="" disabled>
+        <MenuItem value="" disabled className='text'>
           Select time slot
         </MenuItem>
         {timeSlots.map((timeSlot, index) => (
-          <MenuItem
+          <MenuItem className='slot-list'
             key={index}
             value={timeSlot.value}
             disabled={takenTimeSlots.includes(timeSlot.value)} // disable taken time slots
             style={{
-              backgroundColor: takenTimeSlots.includes(timeSlot.value)? 'lightgray' : 'white',
+              backgroundColor: takenTimeSlots.includes(timeSlot.value)? '#df7475' : 'lightgrey',
             }}
           >
             {timeSlot.label}
