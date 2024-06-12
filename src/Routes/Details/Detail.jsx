@@ -7,6 +7,7 @@ import { BookingCalendar } from "../../Components/BookingCalendar/BookingCalenda
 import { IcnReturnHome } from "../../Utils";
 import { BtnAppointment } from "./BtnAppointment";
 import { getLocationById } from "../../Services/Locations/getLocationById";
+import { TimeSlotMenu } from "../../Components/TimeSlotMenu";
 
 export const Detail = ({ id: propId }) => {
   const location = useLocation();
@@ -78,6 +79,7 @@ export const Detail = ({ id: propId }) => {
           </div>
         </div>
 
+<TimeSlotMenu/>
         {/* <BookingCalendar className="calendarDate" /> */}
       </div>
 
