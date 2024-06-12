@@ -19,13 +19,13 @@ export const Detail = ({ id: propId }) => {
 
   useEffect(() => {
 
-    // fetch taken time slots from backend
+    // Here we can block slots from backend
 
     fetch('/api/taken-time-slots')
 
-     .then(response => response.json())
+      .then(response => response.json())
 
-     .then(data => setTakenTimeSlots(data));
+      .then(data => setTakenTimeSlots(data));
 
   }, []);
 
@@ -93,10 +93,10 @@ export const Detail = ({ id: propId }) => {
         </div>
 
         <TimeSlotMenu markTakenTimeSlots={setTakenTimeSlots} />
-        {/* <BookingCalendar className="calendarDate" /> */}
+        <BookingCalendar className="calendarDate" />
       </div>
 
-      {/* Oculta el div si hay algún parámetro de consulta presente */}
+    
       {!queryParamsPresent && (
         <div className="detailFeatures">
           <FeaturesCard doctorId={doctorSelected.id} />
