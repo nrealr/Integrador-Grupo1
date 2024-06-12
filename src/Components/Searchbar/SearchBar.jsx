@@ -18,7 +18,7 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
       try {
         const query = inputValue.slice(0, 3);
         const [doctors, specialties] = await Promise.all([
-          searchDoctor(query),
+          searchDoctor(query, ""),
           getSpecialties()
         ]);
         console.log(doctors);
