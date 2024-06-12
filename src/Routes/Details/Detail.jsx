@@ -15,6 +15,19 @@ export const Detail = ({ id: propId }) => {
   const [specialty, setSpecialty] = useState("");
   const [doctorLocation, setDoctorLocation] = useState("");
   const params = useParams();
+  const [takenTimeSlots, setTakenTimeSlots] = useState([]);
+
+  useEffect(() => {
+
+    // fetch taken time slots from backend
+
+    fetch('/api/taken-time-slots')
+
+     .then(response => response.json())
+
+     .then(data => setTakenTimeSlots(data));
+
+  }, []);
 
   // Use el operador ternario para determinar el id a utilizar
   const id = propId !== undefined && propId !== null ? propId : params.id;
@@ -79,7 +92,7 @@ export const Detail = ({ id: propId }) => {
           </div>
         </div>
 
-<TimeSlotMenu/>
+        <TimeSlotMenu markTakenTimeSlots={setTakenTimeSlots} />
         {/* <BookingCalendar className="calendarDate" /> */}
       </div>
 
