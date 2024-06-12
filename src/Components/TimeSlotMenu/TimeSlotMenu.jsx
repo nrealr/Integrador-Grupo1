@@ -1,58 +1,92 @@
-import React from "react";
-import { NavigationContainer } from '@react-navigation/native';
-import { CreateStackNavigator } from '@react-navigation/stack';
-import { Container, Content, Header, ListItem, Text } from 'native-base';
-import moment from 'moment';
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Tooltip from '@mui/material/Tooltip';
+import Stack from '@mui/material/Stack';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { TimePicker } from '@mui/x-date-pickers/TimePicker';
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { DateRangePicker } from '@mui/x-date-pickers-pro/DateRangePicker';
 
-const TimeSlot = () => {
-    const [timeSlots, setTimeSlots] = React.useState([]);
-    const createTimeSlots = (fromTime, toTime) => {
-        let startTime = moment(fromTime, 'hh:mm A');
-        let endTime = moment(toTime, 'hh:mm A');
-        if (endTime.isBefore(startTime)) {
-            endTime.add(1, 'day');
-        }
+const ProSpan = styled('span')({
+  display: 'inline-block',
+  height: '1em',
+  width: '1em',
+  verticalAlign: 'iddle',
+  marginLeft: '0.3em',
+  marginBottom: '0.08em',
+  backgroundSize: 'contain',
+  backgroundRepeat: 'no-repeat',
+  backgroundImage: 'url(https://mui.com/static/x/pro.svg)',
+});
 
-        let arr = [];
-        while (startTime <= endTime) {
-            arr.push(new moment(startTime).format('hh:mm A'));
-            startTime.add(1, 'hours');
-        }
-        return arr;
-    };
+function Label({ componentName, valueType, isProOnly }) {
+  const content = (
+    <span>
+      <strong>{componentName}</strong> for {valueType} editing
+    </span>
+  );
 
-
-    React.useEffect(() => {
-        setTimeSlots(createTimeSlots('08:00 AM', '09:00 PM'));
-    }, []);
-
+  if (isProOnly) {
     return (
+      <Stack direction="row" spacing={0.5} component="span">
+        <Tooltip title="Included on Pro package">
+          <a
+            href="https://mui.com/x/introduction/licensing/#pro-plan"
+            aria-label="Included on Pro package"
+          >
+            <ProSpan />
+          </a>
+        </Tooltip>
+        {content}
+      </Stack>
+    );
+  }
 
-
-        <Container>
-            <Header />
-            <Content>
-                {timeSlots.map((item, index) => (
-                    <ListItem>
-                        <Text>
-                            {item}
-                            {timeSlots[index + 1] ? ' - ' + timeSlots[index + 1] : ''}
-                        </Text>
-                    </ListItem>
-                ))}
-            </Content>
-        </Container>
-    )
-
+  return content;
 }
 
 export const TimeSlotMenu = () => {
-    return (
-        <NavigationContainer>
-            <Stack.Navigator initialRouteName='Detail' headerMode='none'>
-                <Stack.Screen name='Detail' component={TimeSlot} />
-
-            </Stack.Navigator>
-        </NavigationContainer>
-    )
-}
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <DemoContainer
+        components={[
+          'DatePicker',
+          'TimePicker',
+          'DateTimePicker',
+          'DateRangePicker',
+        ]}
+      >
+        <DemoItem label={<Label componentName="DatePicker" valueType="date" />}>
+          <DatePicker />
+        </DemoItem>
+        <DemoItem label={<Label componentName="TimePicker" valueType="time" />}>
+          <TimePicker />
+        </DemoItem>
+        <DemoItem
+          label={<Label componentName="DateTimePicker" valueType="date time" />}
+        >
+          <DateTimePicker />
+        </DemoItem>
+        <DemoItem
+          label={
+            <Label
+              componentName="DateRangePicker"
+              valueType="date range"
+              isProOnly
+            />
+          }
+        >
+          <DateRangePicker
+            localeText={{
+              start: '',
+              end: '',
+            }}
+          />
+        </DemoItem>
+      </DemoContainer>
+    </LocalizationProvider>
+  );
+};
