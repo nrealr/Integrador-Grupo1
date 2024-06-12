@@ -1,56 +1,42 @@
 import * as React from 'react';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { TimePicker } from '@mui/x-date-pickers/TimePicker';
-
+import { MenuItem, Select, TextField } from '@mui/material';
 
 const timeSlots = Array.from({ length: 12 }, (_, i) => {
-  const hour = 8 + i;
-  return `${hour < 10 ? `0${hour}` : hour}:00`;
+  const startHour = 8 + i;
+  const endHour = startHour + 1;
+  return {
+    label: `${startHour < 10? `0${startHour}` : startHour}:00 - ${endHour < 10? `0${endHour}` : endHour}:00`,
+    value: `${startHour < 10? `0${startHour}` : startHour}:00-${endHour < 10? `0${endHour}` : endHour}:00`,
+  };
 });
 
 export const TimeSlotMenu = () => {
-  const [startTime, setStartTime] = React.useState(null);
-  const [endTime, setEndTime] = React.useState(null);
+  const [selectedTimeSlot, setSelectedTimeSlot] = React.useState('');
 
-  const handleStartTimeChange = (newStartTime) => {
-    setStartTime(newStartTime);
-  };
-
-  const handleEndTimeChange = (newEndTime) => {
-    setEndTime(newEndTime);
-  };
-
-  const isValidRange = () => {
-    if (!startTime || !endTime) return false;
-    const startHour = parseInt(startTime.format('HH'), 10);
-    const endHour = parseInt(endTime.format('HH'), 10);
-    return startHour < endHour;
+  const handleTimeSlotChange = (event) => {
+    setSelectedTimeSlot(event.target.value);
   };
 
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <div>
-        <TimePicker
-          label="Start Time"
-          value={startTime}
-          onChange={handleStartTimeChange}
-          minutesStep={60}
-          renderInput={(params) => <TextField {...params} />}
-        />
-        <TimePicker
-          label="End Time"
-          value={endTime}
-          onChange={handleEndTimeChange}
-          minutesStep={60}
-          renderInput={(params) => <TextField {...params} />}
-        />
-        {isValidRange() ? (
-          <p>Selected time range: {startTime.format('HH:mm')} - {endTime.format('HH:mm')}</p>
-        ) : (
-          <p>Please select a valid time range</p>
-        )}
-      </div>
-    </LocalizationProvider>
+    <div>
+      <Select
+        value={selectedTimeSlot}
+        onChange={handleTimeSlotChange}
+        displayEmpty
+        inputProps={{ 'aria-label': 'Select time slot' }}
+      >
+        <MenuItem value="" disabled>
+          Select time slot
+        </MenuItem>
+        {timeSlots.map((timeSlot, index) => (
+          <MenuItem key={index} value={timeSlot.value}>
+            {timeSlot.label}
+          </MenuItem>
+        ))}
+      </Select>
+      {selectedTimeSlot && (
+        <p>Selected time slot: {selectedTimeSlot}</p>
+      )}
+    </div>
   );
 };
