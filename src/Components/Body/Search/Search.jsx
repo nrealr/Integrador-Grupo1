@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Container, Typography, FormControl, Button, Grid, TextField, InputLabel, Select, MenuItem } from '@mui/material';
+import { Box, Container, Typography, FormControl, Button, Grid, InputLabel, Select, MenuItem } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime'; 
 import { SearchBar } from '../../Searchbar/SearchBar';
 import { ROUTES } from '../../../Constants/routes'; 
+import { getLocations } from '../../../Services/Locations/getLocations';
 
 export const Search = () => {
   const [city, setCity] = useState('');
-  const cityOptions = [
-    { label: 'Antofagasta', value: 'antofagasta' },
-    { label: 'Calama', value: 'calama' },
-    { label: 'Concepción', value: 'concepcion' },
-    { label: 'Puerto Montt', value: 'puerto-montt' },
-    { label: 'Santiago', value: 'santiago' },
-  ];
+  const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const locationsData = await getLocations();
+        setLocations(locationsData);
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
   const handleCityChange = (event) => {
     setCity(event.target.value);
   };
@@ -27,10 +36,16 @@ export const Search = () => {
   };
 
   const handleButtonClick = () => {
+    const selectedLocation = locations.find(location => location.id === city);
+    const locationName = selectedLocation ? selectedLocation.name : '';
+
+    const queryParams = new URLSearchParams({
+      query: locationName || inputValue,
+    }).toString();
+
     if (selectedOption && selectedOption.id) {
       navigate(`doctors/${selectedOption.id}`);
     } else {
-      const queryParams = new URLSearchParams({ query: inputValue }).toString();
       navigate(`${ROUTES.SEARCHRESULTS}?${queryParams}`);
     }
   };
@@ -154,7 +169,7 @@ export const Search = () => {
                       fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
                     }}
                   >
-                    Choose Location (Optional)
+                    Choose Location 
                   </InputLabel>
                   <Select
                     value={city}
@@ -165,9 +180,9 @@ export const Search = () => {
                     }
                     }}
                   >
-                    {cityOptions.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
+                    {locations.map((location) => (
+                      <MenuItem key={location.id} value={location.id}>
+                        {location.name}
                       </MenuItem>
                     ))}
                   </Select>

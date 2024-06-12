@@ -3,38 +3,57 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import { searchDoctor } from '../../Services/Doctors/searchDoctor';
+import { getSpecialties } from '../../Services/Specialties/getSpecialties';
 
 export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setValue, onEnterPress }) => {
   const [open, setOpen] = React.useState(false);
   const [options, setOptions] = React.useState([]);
-  const loading = open && options.length === 0;
+  const [loading, setLoading] = React.useState(false);
 
   React.useEffect(() => {
     let active = true;
 
-    if (!loading) {
-      return undefined;
-    }
+    const fetchOptions = async () => {
+      setLoading(true);
+      try {
+        const query = inputValue.slice(0, 3);
+        const [doctors, specialties] = await Promise.all([
+          searchDoctor(query),
+          getSpecialties()
+        ]);
+        console.log(doctors);
+        console.log(specialties);
 
-    (async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1)); // Simulate network delay
-
-      if (active) {
-        try {
-          // Obtener los primeros 3 caracteres del inputValue
-          const query = inputValue.slice(0, 3);
-          const doctors = await searchDoctor(query);
-          setOptions(doctors);
-        } catch (error) {
-          console.error('Error fetching doctors:', error);
+        if (active) {
+          const combinedOptions = [
+            ...doctors.map(doctor => ({
+              ...doctor,
+              type: 'doctor'
+            })),
+            ...specialties.map(specialty => ({
+              name: specialty.name,
+              id: specialty.id,
+              type: 'specialty'
+            }))
+          ];
+          setOptions(combinedOptions);
         }
+      } catch (error) {
+        console.error('Error fetching data:', error);
       }
-    })();
+      setLoading(false);
+    };
+
+    if (inputValue.length >= 3) {
+      fetchOptions();
+    } else {
+      setOptions([]);
+    }
 
     return () => {
       active = false;
     };
-  }, [loading, inputValue]); // Agrega inputValue como dependencia
+  }, [inputValue]);
 
   React.useEffect(() => {
     if (!open) {
@@ -60,11 +79,11 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
         }
       }}
       isOptionEqualToValue={(option, value) => option.id === value.id}
-      getOptionLabel={(option) => (typeof option === 'string' ? option : `${option.name} ${option.lastname}`)}
+      getOptionLabel={(option) => (typeof option === 'string' ? option : option.type === 'doctor' ? `${option.name} ${option.lastname}` : option.name)}
       options={options}
       filterOptions={(options, { inputValue }) =>
         options.filter((option) =>
-          (`${option.name} ${option.lastname} ${option.specialtyId} ${option.description} ${option.featureIds}`).toLowerCase().includes(inputValue.toLowerCase())
+          (`${option.name} ${option.lastname || ''} ${option.specialtyId || ''} ${option.description || ''} ${option.featureIds || ''}`).toLowerCase().includes(inputValue.toLowerCase())
         )
       }
       loading={loading}
