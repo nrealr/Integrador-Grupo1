@@ -72,7 +72,7 @@ export const Detail = ({ id: propId }) => {
         <div className="doctor-data">
           <div>
             <h3>Hello! I'm a specialist in {specialty}</h3>
-            <h3>I'm located at the {doctorLocation}</h3>
+            <h3>I'm located in the {doctorLocation}</h3>
             <p>{doctorSelected.description}</p>
             <BtnAppointment />
           </div>
