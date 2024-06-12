@@ -118,12 +118,71 @@
 }
 
 
+/* Hide image on small screens */
 @media (max-width: 768px) {
-
   .doctorImage {
-
-    display: none;
-
-  }
-
-}
+     display: none;
+   }
+ }
+ 
+ /* Adjust doctor-data styles on small screens */
+ @media (max-width: 768px) {
+  .doctor-data {
+     padding: 1rem;
+     margin: 5px;
+   }
+  .doctor-data h3,.doctor-data p {
+     font-size: medium;
+     margin: 5px;
+   }
+ }
+ 
+ /* Adjust doctor-data styles on very small screens */
+ @media (max-width: 480px) {
+  .doctor-data {
+     padding: 0.5rem;
+     margin: 2px;
+   }
+  .doctor-data h3,.doctor-data p {
+     font-size: small;
+     margin: 2px;
+   }
+ }
+ 
+ /* Adjust calendarDate styles on small screens */
+ @media (max-width: 768px) {
+  .calendarDate {
+     width: 150px;
+   }
+ }
+ 
+ /* Adjust calendarDate styles on very small screens */
+ @media (max-width: 480px) {
+  .calendarDate {
+     width: 100px;
+   }
+ }
+ 
+ /* Adjust detailFeatures styles on small screens */
+ @media (max-width: 768px) {
+  .detailFeatures {
+     padding: 1rem;
+     margin: 5px;
+   }
+  .detailFeatures h4 {
+     font-size: medium;
+     margin: 5px;
+   }
+ }
+ 
+ /* Adjust detailFeatures styles on very small screens */
+ @media (max-width: 480px) {
+  .detailFeatures {
+     padding: 0.5rem;
+     margin: 2px;
+   }
+  .detailFeatures h4 {
+     font-size: small;
+     margin: 2px;
+   }
+ }
