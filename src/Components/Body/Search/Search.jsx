@@ -50,6 +50,8 @@ export const Search = () => {
     }
   };
 
+  const isButtonDisabled = !city && !inputValue;
+
   return (
     <Box sx={{ width: '100%', marginTop: { xs: '3.5rem', sm: '4rem' }, position: 'relative' }}>
       <Box
@@ -59,7 +61,7 @@ export const Search = () => {
           height: { xs: '30vh', sm: '35vh', md: '40vh', lg: '41vh', xl: '58vh' },
           backgroundImage: 'url(./images/bg-hero-doctor.png)',
           backgroundSize: 'cover',
-          backgroundPosition: { xs: 'right', md: 'right', lg: 'center', xl: 'center' },
+          backgroundPosition: { xs: 'right', md: 'right', lg: 'right', xl: 'right' },
           backgroundRepeat: 'no-repeat',
           display: 'flex',
           alignItems: 'center',
@@ -199,6 +201,7 @@ export const Search = () => {
                     flex: 1,
                   }}
                   onClick={handleButtonClick}
+                  disabled={isButtonDisabled}
                 >
                   Search
                 </Button>
