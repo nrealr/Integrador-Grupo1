@@ -40,10 +40,14 @@ export const Search = () => {
     const locationName = selectedLocation ? selectedLocation.name : '';
 
     const queryParams = new URLSearchParams({
-      query: locationName || inputValue,
+      query: inputValue,
+      location: locationName
     }).toString();
 
-    if (selectedOption && selectedOption.id) {
+    if (selectedOption && selectedOption.id && selectedLocation.id == selectedOption.locationId) {
+      console.log(selectedOption)
+      console.log(selectedLocation)
+
       navigate(`doctors/${selectedOption.id}`);
     } else {
       navigate(`${ROUTES.SEARCHRESULTS}?${queryParams}`);
