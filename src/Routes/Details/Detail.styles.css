@@ -1,4 +1,3 @@
-
 /* Doctor Detail Container */
 .doctor-detail {
   margin-top: 100px;
@@ -9,7 +8,7 @@
 /* Doctor Image Styles */
 .doctorImage {
   height: 50vh;
-  width: 20vw;
+  width: 20rem;
   object-fit: contain;
 }
 
@@ -122,78 +121,94 @@
     height: auto;
   }
 
-  .doctor-data h3, .doctor-data p {
+  .doctor-data h3,
+  .doctor-data p {
     font-size: larger;
     margin: 10px;
   }
 }
 
+/* Media query para ajustar el tamaño de la imagen cuando la pantalla tiene un ancho menor a 1020px */
+
+@media (max-width: 1020px) {
+  .doctorImage {
+    width: 15rem;
+    /* Disminuye el ancho de la imagen a 15 veces el tamaño de la fuente del elemento raíz */
+  }
+
+}
 
 /* Hide image on small screens */
 @media (max-width: 768px) {
   .doctorImage {
-     display: none;
-   }
- }
- 
- /* Adjust doctor-data styles on small screens */
- @media (max-width: 768px) {
+    display: none;
+  }
+}
+
+/* Adjust doctor-data styles on small screens */
+@media (max-width: 768px) {
   .doctor-data {
-     padding: 1rem;
-     margin: 5px;
-   }
-  .doctor-data h3,.doctor-data p {
-     font-size: medium;
-     margin: 5px;
-   }
- }
- 
- /* Adjust doctor-data styles on very small screens */
- @media (max-width: 480px) {
+    padding: 1rem;
+    margin: 5px;
+  }
+
+  .doctor-data h3,
+  .doctor-data p {
+    font-size: medium;
+    margin: 5px;
+  }
+}
+
+/* Adjust doctor-data styles on very small screens */
+@media (max-width: 480px) {
   .doctor-data {
-     padding: 0.5rem;
-     margin: 2px;
-   }
-  .doctor-data h3,.doctor-data p {
-     font-size: small;
-     margin: 2px;
-   }
- }
- 
- /* Adjust calendarDate styles on small screens */
- @media (max-width: 768px) {
+    padding: 0.5rem;
+    margin: 2px;
+  }
+
+  .doctor-data h3,
+  .doctor-data p {
+    font-size: small;
+    margin: 2px;
+  }
+}
+
+/* Adjust calendarDate styles on small screens */
+@media (max-width: 768px) {
   .calendarDate {
-     width: 150px;
-   }
- }
- 
- /* Adjust calendarDate styles on very small screens */
- @media (max-width: 480px) {
+    width: 150px;
+  }
+}
+
+/* Adjust calendarDate styles on very small screens */
+@media (max-width: 480px) {
   .calendarDate {
-     width: 100px;
-   }
- }
- 
- /* Adjust detailFeatures styles on small screens */
- @media (max-width: 768px) {
+    width: 100px;
+  }
+}
+
+/* Adjust detailFeatures styles on small screens */
+@media (max-width: 768px) {
   .detailFeatures {
-     padding: 1rem;
-     margin: 5px;
-   }
+    padding: 1rem;
+    margin: 5px;
+  }
+
   .detailFeatures h4 {
-     font-size: medium;
-     margin: 5px;
-   }
- }
- 
- /* Adjust detailFeatures styles on very small screens */
- @media (max-width: 480px) {
+    font-size: medium;
+    margin: 5px;
+  }
+}
+
+/* Adjust detailFeatures styles on very small screens */
+@media (max-width: 480px) {
   .detailFeatures {
-     padding: 0.5rem;
-     margin: 2px;
-   }
+    padding: 0.5rem;
+    margin: 2px;
+  }
+
   .detailFeatures h4 {
-     font-size: small;
-     margin: 2px;
-   }
- }
+    font-size: small;
+    margin: 2px;
+  }
+}
