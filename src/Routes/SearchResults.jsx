@@ -13,14 +13,17 @@ const SearchResults = () => {
   const [error, setError] = useState(null);
 
   const query = searchParams.get('query') || '';
+  const location = searchParams.get('location') || '';
+
 
   useEffect(() => {
     const fetchResults = async () => {
       setLoading(true);
       setError(null);
       try {
-        const response = await axios.get(`${SERVER_API}/doctors/search?query=${query}`);
+        const response = await axios.get(`${SERVER_API}/doctors/search?query=${query}&location=${location}`);
         setResults(response.data);
+        console.log(response.data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -28,10 +31,10 @@ const SearchResults = () => {
       }
     };
 
-    if (query) {
+    if (query || location) {
       fetchResults();
     }
-  }, [query]);
+  }, [query, location]);
 
   if (loading) {
     return <div>Loading...</div>;

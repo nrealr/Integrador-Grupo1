@@ -6,11 +6,13 @@ import { FeaturesCard } from "./FeaturesCard";
 import { BookingCalendar } from "../../Components/BookingCalendar/BookingCalendar";
 import { IcnReturnHome } from "../../Utils";
 import { BtnAppointment } from "./BtnAppointment";
+import { getLocationById } from "../../Services/Locations/getLocationById";
 
 export const Detail = ({ id: propId }) => {
   const location = useLocation();
   const [doctorSelected, setDoctorSelected] = useState({});
   const [specialty, setSpecialty] = useState("");
+  const [doctorLocation, setDoctorLocation] = useState("");
   const params = useParams();
 
   // Use el operador ternario para determinar el id a utilizar
@@ -29,6 +31,11 @@ export const Detail = ({ id: propId }) => {
       if (doctorsData.specialtyId) {
         const specialtyData = await getSpecialtyById(doctorsData.specialtyId);
         setSpecialty(specialtyData.name);
+      }
+
+      if (doctorsData.locationId) {
+        const locationData = await getLocationById(doctorsData.locationId);
+        setDoctorLocation(locationData.name);
       }
 
       setDoctorSelected(doctorsData);
@@ -65,6 +72,7 @@ export const Detail = ({ id: propId }) => {
         <div className="doctor-data">
           <div>
             <h3>Hello! I'm a specialist in {specialty}</h3>
+            <h3>I'm located in the {doctorLocation}</h3>
             <p>{doctorSelected.description}</p>
             <BtnAppointment />
           </div>

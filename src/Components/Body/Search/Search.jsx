@@ -1,19 +1,28 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Container, Typography, FormControl, Button, Grid, TextField, InputLabel, Select, MenuItem } from '@mui/material';
+import { Box, Container, Typography, FormControl, Button, Grid, InputLabel, Select, MenuItem } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime'; 
 import { SearchBar } from '../../Searchbar/SearchBar';
 import { ROUTES } from '../../../Constants/routes'; 
+import { getLocations } from '../../../Services/Locations/getLocations';
 
 export const Search = () => {
   const [city, setCity] = useState('');
-  const cityOptions = [
-    { label: 'Antofagasta', value: 'antofagasta' },
-    { label: 'Calama', value: 'calama' },
-    { label: 'Concepción', value: 'concepcion' },
-    { label: 'Puerto Montt', value: 'puerto-montt' },
-    { label: 'Santiago', value: 'santiago' },
-  ];
+  const [locations, setLocations] = useState([]);
+
+  useEffect(() => {
+    const fetchLocations = async () => {
+      try {
+        const locationsData = await getLocations();
+        setLocations(locationsData);
+      } catch (error) {
+        console.error('Error fetching locations:', error);
+      }
+    };
+
+    fetchLocations();
+  }, []);
+
   const handleCityChange = (event) => {
     setCity(event.target.value);
   };
@@ -27,13 +36,25 @@ export const Search = () => {
   };
 
   const handleButtonClick = () => {
-    if (selectedOption && selectedOption.id) {
+    const selectedLocation = locations.find(location => location.id === city);
+    const locationName = selectedLocation ? selectedLocation.name : '';
+
+    const queryParams = new URLSearchParams({
+      query: inputValue,
+      location: locationName
+    }).toString();
+
+    if (selectedOption && selectedOption.id && selectedLocation.id == selectedOption.locationId) {
+      console.log(selectedOption)
+      console.log(selectedLocation)
+
       navigate(`doctors/${selectedOption.id}`);
     } else {
-      const queryParams = new URLSearchParams({ query: inputValue }).toString();
       navigate(`${ROUTES.SEARCHRESULTS}?${queryParams}`);
     }
   };
+
+  const isButtonDisabled = !city && !inputValue;
 
   return (
     <Box sx={{ width: '100%', marginTop: { xs: '3.5rem', sm: '4rem' }, position: 'relative' }}>
@@ -41,10 +62,10 @@ export const Search = () => {
         sx={{
           position: 'relative',
           width: '100%',
-          height: { xs: '30vh', sm: '35vh', md: '40vh', lg: '65vh' },
+          height: { xs: '30vh', sm: '35vh', md: '40vh', lg: '41vh', xl: '58vh' },
           backgroundImage: 'url(./images/bg-hero-doctor.png)',
           backgroundSize: 'cover',
-          backgroundPosition: { xs: 'right', md: 'right', lg: 'center' },
+          backgroundPosition: { xs: 'right', md: 'right', lg: 'right', xl: 'right' },
           backgroundRepeat: 'no-repeat',
           display: 'flex',
           alignItems: 'center',
@@ -87,7 +108,7 @@ export const Search = () => {
       </Box>
       <Box sx={{
           position: 'absolute',
-          top: { xs: 'calc(35vh - 40px)', sm: 'calc(40vh - 40px)', md: 'calc(36vh - 40px)', lg: 'calc(60vh - 40px)' },
+          top: { xs: 'calc(33vh - 40px)', sm: 'calc(38vh - 40px)', md: 'calc(36vh - 40px)', lg: 'calc(38vh - 40px)', xl: 'calc(54vh - 20px)' },
           width: '100%',
           display: 'flex',
           justifyContent: 'center',
@@ -154,7 +175,7 @@ export const Search = () => {
                       fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
                     }}
                   >
-                    Choose Location (Optional)
+                    Choose Location 
                   </InputLabel>
                   <Select
                     value={city}
@@ -165,9 +186,9 @@ export const Search = () => {
                     }
                     }}
                   >
-                    {cityOptions.map((option) => (
-                      <MenuItem key={option.value} value={option.value}>
-                        {option.label}
+                    {locations.map((location) => (
+                      <MenuItem key={location.id} value={location.id}>
+                        {location.name}
                       </MenuItem>
                     ))}
                   </Select>
@@ -184,6 +205,7 @@ export const Search = () => {
                     flex: 1,
                   }}
                   onClick={handleButtonClick}
+                  disabled={isButtonDisabled}
                 >
                   Search
                 </Button>
