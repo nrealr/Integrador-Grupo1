@@ -20,14 +20,21 @@ export const BtnAppointment = () => {
             endIcon={<CalendarMonthTwoToneIcon />}
             sx={{
                 textTransform: 'none',
-                padding: '6px auto',
+                padding: '1rem',
                 borderRadius: '25px',
                 width: 'auto',
                 margin: '10%',
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                border: '1px solid white'
+                border: '1px solid white',
+                backgroundColor: '#63c0bb', // azul
+                color: 'black', // blanco
+                fontSize: '16px',
+                '&:hover': {
+                    backgroundColor: 'white', // verde claro
+
+                },
             }}
         >
             Book an Appointment
