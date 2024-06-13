@@ -18,7 +18,7 @@
   background-color: #63c0bb;
 }
 
-.detailHeader>* {
+.detailHeader > * {
   margin-right: 10px;
 }
 
@@ -50,7 +50,7 @@
   font-weight: bolder;
   text-align: center;
   margin: 10%;
-  background-color: #102C5B;
+  background-color: #102c5b;
   color: whitesmoke;
   padding: 1rem;
   opacity: 0.8;
@@ -68,7 +68,6 @@
   opacity: 0.8;
   border-radius: 25px;
 }
-
 
 .calendarDate {
   background-color: red;
@@ -111,7 +110,8 @@
     height: auto;
   }
 
-  .doctor-data h3, .doctor-data p {
+  .doctor-data h3,
+  .doctor-data p {
     font-size: larger;
     margin: 10px;
   }

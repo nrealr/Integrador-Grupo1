@@ -18,11 +18,16 @@
     "@mui/icons-material": "^5.15.19",
     "@mui/material": "^5.15.19",
     "axios": "^1.6.8",
+    "baseui": "^0.0.0-next-6fabc7134",
     "react": "^18.2.0",
+    "react-datepicker": "^6.9.0",
+    "react-datetime-picker": "^6.0.1",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.0",
     "react-share": "^5.1.0",
-    "styled-components": "^6.1.11"
+    "styled-components": "^6.1.11",
+    "styletron-engine-monolithic": "^1.0.0",
+    "styletron-react": "^6.1.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
@@ -34,7 +39,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
     "rollup": "^4.17.2",
-    "stubby": "^5.1.0",
+    "stubby": "^0.1.40",
     "vite": "^5.0.8"
   }
 }

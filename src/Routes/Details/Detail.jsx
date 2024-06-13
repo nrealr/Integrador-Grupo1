@@ -7,6 +7,11 @@ import { BookingCalendar } from "../../Components/BookingCalendar/BookingCalenda
 import { IcnReturnHome } from "../../Utils";
 import { BtnAppointment } from "./BtnAppointment";
 import { getLocationById } from "../../Services/Locations/getLocationById";
+import DateTimeCalendar from "../../Components/DateTimeCalendar/DateTimeCalendar";
+import { Provider as StyletronProvider } from 'styletron-react';
+import { LightTheme, BaseProvider } from 'baseui';
+import { Client as Styletron } from 'styletron-engine-monolithic';
+import CalendarPicker from "../../Components/DateTimeCalendar/CalendarPicker";
 
 export const Detail = ({ id: propId }) => {
   const location = useLocation();
@@ -14,6 +19,12 @@ export const Detail = ({ id: propId }) => {
   const [specialty, setSpecialty] = useState("");
   const [doctorLocation, setDoctorLocation] = useState("");
   const params = useParams();
+  const engine = new Styletron();
+
+  const availableTimes = {
+    'Wed Jun 12 2024': ['10:00', '11:00', '14:00'],
+    'Thu Jun 13 2024': ['09:00', '12:00', '15:00'],
+  };
 
   // Use el operador ternario para determinar el id a utilizar
   const id = propId !== undefined && propId !== null ? propId : params.id;
@@ -78,7 +89,20 @@ export const Detail = ({ id: propId }) => {
           </div>
         </div>
 
-        <BookingCalendar className="calendarDate" />
+{/*         <StyletronProvider value={engine}>
+      <BaseProvider theme={LightTheme}>
+        <DateTimeCalendar availableTimes={availableTimes} />;
+        </BaseProvider>
+    </StyletronProvider> */}
+
+<div className="App">
+      <header className="App-header">
+        <h1>Calendar Picker</h1>
+        <CalendarPicker />
+      </header>
+    </div>
+
+
       </div>
 
       {/* Oculta el div si hay algún parámetro de consulta presente */}
