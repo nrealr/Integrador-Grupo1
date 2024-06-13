@@ -21,9 +21,9 @@ export const Detail = ({ id: propId }) => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-   // Use el operador ternario para determinar el id a utilizar
-   const id = propId !== undefined && propId !== null ? propId : params.id;
-   //const id = propId || params.id;
+  // Use el operador ternario para determinar el id a utilizar
+  const id = propId !== undefined && propId !== null ? propId : params.id;
+  //const id = propId || params.id;
 
   useEffect(() => {
 
@@ -38,7 +38,7 @@ export const Detail = ({ id: propId }) => {
   }, []);
 
   const getData = async () => {
-  
+
     let doctorsData = await getDoctorById(id);
 
     if (doctorsData.img) {
@@ -88,7 +88,7 @@ export const Detail = ({ id: propId }) => {
     <section className="doctor-detail">
       <div className="detailHeader">
         {!queryParamsPresent && <IcnReturnHome />}
-        <h2>Dr. {doctorSelected.name} {doctorSelected.lastname}</h2>
+        <h1>Dr. {doctorSelected.name} {doctorSelected.lastname}</h1>
       </div>
 
       <div className="detailBody">
@@ -109,17 +109,20 @@ export const Detail = ({ id: propId }) => {
           </div>
         </div>
 
-        <TimeSlotMenu markTakenTimeSlots={setTakenTimeSlots} />
-        { displayErrorMessage && <span>An error occurred while retrieving available days. Our team is working to resolve the issue as soon as possible. Please try again later</span> }
-        { displayCalendar && 
-          <BookingCalendar 
-            className="calendarDate"
-            availableDays={availableDays}
-          />
-        }
+        <div className="appointment-area">
+          <TimeSlotMenu markTakenTimeSlots={setTakenTimeSlots} />
+          {displayErrorMessage && <span className="msge-error">An error occurred while retrieving available days. Our team is working to resolve the issue as soon as possible. Please try again later</span>}
+          {displayCalendar &&
+            <BookingCalendar
+              className="calendarDate"
+              availableDays={availableDays}
+            />
+          }
+        </div>
+
       </div>
 
-    
+
       {!queryParamsPresent && (
         <div className="detailFeatures">
           <FeaturesCard doctorId={doctorSelected.id} />

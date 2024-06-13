@@ -5,6 +5,7 @@ import { NotPage } from "../../../Utils";
 export const ChanguePassword=()=>{
 
     return(
+      
       <NotPage/>
      
     )

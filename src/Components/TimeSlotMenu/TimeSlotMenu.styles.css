@@ -1,5 +1,7 @@
 .time-slot-component{
-    display: inline;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
 }
 
 .select{
@@ -11,7 +13,7 @@
     color: blue;
     font-weight: bolder;
 }
-
+/* 
 .slot-list{
     border-radius: 10px;
-}
+} */
