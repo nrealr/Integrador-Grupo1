@@ -1,43 +1,65 @@
-import React, { useState } from "react";
-import { Calendar } from "@demark-pro/react-booking-calendar";
-import './BookingCalendar.styles.css'
-
-import "@demark-pro/react-booking-calendar/dist/react-booking-calendar.css";
-
-// CSS Modules, react-booking-calendar-cssmodules.css
-// import '@demark-pro/react-booking-calendar/dist/react-booking-calendar-cssmodules.css';
-
-const oneDay = 86400000;
-const today = new Date().getTime() + oneDay;
-
-const reserved = Array.from({ length: 3 }, (_, i) => {
-  const daysCount = Math.floor(Math.random() * (7 - 4) + 3);
-  const startDate = new Date(today + oneDay * 8 * i);
-
-  return {
-    startDate,
-    endDate: new Date(startDate.getTime() + oneDay * daysCount),
-  };
-});
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import dayjs from 'dayjs';
+import { StaticDatePicker } from './BookingCalendar.styled';
 
 
-/**
- * 
- * @returns type: CalendarSelected[]
-An array of selected check-in and check-out dates. Accepts an array with the value date, number, string, null or undefined.
-Documentation: https://github.com/demark-pro/react-booking-calendar/blob/main/docs/documentation.md
- */
-export const BookingCalendar = () => {
-  const [selectedDates, setSelectedDates] = useState([]);
+export const BookingCalendar = ({
+  availableDays
+}) => {
 
-  return (
-    
-      <Calendar
-        selected={selectedDates}
-        reserved={reserved}
-        onChange={setSelectedDates}
-      />
+    /* propiedades del objeto dayjs
+    {
+      "$L": "en",
+      "$d": "2024-06-13T04:00:00.000Z",
+      "$y": 2024,
+      "$M": 5,
+      "$D": 13,
+      "$W": 4,
+      "$H": 0,
+      "$m": 0,
+      "$s": 0,
+      "$ms": 0,
+      "$x": {},
+      "$isDayjsObject": true
+    }
+     */
 
-    
-  );
+    const date = new Date().toISOString()
+    const today = dayjs(date);
+
+    const onChangeHandler = (value, context) => {
+      //console.log(value)
+    };
+
+    const shouldDisableDateHandler = (value) => {
+      //const isDisabled = value.$D == 27; 
+      /* const availableDaysMap = availableDays.map((item) => {
+        return dayjs(item);
+      }); */
+
+      const year = value.$y;
+      const month = String(value.$M).padStart(2, 0);
+      const day = String(value.$D).padStart(2, 0);
+
+      const date = `${year}-${month}-${day}`;
+
+      const availableDaysMap = availableDays.map((dateStr) => {
+        return dateStr.split('T').shift();
+      });
+
+      const isDisabled = !availableDaysMap.includes(date);
+      return isDisabled;
+    };
+
+
+    return (
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <StaticDatePicker
+            minDate={today}
+            onChange={onChangeHandler}
+            shouldDisableDate={shouldDisableDateHandler}
+          />
+        </LocalizationProvider>
+    )
 };

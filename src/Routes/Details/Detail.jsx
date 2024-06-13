@@ -8,6 +8,7 @@ import { IcnReturnHome } from "../../Utils";
 import { BtnAppointment } from "./BtnAppointment";
 import { getLocationById } from "../../Services/Locations/getLocationById";
 import { TimeSlotMenu } from "../../Components/TimeSlotMenu";
+import { getAvailableDays } from "../../Services/availableDays";
 
 export const Detail = ({ id: propId }) => {
   const location = useLocation();
@@ -16,6 +17,13 @@ export const Detail = ({ id: propId }) => {
   const [doctorLocation, setDoctorLocation] = useState("");
   const params = useParams();
   const [takenTimeSlots, setTakenTimeSlots] = useState([]);
+  const [availableDays, setAvailableDays] = useState([]);
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+   // Use el operador ternario para determinar el id a utilizar
+   const id = propId !== undefined && propId !== null ? propId : params.id;
+   //const id = propId || params.id;
 
   useEffect(() => {
 
@@ -29,43 +37,52 @@ export const Detail = ({ id: propId }) => {
 
   }, []);
 
-  // Use el operador ternario para determinar el id a utilizar
-  const id = propId !== undefined && propId !== null ? propId : params.id;
+  const getData = async () => {
+  
+    let doctorsData = await getDoctorById(id);
 
-  console.log(params)
+    if (doctorsData.img) {
+      doctorsData.urlImg = 'data:image/jpg;base64,' + doctorsData.img;
+    }
+
+    if (doctorsData.specialtyId) {
+      const specialtyData = await getSpecialtyById(doctorsData.specialtyId);
+      setSpecialty(specialtyData.name);
+    }
+
+    if (doctorsData.locationId) {
+      const locationData = await getLocationById(doctorsData.locationId);
+      setDoctorLocation(locationData.name);
+    }
+
+    setDoctorSelected(doctorsData);
+  };
 
   useEffect(() => {
-    const getData = async () => {
-      let doctorsData = await getDoctorById(id);
-
-      if (doctorsData.img) {
-        doctorsData.urlImg = 'data:image/jpg;base64,' + doctorsData.img;
-      }
-
-      if (doctorsData.specialtyId) {
-        const specialtyData = await getSpecialtyById(doctorsData.specialtyId);
-        setSpecialty(specialtyData.name);
-      }
-
-      if (doctorsData.locationId) {
-        const locationData = await getLocationById(doctorsData.locationId);
-        setDoctorLocation(locationData.name);
-      }
-
-      setDoctorSelected(doctorsData);
-    };
     getData();
   }, [id]);
 
-  if (!doctorSelected.rut) {
-    return <h1>Doctor Not found</h1>;
-  }
+  useEffect(() => {
+    setIsLoading(true);
+    getAvailableDays().then((days) => {
+      setAvailableDays(days);
+      setIsError(false);
+    }).catch((err) => {
+      console.error(err);
+      setIsError(true);
+    }).finally(() => {
+      setIsLoading(false);
+    });
+  }, []);
 
   // Verifica si hay algún parámetro de consulta presente en la URL
   const queryParamsPresent = location.search && location.search.length > 0;
 
   console.log("URL actual:", location.pathname + location.search);
   console.log("queryParamsPresent:", queryParamsPresent);
+
+  const displayErrorMessage = !isLoading && isError;
+  const displayCalendar = !isError && !isLoading;
 
   return (
     <section className="doctor-detail">
@@ -93,7 +110,13 @@ export const Detail = ({ id: propId }) => {
         </div>
 
         <TimeSlotMenu markTakenTimeSlots={setTakenTimeSlots} />
-        <BookingCalendar className="calendarDate" />
+        { displayErrorMessage && <span>An error occurred while retrieving available days. Our team is working to resolve the issue as soon as possible. Please try again later</span> }
+        { displayCalendar && 
+          <BookingCalendar 
+            className="calendarDate"
+            availableDays={availableDays}
+          />
+        }
       </div>
 
     

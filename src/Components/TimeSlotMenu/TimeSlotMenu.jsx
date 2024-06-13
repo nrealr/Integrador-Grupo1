@@ -43,7 +43,7 @@ export const TimeSlotMenu = () => {
             value={timeSlot.value}
             disabled={takenTimeSlots.includes(timeSlot.value)} // disable taken time slots
             style={{
-              backgroundColor: takenTimeSlots.includes(timeSlot.value)? '#df7475' : 'lightgrey',
+              backgroundColor: takenTimeSlots.includes(timeSlot.value)? '#df7475' : '#e2edf1',
             }}
           >
             {timeSlot.label}

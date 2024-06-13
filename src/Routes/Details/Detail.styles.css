@@ -61,20 +61,18 @@
   background-color: #102C5B;
   color: whitesmoke;
   padding: 1rem;
-  opacity: 0.8;
   border-radius: 25px;
 }
 
 /* Style for p elements inside the doctor data */
 .doctor-data p {
   font-size: medium;
-  text-align: justify;
+  text-align: center;
   font-weight: bolder;
   margin: 10%;
-  background-color: #63c0bb;
-  color: black;
+  background-color: #102C5B;
+  color: whitesmoke;
   padding: 1rem;
-  opacity: 0.8;
   border-radius: 25px;
 }
 

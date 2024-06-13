@@ -22,7 +22,6 @@ export const BtnAppointment = () => {
                 textTransform: 'none',
                 padding: '6px auto',
                 borderRadius: '25px',
-                opacity: 0.9,
                 width: 'auto',
                 margin: '10%',
                 display: 'flex',
