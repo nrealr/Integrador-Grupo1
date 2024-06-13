@@ -46,12 +46,19 @@ const SearchResults = () => {
 
   return (
     <div>
-        {results.map((doctor) => (
-            <Detail id={doctor.id} />
-        ))}
+      {results.length > 0 ? (
+        <div>
+          {results.map((doctor) => (
+            <Detail key={doctor.id} id={doctor.id} />
+          ))}
+        </div>
+      ) : (
+        <div style={{marginTop: 100, textAlign: "center"}}>
+          <h1>No results</h1>
+        </div>
+      )}
     </div>
   );
 }
 
 export default SearchResults;
-
