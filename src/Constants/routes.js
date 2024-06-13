@@ -10,6 +10,7 @@ export const ROUTES = {
     PROFILE: "/profile",
     APPOINTMENTS: "/profile/appointments",
     PASSWORD: "/profile/password",
+    SEARCHHISTORY: "/profile/searchhistory",
     FEATURESADD: "/admin/features/add",
     SPECIALTIESADD: "/admin/specialties/add",
     DOCTORSUPDATE: "/admin/doctors/update/:id",

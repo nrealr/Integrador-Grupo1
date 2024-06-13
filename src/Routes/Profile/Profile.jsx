@@ -33,6 +33,9 @@ const MyMenu = () => {
       <MenuItem component={Link} to={ROUTES.APPOINTMENTS} sx={menuItemStyles}>
         My Appointments
       </MenuItem>
+      <MenuItem component={Link} to={ROUTES.SEARCHHISTORY} sx={menuItemStyles}>
+        Search History
+      </MenuItem>
       {role === 'ADMINISTRATOR' && ( // Mostrar solo si el rol es ADMINISTRATOR
         <MenuItem component={Link} to={ROUTES.ADMIN} sx={menuItemStyles}>
           Admin Dashboard

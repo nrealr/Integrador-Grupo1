@@ -44,14 +44,15 @@ export const Search = () => {
       location: locationName
     }).toString();
 
-    if (selectedOption && selectedOption.id && !selectedLocation ) {
+    // Save the current search to localStorage
+    const newSearch = { query: inputValue, location: locationName };
+    const storedSearches = JSON.parse(localStorage.getItem('searchHistory')) || [];
+    const updatedSearches = [newSearch, ...storedSearches].slice(0, 3);
+    localStorage.setItem('searchHistory', JSON.stringify(updatedSearches));
 
+    if (selectedOption && selectedOption.id && !selectedLocation) {
       navigate(`doctors/${selectedOption.id}`);
-
-    }else if (selectedOption && selectedOption.id && selectedLocation.id == selectedOption.locationId) {
-      console.log(selectedOption)
-      console.log(selectedLocation)
-
+    } else if (selectedOption && selectedOption.id && selectedLocation.id === selectedOption.locationId) {
       navigate(`doctors/${selectedOption.id}`);
     } else {
       navigate(`${ROUTES.SEARCHRESULTS}?${queryParams}`);
