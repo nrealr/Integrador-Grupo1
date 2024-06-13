@@ -1,58 +1,72 @@
-import * as React from 'react';
-import { MenuItem, Select, TextField } from '@mui/material';
+import { useState } from 'react';
+import styled from 'styled-components';
 
-const timeSlots = Array.from({ length: 12 }, (_, i) => {
-  const startHour = 8 + i;
-  const endHour = startHour + 1;
-  const isAM = startHour < 12;
-  const startHourLabel = `${startHour < 10? `0${startHour}` : startHour}:${isAM? '00 AM' : '00 PM'}`;
-  const endHourLabel = `${endHour < 10? `0${endHour}` : endHour}:${isAM? '00 AM' : '00 PM'}`;
-  return {
-    label: `${startHourLabel} - ${endHourLabel}`,
-    value: `${startHour < 10? `0${startHour}` : startHour}:${isAM? '00' : '00'}-${endHour < 10? `0${endHour}` : endHour}:${isAM? '00' : '00'}`,
-  };
-});
+const TimeSlotList = styled.ul`
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+`;
+
+const TimeSlot = styled.li`
+  background-color: white;
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 0;
+  cursor: pointer;
+  &.selected {
+    background-color: #df7475;
+  }
+`;
+
+const SelectedTimeSlot = styled.div`
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #ccc
+`;
 
 export const TimeSlotMenu = () => {
-  const [selectedTimeSlot, setSelectedTimeSlot] = React.useState('');
-  const [takenTimeSlots, setTakenTimeSlots] = React.useState([]); // store taken time slots from backend
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
 
-  const handleTimeSlotChange = (event) => {
-    setSelectedTimeSlot(event.target.value);
+  const handleTimeSlotClick = (timeSlot) => {
+    setSelectedTimeSlot(timeSlot);
   };
 
-  const markTakenTimeSlots = (takenSlots) => {
-    setTakenTimeSlots(takenSlots);
-  };
 
+  const slotList = Array.from({ length: 11});
+  
   return (
+
     <div>
-      <Select
-        value={selectedTimeSlot}
-        onChange={handleTimeSlotChange}
-        displayEmpty
-        inputProps={{ 'aria-label': 'Select time slot' }}
-      >
-        <MenuItem value="" disabled>
-          Select time slot
-        </MenuItem>
-        {timeSlots.map((timeSlot, index) => (
-          <MenuItem
-            key={index}
-            value={timeSlot.value}
-            disabled={takenTimeSlots.includes(timeSlot.value)} // disable taken time slots
-            style={{
-              backgroundColor: takenTimeSlots.includes(timeSlot.value)? 'lightgray' : 'white',
-            }}
-          >
-            {timeSlot.label}
-          </MenuItem>
-        ))}
-      </Select>
-      {selectedTimeSlot && (
-        <p>Selected time slot: {selectedTimeSlot}</p>
-      )}
+      <TimeSlotList>
+        {
+          slotList.map((_, i) => {
+            const startHour = 8 + i;
+            const endHour = startHour + 1;
+            const timeSlot = `${startHour < 10 ? `0${startHour}` : startHour}:00-${endHour < 10 ? `0${endHour}` : endHour}:00`;
+            return (
+              <TimeSlot
+                key={timeSlot}
+                data-time-slot={timeSlot}
+                onClick={() => handleTimeSlotClick(timeSlot)}
+                className={selectedTimeSlot === timeSlot ? 'elected' : ''}
+              >
+                {timeSlot}
+              </TimeSlot>
+            );
+          })
+        }
+      </TimeSlotList>
+      <SelectedTimeSlot>
+        {selectedTimeSlot && `Time selected: ${selectedTimeSlot}`}
+      </SelectedTimeSlot>
+
     </div>
+
   );
 };
-
