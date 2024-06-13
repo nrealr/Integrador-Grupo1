@@ -39,13 +39,13 @@ export const Search = () => {
     const selectedLocation = locations.find(location => location.id === city);
     const locationName = selectedLocation ? selectedLocation.name : '';
 
-    const queryParams = new URLSearchParams({
-      query: inputValue,
-      location: locationName
-    }).toString();
+    const newSearch = { 
+      query: inputValue, 
+      location: locationName, 
+      doctorId: selectedOption ? selectedOption.id : null, 
+      doctorName: selectedOption ? selectedOption.name : null // Store the doctor's name
+    };
 
-    // Save the current search to localStorage
-    const newSearch = { query: inputValue, location: locationName };
     const storedSearches = JSON.parse(localStorage.getItem('searchHistory')) || [];
     const updatedSearches = [newSearch, ...storedSearches].slice(0, 3);
     localStorage.setItem('searchHistory', JSON.stringify(updatedSearches));
@@ -55,6 +55,10 @@ export const Search = () => {
     } else if (selectedOption && selectedOption.id && selectedLocation.id === selectedOption.locationId) {
       navigate(`doctors/${selectedOption.id}`);
     } else {
+      const queryParams = new URLSearchParams({
+        query: inputValue,
+        location: locationName
+      }).toString();
       navigate(`${ROUTES.SEARCHRESULTS}?${queryParams}`);
     }
   };
