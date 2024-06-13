@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import { RecommendCard } from '../Components/Body/Recommendations';
 import { SERVER_API } from '../Constants';
 import axios from 'axios';
@@ -45,19 +45,27 @@ const SearchResults = () => {
   }
 
   return (
-    <div>
-      {results.length > 0 ? (
-        <div>
+    <Box sx={{ marginTop: 10 }}>
+    {results.length > 0 ? (
+      <Box sx={{ textAlign: 'center' }}>
+        <Typography variant="h3" sx={{ color: 'white', backgroundColor: 'primary.light', padding: '16px' }}>
+          Appointment Booking
+        </Typography>
+        <Typography variant="h5" sx={{ color: 'white', backgroundColor: 'primary.light', padding: '8px' }}>
+          Results found: {results.length}
+        </Typography>
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 0, padding: '0px', marginTop: -3, marginBottom: 3 }}>
           {results.map((doctor) => (
             <Detail key={doctor.id} id={doctor.id} />
           ))}
-        </div>
-      ) : (
-        <div style={{marginTop: 100, textAlign: "center"}}>
-          <h1>No results</h1>
-        </div>
-      )}
-    </div>
+        </Box>
+      </Box>
+    ) : (
+      <Box sx={{ textAlign: 'center' }}>
+        <Typography variant="h1">No results</Typography>
+      </Box>
+    )}
+  </Box>
   );
 }
 
