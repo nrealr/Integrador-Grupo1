@@ -62,7 +62,7 @@ export const Search = () => {
         sx={{
           position: 'relative',
           width: '100%',
-          height: { xs: '30vh', sm: '35vh', md: '40vh', lg: '41vh', xl: '58vh' },
+          height: { xs: '30vh', sm: '35vh', md: '40vh', lg: '54vh', xl: '58vh' },
           backgroundImage: 'url(./images/bg-hero-doctor.png)',
           backgroundSize: 'cover',
           backgroundPosition: { xs: 'right', md: 'right', lg: 'right', xl: 'right' },
@@ -108,7 +108,7 @@ export const Search = () => {
       </Box>
       <Box sx={{
           position: 'absolute',
-          top: { xs: 'calc(33vh - 40px)', sm: 'calc(38vh - 40px)', md: 'calc(36vh - 40px)', lg: 'calc(38vh - 40px)', xl: 'calc(54vh - 20px)' },
+          top: { xs: 'calc(33vh - 40px)', sm: 'calc(38vh - 40px)', md: 'calc(36vh - 40px)', lg: 'calc(48vh - 40px)', xl: 'calc(54vh - 20px)' },
           width: '100%',
           display: 'flex',
           justifyContent: 'center',

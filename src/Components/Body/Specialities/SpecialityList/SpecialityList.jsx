@@ -6,7 +6,7 @@ import { specialties } from '../../../../Constants';
 
 
 export const SpecialityList = () => (
-    <Container sx={{ mb: 10, mt: {xs: 10, sm: 10, md: 1} }} >
+    <Container sx={{ mb: 10, mt: {xs: 10, sm: 10, md: 10} }} >
         <Grid container spacing={2} sx={{ mt: { md: '7', lg: '5'} }}>
             <Grid item xs={12} md={4}>
                 <Box sx={{ 

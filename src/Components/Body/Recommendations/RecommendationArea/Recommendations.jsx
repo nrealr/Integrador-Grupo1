@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getDoctors } from "../../../../Services";
 import './Recommendations.styles.css'
-import { Box, CircularProgress } from "@mui/material";
+import { Box, CircularProgress, Typography } from "@mui/material";
 import { RecommendCard } from "../RecommendCard";
 import { RecommendationsPagination } from "../RecommendationsPagination";
 
@@ -44,6 +44,10 @@ export const Recommendations = () => {
   return (
     
     <div className="recommendations-container">
+      <Box sx={{ textAlign: 'center', marginBottom: '3rem', marginTop: '7rem' }}>
+        <Typography variant="h4" component="h3" sx={{color: 'primary.main'}} >Meet Our Trusted Doctors</Typography>
+        <Typography variant="h5" component="h4" sx={{color: 'secondary.light'}} >Top-Rated by Patients for Exceptional Care</Typography>
+      </Box>
       <Box className="flex-container" sx={{
         display: 'flex',
         flexWrap: 'wrap',
