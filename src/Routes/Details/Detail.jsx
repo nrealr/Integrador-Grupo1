@@ -7,6 +7,7 @@ import { BookingCalendar } from "../../Components/BookingCalendar/BookingCalenda
 import { IcnReturnHome } from "../../Utils";
 import { BtnAppointment } from "./BtnAppointment";
 import { getLocationById } from "../../Services/Locations/getLocationById";
+import { TimeSlotMenu } from "../../Components/TimeSlotMenu";
 
 export const Detail = ({ id: propId }) => {
   const location = useLocation();
@@ -14,6 +15,19 @@ export const Detail = ({ id: propId }) => {
   const [specialty, setSpecialty] = useState("");
   const [doctorLocation, setDoctorLocation] = useState("");
   const params = useParams();
+  const [takenTimeSlots, setTakenTimeSlots] = useState([]);
+
+  useEffect(() => {
+
+    // Here we can block slots from backend
+
+    fetch('/api/taken-time-slots')
+
+      .then(response => response.json())
+
+      .then(data => setTakenTimeSlots(data));
+
+  }, []);
 
   // Use el operador ternario para determinar el id a utilizar
   const id = propId !== undefined && propId !== null ? propId : params.id;
@@ -74,10 +88,11 @@ export const Detail = ({ id: propId }) => {
           </div>
         </div>
 
+        <TimeSlotMenu markTakenTimeSlots={setTakenTimeSlots} />
         <BookingCalendar className="calendarDate" />
       </div>
 
-      {/* Oculta el div si hay algún parámetro de consulta presente */}
+    
       {!queryParamsPresent && (
         <div className="detailFeatures">
           <FeaturesCard doctorId={doctorSelected.id} />

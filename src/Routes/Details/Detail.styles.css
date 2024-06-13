@@ -1,15 +1,19 @@
+
+/* Doctor Detail Container */
 .doctor-detail {
   margin-top: 100px;
   display: flex;
   flex-direction: column;
 }
 
+/* Doctor Image Styles */
 .doctorImage {
   height: 50vh;
   width: 20vw;
   object-fit: contain;
 }
 
+/* Detail Header Styles */
 .detailHeader {
   display: flex;
   align-items: center;
@@ -18,15 +22,18 @@
   background-color: #63c0bb;
 }
 
+/* Style for all elements inside the detail header */
 .detailHeader>* {
   margin-right: 10px;
 }
 
+/* Style for the h2 element inside the detail header */
 .detailHeader h2 {
   flex: 1;
   text-align: center;
 }
 
+/* Detail Body Styles */
 .detailBody {
   display: flex;
   width: 100%;
@@ -38,6 +45,7 @@
   background-size: cover;
 }
 
+/* Doctor Data Styles */
 .doctor-data {
   display: flex;
   align-items: stretch;
@@ -45,6 +53,7 @@
   width: 60vw;
 }
 
+/* Style for h3 elements inside the doctor data */
 .doctor-data h3 {
   font-size: larger;
   font-weight: bolder;
@@ -57,6 +66,7 @@
   border-radius: 25px;
 }
 
+/* Style for p elements inside the doctor data */
 .doctor-data p {
   font-size: medium;
   text-align: justify;
@@ -69,12 +79,13 @@
   border-radius: 25px;
 }
 
-
+/* Calendar Date Styles */
 .calendarDate {
   background-color: red;
   width: 60vw;
 }
 
+/* Detail Features Styles */
 .detailFeatures {
   display: flex;
   flex-direction: column;
@@ -116,3 +127,73 @@
     margin: 10px;
   }
 }
+
+
+/* Hide image on small screens */
+@media (max-width: 768px) {
+  .doctorImage {
+     display: none;
+   }
+ }
+ 
+ /* Adjust doctor-data styles on small screens */
+ @media (max-width: 768px) {
+  .doctor-data {
+     padding: 1rem;
+     margin: 5px;
+   }
+  .doctor-data h3,.doctor-data p {
+     font-size: medium;
+     margin: 5px;
+   }
+ }
+ 
+ /* Adjust doctor-data styles on very small screens */
+ @media (max-width: 480px) {
+  .doctor-data {
+     padding: 0.5rem;
+     margin: 2px;
+   }
+  .doctor-data h3,.doctor-data p {
+     font-size: small;
+     margin: 2px;
+   }
+ }
+ 
+ /* Adjust calendarDate styles on small screens */
+ @media (max-width: 768px) {
+  .calendarDate {
+     width: 150px;
+   }
+ }
+ 
+ /* Adjust calendarDate styles on very small screens */
+ @media (max-width: 480px) {
+  .calendarDate {
+     width: 100px;
+   }
+ }
+ 
+ /* Adjust detailFeatures styles on small screens */
+ @media (max-width: 768px) {
+  .detailFeatures {
+     padding: 1rem;
+     margin: 5px;
+   }
+  .detailFeatures h4 {
+     font-size: medium;
+     margin: 5px;
+   }
+ }
+ 
+ /* Adjust detailFeatures styles on very small screens */
+ @media (max-width: 480px) {
+  .detailFeatures {
+     padding: 0.5rem;
+     margin: 2px;
+   }
+  .detailFeatures h4 {
+     font-size: small;
+     margin: 2px;
+   }
+ }

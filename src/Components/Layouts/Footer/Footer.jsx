@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Footer.styles.css';
 import { Link } from 'react-router-dom';
-import {Copyright} from './Copyright';
+import { Copyright } from './Copyright';
 
 /**
  * 
@@ -11,10 +11,10 @@ export const Footer = () => {
 
   // const [isDarkMode, setIsDarkMode] = useState(false);
   // const darkModeClass = isDarkMode ? "layout-dark" : "layout";
-    
+
 
   const companyName = "MediConnect";
-  
+
   return (
 
     <footer className='footer'>
@@ -25,51 +25,46 @@ export const Footer = () => {
 
       <Copyright companyName={companyName} />
 
+
+
       <div className="footer-social">
-          
-        <Link
-          to={{
-            pathname: 'https://www.facebook.com/',
-            target: '_blank',
-            rel: 'noopener noreferrer'
-          }}
+        <a
+          href="https://www.facebook.com/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             className="icon"
             src="/images/ico-facebook.png"
-            alt='Go to Facebook'
+            alt="Connect with us on Facebook"
           />
-        </Link>
-        <Link
-          to={{
-            pathname: 'https://www.instagram.com/',
-            target: '_blank',
-            rel: 'noopener noreferrer'
-          }}
+        </a>
+        <a
+          href="https://www.instagram.com/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             className="icon"
             src="/images/ico-instagram.png"
-            alt='Go to Instagram'
+            alt="Follow us in Instagram"
           />
-        </Link>
-        <Link
-          to={{
-            pathname: 'https://wa.me/',
-            target: '_blank',
-            rel: 'noopener noreferrer'
-          }}
+        </a>
+        <a
+          href="https://wa.me/"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <img
             className="icon"
             src="/images/ico-whatsapp.png"
-            alt='Go to whatsapp'
+            alt="Write us by WhatsApp"
           />
-        </Link>
+        </a>
       </div>
 
     </footer>
-        
-  );  
+
+  );
 };
-  
+
