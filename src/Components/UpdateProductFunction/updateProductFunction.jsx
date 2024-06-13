@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { SERVER_API } from "../../Constants";
-import { getDoctorById, getFeatures } from "../../Services";
+import { getDoctorById, getFeatures, updateDoctor } from "../../Services";
 
 export const UpdateProductFunction = () => {
   const { id } = useParams();
@@ -158,11 +158,7 @@ export const UpdateProductFunction = () => {
       formData.append('featureIds', product.features.join(","));
 
       try {
-        await axios.put(`${SERVER_API}/doctors/update/${id}`, formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data'
-          }
-        });
+        await updateDoctor(formData, id);
 
         setProduct({
           name: "",
