@@ -40,7 +40,17 @@ const SearchHistory = () => {
           </TableHead>
           <TableBody>
             {searchHistory.map((search, index) => (
-              <TableRow key={index} onClick={() => handleHistoryClick(search)} sx={{cursor: "pointer"}}>
+              <TableRow key={index} onClick={() => handleHistoryClick(search)} sx={{
+
+                cursor: "pointer",
+            
+                "&:hover": {
+            
+                  backgroundColor: "#f0f0f0" // Cambia el background color al hacer hover
+            
+                }
+            
+              }}>
                 <TableCell>
                   <Link 
                     component="button" 
