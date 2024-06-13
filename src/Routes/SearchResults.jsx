@@ -47,7 +47,9 @@ const SearchResults = () => {
   return (
     <div>
       {results.length > 0 ? (
-        <div>
+        <div style={{marginTop : 100}}>
+          <h2 style={{textAlign: "center"}}>Search results </h2>
+          <h3>Results found: {results.length} </h3>
           {results.map((doctor) => (
             <Detail key={doctor.id} id={doctor.id} />
           ))}
