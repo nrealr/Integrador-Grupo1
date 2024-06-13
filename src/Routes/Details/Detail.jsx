@@ -57,10 +57,6 @@ export const Detail = ({ id: propId }) => {
     getData();
   }, [id]);
 
-  if (!doctorSelected.rut) {
-    return <h1>Doctor Not found</h1>;
-  }
-
   // Verifica si hay algún parámetro de consulta presente en la URL
   const queryParamsPresent = location.search && location.search.length > 0;
 

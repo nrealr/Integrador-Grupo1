@@ -44,7 +44,11 @@ export const Search = () => {
       location: locationName
     }).toString();
 
-    if (selectedOption && selectedOption.id && selectedLocation.id == selectedOption.locationId) {
+    if (selectedOption && selectedOption.id && !selectedLocation ) {
+
+      navigate(`doctors/${selectedOption.id}`);
+
+    }else if (selectedOption && selectedOption.id && selectedLocation.id == selectedOption.locationId) {
       console.log(selectedOption)
       console.log(selectedLocation)
 
