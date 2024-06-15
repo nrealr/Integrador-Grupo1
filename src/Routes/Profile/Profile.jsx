@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import { ROUTES } from '../../Constants';
 import './Profile.styles.css';
 import { handleLogout } from '../../Utils';
+import { getUsersById } from '../../Services/Users/getUsersById';
 
 const menuItemStyles = {
   backgroundColor: 'antiquewhite',
@@ -20,7 +21,21 @@ const menuItemStyles = {
 };
 
 const MyMenu = () => {
-  const role = localStorage.getItem('role'); // Obtener el rol del usuario desde el localStorage
+  const [userData, setUserData] = React.useState({});
+  
+  React.useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await getUsersById();
+        setUserData(data);
+      } catch (error) {
+        console.error("Error fetching user data", error);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  const { role } = userData;
 
   return (
     <div>
@@ -36,7 +51,7 @@ const MyMenu = () => {
       <MenuItem component={Link} to={ROUTES.SEARCHHISTORY} sx={menuItemStyles}>
         Search History
       </MenuItem>
-      {role === 'ADMINISTRATOR' && ( // Mostrar solo si el rol es ADMINISTRATOR
+      {role === 'ADMINISTRATOR' && (
         <MenuItem component={Link} to={ROUTES.ADMIN} sx={menuItemStyles}>
           Admin Dashboard
         </MenuItem>
@@ -48,8 +63,25 @@ const MyMenu = () => {
   );
 };
 
+
 export const Profile = () => {
   const [open, setOpen] = React.useState(false);
+  const [userData, setUserData] = React.useState({});
+  
+  React.useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const data = await getUsersById();
+        setUserData(data);
+      } catch (error) {
+        console.error("Error fetching user data", error);
+      }
+    };
+    fetchUserData();
+  }, []);
+
+  const { name, lastname } = userData;
+
   const anchorRef = React.useRef(null);
 
   const handleToggle = () => {
@@ -72,7 +104,6 @@ export const Profile = () => {
     }
   }
 
-  // return focus to the button when we transitioned from !open -> open
   const prevOpen = React.useRef(open);
   React.useEffect(() => {
     if (prevOpen.current === true && open === false) {
@@ -81,9 +112,6 @@ export const Profile = () => {
     prevOpen.current = open;
   }, [open]);
 
-  const name = localStorage.getItem('name'); // Obtener el nombre del localStorage
-  const lastname = localStorage.getItem('lastname'); // Obtener el apellido del localStorage
-
   return (
     <Stack direction="row" spacing={2}>
       <Paper elevation={15} sx={{ backgroundColor: 'antiquewhite' }}>
@@ -91,7 +119,7 @@ export const Profile = () => {
       </Paper>
       <Paper>
         <Grid>
-          <h2>Welcome, {name} {lastname}!</h2> {/* Renderizar nombre y apellido */}
+          <h2>Welcome, {name} {lastname}!</h2>
           <ProfileCard />
         </Grid>
       </Paper>

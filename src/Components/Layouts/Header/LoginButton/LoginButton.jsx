@@ -1,9 +1,7 @@
-
 import React, { useState } from "react";
 import Button from "@mui/material/Button";
 import { LoginMenu } from "../LoginMenu";
-
-
+import { handleLogout } from "../../../../Utils";
 
 export const LoginButton = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -13,14 +11,6 @@ export const LoginButton = () => {
     setIsLoggedIn(!!token);
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    localStorage.removeItem("name");
-    localStorage.removeItem("lastname");
-    setIsLoggedIn(false);
-    window.location.href = "/";
-  };
 
   return (
     <div>

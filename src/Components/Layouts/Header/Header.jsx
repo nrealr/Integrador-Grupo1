@@ -6,6 +6,7 @@ import { AppBar, Toolbar, useTheme, Box, Button } from "@mui/material";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { LoginButton } from "./LoginButton";
 import { BackgroundLetterAvatars } from "../../../Routes/Profile/BackgroundLetterAvatars/BackgroundLetterAvatars";
+import { handleLogout } from "../../../Utils";
 
 /**
  *
@@ -32,12 +33,6 @@ export const Header = () => {
     setOpen(false);
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("role");
-    setIsLoggedIn(false);
-    window.location.href = "/";
-  };
 
   return (
     <AppBar position="fixed" color="background1">

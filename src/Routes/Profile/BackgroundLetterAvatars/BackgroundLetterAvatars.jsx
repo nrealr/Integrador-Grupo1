@@ -2,7 +2,7 @@ import * as React from "react";
 import Avatar from "@mui/material/Avatar";
 import Stack from "@mui/material/Stack";
 import "./BackgroundLetterAvatars.styles.css";
-import { capitalizeFirstLetter } from "../../../Utils";
+import { getUsersById } from "../../../Services/Users/getUsersById";
 
 function stringToColor(string) {
   let hash = 0;
@@ -34,12 +34,25 @@ function stringAvatar(name, lastname) {
 }
 
 export const BackgroundLetterAvatars = () => {
-  const name = localStorage.getItem("name") || "User";
-  const lastname = localStorage.getItem("lastname") || "Name";
+  const [name, setName] = React.useState("User");
+  const [lastname, setLastname] = React.useState("Name");
+
+  React.useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const userData = await getUsersById();
+        setName(userData.name || "User");
+        setLastname(userData.lastname || "Name");
+      } catch (error) {
+        console.error("Error fetching user data", error);
+      }
+    };
+    fetchUserData();
+  }, []);
 
   return (
     <Stack direction="row" spacing={2}>
-    <Avatar className="no-gutters" {...stringAvatar(name, lastname)} />
+      <Avatar className="no-gutters" {...stringAvatar(name, lastname)} />
     </Stack>
   );
 };

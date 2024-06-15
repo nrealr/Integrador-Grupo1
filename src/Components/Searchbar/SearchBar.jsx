@@ -4,6 +4,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import CircularProgress from '@mui/material/CircularProgress';
 import { searchDoctor } from '../../Services/Doctors/searchDoctor';
 import { getSpecialties } from '../../Services/Specialties/getSpecialties';
+import { getFeatures } from '../../Services/Features/getFeatures';
 
 export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setValue, onEnterPress }) => {
   const [open, setOpen] = React.useState(false);
@@ -17,12 +18,11 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
       setLoading(true);
       try {
         const query = inputValue.slice(0, 3);
-        const [doctors, specialties] = await Promise.all([
+        const [doctors, specialties, features] = await Promise.all([
           searchDoctor(query, ""),
-          getSpecialties()
+          getSpecialties(),
+          getFeatures()
         ]);
-        console.log(doctors);
-        console.log(specialties);
 
         if (active) {
           const combinedOptions = [
@@ -34,6 +34,11 @@ export const SearchBar = ({ searchResult, inputValue, setInputValue, value, setV
               name: specialty.name,
               id: specialty.id,
               type: 'specialty'
+            })),
+            ...features.map(feature => ({
+              name: feature.name,
+              id: feature.id,
+              type: 'feature'
             }))
           ];
           setOptions(combinedOptions);
