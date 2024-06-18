@@ -2,13 +2,9 @@ import React, { useEffect, useState } from "react";
 import { Link, Router } from "react-router-dom";
 import { ROUTES } from "../../../Constants";
 import "./AdminDashboard.styles.css";
+import { handleLogout } from "../../../Utils";
 
 export const AdminDashboard = () => {
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = '/';
-  };
 
 
   return (

@@ -3,10 +3,9 @@ import "./Header.styles.css";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../Constants";
 import { AppBar, Toolbar, useTheme, Box, Button } from "@mui/material";
-import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import { LoginButton } from "./LoginButton";
 import { BackgroundLetterAvatars } from "../../../Routes/Profile/BackgroundLetterAvatars/BackgroundLetterAvatars";
-import { handleLogout } from "../../../Utils";
+import { useDoctorStates } from "../../../Context";
 
 /**
  *
@@ -14,25 +13,14 @@ import { handleLogout } from "../../../Utils";
  */
 
 export const Header = () => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
-  const [open, setOpen] = useState(false);
+  const { state, dispatch } = useDoctorStates();
   const theme = useTheme();
-  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem("token"));
 
-  useEffect(() => {
-    setIsLoggedIn(!!localStorage.getItem("token"));
-  }, []);
+  const darkModeClass = state.isDarkMode ? "layout-dark" : "layout";
 
-  const darkModeClass = isDarkMode ? "layout-dark" : "layout";
-
-  const handleClickOpen = () => {
-    setOpen(true);
+  const handleLogoutClick = () => {
+    dispatch({ type: 'LOGOUT' });
   };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
 
   return (
     <AppBar position="fixed" color="background1">
@@ -52,13 +40,12 @@ export const Header = () => {
         </Box>
 
         <div className="header-buttons">
-          {!isLoggedIn ? (
+          {!state.isLoggedIn ? (
             <>
               <Link to={ROUTES.ADDUSER}>
                 <Button
                   variant="contained"
                   color="secondary"
-                  onClick={handleClickOpen}
                   sx={{
                     color: "white",
                   }}
@@ -66,14 +53,14 @@ export const Header = () => {
                   Create Account
                 </Button>
               </Link>
-              <LoginButton setIsLoggedIn={setIsLoggedIn} />
+              <LoginButton />
             </>
           ) : (
             <>
               <Button
                 variant="contained"
                 color="secondary"
-                onClick={handleLogout}
+                onClick={handleLogoutClick}
                 sx={{
                   color: "white",
                 }}

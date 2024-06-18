@@ -24,6 +24,7 @@ import { ThemeProvider } from "@mui/material";
 import { theme } from "./Themes/theme";
 import SearchResults from "./Routes/SearchResults";
 import SearchHistory from "./Routes/Profile/SearchHistory/SearchHistory";
+import LoginPage from "./Routes/LoginPage/LoginPage";
 
 
 
@@ -44,6 +45,7 @@ function App() {
               <Route path={ROUTES.HOME} element={<Home />} />
               <Route path={ROUTES.DETAIL} element={<Detail />} />
               <Route path={ROUTES.ADDUSER} element={<RegisterForm />} />
+              <Route path={ROUTES.LOGIN} element={<LoginPage />} />
               <Route path={ROUTES.PROFILE} element={<Profile />} />
               <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList />} />
               <Route path={ROUTES.PASSWORD} element={<ChanguePassword />} />
