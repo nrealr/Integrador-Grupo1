@@ -132,7 +132,7 @@ export const LoginMenu = () => {
                     error={passwordError}
                     helperText={
                       passwordError &&
-                      "The password must have at least 8 characters"
+                      "The password must have at least 6 characters"
                     }
                   />
                   {loginError && <p style={{ color: 'red' }}>{loginError}</p>}

@@ -6,79 +6,77 @@ import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Link } from 'react-router-dom';
 import { addUser, useLocalStorage } from '../../Services';
 
-
-
 export const RegisterForm = () => {
-  const [formData, setFormData] = useLocalStorage('formData', {
-    name: '',
-    lastname: '',
-    email: '',
-    password: '',
-  });
+    const [formData, setFormData] = useLocalStorage('formData', {
+        name: '',
+        lastname: '',
+        email: '',
+        password: '',
+    });
 
-  const [error, setError] = useState({});
-  const [success, setSuccess] = useState(false);
+    const [error, setError] = useState({});
+    const [success, setSuccess] = useState(false);
 
 
-  const validateForm = (values) => {
-      let errors = {};
-      if (!values.name) {
-          errors.name = 'First Name field is mandatory';
-      } else if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(values.name)) {
-          errors.name = 'This field accept letters and spaces only';
-      }
-      if (!values.lastname) {
-          errors.lastname = 'Last Name field is mandatory';
-      } else if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(values.lastname)) {
-          errors.lastname = 'This field accept letters and spaces only';
-      }
-      if (!values.email) {
-          errors.email = 'Email is mandatory';
-      } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-          errors.email = 'Email format not valid';
-      }
-      if (!values.password) {
-          errors.password = 'Password is mandatory';
-      } else if (values.password.length < 6) {
-          errors.password = 'Password must be at least 6 characters long';
-      }
-      return errors;
-  };
+    const validateForm = (values) => {
+        let errors = {};
+        if (!values.name) {
+            errors.name = 'First Name field is mandatory';
+        } else if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(values.name)) {
+            errors.name = 'This field accept letters and spaces only';
+        }
+        if (!values.lastname) {
+            errors.lastname = 'Last Name field is mandatory';
+        } else if (!/^[a-zA-ZÑñÁáÉéÍíÓóÚúÜü\s]+$/.test(values.lastname)) {
+            errors.lastname = 'This field accept letters and spaces only';
+        }
+        if (!values.email) {
+            errors.email = 'Email is mandatory';
+        } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+            errors.email = 'Email format not valid';
+        }
+        if (!values.password) {
+            errors.password = 'Password is mandatory';
+        } else if (values.password.length < 6) {
+            errors.password = 'Password must be at least 6 characters long';
+        }
+        return errors;
+    };
 
-  const handleChange = (e) => {
-      const { name, value } = e.target;
-      setFormData({
-          ...formData,
-          [name]: value,
-      });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const validationErrors = validateForm(formData);
-
-    if (Object.keys(validationErrors).length === 0) {
-      try {
-        setSuccess(true);
-        const response = await addUser(formData);
+    const handleChange = (e) => {
+        const { name, value } = e.target;
         setFormData({
-          name: '',
-          lastname: '',
-          email: '',
-          password: '',
+            ...formData,
+            [name]: value,
         });
-        setError({});
+    };
 
-      } catch (error) {
-        console.error("Error on sending data:", error);
-        setError(["Error registering user"]);
-      }
-    } else {
-      setError(validationErrors);
-    }
-  };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const validationErrors = validateForm(formData);
 
-  return (
+        if (Object.keys(validationErrors).length === 0) {
+        try {
+            setSuccess(true);
+            const response = await addUser(formData);
+            setFormData({
+            name: '',
+            lastname: '',
+            email: '',
+            password: '',
+            });
+            setError({});
+
+        } catch (error) {
+            console.error("Error on sending data:", error);
+            setError(["Error registering user"]);
+        }
+        } else {
+        setError(validationErrors);
+        }
+    };
+
+    return (
     <>
         <Box sx={{ width: '100%', height: {xs: '120px',sm: '200px'}, backgroundColor: 'primary.main' }}></Box>
         <Container component="main" maxWidth="lg" sx={{ mt: -8 }} >

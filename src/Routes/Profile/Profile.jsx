@@ -113,7 +113,7 @@ export const Profile = () => {
   }, [open]);
 
   return (
-    <Stack direction="row" spacing={2}>
+    <Stack direction="row" spacing={2} marginTop={12} >
       <Paper elevation={15} sx={{ backgroundColor: 'antiquewhite' }}>
         <MyMenu />
       </Paper>

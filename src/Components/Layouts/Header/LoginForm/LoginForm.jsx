@@ -22,7 +22,7 @@ const LoginForm = ({ onLoginSuccess }) => {
 
   const handlePasswordChange = (event) => {
     setPassword(event.target.value);
-    setPasswordError(event.target.value.length < 8);
+    setPasswordError(event.target.value.length < 6);
     setLoginError("");
   };
 
@@ -78,7 +78,7 @@ const LoginForm = ({ onLoginSuccess }) => {
           error={passwordError}
           helperText={
             passwordError &&
-            "The password must have at least 8 characters"
+            "The password must have at least 6 characters"
           }
         />
         {loginError && <p style={{ color: 'red' }}>{loginError}</p>}

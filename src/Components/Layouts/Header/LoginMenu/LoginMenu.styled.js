@@ -13,10 +13,11 @@ export const MenuList = styled(MenuListUI)`
 
 export const TextField = styled(TextFieldUI)`
     margin-bottom: 10px;
-    color: #61c0bb;
+    color: white;
     input {
         background-color: white;
         border-radius: 15px;
     }
+    
 
 `;
