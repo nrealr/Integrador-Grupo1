@@ -17,7 +17,7 @@ export const TextField = styled(TextFieldUI)`
     input {
         background-color: white;
         border-radius: 15px;
-    }
+    };
     
 
 `;
