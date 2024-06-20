@@ -5,6 +5,7 @@ import LockOutLinedIcon from '@mui/icons-material/LockOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Link } from 'react-router-dom';
 import { addUser, useLocalStorage } from '../../Services';
+import { ROUTES } from '../../Constants';
 
 export const RegisterForm = () => {
     const [formData, setFormData] = useLocalStorage('formData', {
@@ -172,7 +173,7 @@ export const RegisterForm = () => {
                         </Button>
 
                         <Grid container display='flex' flexDirection='column' justifyContent="flex-end" marginTop={2}>
-                            <Link href="#" variant="body2">
+                            <Link to={ROUTES.LOGIN} variant="body2">
                                 Already have an account? Sign In
                             </Link>
                             <Typography variant='caption text' marginTop={2} color='primary.main' >

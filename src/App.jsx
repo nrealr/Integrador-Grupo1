@@ -6,7 +6,7 @@ import {
   Profile,
   AppointmentList,
   ChanguePassword,
-  NotFound, Home
+  NotFound, Home, LoginPage
 } from "./Routes";
 import { Admin } from "./Routes/AdminPanel/Admin";
 import { AdminFeatures } from "./Routes/AdminFeatures";
@@ -24,8 +24,6 @@ import { ThemeProvider } from "@mui/material";
 import { theme } from "./Themes/theme";
 import SearchResults from "./Routes/SearchResults";
 import SearchHistory from "./Routes/Profile/SearchHistory/SearchHistory";
-import LoginPage from "./Routes/LoginPage/LoginPage";
-
 
 
 
