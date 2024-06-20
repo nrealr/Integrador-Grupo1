@@ -1,6 +1,6 @@
 export * from './UserPanelLayout'
-export * from './ProfileCard'
 export * from './BackgroundLetterAvatars'
 export * from './AppointmentList'
-export * from './Password'
+export * from './Favorites'
 export * from './Account'
+

@@ -2,7 +2,7 @@
 import React from "react";
 import { NotPage } from "../../../Utils";
 
-export const ChanguePassword=()=>{
+export const Favorites=()=>{
 
     return(
       

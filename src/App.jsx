@@ -4,9 +4,9 @@ import {
   Detail,
   RegisterForm,
   AppointmentList,
-  ChanguePassword,
   NotFound, Home, LoginPage,
-  UserPanelLayout
+  UserPanelLayout,
+  Favorites
 } from "./Routes";
 import { Admin } from "./Routes/AdminPanel/Admin";
 import { AdminFeatures } from "./Routes/AdminFeatures";
@@ -80,7 +80,7 @@ function App() {
             <Route element={<UserPanelLayout />}>
               <Route path={ROUTES.PROFILE} element={<Account />} />
               <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList />} />
-              <Route path={ROUTES.PASSWORD} element={<ChanguePassword />} />
+              <Route path={ROUTES.FAVORITES} element={<Favorites />} />
               <Route path={ROUTES.SEARCHHISTORY} element={<SearchHistory />} />
             </Route>
           </Routes>

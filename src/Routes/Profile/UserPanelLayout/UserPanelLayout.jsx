@@ -19,7 +19,7 @@ export const UserPanelLayout = () => {
                 <Link to={ROUTES.PROFILE}>Account</Link>
               </li>
               <li>
-                <Link to={ROUTES.PASSWORD}>Password</Link>
+                <Link to={ROUTES.FAVORITES}>Favorites</Link>
               </li>
               <li>
                 <Link to={ROUTES.APPOINTMENTS}>My Appointments</Link>
