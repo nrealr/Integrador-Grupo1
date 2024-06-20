@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import LoginForm from "../../Components/Layouts/Header/LoginForm/LoginForm";
 import { useDoctorStates } from "../../Context/Context";
+import { ROUTES } from "../../Constants";
 
 const LoginPage = () => {
   const { state } = useDoctorStates();
@@ -12,13 +13,13 @@ const LoginPage = () => {
   useEffect(() => {
     if (state.isLoggedIn) {
       alert("You are already logged in");
-      navigate("/profile");
+      navigate(fromReservation ? ROUTES.APPOINTMENTS : ROUTES.PROFILE);
     }
     console.log(location.state);
-  }, [state.isLoggedIn, navigate]);
+  }, [state.isLoggedIn, navigate, fromReservation]);
 
   const handleLoginSuccess = () => {
-    navigate("/profile");
+    navigate(fromReservation ? ROUTES.APPOINTMENTS : ROUTES.PROFILE);
   };
 
   if (state.isLoggedIn) {
@@ -27,7 +28,7 @@ const LoginPage = () => {
 
   return (
     <div>
-      {fromReservation && <p>You must be logged in</p>}
+      {fromReservation && <p>Please log in to continue.</p>}
       <LoginForm onLoginSuccess={handleLoginSuccess} />
     </div>
   );

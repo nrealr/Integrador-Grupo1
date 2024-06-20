@@ -2,7 +2,7 @@ import React from "react";
 import CalendarMonthTwoToneIcon from '@mui/icons-material/CalendarMonthTwoTone';
 import { ROUTES } from "../../../Constants";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDoctorStates } from "../../../Context";
 
 /**
@@ -11,15 +11,20 @@ import { useDoctorStates } from "../../../Context";
  */
 export const BtnAppointment = () => {
     const { state } = useDoctorStates();
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        if (state.isLoggedIn) {
+            navigate(ROUTES.APPOINTMENTS);
+        } else {
+            navigate(ROUTES.LOGIN, { state: { fromReservation: true } });
+        }
+    };
 
     return (
         <Button
             variant="contained"
-            component={Link}
-            to={{
-                pathname: state.isLoggedIn ? ROUTES.APPOINTMENTS : ROUTES.LOGIN,
-                state: { fromReservation: !state.isLoggedIn }
-            }}
+            onClick={handleClick}
             className="btn-appointment"
             endIcon={<CalendarMonthTwoToneIcon />}
             sx={{
