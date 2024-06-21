@@ -1,11 +1,12 @@
 
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Container, Avatar, Grid, Paper, Dialog, DialogContent, DialogActions, DialogTitle, Icon } from '@mui/material';
+import { TextField, Button, Box, Typography, Container, Avatar, Grid, Paper, Dialog, DialogContent, DialogActions, DialogTitle} from '@mui/material';
 import LockOutLinedIcon from '@mui/icons-material/LockOutlined';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Link } from 'react-router-dom';
-import { addUser, useLocalStorage } from '../../Services';
+import { useLocalStorage } from '../../Services';
 import { ROUTES } from '../../Constants';
+import { addUser } from '../../Services/Users/addUser';
 
 export const RegisterForm = () => {
     const [formData, setFormData] = useLocalStorage('formData', {

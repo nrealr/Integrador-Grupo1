@@ -1,6 +1,22 @@
+/**
+ * getAvailableDays Module
+ * This module exports an asynchronous function `getAvailableDays` that retrieves a collection of available days.
+ * It uses axios to make a GET request to the server API endpoint '/available-days' with the appropriate headers.
+ * If the environment variable `USE_MOCK_DAYS` is defined, it will return a mock collection of available days instead.
+ *
+ * @module getAvailableDays
+ */
+
 import axios from "axios";
-import { SERVER_API } from "../Constants";
-import { getHeaders } from "../Utils";
+import { SERVER_API } from "../../Constants";
+import { getHeaders } from "../../Utils";
+
+
+
+/**
+ * The availableDaysMock array is a collection of available days used for testing purposes.
+ * @type {string[]}
+ */
 
 const availableDaysMock = [
     '2024-05-01T04:34:06.212Z',
@@ -86,8 +102,11 @@ const availableDaysMock = [
   ]
 
 /**
- * gets the available days collection
- * @returns {Promise} 
+ * The getAvailableDays function is an asynchronous function that retrieves a collection of available days.
+ * It checks if the `USE_MOCK_DAYS` environment variable is defined. If it is, it returns the mock collection of available days.
+ * Otherwise, it makes a GET request to the server API endpoint '/available-days' with the appropriate headers and returns the response data.
+ *
+ * @returns {Promise<string[]>} A promise that resolves to a collection of available days.
  */
 export const getAvailableDays = async () => {
     if (typeof window.USE_MOCK_DAYS == 'undefined') {
