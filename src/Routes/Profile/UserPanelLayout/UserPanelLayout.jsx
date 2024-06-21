@@ -9,31 +9,31 @@ import { ROUTES } from '../../../Constants';
 export const UserPanelLayout = () => {
   return (
     <div className={'layout'}>
-      <Header/>
+      <Header />
       <div className={'app-container'}>
         <ProfileContainer>
           <ProfileAside>
-          
             <ul>
               <li>
-                <Link to={ROUTES.PROFILE}>Account</Link>
+                <Link component="li" to={ROUTES.PROFILE}>PROFILE</Link>
               </li>
               <li>
-                <Link to={ROUTES.FAVORITES}>Favorites</Link>
+                <Link component="li" to={ROUTES.FAVORITES}>FAVORITES</Link>
               </li>
               <li>
-                <Link to={ROUTES.APPOINTMENTS}>My Appointments</Link>
+                <Link component="li" to={ROUTES.APPOINTMENTS}>APPOINTMENTS</Link>
               </li>
               <li>
-                <Link to={ROUTES.SEARCHHISTORY}>Search History</Link>
+                <Link component="li" to={ROUTES.SEARCHHISTORY}>SEARCH HISTORY</Link>
               </li>
               {/* Agregar más opciones de menú aquí */}
             </ul>
+
           </ProfileAside>
           <Outlet />
         </ProfileContainer>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
