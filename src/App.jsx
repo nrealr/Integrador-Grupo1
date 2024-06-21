@@ -1,22 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AddProduct } from "./Routes/AddProduct";
 import {
   Detail,
   RegisterForm,
   AppointmentList,
   NotFound, Home, LoginPage,
   UserPanelLayout,
-  Favorites
+  Favorites,
+  Admin,
+  AdminDoctors,
+  AdminFeatures,
+  AddFeature,
+  UpdateFeature,
+  AdminSpecialties,
+  AddSpecialty,
+  UpdateSpecialty,
+  UpdateProduct,
+  AddProduct
 } from "./Routes";
-import { Admin } from "./Routes/AdminPanel/Admin";
-import { AdminFeatures } from "./Routes/AdminFeatures";
-import { AdminSpecialties } from "./Routes/AdminSpecialties";
-import { AddFeature } from "./Routes/AddFeature";
-import { AddSpecialty } from "./Routes/AddSpecialty";
-import { UpdateProduct } from './Routes/UpdateProduct';
-import { UpdateFeature } from "./Routes/UpdateFeature";
-import { UpdateSpecialty } from "./Routes/UpdateSpecialty";
-import { AdminDoctors } from "./Routes/AdminDoctors";
+
 import { ContextProvider } from "./Context";
 import { ROUTES } from "./Constants";
 import { Layout, SearchBar, AdminLayout } from "./Components";
@@ -54,7 +55,7 @@ function App() {
 
               <Route element={<AdminLayout />}>
                 <Route path={ROUTES.ADMIN} element={<Admin />} />
-                <Route path={ROUTES.DOCTORSADD} element={<AddProduct />} />
+                <Route path={ROUTES.DOCTORSADD} element={<AddProduct/>} />
                 <Route path={ROUTES.DOCTORS} element={<AdminDoctors />} />
                 <Route path={ROUTES.FEATURES} element={<AdminFeatures />} />
                 <Route path={ROUTES.FEATURESADD} element={<AddFeature />} />

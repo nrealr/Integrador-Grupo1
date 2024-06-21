@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../Constants/';
-import { getFeatures, deleteFeature } from '../Services/Features';
-import { DeleteProductFunction } from '../Components';
+import { ROUTES } from '../../../Constants';
+import { getFeatures, deleteFeature } from '../../../Services/Features';
+import { DeleteProductFunction } from '../../../Components';
 
 export const AdminFeatures = () => {
   const [features, setFeatures] = useState([]);

@@ -1,5 +1,5 @@
 import React from "react";
-import {AddProductFunction} from "../Components"
+import {AddProductFunction} from "../../../Components"
 import "./AddProduct.styles.css"
 
 export const AddProduct = () => {
