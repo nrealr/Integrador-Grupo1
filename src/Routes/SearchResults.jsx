@@ -45,7 +45,7 @@ const SearchResults = () => {
   }
 
   return (
-    <Box sx={{ marginTop: 10 }}>
+    <Box sx={{ marginTop: 8 }}>
     {results.length > 0 ? (
       <Box sx={{ textAlign: 'center' }}>
         <Typography variant="h3" sx={{ color: 'white', backgroundColor: 'primary.light', padding: '16px' }}>

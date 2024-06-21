@@ -6,7 +6,10 @@ import {
   Profile,
   AppointmentList,
   ChanguePassword,
-  NotFound, Home, LoginPage
+  NotFound, 
+  Home, 
+  LoginPage,
+  AppointmentSummary,
 } from "./Routes";
 import { Admin } from "./Routes/AdminPanel/Admin";
 import { AdminFeatures } from "./Routes/AdminFeatures";
@@ -46,6 +49,7 @@ function App() {
               <Route path={ROUTES.LOGIN} element={<LoginPage />} />
               <Route path={ROUTES.PROFILE} element={<Profile />} />
               <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList />} />
+              <Route path={ROUTES.APPOINTMENTSUMMARY} element={<AppointmentSummary />} />
               <Route path={ROUTES.PASSWORD} element={<ChanguePassword />} />
               <Route path={ROUTES.SEARCHHISTORY} element={<SearchHistory />} />
               <Route path={ROUTES.SEARCH} element={<SearchBar/>}/>

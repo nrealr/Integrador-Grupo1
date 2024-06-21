@@ -15,7 +15,7 @@ export const BtnAppointment = () => {
         <Button
             variant="contained"
             component={Link}
-            to={ROUTES.APPOINTMENTS}
+            to={ROUTES.APPOINTMENTSUMMARY}
             className="btn-appointment"
             endIcon={<CalendarMonthTwoToneIcon />}
             sx={{

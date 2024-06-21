@@ -13,3 +13,4 @@ export * from './AddFeature'
 export * from './AddSpecialty'
 export * from './UpdateProduct'
 export * from "./LoginPage"
+export * from "./AppointmentSummary"
