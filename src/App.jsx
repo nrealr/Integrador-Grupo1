@@ -15,7 +15,8 @@ import {
   AddSpecialty,
   UpdateSpecialty,
   UpdateProduct,
-  AddProduct
+  AddProduct,
+  AppointmentSummary
 } from "./Routes";
 
 import { ContextProvider } from "./Context";
