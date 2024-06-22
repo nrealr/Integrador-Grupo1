@@ -23,6 +23,7 @@ export const AccountForm = styled('form')`
   flex-direction: column;
   align-items: center;
   padding: 20px;
+  max-width: 100%;
 `;
 
 export const AccountField = styled(TextField)`
@@ -32,6 +33,7 @@ export const AccountField = styled(TextField)`
   border: 1px solid #ccc;
   border-radius: 5px;
   font-size: 16px;
+  flex-grow: 1;
   &:focus {
     border-color: #aaa;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
