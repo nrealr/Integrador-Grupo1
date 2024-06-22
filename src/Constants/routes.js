@@ -11,7 +11,7 @@ export const ROUTES = {
     PROFILE: "/profile",
     APPOINTMENTS: "/profile/appointments",
     APPOINTMENTSUMMARY: "/appointmentsummary",
-    PASSWORD: "/profile/password",
+    FAVORITES: "/profile/favorites",
     SEARCHHISTORY: "/profile/searchhistory",
     FEATURESADD: "/admin/features/add",
     SPECIALTIESADD: "/admin/specialties/add",

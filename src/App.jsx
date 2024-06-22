@@ -1,25 +1,23 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { AddProduct } from "./Routes/AddProduct";
 import {
   Detail,
   RegisterForm,
-  Profile,
   AppointmentList,
-  ChanguePassword,
-  NotFound, 
-  Home, 
-  LoginPage,
-  AppointmentSummary,
+  NotFound, Home, LoginPage,
+  UserPanelLayout,
+  Favorites,
+  Admin,
+  AdminDoctors,
+  AdminFeatures,
+  AddFeature,
+  UpdateFeature,
+  AdminSpecialties,
+  AddSpecialty,
+  UpdateSpecialty,
+  UpdateProduct,
+  AddProduct
 } from "./Routes";
-import { Admin } from "./Routes/AdminPanel/Admin";
-import { AdminFeatures } from "./Routes/AdminFeatures";
-import { AdminSpecialties } from "./Routes/AdminSpecialties";
-import { AddFeature } from "./Routes/AddFeature";
-import { AddSpecialty } from "./Routes/AddSpecialty";
-import { UpdateProduct}  from './Routes/UpdateProduct';
-import { UpdateFeature } from "./Routes/UpdateFeature";
-import { UpdateSpecialty } from "./Routes/UpdateSpecialty";
-import { AdminDoctors } from "./Routes/AdminDoctors";
+
 import { ContextProvider } from "./Context";
 import { ROUTES } from "./Constants";
 import { Layout, SearchBar, AdminLayout } from "./Components";
@@ -27,6 +25,7 @@ import { ThemeProvider } from "@mui/material";
 import { theme } from "./Themes/theme";
 import SearchResults from "./Routes/SearchResults";
 import SearchHistory from "./Routes/Profile/SearchHistory/SearchHistory";
+import { Account } from "./Routes/Profile/Account/Account";
 
 
 
@@ -41,25 +40,23 @@ function App() {
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <ContextProvider>
+
+
           <Routes>
             <Route element={<Layout />}>
               <Route path={ROUTES.HOME} element={<Home />} />
               <Route path={ROUTES.DETAIL} element={<Detail />} />
               <Route path={ROUTES.ADDUSER} element={<RegisterForm />} />
               <Route path={ROUTES.LOGIN} element={<LoginPage />} />
-              <Route path={ROUTES.PROFILE} element={<Profile />} />
-              <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList />} />
+              <Route path={ROUTES.SEARCH} element={<SearchBar />} />
+              <Route path={ROUTES.SEARCHRESULTS} element={<SearchResults />} />
               <Route path={ROUTES.APPOINTMENTSUMMARY} element={<AppointmentSummary />} />
-              <Route path={ROUTES.PASSWORD} element={<ChanguePassword />} />
-              <Route path={ROUTES.SEARCHHISTORY} element={<SearchHistory />} />
-              <Route path={ROUTES.SEARCH} element={<SearchBar/>}/>
-              <Route path={ROUTES.SEARCHRESULTS} element={<SearchResults/>}/>
-              <Route path="*" element={<NotFound/>}/>
-  
+              <Route path="*" element={<NotFound />} />
+
 
               <Route element={<AdminLayout />}>
                 <Route path={ROUTES.ADMIN} element={<Admin />} />
-                <Route path={ROUTES.DOCTORSADD} element={<AddProduct />} />
+                <Route path={ROUTES.DOCTORSADD} element={<AddProduct/>} />
                 <Route path={ROUTES.DOCTORS} element={<AdminDoctors />} />
                 <Route path={ROUTES.FEATURES} element={<AdminFeatures />} />
                 <Route path={ROUTES.FEATURESADD} element={<AddFeature />} />
@@ -74,14 +71,23 @@ function App() {
                 />
                 <Route
                   path={ROUTES.SPECIALTIESUPDATE}
-                  element={<UpdateSpecialty/>}
+                  element={<UpdateSpecialty />}
                 />
                 <Route path={ROUTES.LOGOUT} element={<handleLogout />} />
-                <Route path={ROUTES.DOCTORSUPDATE} element={<UpdateProduct/>} />
+                <Route path={ROUTES.DOCTORSUPDATE} element={<UpdateProduct />} />
+              </Route>
 
-          </Route>
+            </Route>
+
+            <Route element={<UserPanelLayout />}>
+              <Route path={ROUTES.PROFILE} element={<Account />} />
+              <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList />} />
+              <Route path={ROUTES.FAVORITES} element={<Favorites />} />
+              <Route path={ROUTES.SEARCHHISTORY} element={<SearchHistory />} />
             </Route>
           </Routes>
+
+
         </ContextProvider>
       </BrowserRouter>
     </ThemeProvider>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../Constants/';
-import { getDoctors, deleteDoctor } from '../Services';
-import {DeleteProductFunction} from "../Components"
+import { ROUTES } from '../../../Constants';
+import { getDoctors, deleteDoctor } from '../../../Services';
+import {DeleteProductFunction} from "../../../Components"
 
 
 export const AdminDoctors = () => {
@@ -63,6 +63,7 @@ export const AdminDoctors = () => {
       <p>ACTIONS</p>
     </div>
 
+    {/* 
     <div className="admin-display-data">
       {doctors.map((doctor) => (
         
@@ -76,13 +77,25 @@ export const AdminDoctors = () => {
             <p className="admin-edit-button">🖊</p>
             </Link>
           <DeleteProductFunction doctor = {doctor} onDelete={() => handleDeleteDoctor(doctor.id)}/>
-        </div>
-
-        
-
-
+        </div>  
       ))}
+    </div> */}
+
+<div className="admin-display-data">
+  {doctors.map((doctor) => (
+    <div key={doctor.id} className="doctor-api-item">
+      <p>{doctor.id}</p>
+      <p>{doctor.name}</p>
+      <p>{doctor.lastname}</p>
+      <p>{doctor.rut}</p>
+      <p>Doctor</p>
+      <Link id={doctor.id} to={`/admin/doctors/update/${doctor.id}`}>
+        <p className="admin-edit-button">🖊</p>
+      </Link>
+      <DeleteProductFunction doctor={doctor} onDelete={() => handleDeleteDoctor(doctor.id)} />
     </div>
+  ))}
+</div>
 
     </section>
   </div>

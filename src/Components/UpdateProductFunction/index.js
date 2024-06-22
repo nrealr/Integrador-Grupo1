@@ -1,3 +1,3 @@
-export * from './updateProductFunction';
 export * from './updateFeatureFunction';
-export * from './updateSpecialtyFunction';
+export * from './updateProductFunction';
+export * from './updateSpecialtyFunction'

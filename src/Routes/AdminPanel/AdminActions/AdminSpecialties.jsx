@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../Constants/';
-import {DeleteProductFunction} from "../Components"
-import { deleteSpecialty, getSpecialties } from '../Services/Specialties';
+import { ROUTES } from '../../../Constants';
+import {DeleteProductFunction} from "../../../Components"
+import { deleteSpecialty, getSpecialties } from '../../../Services/Specialties';
 
 
 export const AdminSpecialties = () => {

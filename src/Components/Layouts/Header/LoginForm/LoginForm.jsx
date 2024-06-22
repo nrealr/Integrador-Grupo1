@@ -12,8 +12,8 @@ import {
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../../Constants";
-import { login } from "../../../../Services/login";
 import { useDoctorStates } from "../../../../Context";
+import { login } from "../../../../Services";
 
 export const LoginForm = ({ onLoginSuccess }) => {
   const { dispatch } = useDoctorStates();

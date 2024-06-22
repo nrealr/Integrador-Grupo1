@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Detail.styles.css";
-import { getDoctorById, getSpecialtyById } from "../../Services";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { getAvailableDays, getDoctorById, getSpecialtyById} from "../../Services";
+import { useLocation, useParams } from "react-router-dom";
 import { FeaturesCard } from "./FeaturesCard";
 import { BookingCalendar } from "../../Components/BookingCalendar/BookingCalendar";
 import { IcnReturnHome } from "../../Utils";
 import { BtnAppointment } from "./BtnAppointment";
 import { getLocationById } from "../../Services/Locations/getLocationById";
 import { TimeSlotMenu } from "../../Components/TimeSlotMenu";
-import { getAvailableDays } from "../../Services/availableDays";
 
 export const Detail = ({ id: propId }) => {
   const location = useLocation();
