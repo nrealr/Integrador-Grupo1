@@ -1,11 +1,11 @@
-
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import dayjs from 'dayjs';
+import { availableSlots } from '../../Services';
 
 const Container = styled.div`
-  width: 200px; /* Establece el ancho del contenedor */
-  margin: 0 auto; /* Centra el contenedor */
+  width: 200px;
+  margin: 0 auto;
 `;
 
 const TimeSlotList = styled.ul`
@@ -15,24 +15,19 @@ const TimeSlotList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
-  align-items: center; /* Centrar las ranuras de tiempo */
+  align-items: center;
 `;
 
 const TimeSlot = styled.li`
-  background-color: white;
+  background-color: ${({ status }) => (status === 'available' ? 'white' : '#ccc')};
   padding: 10px;
   border: 1px solid #ccc;
-  margin: 0;
-  cursor: pointer;
-  width: 100%; /* Establece el ancho del elemento TimeSlot */
-  text-align: center; /* Centra el texto de la hora */
-  &.selected {
-    background-color: #df7475; /* Fondo rojo cuando se selecciona */
-    color: white; /* Texto blanco para que se vea bien sobre el fondo rojo */
-
-}
+  margin: 5px;
+  cursor: ${({ status }) => (status === 'available' ? 'pointer' : 'not-allowed')};
+  width: 100%;
+  text-align: center;
   &:hover {
-    background-color: #8ecae6; /* Agregar hover */
+    background-color: ${({ status }) => (status === 'available' ? '#8ecae6' : '#a3a3a3')};
   }
 `;
 
@@ -43,42 +38,103 @@ const SelectedTimeSlot = styled.div`
   background-color: white;
   border: 1px solid #ccc;
   min-height: 60px;
-  ${props => props.isSelected && `color: red;`} /* Agrega el color rojo al texto seleccionado */
+  ${({ isSelected }) => isSelected && 'color: red;'}
 `;
 
-export const TimeSlotMenu = () => {
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState('');
+export const TimeSlotMenu = ({ doctorId, selectedDate }) => {
+  const [availabilities, setAvailabilities] = useState([]);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [isTimeSelected, setIsTimeSelected] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleTimeSlotClick = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot);
-    setIsTimeSelected(true);
+  useEffect(() => {
+    const fetchAvailabilities = async () => {
+      if (selectedDate && doctorId) {
+        setLoading(true);
+        setError(null);
+        try {
+          const formattedDate = dayjs(selectedDate).format('YYYY-MM-DD');
+          const response = await availableSlots(doctorId, formattedDate);
+          setAvailabilities(response);
+        } catch (error) {
+          console.error('Error fetching availabilities:', error);
+          setError('Failed to load availabilities');
+          setAvailabilities([]);
+        } finally {
+          setLoading(false);
+        }
+      }
+    };
+
+    fetchAvailabilities();
+  }, [doctorId, selectedDate]);
+  
+
+  const renderTimeSlots = () => {
+    if (availabilities.length === 0) {
+      return <p>No availabilities found for selected date.</p>;
+    }
+
+    const timeSlots = [];
+
+    availabilities.forEach((availability) => {
+      const { id, startTime, endTime, status } = availability;
+      const startDateTime = dayjs(startTime);
+      const endDateTime = dayjs(endTime);
+
+      let currentHour = startDateTime;
+      while (currentHour.isBefore(endDateTime)) {
+        const formattedStartTime = currentHour.format('YYYY-MM-DDTHH:mm:ss');
+        const nextHour = currentHour.add(1, 'hour');
+        const formattedEndTime = nextHour.isBefore(endDateTime) ? nextHour.format('YYYY-MM-DDTHH:mm:ss') : endDateTime.format('YYYY-MM-DDTHH:mm:ss');
+        
+        const timeSlot = {
+          id: `${id}_${formattedStartTime}_${formattedEndTime}`,
+          startTime: formattedStartTime,
+          endTime: formattedEndTime,
+          status: status
+        };
+
+        timeSlots.push(timeSlot);
+        currentHour = nextHour;
+      }
+    });
+
+    return (
+      <TimeSlotList>
+        {timeSlots.map((timeSlot) => (
+          <TimeSlot
+            key={timeSlot.id}
+            onClick={() => handleTimeSlotClick(timeSlot)}
+            status={timeSlot.status}
+            className={selectedTimeSlot && selectedTimeSlot.id === timeSlot.id ? 'selected' : ''}
+          >
+            {`${dayjs(timeSlot.startTime).format('HH:mm')} - ${dayjs(timeSlot.endTime).format('HH:mm')}`}
+          </TimeSlot>
+        ))}
+      </TimeSlotList>
+    );
   };
 
-  const slotList = Array.from({ length: 11 });
+  const handleTimeSlotClick = (timeSlot) => {
+    if (timeSlot.status === 'available') {
+      setSelectedTimeSlot(timeSlot);
+      setIsTimeSelected(true);
+    }
+  };
 
   return (
     <Container>
-      <TimeSlotList>
-        {slotList.map((_, i) => {
-          const startHour = 8 + i;
-          const endHour = startHour + 1;
-          const timeSlot = `${startHour < 10 ? `0${startHour}` : startHour}:00-${endHour < 10 ? `0${endHour}` : endHour}:00`;
-          return (
-            <TimeSlot
-              key={timeSlot}
-              data-time-slot={timeSlot}
-              onClick={() => handleTimeSlotClick(timeSlot)}
-              className={selectedTimeSlot === timeSlot ? 'elected' : ''}
-            >
-              {timeSlot}
-            </TimeSlot>
-          );
-        })}
-      </TimeSlotList>
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {renderTimeSlots()}
       <SelectedTimeSlot isSelected={isTimeSelected}>
-        Time selected: {isTimeSelected ? selectedTimeSlot : ''}
+        Time selected: {isTimeSelected ? `${dayjs(selectedTimeSlot.startTime).format('HH:mm')} - ${dayjs(selectedTimeSlot.endTime).format('HH:mm')}` : ''}
       </SelectedTimeSlot>
     </Container>
   );
 };
+
+
+
