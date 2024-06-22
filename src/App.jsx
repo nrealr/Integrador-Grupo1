@@ -15,7 +15,8 @@ import {
   AddSpecialty,
   UpdateSpecialty,
   UpdateProduct,
-  AddProduct
+  AddProduct,
+  SearchHistory
 } from "./Routes";
 
 import { ContextProvider } from "./Context";
@@ -24,7 +25,6 @@ import { Layout, SearchBar, AdminLayout } from "./Components";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./Themes/theme";
 import SearchResults from "./Routes/SearchResults";
-import SearchHistory from "./Routes/Profile/SearchHistory/SearchHistory";
 import { Account } from "./Routes/Profile/Account/Account";
 
 
