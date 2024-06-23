@@ -88,7 +88,7 @@ export const AdminDoctors = () => {
       flex: 1,
     },
     {
-      field: 'pecialization',
+      field: 'specialization',
       headerName: 'Specialization',
       width: 160,
       flex: 2,
