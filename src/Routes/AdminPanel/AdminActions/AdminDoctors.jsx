@@ -1,143 +1,56 @@
-import React, { useEffect, useState } from 'react';
+
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../Constants';
 import { getDoctors, deleteDoctor } from '../../../Services';
-import {DeleteProductFunction} from "../../../Components"
-
+import { 
+  StyledAdminAddButton, 
+  StyledAdminTable, 
+  StyledAdminDeleteButton, 
+  StyledAdminActivitySection, 
+  StyledAdminActivitySubtitle, 
+  StyledAdminActivityTitle, 
+  AdminHeader, 
+  StyledAdminAction} from './AdminDoctors.styled';
 
 export const AdminDoctors = () => {
   const [doctors, setDoctors] = useState([]);
-
-  const loadDoctors = async () => {
-    let doctorData = await getDoctors();
-    setDoctors(doctorData)
-  }
-
-  const handleDeleteDoctor = async (doctorId) =>{
-    await deleteDoctor(doctorId);
-    loadDoctors();
-  }
-
-
-  useEffect(() => {
-    loadDoctors();
-  }, []);
-
-  return (
-
-    
-
-    <div className="admin-display">
-    <div className="admin-header">
-      <section className="admin-activity">
-        <h2>Doctor list</h2>
-        <h4>Last update May 13, 2024 at 2.39 PM</h4>
-      </section>
-
-      <section className="admin-user">
-        <p>Admin</p>
-        <p>👤</p>
-      </section>
-    </div>
-
-    <div className="admin-action">
-      <section className="admin-search-bar">
-        <p>🔍</p>
-        <p>search placement</p>
-      </section>
-
-      <Link to={ROUTES.DOCTORSADD}>
-        {" "}
-        <button className="admin-add-button">Add Doctor</button>{" "}
-      </Link>
-    </div>
-
-     <section className="admin-display-table">
-
-    <div className="admin-display-title">
-      <p>ID</p>
-      <p>NAME</p>
-      <p>LASTNAME</p>
-      <p>RUT</p>
-      <p>SPECIALIZATION</p>
-      <p>ACTIONS</p>
-    </div>
-
-
-<div className="admin-display-data">
-  {doctors.map((doctor) => (
-    <div key={doctor.id} className="doctor-api-item">
-      <p>{doctor.id}</p>
-      <p>{doctor.name}</p>
-      <p>{doctor.lastname}</p>
-      <p>{doctor.rut}</p>
-      <p>Doctor</p>
-      <Link id={doctor.id} to={`/admin/doctors/update/${doctor.id}`}>
-        <p className="admin-edit-button">🖊</p>
-      </Link>
-      <DeleteProductFunction doctor={doctor} onDelete={() => handleDeleteDoctor(doctor.id)} />
-    </div>
-  ))}
-</div>
-
-    </section>
-  </div>
-
-  )
-
-}
-
-/* import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../Constants';
-import { getDoctors, deleteDoctor } from '../../../Services';
-import { StyledAdminAddButton, StyledAdminTable, StyledAdminDeleteButton } from './AdminDoctors.styled';
-
-
-export const AdminDoctors = () => {
-
-  const [doctors, setDoctors] = useState([]);
-
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   const loadDoctors = async () => {
     let doctorData = await getDoctors();
     setDoctors(doctorData);
   };
 
-
   const handleDeleteDoctor = async (doctorId) => {
     await deleteDoctor(doctorId);
     loadDoctors();
   };
 
-
   useEffect(() => {
     loadDoctors();
   }, []);
 
-
   const columns = [
-
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'name', headerName: 'Name', width: 130 },
-    { field: 'lastname', headerName: 'Lastname', width: 130 },
-    { field: 'rut', headerName: 'RUT', width: 90 },
-    { field: 'specialization', headerName: 'Specialization', width: 160 },
+    { field: 'id', headerName: 'ID', width: 70, flex: 1 },
+    { field: 'name', headerName: 'Name', width: 130, flex: 2 },
+    { field: 'lastname', headerName: 'Lastname', width: 130, flex: 2 },
+    { field: 'rut', headerName: 'RUT', width: 90, flex: 1 },
+    { field: 'specialization', headerName: 'Specialization', width: 160, flex: 2 },
     {
       field: 'update',
       headerName: 'Update',
-      width: 80,
+      width: 80, flex: 1,
       renderCell: (params) => (
         <Link to={`/admin/doctors/update/${params.row.id}`}>
           <p className="admin-edit-button">🖊</p>
         </Link>
       ),
     },
-  
     {
       field: 'delete',
       headerName: 'Delete',
-      width: 80,
+      width: 80, flex: 1,
       renderCell: (params) => (
         <StyledAdminDeleteButton onClick={() => handleDeleteDoctor(params.row.id)}>
           <p>🚮</p>
@@ -146,30 +59,28 @@ export const AdminDoctors = () => {
     },
   ];
 
+  const formattedDate = `${currentDate.toLocaleDateString()} at ${currentDate.toLocaleTimeString()}`;
+
   return (
     <div className="admin-display">
-      <div className="admin-header">
-        <section className="admin-activity">
-          <h2>Doctor list</h2>
-          <h4>Last update May 13, 2024 at 2.39 PM</h4>
-        </section>
-        <section className="admin-user">
-          <p>Admin</p>
-          <p>👤</p>
-        </section>
-      </div>
+      <AdminHeader>
+        <StyledAdminActivitySection>
+          <StyledAdminActivityTitle>Registered Doctors</StyledAdminActivityTitle>
+          <StyledAdminActivitySubtitle>Last update {formattedDate}</StyledAdminActivitySubtitle>
+        </StyledAdminActivitySection>
 
-      <div className="admin-action">
-        <section className="admin-search-bar">
-          <p>🔍</p>
-          <p>search placement</p>
+        <section className="admin-user">
+          <p>👤 Admin</p>
         </section>
+      </AdminHeader>
+
+      <StyledAdminAction>
 
         <Link to={ROUTES.DOCTORSADD}>
           {" "}
           <StyledAdminAddButton>Add Doctor</StyledAdminAddButton>{" "}
         </Link>
-      </div>
+      </StyledAdminAction>
 
       <StyledAdminTable
         rows={doctors}
@@ -181,8 +92,16 @@ export const AdminDoctors = () => {
         }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
+        columnWidth={150} // set fixed column width
+        sx={{
+          '.MuiDataGrid-columnHeaders': {
+            flex: 1, // make column headers adapt to available width
+          },
+          '.MuiDataGrid-cell': {
+            flex: 1, // make cells adapt to available width
+          },
+        }}
       />
     </div>
   );
-
-}; */
+};
