@@ -48,7 +48,7 @@ export const StyledAdminAction = styled('div')`
 
 export const StyledAdminAddButton = styled('button')`
   && {
-    background-color: #4CAF50;
+    background-color: #FF2D55;
     color: #fff;
     padding: 10px 20px;
     border: none;
@@ -57,15 +57,15 @@ export const StyledAdminAddButton = styled('button')`
     margin-right: auto;
 
     &:hover {
-      background-color: #3e8e41;
+      background-color: #e94c6afc;
     }
   }
 `;
 
 export const StyledAdminDeleteButton = styled('button')`
   && {
-    background-color: #FF3737; /* red color */
-    color: #fff;
+    background-color: white;
+    color: #102c5b;
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
