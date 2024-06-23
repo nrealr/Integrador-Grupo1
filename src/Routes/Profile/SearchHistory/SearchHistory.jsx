@@ -1,9 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { Box, Typography, Table, TableHead, TableRow, TableCell, TableBody, Link } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../../Constants';
 
-const SearchHistory = () => {
+
+import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { ROUTES } from '../../../Constants';
+import { StyledTable, StyledTableCell, StyledTableHead, StyledTableRow, StyledTitle } from './SearcHistory.styled'
+import { Box, Typography, TableBody } from '@mui/material';
+
+export const SearchHistory = () => {
   const [searchHistory, setSearchHistory] = useState([]);
   const navigate = useNavigate();
 
@@ -26,46 +29,36 @@ const SearchHistory = () => {
 
   return (
     <Box sx={{ padding: '1rem' }}>
-      <Typography variant="h6" sx={{ marginBottom: '1rem' }}>
+      <StyledTitle variant="h6">
         Search History
-      </Typography>
+      </StyledTitle>
       {searchHistory.length > 0 ? (
-        <Table>
-          <TableHead sx={{ backgroundColor: 'lightblue' }}>
-            <TableRow>
-              <TableCell>Search</TableCell>
-              <TableCell>Location</TableCell>
-              <TableCell>Doctor</TableCell>
-            </TableRow>
-          </TableHead>
+        <StyledTable>
+          <StyledTableHead>
+            <StyledTableRow>
+              <StyledTableCell>Search</StyledTableCell>
+              <StyledTableCell>Location</StyledTableCell>
+              <StyledTableCell>Doctor</StyledTableCell>
+            </StyledTableRow>
+          </StyledTableHead>
           <TableBody>
             {searchHistory.map((search, index) => (
-              <TableRow key={index} onClick={() => handleHistoryClick(search)} sx={{
-
-                cursor: "pointer",
-            
-                "&:hover": {
-            
-                  backgroundColor: "#f0f0f0" // Cambia el background color al hacer hover
-            
-                }
-            
-              }}>
-                <TableCell>
-                  <Link 
-                    component="button" 
-                    variant="body1" 
+              <StyledTableRow key={index} onClick={() => handleHistoryClick(search)}>
+                <StyledTableCell>
+                  <Link
+                    component="button"
+                    variant="body1"
                     sx={{ cursor: 'pointer', textDecoration: 'none', color: 'blue' }}
                   >
                     🔍 {search.query || '-'}
                   </Link>
-                </TableCell>
-                <TableCell>{search.location || '-'}</TableCell>
-                <TableCell>
+                </StyledTableCell>
+                <StyledTableCell>{search.location || '-'}</StyledTableCell>
+                <StyledTableCell>
                   {search.doctorId ? (
-                    <Link 
-                      component="button" 
-                      variant="body1" 
+                    <Link
+                      component="button"
+                      variant="body1"
                       onClick={() => handleHistoryClick(search)}
                       sx={{ cursor: 'pointer', textDecoration: 'none', color: 'blue' }}
                     >
@@ -74,11 +67,11 @@ const SearchHistory = () => {
                   ) : (
                     '-'
                   )}
-                </TableCell>
-              </TableRow>
+                </StyledTableCell>
+              </StyledTableRow>
             ))}
           </TableBody>
-        </Table>
+        </StyledTable>
       ) : (
         <Typography variant="body1">
           No recent searches.
@@ -88,4 +81,3 @@ const SearchHistory = () => {
   );
 };
 
-export default SearchHistory;
