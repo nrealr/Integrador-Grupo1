@@ -30,6 +30,10 @@ export const Detail = ({ id: propId }) => {
         const doctorData = await getDoctorById(id);
         setDoctorSelected(doctorData);
 
+        if (doctorData.img) {
+          doctorData.urlImg = 'data:image/jpg;base64,' + doctorData.img;
+        }
+
         if (doctorData.specialtyId) {
           const specialtyData = await getSpecialtyById(doctorData.specialtyId);
           setSpecialty(specialtyData.name);
