@@ -19,6 +19,7 @@ import {
   StyledAdminActivityTitle, 
   AdminHeader, 
   StyledAdminAction} from './AdminDoctors.styled';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
@@ -111,7 +112,7 @@ export const AdminDoctors = () => {
       flex: 1,
       renderCell: (params) => (
         <StyledAdminDeleteButton onClick={() => handleDeleteDoctor(params.row.id)}>
-          <p>🚮</p>
+          <p><DeleteIcon/></p>
         </StyledAdminDeleteButton>
       ),
     },
