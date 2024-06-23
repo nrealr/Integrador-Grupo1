@@ -74,11 +74,11 @@ export const BookingCalendar = ({
  */
     <LocalizationProvider dateAdapter={AdapterDayjs}>
 
-      /**StaticDatePicker component is configured with the following props:
+      {/**StaticDatePicker component is configured with the following props:
       * - minDate: set to the current date (today) to prevent the user from selecting a date in the past
       * - onChange: set to the onChangeHandler function to handle date changes
       * - shouldDisableDate: set to the shouldDisableDateHandler function to determine which dates to disable
-      */
+      */}
       
       <StaticDatePicker
         minDate={today}
