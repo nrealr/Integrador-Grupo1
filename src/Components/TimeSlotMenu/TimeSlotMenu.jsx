@@ -19,15 +19,15 @@ const TimeSlotList = styled.ul`
 `;
 
 const TimeSlot = styled.li`
-  background-color: ${({ status }) => (status === 'available' ? 'white' : '#ccc')};
+  background-color: ${({ status }) => (status === 'Available' ? 'white' : '#ccc')};
   padding: 10px;
   border: 1px solid #ccc;
   margin: 5px;
-  cursor: ${({ status }) => (status === 'available' ? 'pointer' : 'not-allowed')};
+  cursor: ${({ status }) => (status === 'Available' ? 'pointer' : 'not-allowed')};
   width: 100%;
   text-align: center;
   &:hover {
-    background-color: ${({ status }) => (status === 'available' ? '#8ecae6' : '#a3a3a3')};
+    background-color: ${({ status }) => (status === 'Available' ? '#8ecae6' : '#a3a3a3')};
   }
 `;
 
@@ -118,7 +118,7 @@ export const TimeSlotMenu = ({ doctorId, selectedDate }) => {
   };
 
   const handleTimeSlotClick = (timeSlot) => {
-    if (timeSlot.status === 'available') {
+    if (timeSlot.status === 'Available') {
       setSelectedTimeSlot(timeSlot);
       setIsTimeSelected(true);
     }
