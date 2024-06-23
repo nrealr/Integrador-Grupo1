@@ -1,4 +1,11 @@
 
+/**
+ * Doctor Administration Component
+ *
+ * This component displays a table with the list of registered doctors,
+ * along with buttons to add and delete doctors.
+ */
+
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../Constants';
@@ -13,34 +20,84 @@ import {
   AdminHeader, 
   StyledAdminAction} from './AdminDoctors.styled';
 
+
+
+
 export const AdminDoctors = () => {
+  /**
+   * State to store the list of doctors
+   */
   const [doctors, setDoctors] = useState([]);
+
+  /**
+   * State to store the current date and time
+   */
   const [currentDate, setCurrentDate] = useState(new Date());
 
+  /**
+   * Function to load the list of doctors from the service
+   */
   const loadDoctors = async () => {
     let doctorData = await getDoctors();
     setDoctors(doctorData);
   };
 
+  /**
+   * Function to delete a doctor by ID
+   *
+   * @param {number} doctorId ID of the doctor to delete
+   */
   const handleDeleteDoctor = async (doctorId) => {
     await deleteDoctor(doctorId);
     loadDoctors();
   };
 
+  /**
+   * Effect to load the list of doctors when the component mounts
+   */
   useEffect(() => {
     loadDoctors();
   }, []);
 
+  /**
+   * Definition of the table columns
+   */
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70, flex: 1 },
-    { field: 'name', headerName: 'Name', width: 130, flex: 2 },
-    { field: 'lastname', headerName: 'Lastname', width: 130, flex: 2 },
-    { field: 'rut', headerName: 'RUT', width: 90, flex: 1 },
-    { field: 'specialization', headerName: 'Specialization', width: 160, flex: 2 },
+    {
+      field: 'id',
+      headerName: 'ID',
+      width: 70,
+      flex: 1,
+    },
+    {
+      field: 'name',
+      headerName: 'Name',
+      width: 130,
+      flex: 2,
+    },
+    {
+      field: 'lastname',
+      headerName: 'Lastname',
+      width: 130,
+      flex: 2,
+    },
+    {
+      field: 'rut',
+      headerName: 'RUT',
+      width: 90,
+      flex: 1,
+    },
+    {
+      field: 'pecialization',
+      headerName: 'Specialization',
+      width: 160,
+      flex: 2,
+    },
     {
       field: 'update',
       headerName: 'Update',
-      width: 80, flex: 1,
+      width: 80,
+      flex: 1,
       renderCell: (params) => (
         <Link to={`/admin/doctors/update/${params.row.id}`}>
           <p className="admin-edit-button">🖊</p>
@@ -50,7 +107,8 @@ export const AdminDoctors = () => {
     {
       field: 'delete',
       headerName: 'Delete',
-      width: 80, flex: 1,
+      width: 80,
+      flex: 1,
       renderCell: (params) => (
         <StyledAdminDeleteButton onClick={() => handleDeleteDoctor(params.row.id)}>
           <p>🚮</p>
@@ -59,6 +117,9 @@ export const AdminDoctors = () => {
     },
   ];
 
+  /**
+   * Format for the current date and time
+   */
   const formattedDate = `${currentDate.toLocaleDateString()} at ${currentDate.toLocaleTimeString()}`;
 
   return (
@@ -75,7 +136,6 @@ export const AdminDoctors = () => {
       </AdminHeader>
 
       <StyledAdminAction>
-
         <Link to={ROUTES.DOCTORSADD}>
           {" "}
           <StyledAdminAddButton>Add Doctor</StyledAdminAddButton>{" "}
