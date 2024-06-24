@@ -21,6 +21,7 @@ export const Detail = ({ id: propId }) => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+
   const id = propId !== undefined && propId !== null ? propId : params.id;
 
   useEffect(() => {
@@ -39,10 +40,12 @@ export const Detail = ({ id: propId }) => {
           setSpecialty(specialtyData.name);
         }
 
-        if (doctorData.locationId) {
-          const locationData = await getLocationById(doctorData.locationId);
-          setDoctorLocation(locationData.name);
-        }
+    if (doctorsData.locationId) {
+      const locationData = await getLocationById(doctorsData.locationId);
+      setDoctorLocation(locationData);
+            doctorsData.location = locationData.name;
+            doctorsData.locationAddress = locationData.address;
+    }
 
         // Llamar al servicio para obtener las fechas disponibles por doctor
         const days = await getAvailableDays(doctorData.id); // Asumiendo que este servicio retorna las fechas disponibles
@@ -92,10 +95,10 @@ export const Detail = ({ id: propId }) => {
         <div className="doctor-data">
           <div>
             <h3>Hello! I'm a specialist in {specialty}</h3>
-            <h3>I'm located in the {doctorLocation}</h3>
+            <h3>I'm located in the {doctorLocation.name}</h3>
             <p>{doctorSelected.description}</p>
-            {/* Pasa selectedDate y selectedTimeSlot a BtnAppointment */}
-            <BtnAppointment
+            <BtnAppointment 
+              doctorDetails={{ ...doctorSelected, specialty, location: doctorLocation.name, locationAddress: doctorLocation.address }}
               selectedDate={selectedDate}
               selectedTimeSlot={selectedTimeSlot}
             />
