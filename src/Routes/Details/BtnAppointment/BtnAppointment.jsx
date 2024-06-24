@@ -8,13 +8,14 @@ import { ROUTES } from "../../../Constants";
 export const BtnAppointment = ({ doctorDetails, selectedDate, selectedTimeSlot }) => {
     const navigate = useNavigate();
 
-    const { name, lastname, description, urlImg, specialty, location, locationAddress } = doctorDetails;
+    const { id, name, lastname, description, urlImg, specialty, location, locationAddress } = doctorDetails; // Ensure `id` is the doctorId
 
-    // Convertir selectedTimeSlot a cadena si es necesario
+    // Convert selectedTimeSlot to string if necessary
     const stringifiedTimeSlot = JSON.stringify(selectedTimeSlot);
 
-    // Crear el objeto con los detalles del doctor y la cita
+    // Create object with doctor and appointment details
     const encodedDetails = {
+        doctorId: id, // Ensure doctorId is included
         name,
         lastname,
         description,
@@ -23,11 +24,11 @@ export const BtnAppointment = ({ doctorDetails, selectedDate, selectedTimeSlot }
         location,
         locationAddress,
         selectedDate,
-        selectedTimeSlot: stringifiedTimeSlot, // Usar la cadena convertida
+        selectedTimeSlot: stringifiedTimeSlot,
     };
 
     const handleClick = () => {
-        // Codificar los detalles usando queryString.stringify
+        // Encode details using queryString.stringify
         const encodedQueryString = queryString.stringify(encodedDetails);
         navigate(`${ROUTES.APPOINTMENTSUMMARY}?${encodedQueryString}`);
     };
@@ -60,3 +61,4 @@ export const BtnAppointment = ({ doctorDetails, selectedDate, selectedTimeSlot }
         </Button>
     );
 };
+

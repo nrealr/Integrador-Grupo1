@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Button, Container, Typography } from '@mui/material';
 import { ModalComponent } from '../../Components/ModalComponent';
 import { BookingStepper } from '../../Components';
@@ -7,14 +7,13 @@ import { useDoctorStates } from '../../Context';
 import queryString from 'query-string';
 import './AppointmentSummary.styles.css';
 import { ROUTES } from '../../Constants';
+import { scheduleAppointment } from '../../Services';
 
 export const AppointmentSummary = () => {
     const location = useLocation();
     const doctorDetails = queryString.parse(location.search);
-    const selectedTimeSlot = JSON.parse(doctorDetails.selectedTimeSlot); // Parsea el objeto selectedTimeSlot desde la URL
+    const selectedTimeSlot = JSON.parse(doctorDetails.selectedTimeSlot); // Parse selectedTimeSlot as JSON
     const selectedDate = doctorDetails.selectedDate;
-
-    console.log("Selected Time Slot:", selectedTimeSlot);
 
     if (!selectedTimeSlot || !selectedDate) {
         return (
@@ -31,10 +30,6 @@ export const AppointmentSummary = () => {
         );
     }
 
-    // Extraer las horas de startTime y endTime en formato "HH:mm"
-    const startTime = selectedTimeSlot.startTime.slice(11, 16); // Extrae "16:00" de "2024-06-24T16:00:00"
-    const endTime = selectedTimeSlot.endTime.slice(11, 16); // Extrae "17:00" de "2024-06-24T17:00:00"
-
     const { currentUser } = useDoctorStates();
     const formattedDate = selectedDate.split(' ')[0] + ' ' + selectedDate.split(' ')[1] + ' ' + selectedDate.split(' ')[2] + ' ' + selectedDate.split(' ')[3];
 
@@ -42,28 +37,43 @@ export const AppointmentSummary = () => {
     const [message, setMessage] = useState('');
     const [error, setError] = useState(false);
 
-    const handleConfirm = () => {
-        const response = {
-            data: {
-                success: true,
-                message: 'Appointment booked successfully!'
-            }
-        };
+    const handleConfirm = async () => {
+        try {
+            // Prepare data for scheduling appointment
+            const appointmentDetails = {
+                doctorId: doctorDetails.doctorId,
+                patientId: currentUser.id,
+                startTime: selectedTimeSlot.startTime,
+                endTime: selectedTimeSlot.endTime,
+            };
 
-        if (response.data.success) {
-            setMessage('Appointment booked successfully!');
-            setError(false);
-        } else {
-            setMessage('Error booking appointment: ', response.data.message);
+            // Call the function to schedule the appointment
+            const response = await scheduleAppointment(appointmentDetails);
+
+            console.log('Schedule appointment response:', response);
+
+            // Handle success or error response
+            if (response && response.status === 'Scheduled') {
+                setMessage('Appointment booked successfully!');
+                setError(false);
+            } else {
+                setMessage('Unknown error occurred while booking appointment.');
+                setError(true);
+            }
+
+            setIsOpen(true); // Open modal with message
+        } catch (error) {
+            console.error('Error scheduling appointment:', error);
+            setMessage('Error scheduling appointment. Please try again later.');
             setError(true);
+            setIsOpen(true); // Open modal with error message
         }
-        setIsOpen(true);
     };
 
     const handleClose = () => {
         setIsOpen(false);
         if (!error) {
-            window.location.href = '/profile/appointments';
+            window.location.href = '/profile/appointments'; // Redirect on success
         }
     };
 
@@ -89,7 +99,6 @@ export const AppointmentSummary = () => {
             </Typography>
             <BookingStepper activeStep={2} />
             <Container>
-                <div>AppointmentSummary</div>
                 <div>
                     <h2>Specialist:</h2>
                     <p>Name: Dr. {doctorDetails.name} {doctorDetails.lastname}</p>
@@ -108,7 +117,7 @@ export const AppointmentSummary = () => {
                 <div>
                     <h2>Schedule:</h2>
                     <p>Date: {formattedDate}</p>
-                    <p>Hour: {startTime} - {endTime}</p> {/* Renderiza las horas en formato "HH:mm" */}
+                    <p>Hour: {selectedTimeSlot.startTime.slice(11, 16)} - {selectedTimeSlot.endTime.slice(11, 16)}</p> {/* Display formatted time */}
                 </div>
                 <Button className='confirm' onClick={handleConfirm}>Confirm</Button>
                 <ModalComponent
@@ -122,4 +131,7 @@ export const AppointmentSummary = () => {
         </div>
     );
 };
+
+
+
 
