@@ -2,9 +2,18 @@ import { useState } from 'react'; // Importamos el hook useState para manejar el
 import { Button, Container, Typography } from '@mui/material'; // Importamos componentes de Material-UI
 import { ModalComponent } from '../../Components/ModalComponent'; // Importamos el componente ModalComponent
 import { BookingStepper } from '../../Components'; // Importamos el componente BookingStepper
+import { Link, useLocation } from 'react-router-dom';
+import { useDoctorStates } from '../../Context';
+import queryString from 'query-string';
+import './AppointmentSummary.styles.css';
 
 
 export const AppointmentSummary = () => {
+
+    const location = useLocation();
+    const doctorDetails = queryString.parse(location.search);
+    const { currentUser } = useDoctorStates();
+
     // Estado para manejar la apertura del modal
     const [isOpen, setIsOpen] = useState(false);
 
@@ -28,7 +37,7 @@ export const AppointmentSummary = () => {
             setMessage('Appointment booked successfully!');
             setError(false);
         } else {
-            setMessage('Error booking appointment: ' , response.data.message);
+            setMessage('Error booking appointment: ', response.data.message);
             setError(true);
         }
         setIsOpen(true);
@@ -71,6 +80,21 @@ export const AppointmentSummary = () => {
         }
     };
 
+    if (!doctorDetails.name) {
+        return (
+            <div className='summary'>
+                <Typography variant="h3" sx={{ color: 'white', backgroundColor: 'primary.light', padding: '2.5rem 1rem 1.5rem' }}>
+                    Appointment Booking
+                </Typography>
+                <BookingStepper activeStep={2} />
+                <Container>
+                    <Typography variant="h4" sx={{ color: 'black' }}>Doctor Details Not Available, Please Try Later. Sorry For The Inconvenience</Typography>
+                    <Button component={Link} to={ROUTES.HOME}>Go Back Home</Button>
+                </Container>
+            </div>
+        );
+    }
+
     return (
         <div className='summary'>
             {/* Título de la página */}
@@ -78,7 +102,6 @@ export const AppointmentSummary = () => {
                 Appointment Booking
             </Typography>
             {/* Componente BookingStepper con activeStep seteado a 2 */}
-            <BookingStepper activeStep={2} />
             <BookingStepper activeStep={2} />
             <Container>
                 {/* Información de la reserva */}
@@ -91,7 +114,7 @@ export const AppointmentSummary = () => {
                 <div>
                     <h2>Location:</h2>
                     <p>Location: {doctorDetails.location}</p>
-                    <p>Address: {doctorDetails.locationAddress}</p>                   
+                    <p>Address: {doctorDetails.locationAddress}</p>
                 </div>
                 <div>
                     <h2>Patient:</h2>
@@ -111,7 +134,7 @@ export const AppointmentSummary = () => {
                     onClose={handleClose}
                     message={message}
                     error={error}
-                    redirectUrl={error? '' : '/profile/appointments'}
+                    redirectUrl={error ? '' : '/profile/appointments'}
                 />
             </Container>
         </div>
