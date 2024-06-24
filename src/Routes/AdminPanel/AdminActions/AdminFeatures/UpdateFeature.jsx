@@ -1,5 +1,5 @@
 import React from 'react'
-import { UpdateFeatureFunction } from '../../../Components'
+import { UpdateFeatureFunction } from '../../../../Components'
 
 
 export const UpdateFeature = () => {

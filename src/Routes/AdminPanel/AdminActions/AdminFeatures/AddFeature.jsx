@@ -1,6 +1,7 @@
 import React from "react";
-import "./AddProduct.styles.css"
-import { AddFeatureFunction } from "../../../Components/AddProductFunction/addFeatureFunction";
+// import "./AddProduct.styles.css"
+import { AddFeatureFunction } from "../../../../Components";
+
 
 export const AddFeature = () => {
   

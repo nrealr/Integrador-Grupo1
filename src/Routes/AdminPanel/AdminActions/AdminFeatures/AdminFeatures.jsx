@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../Constants';
-import { getFeatures, deleteFeature } from '../../../Services/Features';
+
 import DeleteIcon from '@mui/icons-material/Delete';
 import { AdminHeader, StyledAdminAction, StyledAdminActivitySection, StyledAdminActivitySubtitle, StyledAdminActivityTitle, StyledAdminAddButton, StyledAdminDeleteButton, StyledAdminTable } from './AdminFeatures.styled';
+import { deleteFeature, getFeatures } from '../../../../Services';
+import { ROUTES } from '../../../../Constants';
 
 export const AdminFeatures = () => {
   const [features, setFeatures] = useState([]);
