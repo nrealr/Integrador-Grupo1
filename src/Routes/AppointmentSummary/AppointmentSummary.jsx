@@ -57,7 +57,7 @@ export const AppointmentSummary = () => {
                 setMessage('Appointment booked successfully!');
                 setError(false);
             } else {
-                setMessage('Unknown error occurred while booking appointment.');
+                setMessage('An error occurred while booking appointment. Please check availability again.');
                 setError(true);
             }
 
