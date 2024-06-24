@@ -4,16 +4,15 @@
  * @param {array} availableDays - an array of strings representing available dates in the format YYYY-MM-DD
  */
 
-
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { StaticDatePicker } from './BookingCalendar.styled';
 
-
 export const BookingCalendar = ({
   /** Available dates in the format YYYY-MM-DD*/
-  availableDays
+  availableDays,
+  setSelectedDate
 }) => {
 
   /* propiedades del objeto dayjs
@@ -41,7 +40,8 @@ export const BookingCalendar = ({
 
   /**Current date as a Day.js object*/
   const onChangeHandler = (value, context) => {
-    //console.log(value)
+    const selectedDate = `${value.$y}-${String(value.$M + 1).padStart(2, '0')}-${String(value.$D).padStart(2, '0')}`;
+    setSelectedDate(selectedDate); 
   };
 
   const shouldDisableDateHandler = (value) => {

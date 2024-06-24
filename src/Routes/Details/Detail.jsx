@@ -20,6 +20,8 @@ export const Detail = ({ id: propId }) => {
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
+  const [selectedDate, setSelectedDate] = useState('');
+
   // Use el operador ternario para determinar el id a utilizar
   const id = propId !== undefined && propId !== null ? propId : params.id;
   //const id = propId || params.id;
@@ -106,7 +108,10 @@ export const Detail = ({ id: propId }) => {
             <h3>Hello! I'm a specialist in {specialty}</h3>
             <h3>I'm located in the {doctorLocation.name}</h3>
             <p>{doctorSelected.description}</p>
-            <BtnAppointment doctorDetails={{ ...doctorSelected, specialty, location: doctorLocation.name, locationAddress: doctorLocation.address }} />
+            <BtnAppointment 
+              doctorDetails={{ ...doctorSelected, specialty, location: doctorLocation.name, locationAddress: doctorLocation.address }}
+              selectedDate={selectedDate}
+            />
           </div>
         </div>
 
@@ -117,6 +122,7 @@ export const Detail = ({ id: propId }) => {
             <BookingCalendar
               className="calendarDate"
               availableDays={availableDays}
+              setSelectedDate={setSelectedDate} // Pass setSelectedDate to BookingCalendar
             />
           }
         </div>

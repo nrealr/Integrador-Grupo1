@@ -6,12 +6,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { useDoctorStates } from '../../Context';
 import queryString from 'query-string';
 import './AppointmentSummary.styles.css';
+import { ROUTES } from '../../Constants';
 
 
 export const AppointmentSummary = () => {
 
     const location = useLocation();
     const doctorDetails = queryString.parse(location.search);
+    const selectedDate = doctorDetails.selectedDate;
     const { currentUser } = useDoctorStates();
 
     // Estado para manejar la apertura del modal
@@ -118,12 +120,12 @@ export const AppointmentSummary = () => {
                 </div>
                 <div>
                     <h2>Patient:</h2>
-                    <p>{currentUser.name} {currentUser.lastname}</p>
-                    <p>{currentUser.email}</p>
+                    <p>Name: {currentUser.name} {currentUser.lastname}</p>
+                    <p>Email: {currentUser.email}</p>
                 </div>
                 <div>
                     <h2>Schedule:</h2>
-                    <p>Specific Day</p>
+                    <p>Date: {selectedDate}</p>
                     <p>Specific Hour</p>
                 </div>
                 {/* Botón para confirmar la reserva */}
