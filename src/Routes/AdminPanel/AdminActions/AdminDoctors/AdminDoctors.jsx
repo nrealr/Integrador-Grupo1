@@ -8,8 +8,8 @@
 
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../Constants';
-import { getDoctors, deleteDoctor } from '../../../Services';
+import { ROUTES } from '../../../../Constants';
+import { getDoctors, deleteDoctor } from '../../../../Services';
 import { 
   StyledAdminAddButton, 
   StyledAdminTable, 

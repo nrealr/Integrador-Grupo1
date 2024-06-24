@@ -1,6 +1,7 @@
 import React from "react";
-import "./AddProduct.styles.css"
-import { AddSpecialtyFunction } from "../../../Components/AddProductFunction/addSpecialtyFunction";
+import { AddSpecialtyFunction } from "../../../../Components";
+// import "./AddProduct.styles.css"
+
 
 export const AddSpecialty = () => {
   

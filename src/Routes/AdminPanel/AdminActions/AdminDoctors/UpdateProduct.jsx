@@ -1,5 +1,6 @@
 import React from 'react'
-import { UpdateProductFunction } from '../../../Components'
+import { UpdateProductFunction } from '../../../../Components'
+
 
 
 export const UpdateProduct = () => {
