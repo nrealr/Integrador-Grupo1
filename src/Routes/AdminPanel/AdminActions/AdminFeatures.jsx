@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../../Constants';
 import { getFeatures, deleteFeature } from '../../../Services/Features';
-import { DeleteProductFunction } from '../../../Components';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { AdminHeader, StyledAdminAction, StyledAdminActivitySection, StyledAdminActivitySubtitle, StyledAdminActivityTitle, StyledAdminAddButton, StyledAdminDeleteButton, StyledAdminTable } from './AdminFeatures.styled';
 
 export const AdminFeatures = () => {
   const [features, setFeatures] = useState([]);
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   const loadFeatures = async () => {
     let featureData = await getFeatures();
@@ -21,54 +23,100 @@ export const AdminFeatures = () => {
     loadFeatures();
   }, []);
 
+  const columns = [
+    {
+      field: 'id',
+      headerName: 'ID',
+      width: 70,
+      flex: 1,
+    },
+    {
+      field: 'name',
+      headerName: 'Name',
+      width: 130,
+      flex: 2,
+    },
+    {
+      field: 'icon',
+      headerName: 'Icon',
+      width: 90,
+      flex: 1,
+      renderCell: (params) => (
+        <div>
+          {params.row.icon ? (
+            <img src={`data:image/jpg;base64,${params.row.icon}`} alt={params.row.name} className="feature-icon" />
+          ) : (
+            'No Icon Available'
+          )}
+        </div>
+      ),
+    },
+    {
+      field: 'update',
+      headerName: 'Update',
+      width: 80,
+      flex: 1,
+      renderCell: (params) => (
+        <Link to={`/admin/features/update/${params.row.id}`}>
+          <p className="admin-edit-button">🖊</p>
+        </Link>
+      ),
+    },
+    {
+      field: 'delete',
+      headerName: 'Delete',
+      width: 80,
+      flex: 1,
+      renderCell: (params) => (
+        <StyledAdminDeleteButton onClick={() => handleDeleteFeature(params.row.id)}>
+          <p><DeleteIcon/></p>
+        </StyledAdminDeleteButton>
+      ),
+    },
+  ];
+
+  const formattedDate = `${currentDate.toLocaleDateString()} at ${currentDate.toLocaleTimeString()}`;
+
   return (
     <div className="admin-display">
-      <div className="admin-header">
-        <section className="admin-activity">
-          <h2>Features list</h2>
-          <h4>Last update May 28, 2024 at 2.39 PM</h4>
-        </section>
+      <AdminHeader>
+        <StyledAdminActivitySection>
+          <StyledAdminActivityTitle>Features List</StyledAdminActivityTitle>
+          <StyledAdminActivitySubtitle>Last update {formattedDate}</StyledAdminActivitySubtitle>
+        </StyledAdminActivitySection>
+
         <section className="admin-user">
-          <p>Admin</p>
-          <p>👤</p>
+          <p>👤 Admin</p>
         </section>
-      </div>
-      <div className="admin-action">
-        <section className="admin-search-bar">
-          <p>🔍</p>
-          <p>search placement</p>
-        </section>
+      </AdminHeader>
+
+      <StyledAdminAction>
         <Link to={ROUTES.FEATURESADD}>
-          <button className="admin-add-button">Add Feature</button>
+          {" "}
+          <StyledAdminAddButton>Add Feature</StyledAdminAddButton>{" "}
         </Link>
-      </div>
-      <section className="admin-display-table">
-        <div className="admin-display-title">
-          <p>ID</p>
-          <p>NAME</p>
-          <p>ICON</p>
-          <p>ACTIONS</p>
-        </div>
-        <div className="admin-display-data">
-          {features.map((feature) => (
-            <div key={feature.id} className="doctor-api-item">
-              <p>{feature.id}</p>
-              <p>{feature.name}</p>
-              <div>
-                {feature.icon ? (
-                  <img src={`data:image/jpg;base64,${feature.icon}`} alt={feature.name} className="feature-icon" />
-                ) : (
-                  'No Icon Available'
-                )}
-              </div>
-              <Link id = {feature.id} to={`/admin/features/update/${feature.id}`}>
-            <p className="admin-edit-button">🖊</p>
-            </Link>
-              <DeleteProductFunction feature={feature} onDelete={() => handleDeleteFeature(feature.id)} />
-            </div>
-          ))}
-        </div>
-      </section>
+      </StyledAdminAction>
+
+      <StyledAdminTable
+        rows={features}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: { page: 0, pageSize: 5 },
+          },
+        }}
+        pageSizeOptions={[5, 10]}
+        checkboxSelection
+        columnWidth={150} // set fixed column width
+        sx={{
+          '.MuiDataGrid-columnHeaders': {
+            flex: 1, // make column headers adapt to available width
+          },
+          '.MuiDataGrid-cell': {
+            flex: 1, // make cells adapt to available width
+          },
+        }}
+      />
     </div>
   );
 };
