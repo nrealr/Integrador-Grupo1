@@ -13,6 +13,8 @@ export const AppointmentSummary = () => {
     const timeParts = selectedTimeSlot.split('T');
     const startTime = timeParts[1].slice(0, 5);
     const endTime = timeParts[2].slice(0, 5);
+
+    const formattedDate = selectedDate.split(' ')[0] + ' ' + selectedDate.split(' ')[1] + ' ' + selectedDate.split(' ')[2] + ' ' + selectedDate.split(' ')[3];
   
 
     return (
@@ -25,7 +27,7 @@ export const AppointmentSummary = () => {
                 <div>AppointmentSummary</div>
                 <div>Appointment Details</div>
                 <div>User Summary Information</div>
-                <div>Selected date: {selectedDate}</div>
+                <div>Selected date: {formattedDate}</div>
                 <div>Selected time: {startTime} - {endTime}</div>
                 <Button>Confirm</Button>
             </Container>
