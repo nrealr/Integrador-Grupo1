@@ -40,11 +40,11 @@ export const Detail = ({ id: propId }) => {
           setSpecialty(specialtyData.name);
         }
 
-    if (doctorsData.locationId) {
-      const locationData = await getLocationById(doctorsData.locationId);
+    if (doctorData.locationId) {
+      const locationData = await getLocationById(doctorData.locationId);
       setDoctorLocation(locationData);
-            doctorsData.location = locationData.name;
-            doctorsData.locationAddress = locationData.address;
+      doctorData.location = locationData.name;
+      doctorData.locationAddress = locationData.address;
     }
 
         // Llamar al servicio para obtener las fechas disponibles por doctor
