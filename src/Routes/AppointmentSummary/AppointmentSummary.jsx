@@ -10,18 +10,23 @@ export const AppointmentSummary = () => {
     const selectedDate = searchParams.get('selectedDate');
     const selectedTimeSlot = searchParams.get('selectedTimeSlot');
 
+    const timeParts = selectedTimeSlot.split('T');
+    const startTime = timeParts[1].slice(0, 5);
+    const endTime = timeParts[2].slice(0, 5);
+  
+
     return (
         <div className='summary'>
             <Typography variant="h3" sx={{ color: 'white', backgroundColor: 'primary.light', padding: '2.5rem 1rem 1.5rem' }}>
                 Appointment Booking
             </Typography>
-            <BookingStepper activeStep={2} /> {/* Add Stepper with activeStep set to 2 */}
+            <BookingStepper activeStep={2} />
             <Container>
                 <div>AppointmentSummary</div>
                 <div>Appointment Details</div>
                 <div>User Summary Information</div>
                 <div>Selected date: {selectedDate}</div>
-                <div>Selected time slot: {selectedTimeSlot}</div>
+                <div>Selected time: {startTime} - {endTime}</div>
                 <Button>Confirm</Button>
             </Container>
         </div>
