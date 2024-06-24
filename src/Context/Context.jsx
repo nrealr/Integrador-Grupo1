@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, useEffect } from "react";
+import React, { createContext, useContext, useReducer, useEffect, useState } from "react";
 import { handleLogout } from "../Utils";
 
 const ContextGlobal = createContext();
@@ -28,6 +28,17 @@ export const ContextProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  const localUserData = localStorage.getItem('user') || '{}';
+  const [userState, setUserState] = useState(JSON.parse(localUserData));
+
+
+  const setCurrentUser = (userData) => {
+    localStorage.setItem("token", userData.token);
+    localStorage.setItem("id", userData.id);
+    localStorage.setItem('user', JSON.stringify(userData));
+    setUserState(userData);
+  }
+
   useEffect(() => {
     if (state.isLoggedIn) {
       const timer = setTimeout(() => {
@@ -39,8 +50,12 @@ export const ContextProvider = ({ children }) => {
     }
   }, [state.isLoggedIn]);
 
+  const contextValue = {
+    state, dispatch, setCurrentUser, currentUser: userState
+  };
+
   return (
-    <ContextGlobal.Provider value={{ state, dispatch }}>
+    <ContextGlobal.Provider value={contextValue}>
       {children}
     </ContextGlobal.Provider>
   );

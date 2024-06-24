@@ -16,7 +16,7 @@ import { useDoctorStates } from "../../../../Context";
 import { login } from "../../../../Services";
 
 export const LoginForm = ({ onLoginSuccess }) => {
-  const { dispatch } = useDoctorStates();
+  const { dispatch, setCurrentUser } = useDoctorStates();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState(false);
@@ -42,8 +42,7 @@ export const LoginForm = ({ onLoginSuccess }) => {
     try {
       const response = await login({ email, password });
       if (response.token) {
-        localStorage.setItem("token", response.token);
-        localStorage.setItem("id", response.id);
+        setCurrentUser(response);
         dispatch({ type: 'LOGIN' });
         if (onLoginSuccess) {
           onLoginSuccess();
