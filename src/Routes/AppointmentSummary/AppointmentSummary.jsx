@@ -4,10 +4,13 @@ import { BookingStepper } from '../../Components/BookingStepper/BookingStepper';
 import "./AppointmentSummary.styles.css";
 import { useLocation, Link } from 'react-router-dom';
 import queryString from 'query-string';
+import { useDoctorStates } from '../../Context';
 
 export const AppointmentSummary = () => {
     const location = useLocation();
     const doctorDetails = queryString.parse(location.search);
+    const {currentUser} = useDoctorStates();
+
 
     if (!doctorDetails.name) {
         return (
@@ -38,12 +41,20 @@ export const AppointmentSummary = () => {
                     <p>Specialty: {doctorDetails.specialty}</p>
                 </div>
                 <div>
-                    <h2>Location</h2>
+                    <h2>Location:</h2>
                     <p>Location: {doctorDetails.location}</p>
                     <p>Address: {doctorDetails.locationAddress}</p>                   
                 </div>
-                <div>User Summary Information</div>
-                <div>Selected date</div>
+                <div>
+                    <h2>Patient:</h2>
+                    <p>{currentUser.name} {currentUser.lastname}</p>
+                    <p>{currentUser.email}</p>
+                </div>
+                <div>
+                    <h2>Schedule:</h2>
+                    <p>Specific Day</p>
+                    <p>Specific Hour</p>
+                </div>
                 <Button>Confirm</Button>
             </Container>
         </div>
