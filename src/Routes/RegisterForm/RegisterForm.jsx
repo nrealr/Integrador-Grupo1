@@ -8,6 +8,7 @@ import { useLocalStorage } from '../../Services';
 import { ROUTES } from '../../Constants';
 import { addUser } from '../../Services/Users/addUser';
 import { UserStore } from '../../Utils/UserStore/UserStore';
+import { ModalComponent } from '../../Components/ModalComponent';
 
 
 export const RegisterForm = () => {
@@ -120,7 +121,7 @@ export const RegisterForm = () => {
                                     />
                                 </Grid>
 
-                               <Grid item xs={12} sm={6}>
+                                <Grid item xs={12} sm={6}>
                                     <TextField
                                         margin="normal"
                                         required
@@ -136,7 +137,7 @@ export const RegisterForm = () => {
                                     />
                                 </Grid>
 
-                               <Grid item xs={12}>
+                                <Grid item xs={12}>
                                     <TextField
                                         margin="normal"
                                         required
@@ -152,7 +153,7 @@ export const RegisterForm = () => {
                                     />
                                 </Grid>
 
-                               <Grid item xs={12}>
+                                <Grid item xs={12}>
                                     <TextField
                                         margin="normal"
                                         required
@@ -169,9 +170,9 @@ export const RegisterForm = () => {
                                     />
                                 </Grid>
 
-                           </Grid>
+                            </Grid>
 
-                           <Button
+                            <Button
                                 type="submit"
                                 fullWidth
                                 variant="contained"
@@ -181,7 +182,7 @@ export const RegisterForm = () => {
                                 Submit
                             </Button>
 
-                           <Grid container display='flex' flexDirection='column' justifyContent="flex-end" marginTop={2}>
+                            <Grid container display='flex' flexDirection='column' justifyContent="flex-end" marginTop={2}>
                                 <Link to={ROUTES.LOGIN} variant="body2">
                                     Already have an account? Sign In
                                 </Link>
@@ -193,29 +194,17 @@ export const RegisterForm = () => {
                     </Paper>
                 </Box>
 
-           </Container>
-
+            </Container>
             {success && (
-                <Dialog sx={{ p: 3, borderRadius: 1 }} open={success} onClose={!success}>
-                    <DialogContent>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2 }}>
-                            <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-                                <CheckCircleOutlineIcon />
-                            </Avatar>
-                            <DialogTitle>User Registered Successfully</DialogTitle>
-                        </Box>
-                        <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2 }}>
-                            <Typography variant='body1' >You will be redirected to the Home Page</Typography>
-                        </Box>
-                    </DialogContent>
-                    <DialogActions>
-                        <Link to="/" >
-                            <Button variant='outlined' /*onClick={handleCloseDialog}*/ color="primary">
-                                OK
-                            </Button>
-                        </Link>
-                    </DialogActions>
-                </Dialog>
+
+                <ModalComponent
+                    isOpen={success}
+                    onClose={() => setSuccess(false)}
+                    message="User Registered Successfully"
+                    error={false}
+                    redirectUrl={ROUTES.HOME}
+                />
+
             )}
         </>
     );
