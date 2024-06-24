@@ -2,7 +2,7 @@ import { useState } from 'react'; // Importamos el hook useState para manejar el
 import { Button, Container, Typography } from '@mui/material'; // Importamos componentes de Material-UI
 import { ModalComponent } from '../../Components/ModalComponent'; // Importamos el componente ModalComponent
 import { BookingStepper } from '../../Components'; // Importamos el componente BookingStepper
-import axios from 'axios';
+
 
 export const AppointmentSummary = () => {
     // Estado para manejar la apertura del modal
@@ -16,39 +16,58 @@ export const AppointmentSummary = () => {
 
     // Función para manejar la confirmación de la reserva
     const handleConfirm = () => {
+        // Mockeamos la respuesta de la API
+        const response = {
+            data: {
+                success: true,
+                message: 'Appointment booked successfully!'
+            }
+        };
 
-        // Llamada a la API para realizar la reserva
-
-        axios.post('/api/book-appointment')
-            .then(response => {
-                const data = response.data;
-                // Si la reserva fue exitosa, mostramos un mensaje de éxito
-                if (data.success) {
-                    setMessage('Appointment booked successfully!');
-                    setError(false);
-                } else {
-                    // Si hubo un error, mostramos un mensaje de error
-                    setMessage('Error booking appointment: ', data.error);
-                    setError(true);
-                }
-                // Abrimos el modal para mostrar el mensaje
-                setIsOpen(true);
-            })
-            .catch(error => {
-                // Si hubo un error en la llamada a la API, mostramos un mensaje de error
-                setMessage('Error booking appointment: ', error.message);
-                setError(true);
-                // Abrimos el modal para mostrar el mensaje
-                setIsOpen(true);
-            });
+        if (response.data.success) {
+            setMessage('Appointment booked successfully!');
+            setError(false);
+        } else {
+            setMessage('Error booking appointment: ' , response.data.message);
+            setError(true);
+        }
+        setIsOpen(true);
     };
+
+
+    // // Llamada a la API para realizar la reserva
+
+    // axios.post('/api/book-appointment')
+    // .then(response => {
+    //     const data = response.data;
+    //     // Si la reserva fue exitosa, mostramos un mensaje de éxito
+    //     if (data.success) {
+    //         setMessage('Appointment booked successfully!');
+    //         setError(false);
+    //     } else {
+    //         // Si hubo un error, mostramos un mensaje de error
+    //         setMessage('Error booking appointment: ', data.error);
+    //         setError(true);
+    //     }
+    //     // Abrimos el modal para mostrar el mensaje
+    //     setIsOpen(true);
+    // })
+    // .catch(error => {
+    //     // Si hubo un error en la llamada a la API, mostramos un mensaje de error
+    //     setMessage('Error booking appointment: ', error.message);
+    //     setError(true);
+    //     // Abrimos el modal para mostrar el mensaje
+    //     setIsOpen(true);
+    // });
+
+
     // Función para manejar el cierre del modal
     const handleClose = () => {
         // Cerramos el modal
         setIsOpen(false);
         // Si no hubo un error, redirigimos a otra página
         if (!error) {
-            window.location.href = '/appointment-confirmed';
+            window.location.href = '/profile/appointments';
         }
     };
 
@@ -74,7 +93,7 @@ export const AppointmentSummary = () => {
                     onClose={handleClose}
                     message={message}
                     error={error}
-                    redirectUrl={error ? '' : '/appointment-confirmed'}
+                    redirectUrl={error? '' : '/profile/appointments'}
                 />
             </Container>
         </div>
