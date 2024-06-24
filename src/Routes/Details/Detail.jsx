@@ -51,7 +51,9 @@ export const Detail = ({ id: propId }) => {
 
     if (doctorsData.locationId) {
       const locationData = await getLocationById(doctorsData.locationId);
-      setDoctorLocation(locationData.name);
+      setDoctorLocation(locationData);
+            doctorsData.location = locationData.name;
+            doctorsData.locationAddress = locationData.address;
     }
 
     setDoctorSelected(doctorsData);
@@ -102,9 +104,9 @@ export const Detail = ({ id: propId }) => {
         <div className="doctor-data">
           <div>
             <h3>Hello! I'm a specialist in {specialty}</h3>
-            <h3>I'm located in the {doctorLocation}</h3>
+            <h3>I'm located in the {doctorLocation.name}</h3>
             <p>{doctorSelected.description}</p>
-            <BtnAppointment />
+            <BtnAppointment doctorDetails={{ ...doctorSelected, specialty, location: doctorLocation.name, locationAddress: doctorLocation.address }} />
           </div>
         </div>
 
