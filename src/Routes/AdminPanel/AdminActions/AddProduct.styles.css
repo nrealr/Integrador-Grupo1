@@ -4,12 +4,12 @@
   align-items: center;
 }
 
-.add-product-form{
+.add-product-form {
   display: flex;
   flex-direction: column;
 }
 
-.errorMessages{
+.errorMessages {
   display: flex;
   gap: 2px;
 }

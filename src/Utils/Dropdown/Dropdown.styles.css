@@ -16,7 +16,7 @@
     transform: translateY(-50%);
     width: 20px;
     height: 20px;
-    background-image: url("./images/ico-arrowDropDown.png");
+    background-image: url("/public/images/ico-arrowDropDown.png");
     background-size: contain;
     background-repeat: no-repeat;
   }

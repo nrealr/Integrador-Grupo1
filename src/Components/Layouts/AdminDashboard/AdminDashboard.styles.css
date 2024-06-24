@@ -1,165 +1,164 @@
 .admin-panel {
-    display: flex;
-    padding: 0;
-    
-  }
-  
-  .admin-select {
-    background-color: #f1f1f1;
-    padding-right: 5rem;
-  }
-  
-  .admin-select {
-    background-color: #f1f1f1;
-    padding-right: 5rem;
-  }
-  
-  .admin-select > h2{
-    padding-left: 1rem;
-  }
-  
-  .admin-select-option {
-    display: flex;
-    flex-direction: column;
-    margin-left: 1rem;
-  }
-  
-  .admin-select-option > div {
-    display: flex;
-  }
-  
-  .admin-select-option > div > p {
-    padding-right: 1rem;
-  }
+  display: flex;
+  padding: 0;
+}
 
-  .admin-options a{
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    text-decoration: none;
-  }
-  
-  .admin-display {
-    margin-left: 1rem;
-  }
-  
-  .admin-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding-inline: 2rem;
-  }
-  
-  .admin-welcome {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    font-size: 30px;
-  }
-  
-  .admin-activity > h4 {
-    font-size: 0.8rem;
-    margin-top: -1rem;
-  }
-  
-  .admin-user {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .admin-user > p {
-    padding-right: 0.5rem;
-  }
-  
-  .admin-action {
-    display: flex;
-    justify-content: space-between;
-    padding-inline: 2rem;
-  }
-  
-  .admin-search-bar {
-    display: flex;
-    background-color: #d9d9d9;
-    justify-content: flex-start;
-    border-radius: 0.5rem;
-    width: 20rem;
-  }
-  
-  .admin-search-bar > p {
-    margin-left: 1rem;
-  }
-  
-  .admin-add-button {
-    background-color: #FF2D55;
-    color: #fff;
-    margin-top: 0.5rem;
-    padding: .5rem 2rem;
-    border-radius: 0.5rem;
-    cursor: pointer;
-  }
-  
-  .popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: white;
-    border: 1px solid #ccc;
-    padding: 20px;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .popup p {
-    margin-bottom: 10px;
-  }
-  
-  .popup button {
-    margin-right: 10px;
-  }
-  
-  .admin-display-data {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .admin-display-title {
-    display: flex;
-    justify-content: space-between;
-    width: 75vw;
-    padding-inline: 1rem;
-  }
-  
-  .doctor-api-item {
-    display: flex;
-    justify-content: space-around;
-    padding-left: -0.5rem;
-    background-color: #d9d9d9;
-    margin: 0.2rem;
-    border-radius: 0.5rem;
-  }
-  
-  .doctor-api-item > img {
-    width: 3rem;
-    height: 3rem;
-    margin-left: -3rem;
-  }
-  
-  .admin-delete-button {
-    margin-left: -5rem;
-    margin-right: -3rem;
-  }
-  
-  .admin-edit-button {
-    margin-right: -2rem;
-  }
-  
-  .admin-delete-button:hover{
-    cursor: pointer;
-  }
-  
-  .errorMessages{
-    color: red;
-    font-weight: 100;
-  }
+.admin-select {
+  background-color: #f1f1f1;
+  padding-right: 5rem;
+}
+
+.admin-select {
+  background-color: #f1f1f1;
+  padding-right: 5rem;
+}
+
+.admin-select > h2 {
+  padding-left: 1rem;
+}
+
+.admin-select-option {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.admin-select-option > div {
+  display: flex;
+}
+
+.admin-select-option > div > p {
+  padding-right: 1rem;
+}
+
+.admin-options a {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+}
+
+.admin-display {
+  margin-left: 1rem;
+}
+
+.admin-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-inline: 2rem;
+}
+
+.admin-welcome {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: 30px;
+}
+
+.admin-activity > h4 {
+  font-size: 0.8rem;
+  margin-top: -1rem;
+}
+
+.admin-user {
+  display: flex;
+  justify-content: space-between;
+}
+
+.admin-user > p {
+  padding-right: 0.5rem;
+}
+
+.admin-action {
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 2rem;
+}
+
+.admin-search-bar {
+  display: flex;
+  background-color: #d9d9d9;
+  justify-content: flex-start;
+  border-radius: 0.5rem;
+  width: 20rem;
+}
+
+.admin-search-bar > p {
+  margin-left: 1rem;
+}
+
+.admin-add-button {
+  background-color: #ff2d55;
+  color: #fff;
+  margin-top: 0.5rem;
+  padding: 0.5rem 2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  z-index: 1000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.popup p {
+  margin-bottom: 10px;
+}
+
+.popup button {
+  margin-right: 10px;
+}
+
+.admin-display-data {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-display-title {
+  display: flex;
+  justify-content: space-between;
+  width: 75vw;
+  padding-inline: 1rem;
+}
+
+.doctor-api-item {
+  display: flex;
+  justify-content: space-around;
+  padding-left: -0.5rem;
+  background-color: #d9d9d9;
+  margin: 0.2rem;
+  border-radius: 0.5rem;
+}
+
+.doctor-api-item > img {
+  width: 3rem;
+  height: 3rem;
+  margin-left: -3rem;
+}
+
+.admin-delete-button {
+  margin-left: -5rem;
+  margin-right: -3rem;
+}
+
+.admin-edit-button {
+  margin-right: -2rem;
+}
+
+.admin-delete-button:hover {
+  cursor: pointer;
+}
+
+.errorMessages {
+  color: red;
+  font-weight: 100;
+}

@@ -1,15 +1,14 @@
-.speciality-card{
-    /* border: 1px solid black; */
-    text-align: center;
-    
+.speciality-card {
+  /* border: 1px solid black; */
+  text-align: center;
 }
 
-.speciality-card img{   
-   width: 100%;
-   object-fit: contain;
-   background-color: whitesmoke;
+.speciality-card img {
+  width: 100%;
+  object-fit: contain;
+  background-color: whitesmoke;
 }
 
-.speciality-card .cardAction-box{
-    background-color: rgb(94 131 149)
+.speciality-card .cardAction-box {
+  background-color: rgb(94 131 149);
 }

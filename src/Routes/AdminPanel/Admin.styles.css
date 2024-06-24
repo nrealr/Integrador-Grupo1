@@ -1,7 +1,6 @@
 .admin-panel {
   display: flex;
   padding: 0;
-  
 }
 
 .admin-select {
@@ -14,7 +13,7 @@
   padding-right: 5rem;
 }
 
-.admin-select > h2{
+.admin-select > h2 {
   padding-left: 1rem;
 }
 
@@ -80,10 +79,10 @@
 }
 
 .admin-add-button {
-  background-color: #FF2D55;
+  background-color: #ff2d55;
   color: #fff;
   margin-top: 0.5rem;
-  padding: .5rem 2rem;
+  padding: 0.5rem 2rem;
   border-radius: 0.5rem;
   cursor: pointer;
 }
@@ -144,21 +143,21 @@
   margin-right: -2rem;
 }
 
-.admin-delete-button:hover{
+.admin-delete-button:hover {
   cursor: pointer;
 }
 
-.errorMessages{
+.errorMessages {
   color: red;
   font-weight: 100;
 }
 
-.feature-icon{
+.feature-icon {
   height: 50px;
   width: 50px;
 }
 
-.admin-welcome img{
+.admin-welcome img {
   width: 50%;
-  margin: 0 auto
+  margin: 0 auto;
 }
