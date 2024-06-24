@@ -17,6 +17,7 @@ export const Detail = ({ id: propId }) => {
   const params = useParams();
   const [availableDays, setAvailableDays] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null); // Asegúrate de inicializar selectedTimeSlot
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -63,6 +64,11 @@ export const Detail = ({ id: propId }) => {
     setSelectedDate(date);
   };
 
+  const handleTimeSlotSelect = (timeSlot) => {
+    setSelectedTimeSlot(timeSlot);
+    console.log(selectedTimeSlot);
+  };
+
   const queryParamsPresent = location.search && location.search.length > 0;
 
   return (
@@ -88,7 +94,11 @@ export const Detail = ({ id: propId }) => {
             <h3>Hello! I'm a specialist in {specialty}</h3>
             <h3>I'm located in the {doctorLocation}</h3>
             <p>{doctorSelected.description}</p>
-            <BtnAppointment />
+            {/* Pasa selectedDate y selectedTimeSlot a BtnAppointment */}
+            <BtnAppointment
+              selectedDate={selectedDate}
+              selectedTimeSlot={selectedTimeSlot}
+            />
           </div>
         </div>
 
@@ -97,6 +107,7 @@ export const Detail = ({ id: propId }) => {
             <TimeSlotMenu
               doctorId={doctorSelected.id}
               selectedDate={selectedDate}
+              onTimeSlotSelect={handleTimeSlotSelect}
             />
           )}
           {isError && (
@@ -124,6 +135,7 @@ export const Detail = ({ id: propId }) => {
     </section>
   );
 };
+
 
 
 

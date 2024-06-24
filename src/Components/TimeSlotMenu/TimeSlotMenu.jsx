@@ -44,7 +44,7 @@ const SelectedTimeSlot = styled.div`
   ${({ isSelected }) => isSelected && 'color: red;'}
 `;
 
-export const TimeSlotMenu = ({ doctorId, selectedDate }) => {
+export const TimeSlotMenu = ({ doctorId, selectedDate, onTimeSlotSelect }) => {
   const [availabilities, setAvailabilities] = useState([]);
   const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
   const [isTimeSelected, setIsTimeSelected] = useState(false);
@@ -72,7 +72,14 @@ export const TimeSlotMenu = ({ doctorId, selectedDate }) => {
 
     fetchAvailabilities();
   }, [doctorId, selectedDate]);
-  
+
+  const handleTimeSlotClick = (timeSlot) => {
+    if (timeSlot.status === 'Available') {
+      setSelectedTimeSlot(timeSlot);
+      setIsTimeSelected(true);
+      onTimeSlotSelect(timeSlot); // Llama a la función para pasar el timeSlot seleccionado
+    }
+  };
 
   const renderTimeSlots = () => {
     if (availabilities.length === 0) {
@@ -120,13 +127,6 @@ export const TimeSlotMenu = ({ doctorId, selectedDate }) => {
     );
   };
 
-  const handleTimeSlotClick = (timeSlot) => {
-    if (timeSlot.status === 'Available') {
-      setSelectedTimeSlot(timeSlot);
-      setIsTimeSelected(true);
-    }
-  };
-
   return (
     <Container>
       {loading && <p>Loading...</p>}
@@ -138,6 +138,7 @@ export const TimeSlotMenu = ({ doctorId, selectedDate }) => {
     </Container>
   );
 };
+
 
 
 
