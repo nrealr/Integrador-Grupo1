@@ -7,4 +7,5 @@ export * from './RegisterForm';
 export * from './notFound';
 export * from './SearchResults'
 export * from "./AppointmentSummary"
+export * from "./ScheduleAppointment"
 

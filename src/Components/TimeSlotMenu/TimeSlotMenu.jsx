@@ -29,6 +29,9 @@ const TimeSlot = styled.li`
   &:hover {
     background-color: ${({ status }) => (status === 'Available' ? '#8ecae6' : '#a3a3a3')};
   }
+  &.selected {
+    background-color: #8ecae6;
+  }
 `;
 
 const SelectedTimeSlot = styled.div`
@@ -135,6 +138,7 @@ export const TimeSlotMenu = ({ doctorId, selectedDate }) => {
     </Container>
   );
 };
+
 
 
 

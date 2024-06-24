@@ -15,7 +15,6 @@ export const Detail = ({ id: propId }) => {
   const [specialty, setSpecialty] = useState("");
   const [doctorLocation, setDoctorLocation] = useState("");
   const params = useParams();
-  const [takenTimeSlots, setTakenTimeSlots] = useState([]);
   const [availableDays, setAvailableDays] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
   const [isError, setIsError] = useState(false);
@@ -47,13 +46,6 @@ export const Detail = ({ id: propId }) => {
         // Llamar al servicio para obtener las fechas disponibles por doctor
         const days = await getAvailableDays(doctorData.id); // Asumiendo que este servicio retorna las fechas disponibles
         setAvailableDays(days);
-
-        // Llamar al servicio para obtener los slots ocupados por doctor
-        if (selectedDate) {
-          const response = await takenTimeSlots(doctorData.id, selectedDate);
-          const data = await response.json();
-          setTakenTimeSlots(data);
-      }
 
         setIsError(false);
       } catch (error) {
@@ -105,7 +97,6 @@ export const Detail = ({ id: propId }) => {
             <TimeSlotMenu
               doctorId={doctorSelected.id}
               selectedDate={selectedDate}
-              markTakenTimeSlots={setTakenTimeSlots}
             />
           )}
           {isError && (
@@ -119,7 +110,6 @@ export const Detail = ({ id: propId }) => {
             <BookingCalendar
               className="calendarDate"
               availableDays={availableDays}
-              takenTimeSlots={takenTimeSlots}
               onDateSelect={handleDateSelect}
             />
           )}
@@ -134,6 +124,13 @@ export const Detail = ({ id: propId }) => {
     </section>
   );
 };
+
+
+
+
+
+
+
 
 
 

@@ -1,3 +1,4 @@
 export * from './availableDays'
-export * from './takenTimeSlots'
+export * from './takenSlots'
 export * from './availableSlots'
+export * from './scheduleAppointment'
