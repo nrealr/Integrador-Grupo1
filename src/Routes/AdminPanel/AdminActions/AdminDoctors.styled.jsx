@@ -1,4 +1,3 @@
-n
 import { DataGrid } from '@mui/x-data-grid';
 import styled from 'styled-components';
 
