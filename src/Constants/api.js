@@ -1,1 +1,1 @@
-export const SERVER_API = "http://ip-172-31-81-170.ec2.internal:8081";
+export const SERVER_API = "http://172.31.81.170:8081";
