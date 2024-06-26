@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Detail.styles.css";
-import { getAvailableDays, getDoctorById, getSpecialtyById} from "../../Services";
+import { getDoctorById, getSpecialtyById, getAvailableDays } from "../../Services";
 import { useLocation, useParams } from "react-router-dom";
 import { FeaturesCard } from "./FeaturesCard";
 import { BookingCalendar } from "../../Components/BookingCalendar/BookingCalendar";
@@ -15,79 +15,72 @@ export const Detail = ({ id: propId }) => {
   const [specialty, setSpecialty] = useState("");
   const [doctorLocation, setDoctorLocation] = useState("");
   const params = useParams();
-  const [takenTimeSlots, setTakenTimeSlots] = useState([]);
   const [availableDays, setAvailableDays] = useState([]);
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null); // Asegúrate de inicializar selectedTimeSlot
   const [isError, setIsError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Use el operador ternario para determinar el id a utilizar
+
   const id = propId !== undefined && propId !== null ? propId : params.id;
-  //const id = propId || params.id;
 
   useEffect(() => {
+    const fetchData = async () => {
+      setIsLoading(true);
+      try {
+        const doctorData = await getDoctorById(id);
+        setDoctorSelected(doctorData);
 
-    // Here we can block slots from backend
+        if (doctorData.img) {
+          doctorData.urlImg = 'data:image/jpg;base64,' + doctorData.img;
+        }
 
-    fetch('/api/taken-time-slots')
+        if (doctorData.specialtyId) {
+          const specialtyData = await getSpecialtyById(doctorData.specialtyId);
+          setSpecialty(specialtyData.name);
+        }
 
-      .then(response => response.json())
-
-      .then(data => setTakenTimeSlots(data));
-
-  }, []);
-
-  const getData = async () => {
-
-    let doctorsData = await getDoctorById(id);
-
-    if (doctorsData.img) {
-      doctorsData.urlImg = 'data:image/jpg;base64,' + doctorsData.img;
+    if (doctorData.locationId) {
+      const locationData = await getLocationById(doctorData.locationId);
+      setDoctorLocation(locationData);
+      doctorData.location = locationData.name;
+      doctorData.locationAddress = locationData.address;
     }
 
-    if (doctorsData.specialtyId) {
-      const specialtyData = await getSpecialtyById(doctorsData.specialtyId);
-      setSpecialty(specialtyData.name);
-    }
+        // Llamar al servicio para obtener las fechas disponibles por doctor
+        const days = await getAvailableDays(doctorData.id); // Asumiendo que este servicio retorna las fechas disponibles
+        setAvailableDays(days);
 
-    if (doctorsData.locationId) {
-      const locationData = await getLocationById(doctorsData.locationId);
-      setDoctorLocation(locationData.name);
-    }
+        setIsError(false);
+      } catch (error) {
+        console.error("Error fetching doctor details:", error);
+        setIsError(true);
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-    setDoctorSelected(doctorsData);
-  };
-
-  useEffect(() => {
-    getData();
+    fetchData();
   }, [id]);
 
-  useEffect(() => {
-    setIsLoading(true);
-    getAvailableDays().then((days) => {
-      setAvailableDays(days);
-      setIsError(false);
-    }).catch((err) => {
-      console.error(err);
-      setIsError(true);
-    }).finally(() => {
-      setIsLoading(false);
-    });
-  }, []);
+  const handleDateSelect = (date) => {
+    setSelectedDate(date);
+  };
 
-  // Verifica si hay algún parámetro de consulta presente en la URL
+  const handleTimeSlotSelect = (timeSlot) => {
+    setSelectedTimeSlot(timeSlot);
+    console.log(selectedTimeSlot);
+  };
+
   const queryParamsPresent = location.search && location.search.length > 0;
-
-  console.log("URL actual:", location.pathname + location.search);
-  console.log("queryParamsPresent:", queryParamsPresent);
-
-  const displayErrorMessage = !isLoading && isError;
-  const displayCalendar = !isError && !isLoading;
 
   return (
     <section className="doctor-detail">
       <div className="detailHeader">
         {!queryParamsPresent && <IcnReturnHome />}
-        <h1>Dr. {doctorSelected.name} {doctorSelected.lastname}</h1>
+        <h1>
+          Dr. {doctorSelected.name} {doctorSelected.lastname}
+        </h1>
       </div>
 
       <div className="detailBody">
@@ -102,25 +95,40 @@ export const Detail = ({ id: propId }) => {
         <div className="doctor-data">
           <div>
             <h3>Hello! I'm a specialist in {specialty}</h3>
-            <h3>I'm located in the {doctorLocation}</h3>
+            <h3>I'm located in the {doctorLocation.name}</h3>
             <p>{doctorSelected.description}</p>
-            <BtnAppointment />
+            <BtnAppointment 
+              doctorDetails={{ ...doctorSelected, specialty, location: doctorLocation.name, locationAddress: doctorLocation.address }}
+              selectedDate={selectedDate}
+              selectedTimeSlot={selectedTimeSlot}
+            />
           </div>
         </div>
 
         <div className="appointment-area">
-          <TimeSlotMenu markTakenTimeSlots={setTakenTimeSlots} />
-          {displayErrorMessage && <span className="msge-error">An error occurred while retrieving available days. Our team is working to resolve the issue as soon as possible. Please try again later</span>}
-          {displayCalendar &&
+          {selectedDate && (
+            <TimeSlotMenu
+              doctorId={doctorSelected.id}
+              selectedDate={selectedDate}
+              onTimeSlotSelect={handleTimeSlotSelect}
+            />
+          )}
+          {isError && (
+            <span className="msge-error">
+              An error occurred while retrieving available days. Our team is
+              working to resolve the issue as soon as possible. Please try
+              again later
+            </span>
+          )}
+          {!isError && !isLoading && (
             <BookingCalendar
               className="calendarDate"
               availableDays={availableDays}
+              onDateSelect={handleDateSelect}
             />
-          }
+          )}
         </div>
-
       </div>
-
 
       {!queryParamsPresent && (
         <div className="detailFeatures">
@@ -130,6 +138,19 @@ export const Detail = ({ id: propId }) => {
     </section>
   );
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

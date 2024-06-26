@@ -26,6 +26,12 @@ export const BookingStepper = ({ activeStep }) => {
                     '& .MuiStepLabel-label': {
                     color: 'white', // Change font color
                     },
+                    '&.MuiStepLabel-label.Mui-active': {
+                    color: 'white', // Active step label color
+                    },
+                    '&.MuiStepLabel-label.Mui-completed': {
+                    color: 'white', // Completed step label color
+                    },
                     '& .MuiStepIcon-root': {
                     fontSize: '2.5rem', // Increase the size of the icon
                     },
