@@ -1,65 +1,55 @@
+import { useState, useEffect } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import { StaticDatePicker } from './BookingCalendar.styled';
+import isBetween from 'dayjs/plugin/isBetween';
 
+dayjs.extend(isBetween);
 
-export const BookingCalendar = ({
-  availableDays
-}) => {
+export const BookingCalendar = ({ availableDays, onDateSelect }) => {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [disabledDates, setDisabledDates] = useState([]);
 
-    /* propiedades del objeto dayjs
-    {
-      "$L": "en",
-      "$d": "2024-06-13T04:00:00.000Z",
-      "$y": 2024,
-      "$M": 5,
-      "$D": 13,
-      "$W": 4,
-      "$H": 0,
-      "$m": 0,
-      "$s": 0,
-      "$ms": 0,
-      "$x": {},
-      "$isDayjsObject": true
+  useEffect(() => {
+
+    const formattedAvailableDays = availableDays.map(dateStr => dayjs(dateStr).format('YYYY-MM-DD'));
+    
+    const startOfMonth = dayjs().startOf('month');
+    const endOfMonth = dayjs().endOf('month');
+    const allDatesInMonth = [];
+
+    for (let date = startOfMonth; date.isBefore(endOfMonth); date = date.add(1, 'day')) {
+      allDatesInMonth.push(date.format('YYYY-MM-DD'));
     }
-     */
 
-    const date = new Date().toISOString()
-    const today = dayjs(date);
+    const filteredDisabledDates = allDatesInMonth.filter(date => !formattedAvailableDays.includes(date));
 
-    const onChangeHandler = (value, context) => {
-      //console.log(value)
-    };
+    setDisabledDates(filteredDisabledDates);
+  }, [availableDays]);
 
-    const shouldDisableDateHandler = (value) => {
-      //const isDisabled = value.$D == 27; 
-      /* const availableDaysMap = availableDays.map((item) => {
-        return dayjs(item);
-      }); */
+  const today = dayjs();
 
-      const year = value.$y;
-      const month = String(value.$M).padStart(2, 0);
-      const day = String(value.$D).padStart(2, 0);
+  const onChangeHandler = (value) => {
+    setSelectedDate(value);
+    onDateSelect(value); // Llama a la función onDateSelect para pasar la fecha seleccionada
+  };
 
-      const date = `${year}-${month}-${day}`;
+  const shouldDisableDateHandler = (value) => {
+    const dateStr = dayjs(value).format('YYYY-MM-DD');
+    return disabledDates.includes(dateStr);
+  };
 
-      const availableDaysMap = availableDays.map((dateStr) => {
-        return dateStr.split('T').shift();
-      });
-
-      const isDisabled = !availableDaysMap.includes(date);
-      return isDisabled;
-    };
-
-
-    return (
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <StaticDatePicker
-            minDate={today}
-            onChange={onChangeHandler}
-            shouldDisableDate={shouldDisableDateHandler}
-          />
-        </LocalizationProvider>
-    )
+  return (
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <StaticDatePicker
+        value={selectedDate}
+        minDate={today}
+        onChange={onChangeHandler}
+        shouldDisableDate={shouldDisableDateHandler}
+      />
+    </LocalizationProvider>
+  );
 };
+
+
