@@ -27,12 +27,6 @@ export const AdminUsers = () => {
 
     const handleChangeRole = async (id, currentRole) => {
         const newRoleId = currentRole === "ADMINISTRATOR" ? 2 : 1;
-        const currentUserId = localStorage.getItem('id'); // Obtener el ID del usuario actual
-
-        if (parseInt(currentUserId) === id) {
-            alert("You cannot change your own role.");
-            return;
-        }
 
         try {
             await changeUserRole(id, newRoleId);
@@ -42,6 +36,8 @@ export const AdminUsers = () => {
             alert("Failed to change user role. Please try again.");
         }
     };
+
+    const currentUserId = localStorage.getItem('id'); // Obtener el ID del usuario actual
 
     const columns = [
         { field: "id", headerName: "ID", width: 70, flex: 1 },
@@ -54,7 +50,10 @@ export const AdminUsers = () => {
             headerName: "Action",
             width: 150,
             renderCell: (params) => (
-                <button onClick={() => handleChangeRole(params.row.id, params.row.role)}>
+                <button
+                    onClick={() => handleChangeRole(params.row.id, params.row.role)}
+                    disabled={parseInt(currentUserId) === params.row.id} // Deshabilitar el botón si es el mismo usuario
+                >
                     Change Role
                 </button>
             ),
