@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Container, Typography } from '@mui/material';
+import { Button, Container, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography, makeStyles } from '@mui/material';
 import { ModalComponent } from '../../Components/ModalComponent';
 import { BookingStepper } from '../../Components';
 import { Link, useLocation } from 'react-router-dom';
@@ -92,34 +92,87 @@ export const AppointmentSummary = () => {
         );
     }
 
+    const appointmentData = {
+        specialistName: `${doctorDetails.name} ${doctorDetails.lastname}`,
+        specialty: doctorDetails.specialty,
+        location: doctorDetails.location,
+        address: doctorDetails.locationAddress,
+        patientName: `${currentUser.name} ${currentUser.lastname}`,
+        email: currentUser.email,
+        date: formattedDate,
+        startTime: selectedTimeSlot.startTime.slice(11, 16),
+        endTime: selectedTimeSlot.endTime.slice(11, 16),
+      };
+
     return (
         <div className='summary'>
             <Typography variant="h3" sx={{ color: 'white', backgroundColor: 'primary.light', padding: '2.5rem 1rem 1.5rem' }}>
                 Appointment Booking
             </Typography>
             <BookingStepper activeStep={2} />
-            <Container>
-                <div>
-                    <h2>Specialist:</h2>
-                    <p>Name: Dr. {doctorDetails.name} {doctorDetails.lastname}</p>
-                    <p>Specialty: {doctorDetails.specialty}</p>
-                </div>
-                <div>
-                    <h2>Location:</h2>
-                    <p>Location: {doctorDetails.location}</p>
-                    <p>Address: {doctorDetails.locationAddress}</p>
-                </div>
-                <div>
-                    <h2>Patient:</h2>
-                    <p>Name: {currentUser.name} {currentUser.lastname}</p>
-                    <p>Email: {currentUser.email}</p>
-                </div>
-                <div>
-                    <h2>Schedule:</h2>
-                    <p>Date: {formattedDate}</p>
-                    <p>Hour: {selectedTimeSlot.startTime.slice(11, 16)} - {selectedTimeSlot.endTime.slice(11, 16)}</p> {/* Display formatted time */}
-                </div>
-                <Button className='confirm' onClick={handleConfirm}>Confirm</Button>
+
+            <Container sx={{ display: "flex", flexDirection: "column", marginBottom: 3}} >
+            <Typography variant="h4" sx={{ textAlign: "center", paddingTop: 5, paddingBottom: 2}} >
+                Your appointment data:
+            </Typography>
+
+            <TableContainer sx={{ display: 'flex', justifyContent: 'center', alignItems: "center", backgroundColor: 'light', borderRadius: '8px', padding: '1rem' }}>
+          <Table sx={{ width: 650, borderRadius: '8px', border: '1px solid', borderColor: 'primary.dark' }}>
+            <TableHead>
+              <TableRow>
+                <TableCell sx={{ backgroundColor: 'primary.main', color: 'white', fontWeight: 'bold' }}>Field</TableCell>
+                <TableCell sx={{ backgroundColor: 'primary.main', color: 'white', fontWeight: 'bold' }}>Details</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell sx={{ backgroundColor: 'primary.main', color: 'white', fontWeight: 'bold' }}>Specialist</TableCell>
+                <TableCell sx={{ backgroundColor: 'primary.light' }}>{appointmentData.specialistName}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell sx={{ backgroundColor: 'primary.main', color: 'white', fontWeight: 'bold' }}>Specialty</TableCell>
+                <TableCell sx={{ backgroundColor: 'primary.light' }}>{appointmentData.specialty}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell sx={{ backgroundColor: 'primary.main', color: 'white', fontWeight: 'bold' }}>Location</TableCell>
+                <TableCell sx={{ backgroundColor: 'primary.light' }}>{appointmentData.location}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell sx={{ backgroundColor: 'primary.main', color: 'white', fontWeight: 'bold' }}>Address</TableCell>
+                <TableCell sx={{ backgroundColor: 'primary.light' }}>{appointmentData.address}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell sx={{ backgroundColor: 'primary.main', color: 'white', fontWeight: 'bold' }}>Patient</TableCell>
+                <TableCell sx={{ backgroundColor: 'primary.light' }}>{appointmentData.patientName}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell sx={{ backgroundColor: 'primary.main', color: 'white', fontWeight: 'bold' }}>Email</TableCell>
+                <TableCell sx={{ backgroundColor: 'primary.light' }}>{appointmentData.email}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell sx={{ backgroundColor: 'primary.main', color: 'white', fontWeight: 'bold' }}>Date</TableCell>
+                <TableCell sx={{ backgroundColor: 'primary.light' }}>{appointmentData.date}</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell sx={{ backgroundColor: 'primary.main', color: 'white', fontWeight: 'bold' }}>Time</TableCell>
+                <TableCell sx={{ backgroundColor: 'primary.light' }}>{`${appointmentData.startTime} - ${appointmentData.endTime}`}</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+
+
+                <Button className='confirm' onClick={handleConfirm}
+                                  variant="contained"
+                                  color="primary"                
+                                  sx={{
+                                    textAlign: "center",
+                                    color: 'white',
+                                    fontSize: { xs: '0.875rem', md: '1rem' },
+                                    padding: { xs: '0.4rem', md: '0.75rem 1.2rem' },
+                                    margin: "auto"
+                                  }}                
+                >Confirm</Button>
                 <ModalComponent
                     isOpen={isOpen}
                     onClose={handleClose}

@@ -5,8 +5,6 @@ import "./AdminDashboard.styles.css";
 import { handleLogout } from "../../../Utils";
 
 export const AdminDashboard = () => {
-
-
   return (
     <div className="admin-panel">
       <div className="admin-select">
@@ -24,6 +22,13 @@ export const AdminDashboard = () => {
             <Link to={ROUTES.DOCTORS}>
               <p>🥼</p>
               <p>Doctors</p>
+            </Link>
+          </div>
+
+          <div className="admin-options">
+            <Link to={ROUTES.USERS}>
+              <p>👥</p>
+              <p>Users</p>
             </Link>
           </div>
 

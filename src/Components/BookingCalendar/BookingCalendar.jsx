@@ -12,18 +12,17 @@ export const BookingCalendar = ({ availableDays, onDateSelect }) => {
   const [disabledDates, setDisabledDates] = useState([]);
 
   useEffect(() => {
-
     const formattedAvailableDays = availableDays.map(dateStr => dayjs(dateStr).format('YYYY-MM-DD'));
-    
-    const startOfMonth = dayjs().startOf('month');
-    const endOfMonth = dayjs().endOf('month');
-    const allDatesInMonth = [];
 
-    for (let date = startOfMonth; date.isBefore(endOfMonth); date = date.add(1, 'day')) {
-      allDatesInMonth.push(date.format('YYYY-MM-DD'));
+    const startOfYear = dayjs().startOf('year');
+    const endOfYear = dayjs().endOf('year');
+    const allDatesInYear = [];
+
+    for (let date = startOfYear; date.isBefore(endOfYear) || date.isSame(endOfYear, 'day'); date = date.add(1, 'day')) {
+      allDatesInYear.push(date.format('YYYY-MM-DD'));
     }
 
-    const filteredDisabledDates = allDatesInMonth.filter(date => !formattedAvailableDays.includes(date));
+    const filteredDisabledDates = allDatesInYear.filter(date => !formattedAvailableDays.includes(date));
 
     setDisabledDates(filteredDisabledDates);
   }, [availableDays]);
@@ -32,7 +31,7 @@ export const BookingCalendar = ({ availableDays, onDateSelect }) => {
 
   const onChangeHandler = (value) => {
     setSelectedDate(value);
-    onDateSelect(value); // Llama a la función onDateSelect para pasar la fecha seleccionada
+    onDateSelect(value);
   };
 
   const shouldDisableDateHandler = (value) => {
@@ -51,5 +50,3 @@ export const BookingCalendar = ({ availableDays, onDateSelect }) => {
     </LocalizationProvider>
   );
 };
-
-

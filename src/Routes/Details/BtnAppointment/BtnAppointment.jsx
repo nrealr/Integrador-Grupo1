@@ -4,8 +4,15 @@ import { Button } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
 import queryString from 'query-string';
 import { ROUTES } from "../../../Constants";
+import { useDoctorStates } from "../../../Context";
+
+/**
+ * 
+ * @returns {React.Component} Deploy a button for make an appointment, will carry you to appointments route
+ */
 
 export const BtnAppointment = ({ doctorDetails, selectedDate, selectedTimeSlot }) => {
+    const { state } = useDoctorStates();
     const navigate = useNavigate();
 
     const { id, name, lastname, description, specialty, location, locationAddress } = doctorDetails; // Ensure `id` is the doctorId
@@ -27,10 +34,19 @@ export const BtnAppointment = ({ doctorDetails, selectedDate, selectedTimeSlot }
     };
 
     const handleClick = () => {
-        // Encode details using queryString.stringify
-        const encodedQueryString = queryString.stringify(encodedDetails);
-        navigate(`${ROUTES.APPOINTMENTSUMMARY}?${encodedQueryString}`);
-    };
+        console.log(encodedDetails);
+        if(!encodedDetails.selectedDate || stringifiedTimeSlot === "null"){
+            alert("Please select an available date and time slot to make an appointment.")
+        }else{
+            if (state.isLoggedIn) {
+                const encodedQueryString = queryString.stringify(encodedDetails);
+                navigate(`${ROUTES.APPOINTMENTSUMMARY}?${encodedQueryString}`);    
+            } else {
+                const encodedQueryString = queryString.stringify(encodedDetails);
+                navigate(ROUTES.LOGIN, { state: { fromReservation: true, queryString: encodedQueryString } });
+            }    
+        }
+    }
 
     return (
         <Button
