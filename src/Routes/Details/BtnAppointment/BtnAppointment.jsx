@@ -8,7 +8,7 @@ import { ROUTES } from "../../../Constants";
 export const BtnAppointment = ({ doctorDetails, selectedDate, selectedTimeSlot }) => {
     const navigate = useNavigate();
 
-    const { id, name, lastname, description, urlImg, specialty, location, locationAddress } = doctorDetails; // Ensure `id` is the doctorId
+    const { id, name, lastname, description, specialty, location, locationAddress } = doctorDetails; // Ensure `id` is the doctorId
 
     // Convert selectedTimeSlot to string if necessary
     const stringifiedTimeSlot = JSON.stringify(selectedTimeSlot);
@@ -19,7 +19,6 @@ export const BtnAppointment = ({ doctorDetails, selectedDate, selectedTimeSlot }
         name,
         lastname,
         description,
-        urlImg,
         specialty,
         location,
         locationAddress,
