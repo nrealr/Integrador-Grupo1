@@ -1,58 +1,74 @@
-import * as React from 'react';
-import { Grid, Card, CardContent, Typography} from '@mui/material';
-import axios from 'axios';
+/**
+ * Import React and external libraries
+ */
+import { useEffect, useState } from "react";
 import { SERVER_API } from '../../../Constants';
-import './FeaturesCard.styles.css'
-
-
+import { 
+  FeaturesCardContent, 
+  FeaturesCardDescription, 
+  FeaturesCardIcon, 
+  FeaturesCardTitle, 
+  FeaturesContainer, 
+  FeaturesMainCard 
+} from "./FeaturesCard.styled";
+import axios from "axios";
 
 /**
-@returns{React.Component} this function is a call of features card. Get an object with data and put in a grid different cards with a title, 
-description and a icon  */
-
+ * FeaturesCard component that displays a doctor's features
+ * 
+ * @param {number} doctorId - ID of the doctor to retrieve their features
+ */
 export const FeaturesCard = ({ doctorId }) => {
-  const [cards, setCards] = React.useState([]);
+  /**
+   * State to store the doctor's features
+   */
+  const [cards, setCards] = useState([]);
 
-  React.useEffect(() => {
+  /**
+   * Effect to retrieve the doctor's features when the component mounts
+   * or when the doctorId prop changes
+   */
+  useEffect(() => {
+    /**
+     * Make a GET request to the server API to retrieve the doctor's features
+     */
     axios.get(`${SERVER_API}/doctors/${doctorId}/features`)
-      .then(response => {
+     .then(response => {
         const doctor = response.data;
         if (doctor.features) {
+          /**
+           * Process the response and update the cards state with the doctor's features
+           */
           setCards(doctor.features.map(feature => ({
             id: feature.id,
             name: feature.name,
-            // Transformación de la imagen
             icon: feature.icon && `data:image/jpg;base64,${feature.icon}`,
           })));
         }
       })
-      .catch(error => {
+     .catch(error => {
         console.error(error);
       });
   }, [doctorId]);
 
-
-
+  /**
+   * Render the feature cards
+   */
   return (
-    <div className="features-card-grid">
+    <FeaturesContainer>
       {cards.map(card => (
-        <Card className="features-card">
-          <CardContent
-            component="div"
-            className="features-card-content"
-          >
-            <Typography variant="body2" color="text.secondary">
-              <img src={card.icon} alt="Icono" className="features-card-icon" />
-            </Typography>
-            <Typography variant="h5" component="h5" className="features-card-title">
+        <FeaturesMainCard key={card.id}>
+          <FeaturesCardContent>
+            <FeaturesCardIcon src={card.icon} alt="Icon" />
+            <FeaturesCardTitle variant="h6" component="h6">
               {card.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" className="features-card-description">
+            </FeaturesCardTitle>
+            <FeaturesCardDescription variant="body2" color="text.secondary">
               {card.description}
-            </Typography>
-          </CardContent>
-        </Card>
+            </FeaturesCardDescription>
+          </FeaturesCardContent>
+        </FeaturesMainCard>
       ))}
-    </div>
+    </FeaturesContainer>
   );
 };
