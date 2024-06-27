@@ -8,6 +8,7 @@ import {
   Favorites,
   Admin,
   AdminDoctors,
+  AdminUsers,
   AdminFeatures,
   AddFeature,
   UpdateFeature,
@@ -59,6 +60,7 @@ function App() {
                 <Route path={ROUTES.ADMIN} element={<Admin />} />
                 <Route path={ROUTES.DOCTORSADD} element={<AddProduct/>} />
                 <Route path={ROUTES.DOCTORS} element={<AdminDoctors />} />
+                <Route path={ROUTES.USERS} element={<AdminUsers />} />
                 <Route path={ROUTES.FEATURES} element={<AdminFeatures />} />
                 <Route path={ROUTES.FEATURESADD} element={<AddFeature />} />
                 <Route path={ROUTES.FEATURESUPDATE} element={<UpdateFeature />} />

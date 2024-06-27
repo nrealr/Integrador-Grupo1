@@ -1,3 +1,5 @@
 export * from './addUser'
 export * from './getUsersById'
 export * from './login'
+export * from './getUsers'
+export * from './changeUserRole'

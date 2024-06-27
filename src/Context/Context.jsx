@@ -44,7 +44,7 @@ export const ContextProvider = ({ children }) => {
       const timer = setTimeout(() => {
         dispatch({ type: 'LOGOUT' });
         alert("Session expired. Logging out...");
-      }, 5 * 60 * 1000); // 5 minutes
+      }, 40 * 60 * 1000); // 5 minutes
 
       dispatch({ type: 'SET_LOGOUT_TIMER', timer });
     }
