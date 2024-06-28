@@ -4,4 +4,5 @@ export * from './AppointmentList'
 export * from './Favorites'
 export * from './Account'
 export * from './SearchHistory'
+export * from './ChangePassword'
 

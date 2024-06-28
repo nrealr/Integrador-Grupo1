@@ -49,6 +49,12 @@ export const UserPanelLayout = () => {
                 </Link>
               </li>
               <li>
+                <Link component="li" to={ROUTES.CHANGEPASSWORD}>
+                  <AccountCircleIcon />
+                  <span>CHANGE PASSWORD</span>
+                </Link>
+              </li>
+              <li>
                 <Link component="li" to={ROUTES.FAVORITES}>
                   <FavoriteIcon />
                   <span>FAVORITES</span>

@@ -18,7 +18,8 @@ import {
   UpdateProduct,
   AddProduct,
   AppointmentSummary,
-  SearchHistory
+  SearchHistory,
+  ChangePassword
 } from "./Routes";
 
 import { ContextProvider } from "./Context";
@@ -87,6 +88,7 @@ function App() {
               <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList />} />
               <Route path={ROUTES.FAVORITES} element={<Favorites />} />
               <Route path={ROUTES.SEARCHHISTORY} element={<SearchHistory />} />
+              <Route path={ROUTES.CHANGEPASSWORD} element={<ChangePassword />} />
             </Route>
           </Routes>
 
