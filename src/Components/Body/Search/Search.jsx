@@ -1,56 +1,39 @@
 import { useNavigate } from 'react-router-dom';
-import { Box, Container, Typography, Grid} from '@mui/material';
-import AccessTimeIcon from '@mui/icons-material/AccessTime'; 
+import { Box, Container, Typography, Grid } from '@mui/material';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 import { SearchBox } from '../../SearchBox';
 import { ROUTES } from '../../../Constants';
+import { updateUserSearchHistory } from '../../../Services/Users';
 
 export const Search = () => {
-
-
   const navigate = useNavigate();
 
-  const onSearchHandler = ({
-    searchingValue, 
-    location
-  }) => {
+  const onSearchHandler = async ({ searchingValue, location }) => {
+    const userId = localStorage.getItem('id');
 
-    const newSearch = { 
-      query: searchingValue, 
-      location: location.name || null, 
-      //doctorId: selectedOption ? selectedOption.id : null, 
-      //doctorName: selectedOption ? selectedOption.name : null // Store the doctor's name
-    };
+    if (userId) {
+      try {
+        // Crear la nueva búsqueda combinando el valor de búsqueda y la ubicación
+        const newSearch = searchingValue && location?.name
+          ? `${searchingValue} - ${location.name}`
+          : searchingValue || location?.name || '';
 
-    const storedSearches = JSON.parse(localStorage.getItem('searchHistory')) || [];
-    const updatedSearches = [newSearch, ...storedSearches].slice(0, 3);
-    localStorage.setItem('searchHistory', JSON.stringify(updatedSearches));
-
-    /* if (selectedOption && selectedOption.id && !selectedLocation) {
-      navigate(`doctors/${selectedOption.id}`);
-    } else if (selectedOption && selectedOption.id && selectedLocation.id === selectedOption.locationId) {
-      navigate(`doctors/${selectedOption.id}`);
+        // Enviar el nuevo término de búsqueda al backend
+        await updateUserSearchHistory(userId, [newSearch]);
+      } catch (error) {
+        console.error('Failed to update search history:', error);
+      }
     } else {
-      const queryParams = new URLSearchParams({
-        query: inputValue,
-        location: locationName
-      }).toString();
-      navigate(`${ROUTES.SEARCHRESULTS}?${queryParams}`);
-    } */
+      console.warn('User ID is not available in localStorage. Search history will not be updated.');
+    }
 
-    const searchParams = new URLSearchParams();
-
-    /**
-     * recorrer todas las propiedades del objeto
-     * por cada una revisar si el valor no es nulo
-     * para agregar un queryParam
-     */
-    Object.entries(newSearch).forEach(([key, value]) => {
-      if (value != null) searchParams.append(key, value);
+    const searchParams = new URLSearchParams({
+      query: searchingValue || '',
+      location: location?.name || ''
     });
 
     navigate(`${ROUTES.SEARCHRESULTS}?${searchParams.toString()}`);
   };
-
 
   return (
     <Box sx={{ width: '100%', marginTop: { xs: '3.5rem', sm: '4rem' }, position: 'relative' }}>
