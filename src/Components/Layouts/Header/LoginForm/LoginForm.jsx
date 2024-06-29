@@ -35,6 +35,12 @@ export const LoginForm = ({ onLoginSuccess }) => {
     setLoginError("");
   };
 
+  const onKeyPress = (event) => {
+    if (event.key === 'Enter') {
+        handleLogin();
+    }
+}
+
   const handleLogin = async () => {
     if (emailError || passwordError) {
       return;
@@ -89,6 +95,7 @@ export const LoginForm = ({ onLoginSuccess }) => {
                     autoComplete="email"
                     error={!!emailError}
                     helperText={emailError && "Invalid e-mail"}
+                    onKeyUp={onKeyPress}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -105,6 +112,7 @@ export const LoginForm = ({ onLoginSuccess }) => {
                     autoComplete="current-password"
                     error={!!passwordError}
                     helperText={passwordError && "The password must have at least 6 characters"}
+                    onKeyUp={onKeyPress}
                   />
                 </Grid>
               </Grid>
@@ -115,6 +123,7 @@ export const LoginForm = ({ onLoginSuccess }) => {
                 color="secondary"
                 sx={{ mt: 2, color: 'white' }}
                 onClick={handleLogin}
+                
               >
                 Sign In
               </Button>
