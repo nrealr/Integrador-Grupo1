@@ -37,11 +37,7 @@ export const SearchBox = ({
     };
 
     const onKeyPress = (event) => {
-        const currentOptions = filterOptions(autocompleteOptions, {
-            inputValue
-        });
-        const isThereData = currentOptions.length > 0;
-        if (event.key === 'Enter' && isThereData) {
+        if (event.key === 'Enter') {
             onSearchClick();
         }
     }
@@ -110,6 +106,7 @@ export const SearchBox = ({
                 sx={{ width: { xs: '100%', sm: '100%', md: '100%' }, backgroundColor: 'white', color: 'black' }}
                 inputValue={inputValue}
                 onInputChange={onInputChange}
+                onKeyPress={onKeyPress}
                 isOptionEqualToValue={(option, value) => option.id === value.id}
                 getOptionLabel={getOptionLabel}
                 options={autocompleteOptions}
