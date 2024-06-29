@@ -1,8 +1,8 @@
-import React, { createContext, useContext, useReducer, useEffect, useState } from "react";
+import React, { createContext, useContext, useReducer, useEffect } from "react";
 import { handleLogout } from "../Utils";
-import { getUserPreferences } from "../Services/Users";
+import { getUserPreferences, updateUserFavorites } from "../Services/Users";
 
-export const ContextGlobal = createContext(); 
+export const ContextGlobal = createContext();
 
 export const ContextProvider = ({ children }) => {
   const initialState = {
@@ -35,13 +35,6 @@ export const ContextProvider = ({ children }) => {
 
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const setCurrentUser = (userData) => {
-    localStorage.setItem("token", userData.token);
-    localStorage.setItem("id", userData.id);
-    localStorage.setItem('user', JSON.stringify(userData));
-    dispatch({ type: 'SET_CURRENT_USER', user: userData });
-  };
-
   useEffect(() => {
     if (state.isLoggedIn) {
       const fetchUserPreferences = async () => {
@@ -64,8 +57,24 @@ export const ContextProvider = ({ children }) => {
     }
   }, [state.isLoggedIn]);
 
+  const setCurrentUser = (userData) => {
+    localStorage.setItem("token", userData.token);
+    localStorage.setItem("id", userData.id);
+    localStorage.setItem('user', JSON.stringify(userData));
+    dispatch({ type: 'SET_CURRENT_USER', user: userData });
+  };
+
+  const updateFavorites = async (newFavorites) => {
+    try {
+      await updateUserFavorites(state.currentUser.id, newFavorites);
+      dispatch({ type: 'SET_FAVORITES', favorites: newFavorites });
+    } catch (error) {
+      console.error('Error updating favorites:', error);
+    }
+  };
+
   const contextValue = {
-    state, dispatch, setCurrentUser, currentUser: state.currentUser
+    state, dispatch, setCurrentUser, updateFavorites
   };
 
   return (

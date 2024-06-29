@@ -3,12 +3,11 @@ import { Card, CardMedia, CardContent, Typography, CardActions, Button } from '@
 import { FavoriteIcon, ShareButton, capitalizeFirstLetter } from '../../../../Utils';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { Link } from 'react-router-dom';
-import { updateUserFavorites, getUserPreferences } from '../../../../Services/Users';
-import { ContextGlobal } from '../../../../Context';
+import { useDoctorStates } from '../../../../Context';
 import './RecommendCard.styles.css';
 
 export const RecommendCard = ({ doctor }) => {
-  const { state, dispatch } = useContext(ContextGlobal);
+  const { state, updateFavorites } = useDoctorStates();
   const [favorited, setFavorited] = useState(false);
 
   useEffect(() => {
@@ -23,10 +22,8 @@ export const RecommendCard = ({ doctor }) => {
         ? state.favorites.filter(favId => favId !== doctor.id) 
         : [...state.favorites, doctor.id];
 
-      await updateUserFavorites(state.currentUser.id, newFavorites);
+      await updateFavorites(newFavorites);
       setFavorited(!favorited);
-
-      dispatch({ type: 'SET_FAVORITES', favorites: newFavorites });
     } catch (error) {
       console.error('Error updating favorites:', error);
     }

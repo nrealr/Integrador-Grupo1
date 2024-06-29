@@ -4,12 +4,14 @@ import './Recommendations.styles.css'
 import { Box, CircularProgress, Typography } from "@mui/material";
 import { RecommendCard } from "../RecommendCard";
 import { RecommendationsPagination } from "../RecommendationsPagination";
+import { useDoctorStates } from "../../../../Context";
 
 export const Recommendations = () => {
   const [doctors, setDoctors] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [doctorsPerPage, setDoctorsPerPage] = useState(10);
+  const { state } = useDoctorStates();
 
   useEffect(() => {
     const loadDoctors = async () => {
@@ -42,7 +44,6 @@ export const Recommendations = () => {
   }
 
   return (
-    
     <div className="recommendations-container">
       <Box sx={{ textAlign: 'center', marginBottom: '3rem', marginTop: '7rem' }}>
         <Typography variant="h4" component="h3" sx={{color: 'primary.main'}} >Meet Our Trusted Doctors</Typography>
@@ -54,7 +55,6 @@ export const Recommendations = () => {
         justifyContent: 'center',
         gap: '2rem'
       }}>
-
         {currentDoctors.map((doctor) => (
           <Box className="flex-item" key={doctor.id} sx={{
             flexBasis: '40%',
@@ -67,13 +67,11 @@ export const Recommendations = () => {
           </Box>
         ))}
       </Box>
-
       <Box sx={{
         display: 'flex',
         justifyContent: 'center',
         marginTop: '2rem'
       }}>
-
         <RecommendationsPagination
           doctorsPerPage={doctorsPerPage}
           totalDoctors={doctors.length}
@@ -81,7 +79,6 @@ export const Recommendations = () => {
           currentPage={currentPage}
         />
       </Box>
-
     </div>
   );
 };
