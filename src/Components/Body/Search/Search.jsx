@@ -13,12 +13,12 @@ export const Search = () => {
 
     if (userId) {
       try {
-        // Crear la nueva búsqueda combinando el valor de búsqueda y la ubicación
-        const newSearch = searchingValue && location?.name
-          ? `${searchingValue} - ${location.name}`
-          : searchingValue || location?.name || '';
+        // Crear la nueva búsqueda en formato clave-valor
+        let newSearch = '';
+        if (searchingValue) newSearch += `query:${searchingValue}`;
+        if (location?.name) newSearch += `${newSearch ? ' - ' : ''}location:${location.name}`;
 
-        // Enviar el nuevo término de búsqueda al backend
+        // Enviar solo la nueva búsqueda al backend
         await updateUserSearchHistory(userId, [newSearch]);
       } catch (error) {
         console.error('Failed to update search history:', error);
@@ -136,7 +136,7 @@ export const Search = () => {
                   alignItems: 'center',
                 }}
               >
-                <SearchBox onSearch={onSearchHandler}/>
+                <SearchBox onSearch={onSearchHandler} />
               </Box>
             </Box>
           </Grid>
