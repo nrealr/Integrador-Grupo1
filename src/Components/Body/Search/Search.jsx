@@ -1,69 +1,39 @@
-import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Container, Typography, FormControl, Button, Grid, InputLabel, Select, MenuItem } from '@mui/material';
-import AccessTimeIcon from '@mui/icons-material/AccessTime'; 
-import { SearchBar } from '../../Searchbar/SearchBar';
-import { ROUTES } from '../../../Constants/routes'; 
-import { getLocations } from '../../../Services/Locations/getLocations';
+import { Box, Container, Typography, Grid } from '@mui/material';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import { SearchBox } from '../../SearchBox';
+import { ROUTES } from '../../../Constants';
+import { updateUserSearchHistory } from '../../../Services/Users';
 
 export const Search = () => {
-  const [city, setCity] = useState('');
-  const [locations, setLocations] = useState([]);
-
-  useEffect(() => {
-    const fetchLocations = async () => {
-      try {
-        const locationsData = await getLocations();
-        setLocations(locationsData);
-      } catch (error) {
-        console.error('Error fetching locations:', error);
-      }
-    };
-
-    fetchLocations();
-  }, []);
-
-  const handleCityChange = (event) => {
-    setCity(event.target.value);
-  };
-
   const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState(null);
-  const [inputValue, setInputValue] = useState('');
 
-  const handleOptionSelect = (doctor) => {
-    setSelectedOption(doctor);
-  };
+  const onSearchHandler = async ({ searchingValue, location }) => {
+    const userId = localStorage.getItem('id');
 
-  const handleButtonClick = () => {
-    const selectedLocation = locations.find(location => location.id === city);
-    const locationName = selectedLocation ? selectedLocation.name : '';
+    if (userId) {
+      try {
+        // Crear la nueva búsqueda en formato clave-valor
+        let newSearch = '';
+        if (searchingValue) newSearch += `query:${searchingValue}`;
+        if (location?.name) newSearch += `${newSearch ? ' - ' : ''}location:${location.name}`;
 
-    const newSearch = { 
-      query: inputValue, 
-      location: locationName, 
-      doctorId: selectedOption ? selectedOption.id : null, 
-      doctorName: selectedOption ? selectedOption.name : null // Store the doctor's name
-    };
-
-    const storedSearches = JSON.parse(localStorage.getItem('searchHistory')) || [];
-    const updatedSearches = [newSearch, ...storedSearches].slice(0, 3);
-    localStorage.setItem('searchHistory', JSON.stringify(updatedSearches));
-
-    if (selectedOption && selectedOption.id && !selectedLocation) {
-      navigate(`doctors/${selectedOption.id}`);
-    } else if (selectedOption && selectedOption.id && selectedLocation.id === selectedOption.locationId) {
-      navigate(`doctors/${selectedOption.id}`);
+        // Enviar solo la nueva búsqueda al backend
+        await updateUserSearchHistory(userId, [newSearch]);
+      } catch (error) {
+        console.error('Failed to update search history:', error);
+      }
     } else {
-      const queryParams = new URLSearchParams({
-        query: inputValue,
-        location: locationName
-      }).toString();
-      navigate(`${ROUTES.SEARCHRESULTS}?${queryParams}`);
+      console.warn('User ID is not available in localStorage. Search history will not be updated.');
     }
-  };
 
-  const isButtonDisabled = !city && !inputValue;
+    const searchParams = new URLSearchParams({
+      query: searchingValue || '',
+      location: location?.name || ''
+    });
+
+    navigate(`${ROUTES.SEARCHRESULTS}?${searchParams.toString()}`);
+  };
 
   return (
     <Box sx={{ width: '100%', marginTop: { xs: '3.5rem', sm: '4rem' }, position: 'relative' }}>
@@ -166,58 +136,7 @@ export const Search = () => {
                   alignItems: 'center',
                 }}
               >
-                <FormControl fullWidth sx={{ mb: { xs: '1rem', md: '0' }, flex: 1.6, fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' } }}>
-                  <SearchBar
-                    inputValue={inputValue}
-                    setInputValue={setInputValue}
-                    value={selectedOption}
-                    setValue={setSelectedOption}
-                    searchResult={handleOptionSelect}
-                    onEnterPress={handleButtonClick} 
-                  />
-                </FormControl>
-                
-                <FormControl fullWidth sx={{ mb: { xs: '1rem', md: '0' }, flex: 1.1, fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' } }}>
-                  <InputLabel
-                    sx={{
-                      color: 'grey',
-                      fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' },
-                    }}
-                  >
-                    Choose Location 
-                  </InputLabel>
-                  <Select
-                    value={city}
-                    onChange={handleCityChange}
-                    sx={{ backgroundColor: 'white', color: 'black',
-                    '& .MuiSelect-select': {
-                      fontSize: { xs: '0.75rem', sm: '0.875rem', md: '1rem' }
-                    }
-                    }}
-                  >
-                    {locations.map((location) => (
-                      <MenuItem key={location.id} value={location.id}>
-                        {location.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-
-                <Button
-                  variant="contained"
-                  color="primary"
-                  sx={{
-                    color: 'white',
-                    fontSize: { xs: '0.875rem', md: '1rem' },
-                    width: { xs: '100%', md: 'auto' },
-                    padding: { xs: '0.4rem', md: '0.75rem 1.2rem' },
-                    flex: 1,
-                  }}
-                  onClick={handleButtonClick}
-                  disabled={isButtonDisabled}
-                >
-                  Search
-                </Button>
+                <SearchBox onSearch={onSearchHandler} />
               </Box>
             </Box>
           </Grid>

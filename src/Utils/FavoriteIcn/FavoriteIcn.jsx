@@ -1,9 +1,9 @@
-// FavoriteIcn.jsx
+import React from 'react';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
 
 export const FavoriteIcon = ({ onClick, favorited }) => {
   return (
-    <div>
+    <div onClick={onClick}>
       {favorited ? (
         <Favorite
           aria-label="Remove from favorites"
@@ -11,7 +11,6 @@ export const FavoriteIcon = ({ onClick, favorited }) => {
             color: 'red',
             cursor: 'pointer',
           }}
-          onClick={onClick}
         />
       ) : (
         <FavoriteBorder
@@ -24,7 +23,6 @@ export const FavoriteIcon = ({ onClick, favorited }) => {
               backgroundColor: 'rgba(255, 0, 0, 0.1)'
             }
           }}
-          onClick={onClick}
         />
       )}
     </div>

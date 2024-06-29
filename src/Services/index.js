@@ -5,3 +5,4 @@ export * from './Locations';
 export * from './Specialties';
 export * from './UseLocalStorage';
 export * from './Users';
+export * from './SearchBoxData';

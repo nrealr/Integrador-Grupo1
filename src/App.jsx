@@ -18,16 +18,18 @@ import {
   UpdateProduct,
   AddProduct,
   AppointmentSummary,
-  SearchHistory
+  SearchHistory,
+  ChangePassword
 } from "./Routes";
 
 import { ContextProvider } from "./Context";
 import { ROUTES } from "./Constants";
-import { Layout, SearchBar, AdminLayout } from "./Components";
+import { Layout, AdminLayout } from "./Components";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./Themes/theme";
 import SearchResults from "./Routes/SearchResults";
 import { Account } from "./Routes/Profile/Account/Account";
+import { SearchBox } from "./Components/SearchBox/SearchBox";
 
 
 
@@ -50,7 +52,7 @@ function App() {
               <Route path={ROUTES.DETAIL} element={<Detail />} />
               <Route path={ROUTES.ADDUSER} element={<RegisterForm />} />
               <Route path={ROUTES.LOGIN} element={<LoginPage />} />
-              <Route path={ROUTES.SEARCH} element={<SearchBar />} />
+              <Route path={ROUTES.SEARCH} element={<SearchBox />} />
               <Route path={ROUTES.SEARCHRESULTS} element={<SearchResults />} />
               <Route path={ROUTES.APPOINTMENTSUMMARY} element={<AppointmentSummary />} />
               <Route path="*" element={<NotFound />} />
@@ -87,6 +89,7 @@ function App() {
               <Route path={ROUTES.APPOINTMENTS} element={<AppointmentList />} />
               <Route path={ROUTES.FAVORITES} element={<Favorites />} />
               <Route path={ROUTES.SEARCHHISTORY} element={<SearchHistory />} />
+              <Route path={ROUTES.CHANGEPASSWORD} element={<ChangePassword />} />
             </Route>
           </Routes>
 
