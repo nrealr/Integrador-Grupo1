@@ -74,9 +74,7 @@ export const AdminUsers = () => {
                     </StyledAdminActivitySubtitle>
                 </StyledAdminActivitySection>
 
-                <section className="admin-user">
-                    <p>👤 Admin</p>
-                </section>
+
             </AdminHeader>
 
             <StyledAdminTable
