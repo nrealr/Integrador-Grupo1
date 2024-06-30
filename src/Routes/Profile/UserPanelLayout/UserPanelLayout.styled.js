@@ -4,7 +4,7 @@ import { styled } from 'styled-components';
 export const ProfileContainer = styled.div`
   display: flex;
   flex-direction: row;
-  height: 100vh;
+  flex-grow: 1;
   padding-top: 64px; /* ajustar la padding para que no tope con el navbar */;
 `;
 
@@ -18,6 +18,10 @@ export const ProfileAside = styled.aside`
   font-size: 1rem;
   font-weight: bolder;
   color: white;
+  flex-grow: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   ul {
     list-style: none;
     padding: 0;
@@ -72,4 +76,11 @@ export const ProfileContent = styled.div`
   flex-grow: 1;
   padding: 24px;
   overflow-y: auto; /* agregar scroll si el contenido es demasiado grande */
+`;
+
+export const AppContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  padding-bottom: 50px; /* espacio para el footer */
 `;
