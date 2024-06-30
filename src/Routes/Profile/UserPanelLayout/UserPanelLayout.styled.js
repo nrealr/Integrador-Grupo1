@@ -4,7 +4,6 @@ import { styled } from 'styled-components';
 export const ProfileContainer = styled.div`
   display: flex;
   flex-direction: row;
-  flex-grow: 1;
   padding-top: 64px; /* ajustar la padding para que no tope con el navbar */;
 `;
 
@@ -18,7 +17,6 @@ export const ProfileAside = styled.aside`
   font-size: 1rem;
   font-weight: bolder;
   color: white;
-  flex-grow: 1;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
