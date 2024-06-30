@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { LoginForm } from "../../Components/Layouts/Header/LoginForm/LoginForm";
 import { useDoctorStates } from "../../Context/Context";
 import { ROUTES } from "../../Constants";
-import { Typography } from "@mui/material";
+import { Typography, Box } from "@mui/material";
 
 export const LoginPage = () => {
   const { state } = useDoctorStates();
@@ -11,7 +11,6 @@ export const LoginPage = () => {
   const location = useLocation();
   const fromReservation = location.state?.fromReservation || false;
   const queryString = location.state?.queryString || false;
-
 
   useEffect(() => {
     if (state.isLoggedIn) {
@@ -32,24 +31,35 @@ export const LoginPage = () => {
   return (
     <>
       {fromReservation && 
-      <div>      
-      <Typography
-  variant="h5"
-  sx={{
-    position: "absolute",
-    top: "15%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    textAlign: "center",
-    color: "white",
-    textDecoration: "underline",
-  }}
->
-  Please log in to continue.
-</Typography>      </div>
-      
+      <Box
+        sx={{
+          position: "absolute",
+          top: "15%",
+          left: "50%",
+          transform: "translate(-50%, -50%)",
+          textAlign: "center",
+          width: '100%',
+          zIndex: 1
+        }}
+      >
+        <Typography
+          variant="h5"
+          sx={{
+            color: "white",
+            textDecoration: "underline",
+          }}
+        >
+          Please log in to continue.
+        </Typography>
+      </Box>
       }
-      <LoginForm onLoginSuccess={handleLoginSuccess} />
+      <Box
+        sx={{
+          mt: fromReservation ? 10 : 0, // Ajusta este valor según sea necesario
+        }}
+      >
+        <LoginForm onLoginSuccess={handleLoginSuccess} />
+      </Box>
     </>
   );
 };

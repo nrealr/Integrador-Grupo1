@@ -1,25 +1,19 @@
-
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Container, Avatar, Grid, Paper, Dialog, DialogContent, DialogActions, DialogTitle } from '@mui/material';
+import { TextField, Button, Box, Typography, Container, Avatar, Grid, Paper } from '@mui/material';
 import LockOutLinedIcon from '@mui/icons-material/LockOutlined';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import { Link } from 'react-router-dom';
-import { useLocalStorage } from '../../Services';
 import { ROUTES } from '../../Constants';
 import { addUser } from '../../Services/Users/addUser';
 import { UserStore } from '../../Utils/UserStore/UserStore';
 import { ModalComponent } from '../../Components/ModalComponent';
 
-
 export const RegisterForm = () => {
-
-    const [formData, setFormData] = useLocalStorage('formData', {
+    const [formData, setFormData] = useState({
         name: '',
         lastname: '',
         email: '',
         password: '',
     });
-
 
     const [error, setError] = useState({});
     const [success, setSuccess] = useState(false);
@@ -196,7 +190,6 @@ export const RegisterForm = () => {
 
             </Container>
             {success && (
-
                 <ModalComponent
                     isOpen={success}
                     onClose={() => setSuccess(false)}
@@ -204,7 +197,6 @@ export const RegisterForm = () => {
                     error={false}
                     redirectUrl={ROUTES.HOME}
                 />
-
             )}
         </>
     );
