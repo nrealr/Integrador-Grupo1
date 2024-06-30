@@ -1,12 +1,40 @@
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Box, Container, Typography, Grid } from '@mui/material';
+import { Box, Container, Typography, Grid, IconButton } from '@mui/material';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import { SearchBox } from '../../SearchBox';
 import { ROUTES } from '../../../Constants';
 import { updateUserSearchHistory } from '../../../Services/Users';
 
+const images = [
+  { url: './images/bg-hero-doctor.png', heading: 'Easy Booking, Safe Care!', subheading: 'WE HANDLE YOUR MEDICAL BOOKINGS' },
+  { url: './images/bg-hero-newlocation2.png', heading: 'Closer to You! Visit Our New Location', subheading: 'AV. APOQUINDO 5678, METROPOLITAN REGION' },
+  { url: './images/bg-hero-team.png', heading: 'Trusted Experts!', subheading: 'MEET OUR TEAM OF EXPERIENCED DOCTORS' },
+  { url: './images/bg-hero-telemedicine.png', heading: 'Telemedicine Coming Soon!', subheading: 'LAUNCHING NEXT MONTH' },
+];
 export const Search = () => {
   const navigate = useNavigate();
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 7000); // Cambia cada 7 segundos
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  };
+
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
+  };
+
+  const { url, heading, subheading } = images[currentIndex];
 
   const onSearchHandler = async ({ searchingValue, location }) => {
     const userId = localStorage.getItem('id');
@@ -42,7 +70,7 @@ export const Search = () => {
           position: 'relative',
           width: '100%',
           height: { xs: '30vh', sm: '35vh', md: '40vh', lg: '54vh', xl: '58vh' },
-          backgroundImage: 'url(./images/bg-hero-doctor.png)',
+          backgroundImage: `url(${url})`,
           backgroundSize: 'cover',
           backgroundPosition: { xs: 'right', md: 'right', lg: 'right', xl: 'right' },
           backgroundRepeat: 'no-repeat',
@@ -71,7 +99,7 @@ export const Search = () => {
               fontWeight: 'bold',
             }}
           >
-            Easy Booking, Safe Care!
+            {heading}
           </Typography>
           <Typography
             variant="h2"
@@ -81,9 +109,21 @@ export const Search = () => {
               fontSize: { xs: '0.8rem', sm: '1.1', md: '1.4rem', lg: '1.8rem' },
             }}
           >
-            WE HANDLE YOUR MEDICAL BOOKINGS
+            {subheading}
           </Typography>
         </Container>
+        <IconButton
+          sx={{ position: 'absolute', left: '10px', top: '50%', transform: 'translateY(-50%)', color: 'white' }}
+          onClick={handlePrev}
+        >
+          <ArrowBackIosIcon />
+        </IconButton>
+        <IconButton
+          sx={{ position: 'absolute', right: '10px', top: '50%', transform: 'translateY(-50%)', color: 'white' }}
+          onClick={handleNext}
+        >
+          <ArrowForwardIosIcon />
+        </IconButton>
       </Box>
       <Box sx={{
           position: 'absolute',
