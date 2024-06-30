@@ -32,20 +32,6 @@ export const AdminDashboard = () => {
             </Link>
           </div>
 
-          <div>
-            <p>🤒</p>
-            <p>Patients</p>
-          </div>
-
-          <div>
-            <p>📆</p>
-            <p>Appointments</p>
-          </div>
-
-          <div>
-            <p>🔔</p>
-            <p>Reminders</p>
-          </div>
 
           <div className="admin-options">
             <Link to={ROUTES.FEATURES}>
