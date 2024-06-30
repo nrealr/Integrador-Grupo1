@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDoctorStates } from '../../../../Context';
 import './RecommendCard.styles.css';
 
+
 export const RecommendCard = ({ doctor }) => {
   const { state, updateFavorites } = useDoctorStates();
   const [favorited, setFavorited] = useState(false);
@@ -17,6 +18,12 @@ export const RecommendCard = ({ doctor }) => {
   }, [state.favorites, doctor.id]);
 
   const handleFavoriteClick = async () => {
+    if (!state.isLoggedIn) {
+      // Puedes mostrar un mensaje o alerta aquí si lo deseas
+      console.log('User is not logged in');
+      return;
+    }
+
     try {
       const newFavorites = favorited 
         ? state.favorites.filter(favId => favId !== doctor.id) 
