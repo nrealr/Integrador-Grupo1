@@ -60,7 +60,7 @@ export const Account = () => {
   return (
     <AccountContainer>
       <AccountHeader>
-        Welcome, {userData.name}!
+        Welcome {userData.name}!
       </AccountHeader>
 
       <AccountForm onSubmit={handleSubmit}>

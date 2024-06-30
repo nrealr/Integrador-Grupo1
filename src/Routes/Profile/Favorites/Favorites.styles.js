@@ -57,6 +57,7 @@ export const StyledFavoritesAddButton = styled('button')`
 
     &:hover {
       background-color: #e94c6afc;
+      color: white;
     }
   }
 `;
@@ -72,6 +73,7 @@ export const StyledFavoritesDeleteButton = styled('button')`
 
     &:hover {
       background-color: #E21919;
+      color: white;
     }
   }
 `;

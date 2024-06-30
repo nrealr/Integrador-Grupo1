@@ -86,9 +86,7 @@ export const AdminFeatures = () => {
           <StyledAdminActivitySubtitle>Last update {formattedDate}</StyledAdminActivitySubtitle>
         </StyledAdminActivitySection>
 
-        <section className="admin-user">
-          <p>👤 Admin</p>
-        </section>
+
       </AdminHeader>
 
       <StyledAdminAction>

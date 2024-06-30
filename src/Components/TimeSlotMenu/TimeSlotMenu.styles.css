@@ -1,17 +1,17 @@
-.time-slot-component{
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+.time-slot-component {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
-.select{
-    background-color: #aed8d7;
-    border-radius: 15px;
+.select {
+  background-color: #aed8d7;
+  border-radius: 15px;
 }
 
-.text{
-    color: blue;
-    font-weight: bolder;
+.text {
+  color: blue;
+  font-weight: bolder;
 }
 /* 
 .slot-list{

@@ -1,28 +1,26 @@
-
 import React, { useState } from 'react';
-import { TextField, Button, Box, Typography, Container, Avatar, Grid, Paper, Dialog, DialogContent, DialogActions, DialogTitle } from '@mui/material';
-import LockOutLinedIcon from '@mui/icons-material/LockOutlined';
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import { TextField, Button, Box, Typography, Container, Avatar, Grid, Paper } from '@mui/material';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import { Link } from 'react-router-dom';
-import { useLocalStorage } from '../../Services';
 import { ROUTES } from '../../Constants';
 import { addUser } from '../../Services/Users/addUser';
+import { resendEmail } from '../../Services/Users/resendEmail';
 import { UserStore } from '../../Utils/UserStore/UserStore';
 import { ModalComponent } from '../../Components/ModalComponent';
-
+import { capitalizeFirstLetter } from '../../Utils';
 
 export const RegisterForm = () => {
-
-    const [formData, setFormData] = useLocalStorage('formData', {
+    const [formData, setFormData] = useState({
         name: '',
         lastname: '',
         email: '',
         password: '',
     });
 
-
     const [error, setError] = useState({});
     const [success, setSuccess] = useState(false);
+    const [userId, setUserId] = useState(null); // Nuevo estado para almacenar el ID del usuario registrado
+    const [emailResent, setEmailResent] = useState(false);
     const userStore = UserStore();
 
     const validateForm = (values) => {
@@ -67,10 +65,15 @@ export const RegisterForm = () => {
 
         if (Object.keys(validationErrors).length === 0) {
             try {
+                const formattedData = {
+                    ...formData,
+                    name: capitalizeFirstLetter(formData.name),
+                    lastname: capitalizeFirstLetter(formData.lastname),
+                };
+                const response = await addUser(formattedData);
+                userStore.addUser(response.id, formattedData);
+                setUserId(response.id); // Guardar el ID del usuario registrado
                 setSuccess(true);
-                const response = await addUser(formData);
-                userStore.addUser(response.id, formData);
-                console.log(UserStore);
                 setFormData({
                     name: '',
                     lastname: '',
@@ -87,6 +90,24 @@ export const RegisterForm = () => {
         }
     };
 
+    const handleResendEmail = async () => {
+        if (userId) { // Verificar si el ID del usuario está disponible
+            try {
+                await resendEmail(userId); // Usar el ID del usuario guardado en el estado
+                setEmailResent(true);
+            } catch (error) {
+                console.error("Error resending email:", error);
+            }
+        } else {
+            console.error("User ID is not available");
+        }
+    };
+
+    const handleCloseModal = () => {
+        setSuccess(false);
+        setEmailResent(false);
+    };
+
     return (
         <>
             <Box sx={{ width: '100%', height: { xs: '120px', sm: '200px' }, backgroundColor: 'primary.main' }}></Box>
@@ -99,7 +120,7 @@ export const RegisterForm = () => {
                     <Paper sx={{ p: 3, borderRadius: 1, width: '100%', maxWidth: '600px' }} >
                         <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', mb: 2 }} >
                             <Avatar sx={{ m: 1, bgcolor: 'primary.main' }} >
-                                <LockOutLinedIcon />
+                                <LockOutlinedIcon />
                             </Avatar>
                             <Typography component="h1" variant="h5">Sign Up</Typography>
                         </Box>
@@ -196,15 +217,26 @@ export const RegisterForm = () => {
 
             </Container>
             {success && (
-
                 <ModalComponent
                     isOpen={success}
-                    onClose={() => setSuccess(false)}
-                    message="User Registered Successfully"
+                    onClose={handleCloseModal} // Usar el manejador de cierre del modal
+                    message={
+                        <>
+                            User Registered Successfully
+                            <br />
+                            <Button onClick={handleResendEmail} variant="contained" color="primary" sx={{ mt: 2 }}>
+                                Resend Welcome Email
+                            </Button>
+                            {emailResent && (
+                                <Typography variant="body2" color="green" sx={{ mt: 2 }}>
+                                    Welcome email resent successfully.
+                                </Typography>
+                            )}
+                        </>
+                    }
                     error={false}
                     redirectUrl={ROUTES.HOME}
                 />
-
             )}
         </>
     );

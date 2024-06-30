@@ -20,17 +20,17 @@
 /* Desactiva el comportamiento responsivo */
 @media screen and (max-width: 768px) {
   .admin-layout {
-      flex-direction: column;
+    flex-direction: column;
   }
 
   .admin-sidebar {
-      width: 100%;
-      height: 50vh;
+    width: 100%;
+    height: 50vh;
   }
 
   .admin-content {
-      width: 100%;
-      height: 50vh;
+    width: 100%;
+    height: 50vh;
   }
 }
 

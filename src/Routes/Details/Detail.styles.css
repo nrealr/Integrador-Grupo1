@@ -23,7 +23,7 @@
 }
 
 /* Style for all elements inside the detail header */
-.detailHeader>* {
+.detailHeader > * {
   margin-right: 10px;
 }
 
@@ -59,7 +59,7 @@
   font-weight: bolder;
   text-align: center;
   margin: 10%;
-  background-color: #102C5B;
+  background-color: #102c5b;
   color: whitesmoke;
   padding: 1rem;
   border-radius: 25px;
@@ -71,7 +71,7 @@
   text-align: center;
   font-weight: bolder;
   margin: 10%;
-  background-color: #102C5B;
+  background-color: #102c5b;
   color: whitesmoke;
   padding: 1rem;
   border-radius: 25px;
@@ -100,7 +100,7 @@
   font-size: large;
 }
 
-.msg-error{
+.msg-error {
   color: red;
 }
 
@@ -131,8 +131,7 @@
   }
 }
 
-
-.appointment-area{
+.appointment-area {
   display: flex;
   justify-content: space-between;
   max-width: 800px;
@@ -142,8 +141,6 @@
   margin-right: 10%;
 }
 
-
-
 /* Media query para ajustar el tamaño de la imagen cuando la pantalla tiene un ancho menor a 1020px */
 
 @media (max-width: 1020px) {
@@ -151,7 +148,6 @@
     width: 15rem;
     /* Disminuye el ancho de la imagen a 15 veces el tamaño de la fuente del elemento raíz */
   }
-
 }
 
 /* Hide image on small screens */
@@ -224,16 +220,12 @@
   }
 
   @media (max-width: 1300px) {
-
     .appointment-area {
-   
-       flex-direction: column;
-   
-       align-items: center;
-   
-     }
-   
-   }
+      flex-direction: column;
+
+      align-items: center;
+    }
+  }
 
   .detailFeatures h4 {
     font-size: small;

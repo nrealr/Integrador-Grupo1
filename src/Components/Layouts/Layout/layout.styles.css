@@ -7,20 +7,19 @@ body {
 }
 
 .layout {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-    min-width: 100%;
-    margin-top: 0rem;
-};
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 100%;
+  margin-top: 0rem;
+}
 
-
-.layout-dark{
-  background-color: #A39F9F;
+.layout-dark {
+  background-color: #a39f9f;
   min-height: 100vh;
   min-width: 100%;
 }
 
-.app-container{
+.app-container {
   margin-top: 0rem;
 }

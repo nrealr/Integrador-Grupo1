@@ -1,9 +1,9 @@
 .RatingBox {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    flex-wrap: wrap;
-    max-width: 100%;
-    padding: 10px;
-    color: B9E2E1
-  }
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  max-width: 100%;
+  padding: 10px;
+  color: B9E2E1;
+}
