@@ -13,12 +13,20 @@ import {
   StyledAppointmentListSection,
   StyledAppointmentListAction,
   CancelButton,
-} from "./AppointmentList.styles"; // Asegúrate de importar los estilos aquí
+} from "./AppointmentList.styles";
+
+
+import { ModalComponent } from "../../../Components/ModalComponent";
+
 
 export const AppointmentList = () => {
   const { state } = useDoctorStates();
   const [appointments, setAppointments] = useState([]);
   const [loading, setLoading] = useState(true);
+
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAppointmentId, setSelectedAppointmentId] = useState(null);
 
   useEffect(() => {
     const fetchAppointments = async () => {
@@ -52,17 +60,27 @@ export const AppointmentList = () => {
   }, [state.currentUser.id]);
 
   const handleCancelAppointment = async (id) => {
+    setSelectedAppointmentId(id);
+    setIsModalOpen(true);
+  };
+
+  const handleConfirmCancel = async () => {
     try {
-      await cancelAppointment(id);
-      // Actualizar la lista de citas después de cancelar
+      await cancelAppointment(selectedAppointmentId);
       const updatedAppointments = appointments.map((appointment) =>
-        appointment.id === id ? { ...appointment, status: "Cancelled" } : appointment
+        appointment.id === selectedAppointmentId ? { ...appointment, status: "Cancelled" } : appointment
       );
       setAppointments(updatedAppointments);
+      setIsModalOpen(false);
     } catch (error) {
       console.error("Error cancelling appointment:", error);
       alert("Failed to cancel appointment. Please try again.");
     }
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedAppointmentId(null);
   };
 
   const columns = [
@@ -108,31 +126,32 @@ export const AppointmentList = () => {
   }
 
   return (
-
-    <div className="favorites-display" style={{ height: '100vh', width: '100%' }}>
-      <AppointmentListHeader>
-        <StyledAppointmentListSection>
-          <StyledAppointmentListTitle>Your Appointments</StyledAppointmentListTitle>
-      </StyledAppointmentListSection>
-    </AppointmentListHeader>
-    <StyledAppointmentListTable
-        rows={appointments}
-        columns={columns}
-        pageSize={5}
-        autoHeight
-        disableSelectionOnClick
-        onRowClick={(params) => console.log("Navigating to detail:", params.row.id)}
+    <>
+      <div className="favorites-display" style={{ height: "100vh", width: "100%" }}>
+        <AppointmentListHeader>
+          <StyledAppointmentListSection>
+            <StyledAppointmentListTitle>Your Appointments</StyledAppointmentListTitle>
+          </StyledAppointmentListSection>
+        </AppointmentListHeader>
+        <StyledAppointmentListTable
+          rows={appointments}
+          columns={columns}
+          pageSize={5}
+          autoHeight
+          disableSelectionOnClick
+          onRowClick={(params) => console.log("Navigating to detail:", params.row.id)}
+        />
+      </div>
+      <ModalComponent
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        onConfirm={handleConfirmCancel}
+        message="Are you sure you want to cancel your appointment?"
+        error={false}
+        redirectUrl="/profile/appointments"
       />
-    </div>
+    </>
   );
 };
-
-
-
-
-
-
-
-
 
 
