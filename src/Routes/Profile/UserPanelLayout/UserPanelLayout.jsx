@@ -1,7 +1,7 @@
 
 import { useEffect, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { ProfileAside, ProfileContainer } from './UserPanelLayout.styled';
+import { AppContainer, ProfileAside, ProfileContainer } from './UserPanelLayout.styled';
 import { Footer, Header } from '../../../Components';
 import { ROUTES } from '../../../Constants';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
@@ -9,6 +9,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import ManageSearchIcon from '@mui/icons-material/ManageSearch';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
+import KeyIcon from '@mui/icons-material/Key';
 import { getUsersById } from '../../../Services/Users/getUsersById';
 
 
@@ -36,7 +37,7 @@ export const UserPanelLayout = () => {
   }
 
   return (
-    <div className={'layout'}>
+    <AppContainer>
       <Header />
       <div className={'app-container'}>
         <ProfileContainer>
@@ -50,7 +51,7 @@ export const UserPanelLayout = () => {
               </li>
               <li>
                 <Link component="li" to={ROUTES.CHANGEPASSWORD}>
-                  <AccountCircleIcon />
+                  <KeyIcon />
                   <span>CHANGE PASSWORD</span>
                 </Link>
               </li>
@@ -86,7 +87,7 @@ export const UserPanelLayout = () => {
         </ProfileContainer>
       </div>
       <Footer />
-    </div>
+    </AppContainer>
   );
 };
 
