@@ -16,7 +16,7 @@ import {
 } from "./AppointmentList.styles";
 
 
-import { ModalComponent } from "../../../Components/ModalComponent";
+import { ConfirmationModal } from "../../../Components/ModalComponent";
 
 
 export const AppointmentList = () => {
@@ -142,7 +142,7 @@ export const AppointmentList = () => {
           onRowClick={(params) => console.log("Navigating to detail:", params.row.id)}
         />
       </div>
-      <ModalComponent
+      <ConfirmationModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}
         onConfirm={handleConfirmCancel}
