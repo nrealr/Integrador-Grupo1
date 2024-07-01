@@ -136,7 +136,11 @@ export const AppointmentList = () => {
         <StyledAppointmentListTable
           rows={appointments}
           columns={columns}
-          pageSize={5}
+          initialState={{
+            pagination: {
+              paginationModel: { page: 0, pageSize: 10 },
+            },
+          }}
           autoHeight
           disableSelectionOnClick
           onRowClick={(params) => console.log("Navigating to detail:", params.row.id)}
