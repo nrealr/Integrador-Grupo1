@@ -12,10 +12,14 @@ export const AccountContainer = styled('div')`
 `;
 
 export const AccountHeader = styled('h1')`
+  background-color: #62c0bb;
   font-size: 24px;
   font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
+  margin: 0;
+  width: 100%;
+  display: block;
+  padding: 10px;
+  text-align: center;
 `;
 
 export const AccountForm = styled('form')`
