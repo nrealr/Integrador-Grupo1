@@ -1,19 +1,90 @@
 .time-slot-component {
-  display: flex;
-  flex-direction: column;
+
+  display: grid;
+
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+
+  grid-gap: 10px;
+
   flex: 1;
+
 }
+
 
 .select {
+
   background-color: #aed8d7;
+
   border-radius: 15px;
+
+  padding: 10px;
+
+  text-align: center;
+
+  cursor: pointer; /* Agrega un cursor de selección */
+
 }
 
-.text {
-  color: blue;
-  font-weight: bolder;
+
+.select:hover {
+
+  background-color: #87c7c3; /* Agrega un efecto de hover */
+
 }
-/* 
-.slot-list{
-    border-radius: 10px;
-} */
+
+
+.text {
+
+  color: blue;
+
+  font-weight: bolder;
+
+  margin-bottom: 5px; /* Agrega un espacio entre el texto y el borde */
+
+}
+
+
+.slot-list {
+
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  grid-gap: 10px;
+
+  border-radius: 10px;
+
+  overflow: hidden; /* Oculta el borde redondeado en los bordes */
+
+}
+
+
+.slot-list > * {
+
+  grid-column: 1; /* Asegura que todos los elementos estén en la misma columna */
+
+}
+
+
+/* Media queries para hacerlo responsive */
+
+@media (max-width: 768px) {
+
+  .time-slot-component {
+
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+
+  }
+
+}
+
+
+@media (max-width: 480px) {
+
+  .time-slot-component {
+
+    grid-template-columns: repeat(auto-fill, minmax(50px, 1fr));
+
+  }
+
+}

@@ -52,11 +52,10 @@ export const DoctorCard = styled(Card)`
  border: 1px solid red;
   display: flex;
   padding: 20px;
-  background-color: green;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 100vw; /* occupy full width of the screen */
 margin: 0 auto; /* center the card horizontally */
-margin-top: auto;
+margin-top: 5%;
 `;
 
 export const DoctorImage = styled.img`
@@ -66,6 +65,8 @@ export const DoctorImage = styled.img`
   border-radius: 50%;
   margin-bottom: 20px;
   border: 1px solid red;
+  margin: auto;
+  align-items: center;
 `;
 
 
@@ -75,6 +76,10 @@ export const DoctorData = styled(CardContent)`
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border: 1px solid red;
+  height: 200px; /* Fija el alto de la card a 200px */
+overflow-y: auto;
+margin: auto;
+
 `;
 
 export const AppointmentArea = styled(Grid)`
@@ -84,16 +89,19 @@ export const AppointmentArea = styled(Grid)`
   flex-direction: column;
   align-items: center;
   border: 1px solid red;
+  margin: auto;
 `;
 
 export const CalendarContainer = styled.div`
   margin-bottom: 20px;
   border: 1px solid red;
   display: flex;
+  margin: auto;
 `;
 
 export const BtnAppointmentContainer = styled.div`
   margin-top: 20px;
   border: 1px solid red;
   display: flex;
+  margin: auto;
 `;

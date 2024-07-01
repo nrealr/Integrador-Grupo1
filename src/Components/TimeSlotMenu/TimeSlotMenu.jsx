@@ -1,48 +1,9 @@
 import { useState, useEffect } from 'react';
-import styled from 'styled-components';
 import dayjs from 'dayjs';
+
+import { SelectedTimeSlot, TimeSlot, TimeSlotList } from './TimeSlotMenu.styled';
+import { Container } from '@mui/material';
 import { availableSlots } from '../../Services';
-
-const Container = styled.div`
-  width: 200px;
-  margin: 0 auto;
-`;
-
-const TimeSlotList = styled.ul`
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const TimeSlot = styled.li`
-  background-color: ${({ status }) => (status === 'Available' ? 'white' : '#ccc')};
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin: 5px;
-  cursor: ${({ status }) => (status === 'Available' ? 'pointer' : 'not-allowed')};
-  width: 100%;
-  text-align: center;
-  &:hover {
-    background-color: ${({ status }) => (status === 'Available' ? '#8ecae6' : '#a3a3a3')};
-  }
-  &.selected {
-    background-color: #8ecae6;
-  }
-`;
-
-const SelectedTimeSlot = styled.div`
-  font-weight: bold;
-  text-align: center;
-  padding: 10px;
-  background-color: white;
-  border: 1px solid #ccc;
-  min-height: 60px;
-  ${({ isSelected }) => isSelected && 'color: red;'}
-`;
 
 export const TimeSlotMenu = ({ doctorId, selectedDate, onTimeSlotSelect }) => {
   const [availabilities, setAvailabilities] = useState([]);
@@ -97,7 +58,7 @@ export const TimeSlotMenu = ({ doctorId, selectedDate, onTimeSlotSelect }) => {
       while (currentHour.isBefore(endDateTime)) {
         const formattedStartTime = currentHour.format('YYYY-MM-DDTHH:mm:ss');
         const nextHour = currentHour.add(1, 'hour');
-        const formattedEndTime = nextHour.isBefore(endDateTime) ? nextHour.format('YYYY-MM-DDTHH:mm:ss') : endDateTime.format('YYYY-MM-DDTHH:mm:ss');
+        const formattedEndTime = nextHour.isBefore(endDateTime)? nextHour.format('YYYY-MM-DDTHH:mm:ss') : endDateTime.format('YYYY-MM-DDTHH:mm:ss');
         
         const timeSlot = {
           id: `${id}_${formattedStartTime}_${formattedEndTime}`,
@@ -118,7 +79,7 @@ export const TimeSlotMenu = ({ doctorId, selectedDate, onTimeSlotSelect }) => {
             key={timeSlot.id}
             onClick={() => handleTimeSlotClick(timeSlot)}
             status={timeSlot.status}
-            className={selectedTimeSlot && selectedTimeSlot.id === timeSlot.id ? 'selected' : ''}
+            className={selectedTimeSlot && selectedTimeSlot.id === timeSlot.id? 'elected' : ''}
           >
             {`${dayjs(timeSlot.startTime).format('HH:mm')} - ${dayjs(timeSlot.endTime).format('HH:mm')}`}
           </TimeSlot>
@@ -133,13 +94,9 @@ export const TimeSlotMenu = ({ doctorId, selectedDate, onTimeSlotSelect }) => {
       {error && <p>{error}</p>}
       {renderTimeSlots()}
       <SelectedTimeSlot isSelected={isTimeSelected}>
-        Time selected: {isTimeSelected ? `${dayjs(selectedTimeSlot.startTime).format('HH:mm')} - ${dayjs(selectedTimeSlot.endTime).format('HH:mm')}` : ''}
+        Time selected: {isTimeSelected? `${dayjs(selectedTimeSlot.startTime).format('HH:mm')} - ${dayjs(selectedTimeSlot.endTime).format('HH:mm')}` : ''}
       </SelectedTimeSlot>
     </Container>
   );
 };
-
-
-
-
 
