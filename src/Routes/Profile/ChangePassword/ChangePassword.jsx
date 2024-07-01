@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AccountContainer, AccountHeader, AccountForm, AccountField, AccountButton } from './ChangePassword.styled';
+import { AccountContainer, AccountForm, AccountField, AccountButton, StyledPasswordTitle } from './ChangePassword.styled';
 import { useDoctorStates } from "../../../Context";
 import { changeUserPassword, getUsersById } from "../../../Services/Users";
 import { login } from "../../../Services/Users";
@@ -55,9 +55,9 @@ export const ChangePassword = () => {
 
   return (
     <AccountContainer>
-      <AccountHeader>
+      <StyledPasswordTitle>
         Change Password
-      </AccountHeader>
+      </StyledPasswordTitle>
 
       <AccountForm onSubmit={handleSubmit}>
         {error && <p style={{ color: 'red' }}>{error}</p>}

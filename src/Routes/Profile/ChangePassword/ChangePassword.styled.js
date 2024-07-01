@@ -11,13 +11,6 @@ export const AccountContainer = styled('div')`
   width: 100%;
 `;
 
-export const AccountHeader = styled('h1')`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: #333;
-`;
-
 export const AccountForm = styled('form')`
   display: flex;
   flex-direction: column;
@@ -51,4 +44,15 @@ export const AccountButton = styled('button')`
   &:hover {
     background-color: #23527c;
   }
+`;
+
+export const StyledPasswordTitle = styled('h2')`
+  background-color: #62c0bb;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  width: 100%;
+  display: block;
+  padding: 10px;
+  text-align: center;
 `;

@@ -56,6 +56,7 @@ export const StyledAppointmentListTitle = styled.h2`
   width: 100%;
   display: block;
   padding: 10px;
+  text-align: center;
 `;
 
 export const AppointmentListHeader = styled.header`

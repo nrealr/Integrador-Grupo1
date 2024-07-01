@@ -5,8 +5,9 @@ import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { Link } from 'react-router-dom';
 import { useDoctorStates } from '../../../../Context';
 import './RecommendCard.styles.css';
+import { FRONT_URL } from '../../../../Constants';
 
-const { FRONT_URL } = window._env_;
+
 
 export const RecommendCard = ({ doctor }) => {
   const { state, updateFavorites } = useDoctorStates();
@@ -38,7 +39,7 @@ export const RecommendCard = ({ doctor }) => {
   };
 
   doctor.urlImg = 'data:image/jpeg;base64,' + doctor.img;
-  const shareUrl = `${FRONT_URL}/doctors/${doctor.id}`;
+  const shareUrl = `${FRONT_URL}}/doctors/${doctor.id}`;
 
   return (
     <Card className='recommend-card' sx={{ maxWidth: 800 }} elevation={10}>
