@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getDoctors } from "../../../../Services";
 import './Recommendations.styles.css'
-import { Box, CircularProgress, Typography } from "@mui/material";
+import { Box, CircularProgress, Typography, Skeleton } from "@mui/material";
 import { RecommendCard } from "../RecommendCard";
 import { RecommendationsPagination } from "../RecommendationsPagination";
 import { useDoctorStates } from "../../../../Context";
@@ -17,6 +17,7 @@ export const Recommendations = () => {
     const loadDoctors = async () => {
       setLoading(true);
       const doctorData = await getDoctors();
+      const randomDoctors = getRandomDoctors(doctorData);
       setDoctors(doctorData);
       setLoading(false);
     };
@@ -24,11 +25,17 @@ export const Recommendations = () => {
   }, []);
 
   const getRandomDoctors = (doctors) => {
+    for (let i = doctors.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [doctors[i], doctors[j]] = [doctors[j], doctors[i]];
+    }
     return doctors;
   };
 
   const paginate = (pageNumber) => {
     setCurrentPage(pageNumber);
+    const randomDoctors = getRandomDoctors(doctors);
+    setDoctors(randomDoctors);
   };
 
   const indexOfLastDoctor = currentPage * doctorsPerPage;
@@ -46,8 +53,8 @@ export const Recommendations = () => {
   return (
     <div className="recommendations-container">
       <Box sx={{ textAlign: 'center', marginBottom: '3rem', marginTop: '7rem' }}>
-        <Typography variant="h4" component="h3" sx={{color: 'primary.main'}} >Meet Our Trusted Doctors</Typography>
-        <Typography variant="h5" component="h4" sx={{color: 'secondary.light'}} >Top-Rated by Patients for Exceptional Care</Typography>
+        <Typography variant="h4" component="h3" sx={{ color: 'primary.main' }} >Meet Our Trusted Doctors</Typography>
+        <Typography variant="h5" component="h4" sx={{ color: 'secondary.light' }} >Top-Rated by Patients for Exceptional Care</Typography>
       </Box>
       <Box className="flex-container" sx={{
         display: 'flex',
@@ -63,7 +70,15 @@ export const Recommendations = () => {
             justifyContent: 'center',
             alignItems: 'center'
           }}>
-            <RecommendCard doctor={doctor} />
+            {doctor ? (
+              <RecommendCard doctor={doctor} />
+            ) : (
+              <Skeleton
+                variant="rectangular"
+                width={240}
+                height={300}
+                animation="wave" />
+            )}
           </Box>
         ))}
       </Box>
