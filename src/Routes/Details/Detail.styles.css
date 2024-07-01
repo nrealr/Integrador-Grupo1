@@ -62,20 +62,10 @@
   background-color: #102c5b;
   color: whitesmoke;
   padding: 1rem;
-  border-radius: 25px;
+  justify-content: center;
 }
 
-/* Style for p elements inside the doctor data */
-.doctor-data p {
-  font-size: medium;
-  text-align: center;
-  font-weight: bolder;
-  margin: 10%;
-  background-color: #102c5b;
-  color: whitesmoke;
-  padding: 1rem;
-  border-radius: 25px;
-}
+
 
 /* Calendar Date Styles */
 .calendarDate {

@@ -2,12 +2,13 @@ import { useState, useEffect } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-import { StaticDatePicker } from './BookingCalendar.styled';
+import { CalendarBox, StaticDatePicker } from './BookingCalendar.styled';
 import isBetween from 'dayjs/plugin/isBetween';
+import { BtnAppointment } from '../../Routes/Details/BtnAppointment';
 
 dayjs.extend(isBetween);
 
-export const BookingCalendar = ({ availableDays, onDateSelect }) => {
+export const BookingCalendar = ({ availableDays, onDateSelect, onAppointmentClick, doctorDetails }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [disabledDates, setDisabledDates] = useState([]);
 
@@ -34,12 +35,19 @@ export const BookingCalendar = ({ availableDays, onDateSelect }) => {
     onDateSelect(value);
   };
 
+  const handleAppointmentClick = () => {
+
+    onAppointmentClick();
+
+  };
+
   const shouldDisableDateHandler = (value) => {
     const dateStr = dayjs(value).format('YYYY-MM-DD');
     return disabledDates.includes(dateStr);
   };
 
   return (
+    <CalendarBox>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <StaticDatePicker
         value={selectedDate}
@@ -47,6 +55,8 @@ export const BookingCalendar = ({ availableDays, onDateSelect }) => {
         onChange={onChangeHandler}
         shouldDisableDate={shouldDisableDateHandler}
       />
+      <BtnAppointment onClick={handleAppointmentClick} doctorDetails={doctorDetails}/>
     </LocalizationProvider>
+    </CalendarBox>
   );
 };

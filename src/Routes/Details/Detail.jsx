@@ -40,12 +40,12 @@ export const Detail = ({ id: propId }) => {
           setSpecialty(specialtyData.name);
         }
 
-    if (doctorData.locationId) {
-      const locationData = await getLocationById(doctorData.locationId);
-      setDoctorLocation(locationData);
-      doctorData.location = locationData.name;
-      doctorData.locationAddress = locationData.address;
-    }
+        if (doctorData.locationId) {
+          const locationData = await getLocationById(doctorData.locationId);
+          setDoctorLocation(locationData);
+          doctorData.location = locationData.name;
+          doctorData.locationAddress = locationData.address;
+        }
 
         // Llamar al servicio para obtener las fechas disponibles por doctor
         const days = await getAvailableDays(doctorData.id); // Asumiendo que este servicio retorna las fechas disponibles
@@ -72,6 +72,14 @@ export const Detail = ({ id: propId }) => {
     console.log(selectedTimeSlot);
   };
 
+  const handleAppointmentClick = () => {
+
+    // Aquí puedes agregar lógica adicional si es necesario
+
+    console.log("Appointment button clicked!");
+
+  };
+
   const queryParamsPresent = location.search && location.search.length > 0;
 
   return (
@@ -94,14 +102,10 @@ export const Detail = ({ id: propId }) => {
 
         <div className="doctor-data">
           <div>
-            <h3>Hello! I'm a specialist in {specialty}</h3>
-            <h3>I'm located in the {doctorLocation.name}</h3>
-            <p>{doctorSelected.description}</p>
-            <BtnAppointment 
-              doctorDetails={{ ...doctorSelected, specialty, location: doctorLocation.name, locationAddress: doctorLocation.address }}
-              selectedDate={selectedDate}
-              selectedTimeSlot={selectedTimeSlot}
-            />
+            <h3>Hello! I'm a specialist in {specialty}<br />
+              I'm located in the {doctorLocation.name}<br />
+              {doctorSelected.description}
+            </h3>
           </div>
         </div>
 
@@ -122,12 +126,18 @@ export const Detail = ({ id: propId }) => {
           )}
           {!isError && !isLoading && (
             <BookingCalendar
-              className="calendarDate"
+
               availableDays={availableDays}
               onDateSelect={handleDateSelect}
+              onAppointmentClick={handleAppointmentClick}
+              doctorDetails={doctorSelected} // pass the doctor details here
+
             />
+
           )}
+
         </div>
+
       </div>
 
       {!queryParamsPresent && (
