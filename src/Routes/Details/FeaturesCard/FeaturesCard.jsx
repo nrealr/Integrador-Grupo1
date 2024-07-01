@@ -60,12 +60,9 @@ export const FeaturesCard = ({ doctorId }) => {
         <FeaturesMainCard key={card.id}>
           <FeaturesCardContent>
             <FeaturesCardIcon src={card.icon} alt="Icon" />
-            <FeaturesCardTitle variant="h6" component="h6">
+            <FeaturesCardTitle variant="p" component="p">
               {card.name}
             </FeaturesCardTitle>
-            <FeaturesCardDescription variant="body2" color="text.secondary">
-              {card.description}
-            </FeaturesCardDescription>
           </FeaturesCardContent>
         </FeaturesMainCard>
       ))}

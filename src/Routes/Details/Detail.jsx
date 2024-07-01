@@ -92,7 +92,12 @@ export const Detail = ({ id: propId }) => {
       </div>
 
       <div className="detailBody">
+
         <div>
+
+          <div className="detailMain">
+
+          <div>
           <img
             className="doctorImage"
             src={doctorSelected.urlImg}
@@ -106,6 +111,15 @@ export const Detail = ({ id: propId }) => {
             <h3>I'm located in the {doctorLocation.name}<br /></h3>
             <h3>{doctorSelected.description}</h3>
           </div>
+        </div>
+
+
+          </div>
+
+        <div className="detailFeatures">
+          <FeaturesCard doctorId={doctorSelected.id} />
+        </div>
+      
         </div>
 
         <div className="appointment-area">
@@ -143,13 +157,11 @@ export const Detail = ({ id: propId }) => {
 
         </div>
 
+
+
+
       </div>
 
-      {!queryParamsPresent && (
-        <div className="detailFeatures">
-          <FeaturesCard doctorId={doctorSelected.id} />
-        </div>
-      )}
     </section>
   );
 };

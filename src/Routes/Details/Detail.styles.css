@@ -45,6 +45,14 @@
   background-size: cover;
 }
 
+.detailMain {
+display: flex;
+width: 60vw;
+
+}
+
+
+
 /* Doctor Data Styles */
 .doctor-data {
   display: flex;
@@ -147,6 +155,13 @@
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+.detailFeatures {
+  display: none;
+}
+}
+
 
 /* Adjust doctor-data styles on small screens */
 @media (max-width: 768px) {
