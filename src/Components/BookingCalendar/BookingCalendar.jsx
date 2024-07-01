@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
-import { StaticDatePicker } from './BookingCalendar.styled';
+import { CalendarBox, StaticDatePicker } from './BookingCalendar.styled';
 import isBetween from 'dayjs/plugin/isBetween';
 
 dayjs.extend(isBetween);
@@ -40,6 +40,7 @@ export const BookingCalendar = ({ availableDays, onDateSelect }) => {
   };
 
   return (
+    <CalendarBox>
     <LocalizationProvider dateAdapter={AdapterDayjs}>
       <StaticDatePicker
         value={selectedDate}
@@ -48,5 +49,6 @@ export const BookingCalendar = ({ availableDays, onDateSelect }) => {
         shouldDisableDate={shouldDisableDateHandler}
       />
     </LocalizationProvider>
+    </CalendarBox>
   );
 };

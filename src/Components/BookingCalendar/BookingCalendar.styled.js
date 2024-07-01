@@ -9,3 +9,9 @@ export const StaticDatePicker = styled(DatePicker)`
     flex-direction: column;
   }
 `;
+
+export const CalendarBox = styled('div')`
+ .MuiDialogActions-root {
+    display: none;
+  }
+`;
