@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 
-export const AccountContainer = styled('div')`
+export const PasswordContainer = styled('div')`
   padding: 20px;
   margin: 20px;
   border: 1px solid #ddd;
@@ -11,7 +11,7 @@ export const AccountContainer = styled('div')`
   width: 100%;
 `;
 
-export const AccountForm = styled('form')`
+export const PasswordForm = styled('form')`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +19,7 @@ export const AccountForm = styled('form')`
   max-width: 100%;
 `;
 
-export const AccountField = styled(TextField)`
+export const PasswordField = styled(TextField)`
   margin-bottom: 20px;
   width: 100%;
   padding: 10px;
@@ -33,7 +33,7 @@ export const AccountField = styled(TextField)`
   }
 `;
 
-export const AccountButton = styled('button')`
+export const PasswordButton = styled('button')`
   margin-top: 20px;
   padding: 10px 20px;
   border: none;

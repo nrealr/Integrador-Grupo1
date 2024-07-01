@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AccountContainer, AccountForm, AccountField, AccountButton, StyledPasswordTitle } from './ChangePassword.styled';
+import { PasswordForm, PasswordField, PasswordButton, StyledPasswordTitle, PasswordContainer } from './ChangePassword.styled';
 import { useDoctorStates } from "../../../Context";
 import { changeUserPassword, getUsersById } from "../../../Services/Users";
 import { login } from "../../../Services/Users";
@@ -54,29 +54,29 @@ export const ChangePassword = () => {
   };
 
   return (
-    <AccountContainer>
+    <PasswordContainer>
       <StyledPasswordTitle>
         Change Password
       </StyledPasswordTitle>
 
-      <AccountForm onSubmit={handleSubmit}>
+      <PasswordForm onSubmit={handleSubmit}>
         {error && <p style={{ color: 'red' }}>{error}</p>}
         {success && <p style={{ color: 'green' }}>{success}</p>}
-        <AccountField
+        <PasswordField
           label="Current Password"
           name="currentPassword"
           type="password"
           value={passwords.currentPassword}
           onChange={handleInputChange}
         />
-        <AccountField
+        <PasswordField
           label="New Password"
           name="newPassword"
           type="password"
           value={passwords.newPassword}
           onChange={handleInputChange}
         />
-        <AccountField
+        <PasswordField
           label="Confirm New Password"
           name="confirmPassword"
           type="password"
@@ -84,10 +84,10 @@ export const ChangePassword = () => {
           onChange={handleInputChange}
         />
 
-        <AccountButton type="submit" variant="contained" color="primary">
+        <PasswordButton type="submit" variant="contained" color="primary">
           Change Password
-        </AccountButton>
-      </AccountForm>
-    </AccountContainer>
+        </PasswordButton>
+      </PasswordForm>
+    </PasswordContainer>
   );
 };
