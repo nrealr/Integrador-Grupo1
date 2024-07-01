@@ -18,7 +18,7 @@ export const RegisterForm = () => {
     });
 
     const [error, setError] = useState({});
-    const [success, setSuccess] = useState(false);
+    const [isSent, setIsSent] = useState(false);
     const [userId, setUserId] = useState(null); // Nuevo estado para almacenar el ID del usuario registrado
     const [emailResent, setEmailResent] = useState(false);
     const userStore = UserStore();
@@ -64,16 +64,18 @@ export const RegisterForm = () => {
         const validationErrors = validateForm(formData);
 
         if (Object.keys(validationErrors).length === 0) {
+
             try {
                 const formattedData = {
                     ...formData,
                     name: capitalizeFirstLetter(formData.name),
                     lastname: capitalizeFirstLetter(formData.lastname),
                 };
+                
+                setIsSent(true);
                 const response = await addUser(formattedData);
                 userStore.addUser(response.id, formattedData);
                 setUserId(response.id); // Guardar el ID del usuario registrado
-                setSuccess(true);
                 setFormData({
                     name: '',
                     lastname: '',
@@ -216,19 +218,27 @@ export const RegisterForm = () => {
                 </Box>
 
             </Container>
-            {success && (
+            {isSent && (
                 <ModalComponent
-                    isOpen={success}
+                    isOpen={true}
                     onClose={handleCloseModal} // Usar el manejador de cierre del modal
                     message={
                         <>
                             User Registered Successfully
                             <br />
-                            <Button onClick={handleResendEmail} variant="contained" color="primary" sx={{ mt: 2 }}>
+                            <Button 
+                            disabled={!userId}
+                            onClick={handleResendEmail} 
+                            variant="contained" 
+                            color="primary" 
+                            sx={{ mt: 2 }}>
                                 Resend Welcome Email
                             </Button>
                             {emailResent && (
-                                <Typography variant="body2" color="green" sx={{ mt: 2 }}>
+                                <Typography 
+                                variant="body2" 
+                                color="green" 
+                                sx={{ mt: 2 }}>
                                     Welcome email resent successfully.
                                 </Typography>
                             )}

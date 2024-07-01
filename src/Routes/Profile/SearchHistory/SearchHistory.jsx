@@ -51,7 +51,7 @@ export const SearchHistory = () => {
 
   return (
     <Box sx={{ padding: '1rem' }}>
-      <StyledTitle variant="h6">
+      <StyledTitle>
         Search History
       </StyledTitle>
       {searchHistory.length > 0 ? (

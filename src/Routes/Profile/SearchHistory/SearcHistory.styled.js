@@ -2,12 +2,15 @@ import { Table, TableCell, TableHead, TableRow, Typography } from "@mui/material
 import styled from "styled-components";
 
 
-export const StyledTitle = styled(Typography)`
-  background-color: #62c0bb; /* Replace with your desired background color */
-  padding: 10px; /* Add some padding to make it look nicer */
-  text-align: center; /* Center the text */
-  border-radius: 10px; /* Add some rounded corners */
-  margin-bottom: 1rem; /* Keep the original margin bottom */
+export const StyledTitle = styled('h2')`
+  background-color: #62c0bb;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  width: 100%;
+  display: block;
+  padding: 10px;
+  text-align: center;
 `;
 
 export const StyledTable = styled(Table)`
