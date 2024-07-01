@@ -1,4 +1,3 @@
-//
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getUserPreferences, getDoctorById, getSpecialtyById, getLocationById } from "../../../Services";
@@ -19,7 +18,7 @@ export const Favorites = () => {
     const [favorites, setFavorites] = useState([]);
     const [currentDate, setCurrentDate] = useState(new Date());
     const navigate = useNavigate();
-  
+
     const loadFavorites = async () => {
       try {
         const { favorites: favoriteIds } = await getUserPreferences();
@@ -36,13 +35,13 @@ export const Favorites = () => {
         console.error("Error loading favorite doctors:", error);
       }
     };
-  
+
     useEffect(() => {
       loadFavorites();
     }, [state.favorites]);
-  
+
     const handleRemoveFavorite = async (event, id) => {
-      event.stopPropagation(); // Evitar la redirección
+      event.stopPropagation();
       try {
         const updatedFavorites = favorites.filter(doctor => doctor.id !== id);
         setFavorites(updatedFavorites);
@@ -53,7 +52,7 @@ export const Favorites = () => {
         alert("Failed to remove favorite doctor. Please try again.");
       }
     };
-  
+
     const columns = [
       { field: "id", headerName: "ID", width: 70, flex: 1 },
       { field: "name", headerName: "Name", width: 130, flex: 2 },
@@ -71,9 +70,9 @@ export const Favorites = () => {
         ),
       },
     ].filter(column => favorites.some(favorite => favorite[column.field] !== null));
-  
+
     const formattedDate = `${currentDate.toLocaleDateString()} at ${currentDate.toLocaleTimeString()}`;
-  
+
     return (
       <div className="favorites-display" style={{ height: '100vh', width: '100%' }}>
         <FavoritesHeader>
@@ -86,7 +85,7 @@ export const Favorites = () => {
             </StyledFavoritesSubtitle>
           </StyledFavoritesSection>
         </FavoritesHeader>
-  
+
         {favorites.length === 0 ? (
           <Box display="flex" justifyContent="center" alignItems="center" height="50vh">
             <Typography variant="h6" color="textSecondary">
@@ -99,14 +98,10 @@ export const Favorites = () => {
             columns={columns}
             initialState={{
               pagination: {
-                paginationModel: { page: 0, pageSize: 5 },
-              },
-              sorting: {
-                sortModel: [{ field: 'id', sort: 'asc' }],
+                paginationModel: { page: 0, pageSize: 10 },
               },
             }}
-            pageSizeOptions={[5, 10]}
-            columnWidth={150}
+            pageSizeOptions={[10]} // Limitar opciones de tamaño de página a solo 10
             disableSelectionOnClick
             onRowClick={(params) => navigate(`${ROUTES.DETAIL.replace(':id', params.row.id)}`)}
             sx={{
@@ -117,4 +112,4 @@ export const Favorites = () => {
         )}
       </div>
     );
-  };
+};
