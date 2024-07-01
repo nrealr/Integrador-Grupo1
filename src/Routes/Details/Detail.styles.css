@@ -53,16 +53,17 @@
   width: 60vw;
 }
 
+
 /* Style for h3 elements inside the doctor data */
 .doctor-data h3 {
   font-size: larger;
   font-weight: bolder;
   text-align: center;
-  margin: 10%;
   background-color: #102c5b;
   color: whitesmoke;
   padding: 1rem;
   justify-content: center;
+  margin: 0;
 }
 
 

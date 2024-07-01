@@ -102,10 +102,9 @@ export const Detail = ({ id: propId }) => {
 
         <div className="doctor-data">
           <div>
-            <h3>Hello! I'm a specialist in {specialty}<br />
-              I'm located in the {doctorLocation.name}<br />
-              {doctorSelected.description}
-            </h3>
+            <h3>Hello! I'm a specialist in {specialty}<br /></h3>
+            <h3>I'm located in the {doctorLocation.name}<br /></h3>
+            <h3>{doctorSelected.description}</h3>
           </div>
         </div>
 
