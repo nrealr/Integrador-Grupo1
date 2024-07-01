@@ -74,7 +74,7 @@ export const RecommendCard = ({ doctor }) => {
       </CardContent>
 
       <CardActions className='cardAction-box'>
-        <ShareButton url={shareUrl} title={`Dr. ${doctor.name} ${doctor.lastname}`} />
+        <ShareButton url={shareUrl} title={`Check the profile of Dr. ${doctor.name} ${doctor.lastname} on MediConnect`} />
       </CardActions>
     </Card>
   );
