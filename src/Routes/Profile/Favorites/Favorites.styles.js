@@ -7,7 +7,7 @@ export const StyledFavoritesTable = styled(DataGrid)`
     border-radius: 5px;
     padding: 10px;
     width: 100%;
-    height: 100vh; /* Ajustar la altura para que la tabla se vea completa */
+    height: 75vh; /* Ajustar la altura para que la tabla se vea completa */
 
     .MuiDataGrid-columnsContainer {
       display: flex;
