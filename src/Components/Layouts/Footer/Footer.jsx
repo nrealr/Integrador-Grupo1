@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './Footer.styles.css';
 import { Link } from 'react-router-dom';
 import { Copyright } from './Copyright';
+import { Fab } from '@mui/material';
+import { WhatsappIcon } from 'react-share';
 
 /**
  * 
@@ -26,9 +28,11 @@ export const Footer = () => {
       <Copyright companyName={companyName} />
 
 
-
       <div className="footer-social">
-        <a
+        <Fab
+          size="small"
+          color="secondary"
+          aria-label="Facebook"
           href="https://www.facebook.com/"
           target="_blank"
           rel="noopener noreferrer"
@@ -38,8 +42,11 @@ export const Footer = () => {
             src="/images/ico-facebook.png"
             alt="Connect with us on Facebook"
           />
-        </a>
-        <a
+        </Fab>
+        <Fab
+          size="small"
+          color="secondary"
+          aria-label="Instagram"
           href="https://www.instagram.com/"
           target="_blank"
           rel="noopener noreferrer"
@@ -49,8 +56,11 @@ export const Footer = () => {
             src="/images/ico-instagram.png"
             alt="Follow us in Instagram"
           />
-        </a>
-        <a
+        </Fab>
+        <Fab
+          size="small"
+          color="secondary"
+          aria-label="WhatsApp"
           href="https://wa.me/"
           target="_blank"
           rel="noopener noreferrer"
@@ -60,7 +70,7 @@ export const Footer = () => {
             src="/images/ico-whatsapp.png"
             alt="Write us by WhatsApp"
           />
-        </a>
+        </Fab>
       </div>
 
     </footer>
