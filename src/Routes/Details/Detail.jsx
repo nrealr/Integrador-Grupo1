@@ -125,6 +125,7 @@ export const Detail = ({ id: propId }) => {
             </span>
           )}
           {!isError && !isLoading && (
+            <div>
             <BookingCalendar
 
               availableDays={availableDays}
@@ -133,7 +134,12 @@ export const Detail = ({ id: propId }) => {
               doctorDetails={doctorSelected} // pass the doctor details here
 
             />
-
+            <BtnAppointment 
+              doctorDetails={{ ...doctorSelected, specialty, location: doctorLocation.name, locationAddress: doctorLocation.address }}
+              selectedDate={selectedDate}
+              selectedTimeSlot={selectedTimeSlot}
+            />
+          </div>
           )}
 
         </div>

@@ -55,8 +55,8 @@ export const BookingCalendar = ({ availableDays, onDateSelect, onAppointmentClic
         onChange={onChangeHandler}
         shouldDisableDate={shouldDisableDateHandler}
       />
-      <BtnAppointment onClick={handleAppointmentClick} doctorDetails={doctorDetails}/>
+      {/* <BtnAppointment onClick={handleAppointmentClick} doctorDetails={doctorDetails}/> */}
     </LocalizationProvider>
     </CalendarBox>
-  );
+  );  
 };
