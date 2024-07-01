@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { useDoctorStates } from '../../../../Context';
 import './RecommendCard.styles.css';
 
+const { FRONT_URL } = window._env_;
 
 export const RecommendCard = ({ doctor }) => {
   const { state, updateFavorites } = useDoctorStates();
@@ -37,6 +38,7 @@ export const RecommendCard = ({ doctor }) => {
   };
 
   doctor.urlImg = 'data:image/jpeg;base64,' + doctor.img;
+  const shareUrl = `${FRONT_URL}/doctors/${doctor.id}`;
 
   return (
     <Card className='recommend-card' sx={{ maxWidth: 800 }} elevation={10}>
@@ -72,7 +74,7 @@ export const RecommendCard = ({ doctor }) => {
       </CardContent>
 
       <CardActions className='cardAction-box'>
-        <ShareButton />
+        <ShareButton url={shareUrl} title={`Dr. ${doctor.name} ${doctor.lastname}`} />
       </CardActions>
     </Card>
   );

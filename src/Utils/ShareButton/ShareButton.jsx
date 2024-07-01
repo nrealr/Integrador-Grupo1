@@ -1,4 +1,3 @@
-
 import ShareIcon from '@mui/icons-material/Share';
 import { Box, Button } from '@mui/material';
 import {
@@ -13,13 +12,9 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 import './ShareButton.styles.css'
 
-export const ShareButton = () => {
-  const url = 'https://www.example.com/share'; // Reemplaza con la URL que deseas compartir
-  const title = 'Compartir información'; // Reemplaza con el título que deseas compartir
-
+export const ShareButton = ({ url, title }) => {
   return (
     <Box
-
       sx={{
         display: 'flex',
         alignItems: 'right',
@@ -43,7 +38,7 @@ export const ShareButton = () => {
       <WhatsappShareButton url={url} title={title}>
         <WhatsAppIcon />
       </WhatsappShareButton>
-      <FacebookShareButton url={url} title={title}>
+      <FacebookShareButton url={url} quote={title}>
         <FacebookIcon />
       </FacebookShareButton>
       <LinkedinShareButton url={url} title={title}>
